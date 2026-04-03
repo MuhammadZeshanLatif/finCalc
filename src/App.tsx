@@ -1,43 +1,105 @@
 import { useState, useEffect } from "react";
+import clsx from "clsx";
 import { translations } from "./data/translations";
-import { blogPosts } from "./data/blogPosts";
+import {
+  approxWordCount,
+  getBlogPosts,
+  getLatestPosts,
+  getPostBySlug,
+  getPostByTopic,
+  getRelatedPosts,
+} from "./data/blog";
 import Calculators from "./components/Calculators";
+import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
+import { BlogArticlePage } from "./components/blog/BlogArticlePage";
+import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
+import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
+
+let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null = null;
+function seedRoute(): { lang: AppLang; page: string; blogSlug: string | null } {
+  if (fcRouteSeed) return fcRouteSeed;
+  let { lang, page, blogSlug } = parsePathname(window.location.pathname);
+  const hash = window.location.hash.replace(/^#/, "");
+  if (hash) {
+    page = normalizePage(hash);
+    blogSlug = null;
+    window.history.replaceState({}, "", buildPathname(lang, page, null));
+    window.location.hash = "";
+  } else {
+    if (page !== "blog" || !blogSlug) {
+      page = normalizePage(page);
+      if (page !== "blog") blogSlug = null;
+    }
+  }
+  fcRouteSeed = { lang, page, blogSlug };
+  return fcRouteSeed;
+}
+
+const calcMeta: Record<string, { icon: string }> = {
+  basic:     { icon: "fa-calculator" },
+  interest:  { icon: "fa-chart-line" },
+  deposit:   { icon: "fa-piggy-bank" },
+  loan:      { icon: "fa-hand-holding-dollar" },
+  mortgage:  { icon: "fa-house" },
+  days:      { icon: "fa-calendar-days" },
+  vat:       { icon: "fa-receipt" },
+  emi:       { icon: "fa-credit-card" },
+  bmi:       { icon: "fa-weight-scale" },
+  tax:       { icon: "fa-file-invoice-dollar" },
+  currency:  { icon: "fa-money-bill-transfer" },
+};
 
 export default function App() {
-  const [lang, setLang] = useState<"en" | "ru">("en");
-  const [currentPage, setCurrentPage] = useState<string>("home");
+  const [lang, setLang] = useState<AppLang>(() => seedRoute().lang);
+  const [currentPage, setCurrentPage] = useState(() => seedRoute().page);
+  const [blogSlug, setBlogSlug] = useState<string | null>(() => seedRoute().blogSlug);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
-  // Blog pagination state
   const [blogPage, setBlogPage] = useState<number>(1);
+  const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
   const postsPerPage = 6;
 
-  // Contact form state
-  const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
-
   useEffect(() => {
-    const path = window.location.pathname;
-    if (path.startsWith("/ru")) {
-      setLang("ru");
-    } else {
-      setLang("en");
-    }
-
-    const hash = window.location.hash.replace("#", "");
-    if (hash) {
-      setCurrentPage(hash);
-    }
+    const onPop = () => {
+      const { lang: L, page: P, blogSlug: S } = parsePathname(window.location.pathname);
+      setLang(L);
+      if (P === "blog" && S) {
+        setCurrentPage("blog");
+        setBlogSlug(S);
+      } else {
+        setCurrentPage(normalizePage(P));
+        setBlogSlug(null);
+      }
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  const changeLang = (newLang: "en" | "ru") => {
+  const changeLang = (newLang: AppLang) => {
+    if (currentPage === "blog" && blogSlug) {
+      const cur = getPostBySlug(lang, blogSlug);
+      const nxt = cur ? getPostByTopic(newLang, cur.topicKey) : undefined;
+      if (nxt) {
+        setLang(newLang);
+        setBlogSlug(nxt.slug);
+        window.history.pushState({}, "", buildPathname(newLang, "blog", nxt.slug));
+        return;
+      }
+      setLang(newLang);
+      setBlogSlug(null);
+      window.history.pushState({}, "", buildPathname(newLang, "blog", null));
+      return;
+    }
     setLang(newLang);
-    const path = newLang === "ru" ? "/ru" : "/";
-    window.history.pushState({}, "", path);
+    window.history.pushState({}, "", buildPathname(newLang, currentPage, null));
   };
 
-  const navigateTo = (page: string) => {
-    setCurrentPage(page);
-    window.location.hash = page;
+  const navigateTo = (page: string, opts?: { blogSlug?: string | null }) => {
+    const p = normalizePage(page);
+    const slug = p === "blog" && opts?.blogSlug ? opts.blogSlug : null;
+    setCurrentPage(p);
+    setBlogSlug(slug);
+    window.history.pushState({}, "", buildPathname(lang, p, slug));
     window.scrollTo(0, 0);
   };
 
@@ -54,48 +116,198 @@ export default function App() {
     c.desc.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const currentBlogPosts = blogPosts[lang];
+  const currentBlogPosts = getBlogPosts(lang);
+  const activeBlogPost = blogSlug ? getPostBySlug(lang, blogSlug) : undefined;
   const indexOfLastPost = blogPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const paginatedPosts = currentBlogPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+  useEffect(() => {
+    const tr = translations[lang];
+    const calcEntry = (tr.calculators as Record<string, { title: string; desc: string } | undefined>)[currentPage];
+    let title = tr.siteTitle;
+    let description = `${tr.siteSubtitle} — ${tr.liveResultsHint}`;
+    let calculatorKeywords: string | undefined;
+    let blogArticle: BlogSeoPayload | undefined;
+
+    if (calcEntry) {
+      title = calcEntry.title;
+      description = calcEntry.desc;
+      calculatorKeywords = `${calcEntry.title}, calculator, ${tr.siteTitle}`;
+    } else if (currentPage === "blog" && blogSlug) {
+      const post = getPostBySlug(lang, blogSlug);
+      if (!post) {
+        title = lang === "ru" ? "Страница не найдена" : "Page not found";
+        description =
+          lang === "ru"
+            ? "Такой статьи нет. Вернитесь к списку статей."
+            : "This blog post does not exist. Return to the article list.";
+      } else {
+        const enP = getPostByTopic("en", post.topicKey);
+        const ruP = getPostByTopic("ru", post.topicKey);
+        if (enP && ruP) {
+          title = post.metaTitle;
+          description = post.metaDescription;
+          blogArticle = {
+            canonicalPath: buildPathname(lang, "blog", post.slug),
+            alternateEnPath: buildPathname("en", "blog", enP.slug),
+            alternateRuPath: buildPathname("ru", "blog", ruP.slug),
+            headline: post.title,
+            description: post.metaDescription,
+            keywords: post.keywords,
+            datePublished: post.datePublished,
+            dateModified: post.dateModified,
+            authorName: post.author,
+            imageUrl: post.hero.src,
+            imageAlt: post.hero.alt,
+            blogListLabel: t.blog,
+            wordCountApprox: approxWordCount(post),
+            videoYoutubeId: post.video?.youtubeId,
+          };
+        }
+      }
+    } else if (currentPage === "blog") {
+      title = tr.latestPosts;
+      description =
+        lang === "ru"
+          ? "Практические статьи о деньгах, налогах и калькуляторах FinCalc — с источниками и ссылками на инструменты."
+          : "Practical money and tax articles from FinCalc — with citations, structured guides, and links to free calculators.";
+    } else if (currentPage === "contact") {
+      title = tr.contact;
+      description =
+        lang === "ru" ? "Свяжитесь с FinCalc — обратная связь и вопросы." : "Contact FinCalc — feedback and questions.";
+    } else if (currentPage === "about") {
+      title = tr.about;
+      description =
+        lang === "ru"
+          ? "FinCalc — бесплатные калькуляторы, блог и инструменты на русском и английском."
+          : "FinCalc — free calculators, blog, and bilingual tools in English and Russian.";
+    } else if (currentPage === "privacy") {
+      title = tr.privacy;
+      description =
+        lang === "ru"
+          ? "Политика конфиденциальности FinCalc: данные, cookie и ваши права."
+          : "FinCalc privacy policy: data collection, cookies, and your rights.";
+    } else if (currentPage === "terms") {
+      title = tr.terms;
+      description =
+        lang === "ru"
+          ? "Условия использования FinCalc и отказ от ответственности."
+          : "FinCalc terms of use and disclaimer.";
+    }
+
+    updatePageSeo({
+      lang,
+      page: currentPage,
+      title,
+      description,
+      calculatorKeywords,
+      breadcrumbHomeLabel: t.home,
+      ...(blogArticle ? { blogArticle } : {}),
+    });
+  }, [lang, currentPage, blogSlug]);
+
   return (
-    <div className="min-h-screen bg-light text-dark d-flex flex-column">
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm">
-        <div className="container">
-          <a className="navbar-brand d-flex align-items-center" href="#" onClick={(e) => { e.preventDefault(); navigateTo("home"); }}>
-            <i className="fa-solid fa-coins text-warning me-2 fs-3"></i>
+    <div className="fc-app-shell">
+
+      {/* ── Navbar ─────────────────────────────────────────── */}
+      <nav className="navbar navbar-expand-lg navbar-dark fc-navbar">
+        <div className="container position-relative">
+          <a
+            href="#main-content"
+            className="visually-hidden-focusable position-absolute top-0 start-0 bg-white text-primary px-3 py-2 m-2 rounded shadow-sm z-3 small"
+          >
+            {lang === "ru" ? "Перейти к содержимому" : "Skip to main content"}
+          </a>
+          <a
+            className="navbar-brand d-flex align-items-center gap-2 text-decoration-none"
+            href={buildPathname(lang, "home")}
+            onClick={e => { e.preventDefault(); navigateTo("home"); }}
+          >
+            <span className="fc-brand-icon">
+              <i className="fa-solid fa-coins text-dark fs-5"></i>
+            </span>
             <div>
-              <span className="fw-bold tracking-tight">{t.siteTitle}</span>
-              <small className="d-block text-secondary fs-6 fw-normal">{t.siteSubtitle}</small>
+              <span className="fw-bold text-white fc-navbar-brand-title">
+                {t.siteTitle}
+              </span>
+              <small className="d-block text-white fc-navbar-brand-sub">
+                {t.siteSubtitle}
+              </small>
             </div>
           </a>
 
-          <div className="d-flex align-items-center ms-auto">
-            <button className={`btn btn-sm me-2 ${lang === "en" ? "btn-warning" : "btn-outline-secondary text-white"}`} onClick={() => changeLang("en")}>
-              EN
-            </button>
-            <button className={`btn btn-sm ${lang === "ru" ? "btn-warning" : "btn-outline-secondary text-white"}`} onClick={() => changeLang("ru")}>
-              РУ
-            </button>
+          <button
+            className="navbar-toggler fc-navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#fcNavbarCollapse"
+            aria-controls="fcNavbarCollapse"
+            aria-expanded="false"
+            aria-label={lang === "ru" ? "Меню" : "Menu"}
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse fc-navbar-collapse" id="fcNavbarCollapse">
+            <ul className="navbar-nav ms-auto me-lg-3 mb-2 mb-lg-0 align-items-lg-center">
+              {(
+                [
+                  { page: "home" as const, label: t.home },
+                  { page: "blog" as const, label: t.blog },
+                  { page: "about" as const, label: t.about },
+                  { page: "contact" as const, label: t.contact },
+                ] as const
+              ).map(({ page, label }) => (
+                <li className="nav-item" key={page}>
+                  <a
+                    className={clsx("nav-link fc-nav-link", currentPage === page && "active")}
+                    href={buildPathname(lang, page)}
+                    aria-current={currentPage === page ? "page" : undefined}
+                    onClick={e => {
+                      e.preventDefault();
+                      navigateTo(page);
+                    }}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="d-flex align-items-center gap-2 ms-lg-0">
+              <button
+                className={`btn fc-lang-btn ${lang === "en" ? "btn-warning text-dark" : "btn-outline-secondary text-white"}`}
+                onClick={() => changeLang("en")}
+              >
+                EN
+              </button>
+              <button
+                className={`btn fc-lang-btn ${lang === "ru" ? "btn-warning text-dark" : "btn-outline-secondary text-white"}`}
+                onClick={() => changeLang("ru")}
+              >
+                РУ
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Main Layout */}
-      <div className="container my-4 flex-grow-1">
-        <div className="row">
+      {/* ── Main Layout ────────────────────────────────────── */}
+      <div className="container my-4 fc-app-main">
+        <div className="row g-4">
+
           {/* Sidebar */}
-          <div className="col-lg-3 mb-4">
-            <div className="card shadow-sm border-0 sticky-top" style={{ top: "20px", zIndex: 10 }}>
-              <div className="card-header bg-primary text-white d-flex align-items-center fw-bold">
-                <i className="fa-solid fa-bars-staggered me-2"></i> {t.allCalculators}
+          <div className="col-lg-3">
+            <div className="fc-sidebar sticky-top fc-sidebar-sticky">
+              <div className="fc-sidebar-header d-flex align-items-center gap-2">
+                <i className="fa-solid fa-bars-staggered"></i>
+                {t.allCalculators}
               </div>
-              <div className="p-2 bg-light border-bottom">
+
+              <div className="fc-sidebar-search">
                 <div className="input-group input-group-sm">
-                  <span className="input-group-text bg-white border-end-0">
-                    <i className="fa-solid fa-magnifying-glass text-muted"></i>
+                  <span className="input-group-text border-end-0">
+                    <i className="fa-solid fa-magnifying-glass text-muted fc-search-addon-icon"></i>
                   </span>
                   <input
                     type="text"
@@ -106,109 +318,241 @@ export default function App() {
                   />
                 </div>
               </div>
-              <div className="list-group list-group-flush" style={{ maxHeight: "70vh", overflowY: "auto" }}>
-                {filteredCalculators.map(c => (
-                  <a
-                    key={c.id}
-                    href={`#${c.id}`}
-                    onClick={(e) => { e.preventDefault(); navigateTo(c.id); }}
-                    className={`list-group-item list-group-item-action border-0 py-2 px-3 d-flex align-items-center ${currentPage === c.id ? "bg-primary-subtle text-primary fw-bold" : ""}`}
-                  >
-                    <i className="fa-solid fa-chevron-right me-2 small text-secondary"></i>
-                    <span className="small">{c.title}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
 
-            <div className="card shadow-sm border-0 mt-3 p-3 bg-dark text-white text-center">
-              <h6 className="mb-1"><i className="fa-solid fa-shield-halved text-warning me-2"></i> AdSense Ready</h6>
-              <p className="small text-secondary mb-0">High-quality, SEO-optimized financial tools.</p>
+              <div className="fc-sidebar-list fc-sidebar-list-scroll">
+                {filteredCalculators.map(c => {
+                  const meta = calcMeta[c.id];
+                  return (
+                    <a
+                      key={c.id}
+                      href={buildPathname(lang, c.id)}
+                      onClick={e => { e.preventDefault(); navigateTo(c.id); }}
+                      className={`fc-sidebar-item ${currentPage === c.id ? "is-active" : ""}`}
+                    >
+                      {meta && (
+                        <span className={`fc-sidebar-item__icon item-icon fc-calc-accent--${c.id}`}>
+                          <i className={`fa-solid ${meta.icon}`}></i>
+                        </span>
+                      )}
+                      <span>{c.title}</span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          {/* Content Area */}
-          <div className="col-lg-9">
+          {/* Content */}
+          <main id="main-content" className="col-lg-9" role="main">
+
+            {/* ── Home Page ──────────────────────────────── */}
             {currentPage === "home" && (
               <div>
-                <div className="p-4 bg-white rounded shadow-sm border mb-4 text-center">
-                  <h1 className="fw-bold text-dark mb-2">{t.siteTitle}</h1>
-                  <p className="text-secondary mb-3">{t.siteSubtitle}</p>
-                  <hr className="w-25 mx-auto text-primary" style={{ height: "3px" }} />
-                  <p className="text-muted col-md-8 mx-auto">
-                    Explore our professional suite of 10+ finance-related calculators. From mortgage planning to complex compound interest and tax thresholds, calculate your projections with natural confidence.
-                  </p>
-                </div>
-
-                <div className="row g-3">
-                  {filteredCalculators.map(c => (
-                    <div className="col-md-6" key={c.id}>
-                      <div className="card h-100 shadow-sm border-0 calculator-card">
-                        <div className="card-body d-flex flex-column">
-                          <h5 className="card-title text-primary d-flex align-items-center">
-                            <i className="fa-solid fa-calculator me-2"></i> {c.title}
-                          </h5>
-                          <p className="card-text text-muted small flex-grow-1">{c.desc}</p>
-                          <button onClick={() => navigateTo(c.id)} className="btn btn-outline-primary btn-sm mt-3 w-100 align-self-end">
-                            {t.readMore} <i className="fa-solid fa-arrow-right-long ms-1"></i>
-                          </button>
-                        </div>
-                      </div>
+                {/* Hero */}
+                <div className="fc-hero">
+                  
+                  <h1>{t.siteTitle}</h1>
+                  <p className="fc-hero-lead">{t.siteSubtitle} — accurate, fast, and multilingual.</p>
+                  <div className="fc-hero-stats">
+                    <div className="fc-hero-stat">
+                      <span className="stat-num">11+</span>
+                      <span className="stat-label">Calculators</span>
                     </div>
-                  ))}
+                    <div className="fc-hero-stat">
+                      <span className="stat-num">2</span>
+                      <span className="stat-label">Languages</span>
+                    </div>
+                    <div className="fc-hero-stat">
+                      <span className="stat-num">Free</span>
+                      <span className="stat-label">Always</span>
+                    </div>
+                  </div>
+
+                  <div className="fc-home-trust-row" role="list">
+                    {[
+                      { icon: "fa-bolt", label: t.homeTrustLive },
+                      { icon: "fa-gift", label: t.homeTrustFree },
+                      { icon: "fa-language", label: t.homeTrustLang },
+                      { icon: "fa-chart-column", label: t.homeTrustCharts },
+                      { icon: "fa-shield-halved", label: t.homeTrustPrivacy },
+                    ].map((item, i) => (
+                      <div key={i} className="fc-home-trust-pill" role="listitem">
+                        <i className={`fa-solid ${item.icon} fc-home-trust-pill__icon`} aria-hidden></i>
+                        <span>{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
 
-            {/* Render Specific Calculator */}
-            {calculatorList.some(c => c.id === currentPage) && (
-              <Calculators id={currentPage} lang={lang} />
-            )}
+                <div className="row g-4 mb-4 align-items-center">
+                  <div className="col-12">
+                    <div className="fc-home-promo-card">
+                      <div className="fc-home-promo-badge">
+                        <i className="fa-solid fa-calculator"></i> {lang === "ru" ? "Калькулятор" : "Basic Calculator"}
+                      </div>
+                      <h3 className="fc-home-promo-title">
+                        {lang === "ru" ? "Полноэкранный научный калькулятор" : "Full scientific calculator"}
+                      </h3>
+                      <p className="fc-home-promo-text">
+                        {lang === "ru"
+                          ? "Степени, корни, факториал, тригонометрия, память и история — откройте вкладку «Базовый калькулятор» в боковом меню."
+                          : "Powers, roots, factorial, trig, memory, and history — open the Basic Calculator tab in the sidebar."}
+                      </p>
+                      <button
+                        type="button"
+                        className="btn fc-calc-btn"
+                        onClick={() => navigateTo("basic")}
+                      >
+                        <i className="fa-solid fa-calculator"></i>{" "}
+                        {lang === "ru" ? "Открыть калькулятор" : "Open Basic Calculator"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
-            {/* Blog Page */}
-            {currentPage === "blog" && (
-              <div className="bg-white rounded p-4 shadow-sm border">
-                <h2 className="text-primary mb-4 d-flex align-items-center border-bottom pb-2">
-                  <i className="fa-solid fa-newspaper me-2"></i> {t.latestPosts}
-                </h2>
+                {/* Section divider */}
+                <div className="fc-section-rule">
+                  <div className="fc-section-rule__line"></div>
+                  <span className="fc-section-rule__label">
+                    <i className="fa-solid fa-calculator"></i> Financial Calculators
+                  </span>
+                  <div className="fc-section-rule__line"></div>
+                </div>
 
-                <div className="row g-4">
-                  {paginatedPosts.map((post: any) => (
-                    <div className="col-md-6" key={post.id}>
-                      <div className="card h-100 shadow-sm border-0">
-                        <div className="card-body d-flex flex-column">
-                          <small className="text-muted d-block mb-2">
-                            <i className="fa-regular fa-calendar-days me-1"></i> {post.date}
-                          </small>
-                          <h5 className="card-title text-dark">{post.title}</h5>
-                          <p className="card-text text-secondary small flex-grow-1">{post.desc}</p>
-                          <hr />
-                          <p className="small text-muted">{post.content}</p>
-                          <div className="mt-auto">
-                            <button onClick={() => navigateTo(post.calcLink)} className="btn btn-primary btn-sm w-100">
-                              <i className="fa-solid fa-arrow-up-right-from-square me-1"></i> Try Linked Calculator
+                {/* Calculator Cards Grid */}
+                <div className="row g-3">
+                  {filteredCalculators.map(c => {
+                    const meta = calcMeta[c.id];
+                    return (
+                      <div className="col-md-6" key={c.id}>
+                        <div className="fc-calc-card card border-0">
+                          <div className="card-body d-flex flex-column p-4">
+                            {meta && (
+                              <span className={`fc-card-icon fc-calc-accent--${c.id}`}>
+                                <i className={`fa-solid ${meta.icon}`}></i>
+                              </span>
+                            )}
+                            <div className="fc-card-title">{c.title}</div>
+                            <div className="fc-card-desc">{c.desc}</div>
+                            <button
+                              onClick={() => navigateTo(c.id)}
+                              className="btn fc-card-btn"
+                            >
+                              {t.readMore}
+                              <i className="fa-solid fa-arrow-right"></i>
                             </button>
                           </div>
                         </div>
                       </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ── Calculator Page ─────────────────────── */}
+            {calculatorList.some(c => c.id === currentPage) && (
+              <Calculators id={currentPage} lang={lang} />
+            )}
+
+            {/* ── Blog article ───────────────────────── */}
+            {currentPage === "blog" && blogSlug && activeBlogPost && (
+              <BlogArticlePage
+                post={activeBlogPost}
+                lang={lang}
+                latest={getLatestPosts(lang, 5, activeBlogPost.topicKey)}
+                related={getRelatedPosts(lang, activeBlogPost.topicKey, 4)}
+                blogIndexPath={buildPathname(lang, "blog", null)}
+                labels={{
+                  toc: t.blogTableOfContents,
+                  keyPhrases: t.blogKeyPhrases,
+                  sources: t.blogSources,
+                  updated: t.blogUpdated,
+                  author: t.blogAuthor,
+                  readTime: t.blogReadTime,
+                  tryCalculator: t.blogTryCalculator,
+                  related: t.blogRelatedPosts,
+                  latest: t.blogLatestPosts,
+                  backToBlog: t.blogBackToIndex,
+                  readTimeSuffix: t.blogMinutes,
+                }}
+                onOpenCalculator={calcId => navigateTo(calcId)}
+                onSelectPost={slug => navigateTo("blog", { blogSlug: slug })}
+                onBackToBlog={() => navigateTo("blog")}
+              />
+            )}
+
+            {currentPage === "blog" && blogSlug && !activeBlogPost && (
+              <div className="fc-page-box">
+                <h1 className="h2 text-primary border-bottom pb-3 mb-4">
+                  {lang === "ru" ? "Страница не найдена" : "Page not found"}
+                </h1>
+                <p className="text-muted">{lang === "ru" ? "Такой статьи нет." : "This blog post does not exist."}</p>
+                <button type="button" className="btn btn-primary" onClick={() => navigateTo("blog")}>
+                  {t.blogBackToIndex}
+                </button>
+              </div>
+            )}
+
+            {/* ── Blog index ──────────────────────────── */}
+            {currentPage === "blog" && !blogSlug && (
+              <div className="fc-page-box">
+                <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
+                  <i className="fa-solid fa-newspaper"></i> {t.latestPosts}
+                </h1>
+                <p className="text-body-secondary mb-4 fc-blog-index-lead">
+                  {lang === "ru"
+                    ? "Статьи с оглавлением, источниками и разметкой для поиска. Открывайте полный текст — калькуляторы связаны внутри материала."
+                    : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
+                </p>
+                <div className="row g-4">
+                  {paginatedPosts.map(post => (
+                    <div className="col-md-6" key={post.slug}>
+                      <article className="fc-blog-card card border-0 h-100">
+                        <div className="card-body d-flex flex-column p-4">
+                          <div className="fc-blog-date">
+                            <i className="fa-regular fa-calendar-days" aria-hidden></i>{" "}
+                            <time dateTime={post.datePublished}>{post.datePublished}</time>
+                          </div>
+                          <h2 className="fc-blog-title h5 mb-2">{post.title}</h2>
+                          <p className="fc-blog-desc flex-grow-1 mb-3">{post.excerpt}</p>
+                          <div className="d-flex flex-wrap gap-2 mt-auto">
+                            <button
+                              type="button"
+                              onClick={() => navigateTo("blog", { blogSlug: post.slug })}
+                              className="btn btn-primary btn-sm"
+                            >
+                              <i className="fa-solid fa-book-open me-1" aria-hidden></i>
+                              {t.blogReadArticle}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => navigateTo(post.calcLink)}
+                              className="btn fc-blog-btn btn-sm"
+                            >
+                              <i className="fa-solid fa-calculator me-1" aria-hidden></i>
+                              {t.blogTryCalculator}
+                            </button>
+                          </div>
+                        </div>
+                      </article>
                     </div>
                   ))}
                 </div>
 
-                {/* Pagination */}
-                <div className="d-flex justify-content-center align-items-center mt-5">
+                <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
                   <button
-                    className="btn btn-outline-secondary me-2 btn-sm"
+                    className="btn btn-outline-secondary fc-pagination-btn"
                     disabled={blogPage === 1}
-                    onClick={() => setBlogPage(prev => prev - 1)}
+                    onClick={() => setBlogPage(p => p - 1)}
                   >
                     <i className="fa-solid fa-chevron-left me-1"></i> {t.prev}
                   </button>
-                  <span className="mx-3 fw-bold small">Page {blogPage}</span>
+                  <span className="fw-bold small text-muted">Page {blogPage}</span>
                   <button
-                    className="btn btn-outline-secondary ms-2 btn-sm"
+                    className="btn btn-outline-secondary fc-pagination-btn"
                     disabled={indexOfLastPost >= currentBlogPosts.length}
-                    onClick={() => setBlogPage(prev => prev + 1)}
+                    onClick={() => setBlogPage(p => p + 1)}
                   >
                     {t.next} <i className="fa-solid fa-chevron-right ms-1"></i>
                   </button>
@@ -216,78 +560,128 @@ export default function App() {
               </div>
             )}
 
-            {/* Contact Us Page */}
+            {/* ── About Page ─────────────────────────── */}
+            {currentPage === "about" && (
+              <div className="fc-page-box">
+                <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
+                  <i className="fa-solid fa-circle-info"></i> {t.about}
+                </h1>
+                <CalculatorRichArticle id="about" lang={lang} />
+              </div>
+            )}
+
+            {/* ── Contact Page ────────────────────────── */}
             {currentPage === "contact" && (
-              <div className="bg-white rounded p-4 shadow-sm border col-md-8 mx-auto">
-                <h2 className="text-primary mb-3 d-flex align-items-center border-bottom pb-2">
-                  <i className="fa-solid fa-paper-plane me-2"></i> {t.contact}
-                </h2>
+              <div className="fc-page-box fc-page-box--narrow">
+                <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
+                  <i className="fa-solid fa-paper-plane"></i> {t.contact}
+                </h1>
                 {contactSubmitted ? (
-                  <div className="alert alert-success d-flex align-items-center" role="alert">
-                    <i className="fa-solid fa-circle-check fs-4 me-2"></i>
-                    <div>{t.successMsg}</div>
+                  <div className="alert alert-success d-flex align-items-center gap-3 rounded-3">
+                    <i className="fa-solid fa-circle-check fs-4"></i>
+                    <div className="fw-medium">{t.successMsg}</div>
                   </div>
                 ) : (
-                  <form onSubmit={(e) => { e.preventDefault(); setContactSubmitted(true); }}>
+                  <form onSubmit={e => { e.preventDefault(); setContactSubmitted(true); }}>
                     <div className="mb-3">
-                      <label className="form-label">{t.name}</label>
+                      <label className="form-label fw-semibold fc-form-label-sm">{t.name}</label>
                       <input type="text" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                      <label className="form-label">{t.email}</label>
+                      <label className="form-label fw-semibold fc-form-label-sm">{t.email}</label>
                       <input type="email" className="form-control" required />
                     </div>
-                    <div className="mb-3">
-                      <label className="form-label">{t.message}</label>
+                    <div className="mb-4">
+                      <label className="form-label fw-semibold fc-form-label-sm">{t.message}</label>
                       <textarea className="form-control" rows={4} required></textarea>
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">{t.sendMessage}</button>
+                    <button type="submit" className="fc-submit-btn">
+                      <i className="fa-solid fa-paper-plane me-2"></i> {t.sendMessage}
+                    </button>
                   </form>
                 )}
               </div>
             )}
 
-            {/* Privacy Policy */}
+            {/* ── Privacy Policy ──────────────────────── */}
             {currentPage === "privacy" && (
-              <div className="bg-white rounded p-4 shadow-sm border">
-                <h2 className="text-primary mb-3 border-bottom pb-2">Privacy Policy</h2>
+              <div className="fc-page-box">
+                <h1 className="h2 text-primary border-bottom pb-3 mb-4">Privacy Policy</h1>
                 <p>At FinCalc, accessible from fincalc-multipurpose.pro, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinCalc and how we use it.</p>
-                <h5 className="mt-4">Log Files</h5>
-                <p>FinCalc follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
-                <h5 className="mt-4">Google DoubleClick DART Cookie</h5>
-                <p>Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet.</p>
-                <h5 className="mt-4">Consent</h5>
-                <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+                <h5 className="mt-4 fw-bold">Log Files</h5>
+                <p className="text-muted">FinCalc follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
+                <h5 className="mt-4 fw-bold">Google DoubleClick DART Cookie</h5>
+                <p className="text-muted">Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet.</p>
+                <h5 className="mt-4 fw-bold">Consent</h5>
+                <p className="text-muted">By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
               </div>
             )}
 
-            {/* Terms and Conditions */}
+            {/* ── Terms & Conditions ──────────────────── */}
             {currentPage === "terms" && (
-              <div className="bg-white rounded p-4 shadow-sm border">
-                <h2 className="text-primary mb-3 border-bottom pb-2">Terms and Conditions</h2>
+              <div className="fc-page-box">
+                <h1 className="h2 text-primary border-bottom pb-3 mb-4">Terms and Conditions</h1>
                 <p>Welcome to FinCalc! These terms and conditions outline the rules and regulations for the use of FinCalc's Website, located at fincalc-multipurpose.pro.</p>
-                <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use FinCalc if you do not agree to take all of the terms and conditions stated on this page.</p>
-                <h5 className="mt-4">Cookies</h5>
-                <p>We employ the use of cookies. By accessing FinCalc, you agreed to use cookies in agreement with the FinCalc's Privacy Policy.</p>
-                <h5 className="mt-4">Disclaimer</h5>
-                <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will limit or exclude our or your liability for death or personal injury resulting from negligence.</p>
+                <p className="text-muted">By accessing this website we assume you accept these terms and conditions. Do not continue to use FinCalc if you do not agree to take all of the terms and conditions stated on this page.</p>
+                <h5 className="mt-4 fw-bold">Cookies</h5>
+                <p className="text-muted">We employ the use of cookies. By accessing FinCalc, you agreed to use cookies in agreement with the FinCalc's Privacy Policy.</p>
+                <h5 className="mt-4 fw-bold">Disclaimer</h5>
+                <p className="text-muted">To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will limit or exclude our or your liability for death or personal injury resulting from negligence.</p>
               </div>
             )}
-          </div>
+
+          </main>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-dark text-white text-center py-4 mt-auto border-top border-secondary border-opacity-25">
+      {/* ── Floating Social Icons ──────────────────────────── */}
+      <div className="fc-social-dock">
+        {[
+          { href: "https://facebook.com",  icon: "fa-facebook-f",  label: "Facebook",  cl: "#1877F2" },
+          { href: "https://twitter.com",   icon: "fa-x-twitter",   label: "Twitter/X", cl: "#000000" },
+          { href: "https://instagram.com", icon: "fa-instagram",   label: "Instagram", cl: "#E1306C" },
+          { href: "https://youtube.com",   icon: "fa-youtube",     label: "YouTube",   cl: "#FF0000" },
+          { href: "https://t.me",          icon: "fa-telegram",    label: "Telegram",  cl: "#2AABEE" },
+        ].map(s => (
+          <a
+            key={s.icon}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fc-social-btn"
+            aria-label={s.label}
+            style={{ "--sc": s.cl } as React.CSSProperties}
+          >
+            <i className={`fa-brands ${s.icon}`}></i>
+          </a>
+        ))}
+      </div>
+
+      {/* ── Footer ─────────────────────────────────────────── */}
+      <footer className="fc-footer text-white text-center py-4 mt-auto">
         <div className="container">
-          <div className="d-flex justify-content-center flex-wrap gap-3 mb-3">
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo("home"); }} className="text-secondary text-decoration-none small">{t.home}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo("blog"); }} className="text-secondary text-decoration-none small">{t.blog}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo("contact"); }} className="text-secondary text-decoration-none small">{t.contact}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo("privacy"); }} className="text-secondary text-decoration-none small">{t.privacy}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); navigateTo("terms"); }} className="text-secondary text-decoration-none small">{t.terms}</a>
+          <div className="d-flex justify-content-center flex-wrap gap-4 mb-3">
+            {[
+              { key: "home", label: t.home },
+              { key: "blog", label: t.blog },
+              { key: "about", label: t.about },
+              { key: "contact", label: t.contact },
+              { key: "privacy", label: t.privacy },
+              { key: "terms", label: t.terms },
+            ].map(link => (
+              <a
+                key={link.key}
+                href={buildPathname(lang, link.key)}
+                onClick={e => { e.preventDefault(); navigateTo(link.key); }}
+                className="text-secondary text-decoration-none fc-footer fc-footer-link"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
-          <p className="text-secondary small mb-0">© 2026 FinCalc. All rights reserved. Calculations are estimates and should not replace professional financial advice.</p>
+          <p className="text-secondary mb-0 fc-footer-copy">
+            © 2026 FinCalc. All rights reserved. Calculations are estimates and should not replace professional financial advice.
+          </p>
         </div>
       </footer>
     </div>

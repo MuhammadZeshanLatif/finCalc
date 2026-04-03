@@ -1,0 +1,28 @@
+{
+  "name": "FinCalc — Financial Calculators",
+  "short_name": "FinCalc",
+  "description": "Free interest, loan, mortgage, EMI, VAT, tax, currency, BMI, and scientific calculators. English & Russian.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1e3a5f",
+  "theme_color": "#1e3a5f",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["finance", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/og-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

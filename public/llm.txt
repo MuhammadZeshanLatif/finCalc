@@ -1,20 +1,26 @@
-# FinCalc - Financial & Multipurpose Calculators
+# FinCalc — Financial & multipurpose calculators
 
-This website offers high-performance financial, health, and date calculators in English and Russian.
-Designed for personal finance planning, interest calculation, mortgage estimations, loan EMI calculation, and everyday tools like VAT and BMI.
+FinCalc is a free bilingual (English / Russian) web app with path-based URLs for SEO.
 
-## Core Calculators
+## Site structure
 
-1. Interest Calculator: Compound and simple interest calculators for long-term investments.
-2. Deposit Calculator: High-yield savings accounts and fixed deposits yields.
-3. Loan Calculator: Compare total interest payable on different terms.
-4. Mortgage Calculator: Home mortgage estimator including downpayments and insurance.
-5. Days Calculator: Date difference and work day calculations.
-6. VAT Calculator: Inclusive and exclusive value added tax calculations.
-7. EMI Calculator: Equated Monthly Installment for vehicle or home loans.
-8. BMI Calculator: Metric and Imperial body mass index with recommendations.
-9. Tax Calculator: Progressive income tax estimates.
-10. Currency Converter: Live-simulated currency conversion rates.
+- English home: /
+- Russian home: /ru
+- Calculators (EN): /interest, /loan, /mortgage, /deposit, /days, /vat, /emi, /bmi, /tax, /currency, /basic
+- Same in Russian under /ru/ (e.g. /ru/interest)
+- Blog index: /blog and /ru/blog
+- Blog articles (examples): /blog/compound-interest-guide, /blog/mortgage-mistakes-down-payment-piti, … (see sitemap); Russian slugs under /ru/blog/…
+- About: /about and /ru/about — Contact: /contact and /ru/contact
 
-Each calculator is bundled with educational financial content describing the formulas and applications.
-Both English and Russian are fully supported. Use /ru for the Russian version.
+## What we offer
+
+Scientific calculator; compound interest; savings/deposit projection; loan and mortgage amortization; date difference; VAT inclusive/exclusive; EMI; BMI (metric); simplified progressive tax illustration; currency conversion with demo rates.
+
+## Important limitations
+
+Results are educational estimates only—not financial, tax, medical, or legal advice. Currency rates in the app are illustrative, not live market quotes.
+
+## Machine-readable discovery
+
+- Sitemap: /sitemap.xml
+- robots.txt: /robots.txt
