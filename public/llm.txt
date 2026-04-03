@@ -1,0 +1,20 @@
+# FinCalc - Financial & Multipurpose Calculators
+
+This website offers high-performance financial, health, and date calculators in English and Russian.
+Designed for personal finance planning, interest calculation, mortgage estimations, loan EMI calculation, and everyday tools like VAT and BMI.
+
+## Core Calculators
+
+1. Interest Calculator: Compound and simple interest calculators for long-term investments.
+2. Deposit Calculator: High-yield savings accounts and fixed deposits yields.
+3. Loan Calculator: Compare total interest payable on different terms.
+4. Mortgage Calculator: Home mortgage estimator including downpayments and insurance.
+5. Days Calculator: Date difference and work day calculations.
+6. VAT Calculator: Inclusive and exclusive value added tax calculations.
+7. EMI Calculator: Equated Monthly Installment for vehicle or home loans.
+8. BMI Calculator: Metric and Imperial body mass index with recommendations.
+9. Tax Calculator: Progressive income tax estimates.
+10. Currency Converter: Live-simulated currency conversion rates.
+
+Each calculator is bundled with educational financial content describing the formulas and applications.
+Both English and Russian are fully supported. Use /ru for the Russian version.
