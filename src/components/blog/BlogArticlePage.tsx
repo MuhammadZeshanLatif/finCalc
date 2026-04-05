@@ -172,6 +172,7 @@ export function BlogArticlePage({
               decoding="async"
               width={960}
               height={540}
+              referrerPolicy="no-referrer"
             />
             {post.hero.caption ? (
               <figcaption className="small text-muted mt-2">{post.hero.caption}</figcaption>
@@ -196,15 +197,28 @@ export function BlogArticlePage({
           ) : null}
 
           {post.video ? (
-            <div className="ratio ratio-16x9 mb-4 fc-blog-video rounded border overflow-hidden">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${post.video.youtubeId}`}
-                title={post.video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
+            <div className="mb-4">
+              <div className="fc-blog-video rounded border overflow-hidden">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${post.video.youtubeId}?rel=0`}
+                  title={post.video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              <p className="small text-muted mt-2 mb-0">
+                <a
+                  href={`https://www.youtube.com/watch?v=${post.video.youtubeId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {lang === "ru" ? "Открыть на YouTube" : "Open on YouTube"}
+                </a>
+                {lang === "ru"
+                  ? " — если плеер не загрузился (блокировка сети или расширения)."
+                  : " — if the player does not load (network block or browser extension)."}
+              </p>
             </div>
           ) : null}
 

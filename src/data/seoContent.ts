@@ -226,6 +226,24 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "The dropdown lists currencies from the active data source—typically dozens of majors with Frankfurter, or 160+ if you add an ExchangeRate-API key.",
     },
   ],
+  ti84: [
+    {
+      q: "Is this TI-84 calculator online free?",
+      a: "Yes. FinCalc does not charge for this browser graphing tool. No account is required.",
+    },
+    {
+      q: "Can I use it on the SAT or ACT instead of a real TI-84?",
+      a: "No. Proctored tests require an approved physical device. Use this page to practice the layout and graphing flow before test day.",
+    },
+    {
+      q: "Why is my graph blank?",
+      a: "Usually the WINDOW is too small. Open window (top row), increase yMax or adjust xMin/xMax, then press graph again. Make sure Y1 is not empty.",
+    },
+    {
+      q: "Does it support TI-BASIC or statistics apps?",
+      a: "Not in this version. Core scientific math, Y= graphing, and WINDOW editing are supported; advanced TI menus and programming are not.",
+    },
+  ],
 };
 
 const FAQ_RU: Record<string, SeoFaq[]> = {
@@ -451,6 +469,24 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "Список в селекте зависит от источника — обычно десятки кодов у Frankfurter или 160+ при ключе ExchangeRate-API.",
     },
   ],
+  ti84: [
+    {
+      q: "Калькулятор TI-84 онлайн бесплатный?",
+      a: "Да, в браузере FinCalc без оплаты и без регистрации.",
+    },
+    {
+      q: "Можно вместо настоящего TI-84 на ЕГЭ/SAT?",
+      a: "Нет, на экзамене нужен разрешённый физический прибор. Эта страница для тренировки интерфейса дома.",
+    },
+    {
+      q: "Почему пустой график?",
+      a: "Часто узкое окно WINDOW. Откройте window, увеличьте yMax или сдвиньте xMin/xMax, затем снова graph. Проверьте, что в Y1 есть формула.",
+    },
+    {
+      q: "Есть TI-BASIC и статистика?",
+      a: "В этой версии нет. Есть научные функции, Y= и WINDOW; расширенные меню TI не эмулируются.",
+    },
+  ],
 };
 
 const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
@@ -559,6 +595,18 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Use history lines to recall past results when needed.",
     ],
   },
+  ti84: {
+    name: "How to use this TI-84 Plus CE online calculator",
+    description: "Graph functions and adjust the viewing window like a classroom TI-84.",
+    steps: [
+      "On the home screen, type an expression and press Enter (or use the on-screen enter). Use keyboard shortcuts shown under the display.",
+      "Tap y=, pick Y1–Y6, and type a function of x (for example x^2-4). Press Enter to move down a row.",
+      "Tap window and set xMin, xMax, yMin, yMax (tap a row, type a number, Enter).",
+      "Tap graph to plot. Add more functions in Y2–Y6 for comparisons.",
+      "Use 2nd for inverse trig, π, roots, and other blue labels; the key lights while 2nd is active.",
+      "Press on to reset the home screen stack. Remember: practice only—exams require approved hardware.",
+    ],
+  },
 };
 
 const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
@@ -665,6 +713,18 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Смотрите справку по функциям на странице.",
       "Нажмите «Вычислить» или Enter.",
       "Используйте историю для прошлых результатов.",
+    ],
+  },
+  ti84: {
+    name: "Как пользоваться TI-84 Plus CE онлайн на этой странице",
+    description: "Графики и окно просмотра в стиле школьного TI-84.",
+    steps: [
+      "На главном экране введите выражение и нажмите Enter (или кнопку на корпусе). Смотрите подсказки клавиш под дисплеем.",
+      "Нажмите y=, выберите Y1–Y6 и введите функцию от x (например x^2-4). Enter — переход к следующей строке.",
+      "Нажмите window и задайте xMin, xMax, yMin, yMax (клик по строке, число, Enter).",
+      "Нажмите graph для построения. Y2–Y6 — дополнительные кривые.",
+      "2nd включает синие подписи: обратная тригонометрия, π, корень и т.д.",
+      "on сбрасывает стек главного экрана. На экзамене нужен физический калькулятор по правилам организатора.",
     ],
   },
 };

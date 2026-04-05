@@ -10,6 +10,7 @@ import {
   getRelatedPosts,
 } from "./data/blog";
 import Calculators from "./components/Calculators";
+import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
@@ -47,6 +48,7 @@ const calcMeta: Record<string, { icon: string }> = {
   bmi:       { icon: "fa-weight-scale" },
   tax:       { icon: "fa-file-invoice-dollar" },
   currency:  { icon: "fa-money-bill-transfer" },
+  ti84:      { icon: "fa-microchip" },
 };
 
 export default function App() {
@@ -134,6 +136,11 @@ export default function App() {
       title = calcEntry.title;
       description = calcEntry.desc;
       calculatorKeywords = `${calcEntry.title}, calculator, ${tr.siteTitle}`;
+    } else if (currentPage === "ti84") {
+      title = tr.ti84PageTitle;
+      description = tr.ti84PageLead;
+      calculatorKeywords =
+        "TI-84 Plus CE calculator online, free graphing calculator, TI-84 online, graphing calculator students, FinCalc";
     } else if (currentPage === "blog" && blogSlug) {
       const post = getPostBySlug(lang, blogSlug);
       if (!post) {
@@ -338,6 +345,17 @@ export default function App() {
                     </a>
                   );
                 })}
+                {/* TI-84 special entry */}
+                <a
+                  href={buildPathname(lang, "ti84")}
+                  onClick={e => { e.preventDefault(); navigateTo("ti84"); }}
+                  className={`fc-sidebar-item ${currentPage === "ti84" ? "is-active" : ""}`}
+                >
+                  <span className="fc-sidebar-item__icon item-icon" style={{ background: "#1a1a1a", color: "#6ab0ff" }}>
+                    <i className="fa-solid fa-microchip"></i>
+                  </span>
+                  <span>{t.ti84SidebarLabel}</span>
+                </a>
               </div>
             </div>
           </div>
@@ -455,6 +473,21 @@ export default function App() {
               <Calculators id={currentPage} lang={lang} />
             )}
 
+            {/* ── TI-84 Plus CE ────────────────────────── */}
+            {currentPage === "ti84" && (
+              <div className="fc-calc-page">
+                <div className="fc-calc-header">
+                  <h1>
+                    <i className="fa-solid fa-microchip me-2 fc-calc-header-icon" style={{ color: "#6ab0ff" }} />
+                    {t.ti84PageTitle}
+                  </h1>
+                  <p>{t.ti84PageLead}</p>
+                </div>
+                <TI84CalculatorPage />
+                <CalculatorRichArticle id="ti84" lang={lang} />
+              </div>
+            )}
+
             {/* ── Blog article ───────────────────────── */}
             {currentPage === "blog" && blogSlug && activeBlogPost && (
               <BlogArticlePage
@@ -508,7 +541,27 @@ export default function App() {
                 <div className="row g-4">
                   {paginatedPosts.map(post => (
                     <div className="col-md-6" key={post.slug}>
-                      <article className="fc-blog-card card border-0 h-100">
+                      <article className="fc-blog-card card border-0 h-100 overflow-hidden">
+                        <a
+                          href="#"
+                          className="fc-blog-card-thumb-link"
+                          aria-label={`${t.blogReadArticle}: ${post.title}`}
+                          onClick={e => {
+                            e.preventDefault();
+                            navigateTo("blog", { blogSlug: post.slug });
+                          }}
+                        >
+                          <img
+                            src={post.hero.src}
+                            alt=""
+                            className="card-img-top fc-blog-card-thumb"
+                            width={640}
+                            height={360}
+                            loading="lazy"
+                            decoding="async"
+                            referrerPolicy="no-referrer"
+                          />
+                        </a>
                         <div className="card-body d-flex flex-column p-4">
                           <div className="fc-blog-date">
                             <i className="fa-regular fa-calendar-days" aria-hidden></i>{" "}

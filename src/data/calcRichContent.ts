@@ -54,6 +54,12 @@ const EN: Record<string, string[]> = {
     "Retail conversions embed spreads and fees that widen the gap from the theoretical number. When reconciling accounts, always trace back to the statement line, not to a demo calculator.",
     "If you test scenarios (for example USD to EUR to RUB), you are exploring arithmetic relationships, not executing a chain hedge. Multi-leg conversions in the real world may not be transitive at identical rates because each leg is priced separately.",
   ],
+  ti84: [
+    "This page is a TI-84 Plus CE–style graphing workspace: home-screen math, a Y= editor for up to six functions, a WINDOW screen for xMin, xMax, yMin, yMax, and scales, plus GRAPH to plot on a grid. It is built for homework and review when you do not have the physical device—keyboard shortcuts mirror common classroom workflows (type x for the graphing variable, p for π, s/c/t for trig).",
+    "Expressions use math.js for evaluation, with radian mode on the status bar like many calculus courses. Inverse sine, cosine, and tangent are available via 2nd + sin/cos/tan. For degree problems, convert inside the argument (for example multiply degrees by pi/180) so the value matches what your teacher expects.",
+    "The emulator is not a byte-perfect clone: TI-BASIC programs, statistics apps, data lists, and some menus are not implemented. Zoom/Trace/Calc on the top row are placeholders today—use WINDOW to frame the graph and edit Y= to change functions. If a graph is blank, widen yMax or shift xMin/xMax; that is the same troubleshooting flow as on hardware.",
+    "SAT, ACT, AP, and other tests require an approved handheld calculator on exam day; this tool is for practice only. FinCalc is not affiliated with Texas Instruments. For official menus and every feature, use Texas Instruments’ guide PDF; for rules, read the current calculator policy from the testing organization.",
+  ],
   basic: [
     "This scientific calculator is designed for expressive formulas: nested parentheses, transcendental functions, factorial on integers, and memory keys for repeated sub-expressions. Results round for display to fifteen decimal places to reduce runaway floating noise in long chains, though underlying IEEE binary floats still apply beneath the hood.",
     "The percent key behavior follows the documented rules: between two numbers it acts as remainder (modulo), while pct(x) turns a literal percentage into a decimal factor. Trigonometric functions expect degrees, not radians, which matches many classroom settings but differs from some engineering tools—always confirm the angular mode when mixing sources.",
@@ -116,6 +122,12 @@ const RU: Record<string, string[]> = {
     "Конвертация умножает сумму на отношение единиц. По умолчанию FinCalc подгружает в браузере актуальные ориентиры: бесплатные курсы ЕЦБ через Frankfurter (без ключа) или, если задан VITE_EXCHANGE_RATE_API_KEY, расширенный набор через ExchangeRate-API. Это всё ещё не спред банка, наценка карты или курс для перевода. Для сделок сверяйтесь с вашей организацией.",
     "В рознице есть спред и комиссии — они шире, чем «идеальная» цифра на экране. Сверяйтесь с выпиской.",
     "Цепочки валют в примере показывают арифметику, а не реальный арбитраж: каждое плечо в жизни ценообразуется отдельно.",
+  ],
+  ti84: [
+    "Здесь эмуляция в духе TI-84 Plus CE: вычисления на главном экране, редактор Y= до шести функций, экран WINDOW для xMin, xMax, yMin, yMax и масштабов, кнопка GRAPH для графика на сетке. Удобно для домашней работы, если под рукой нет прибора; горячие клавиши повторяют привычный ввод (x, p для π, s/c/t для тригонометрии).",
+    "Выражения считает math.js; в строке статуса указан RADIAN, как во многих курсах матанализа. Обратные sin/cos/tan — через 2nd и соответствующую клавишу. Для градусов вводите преобразование в аргументе (например градусы × pi/180).",
+    "Это не полная копия прошивки: нет TI-BASIC, статистических приложений, списков и части меню. Кнопки zoom/trace в ряду F могут быть заглушками — настройте окно WINDOW и функции в Y=. Пустой график чаще всего из‑за узкого окна: увеличьте yMax или сдвиньте пределы по x.",
+    "На экзаменах нужен разрешённый физический калькулятор; онлайн-версия только для тренировки. FinCalc не связан с Texas Instruments. Официальные функции — в руководстве TI; правила — на сайте вашей экзаменационной организации.",
   ],
   basic: [
     "Калькулятор поддерживает скобки, тригонометрию в градусах, логарифмы, факториал целых и память. Пятнадцать знаков после запятой уменьшают визуальный шум в длинных цепочках, но внутри остаётся двоичная арифметика с плавающей точкой.",

@@ -72,6 +72,7 @@ export function BlogBlockRenderer({ blocks }: { blocks: BlogBlock[] }) {
                   decoding="async"
                   width={960}
                   height={540}
+                  referrerPolicy="no-referrer"
                 />
                 {b.caption ? <figcaption className="small text-muted mt-2">{b.caption}</figcaption> : null}
                 {b.credit ? (

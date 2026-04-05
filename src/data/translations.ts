@@ -24,6 +24,10 @@ export const translations = {
     terms: "Terms & Conditions",
     searchPlaceholder: "Search calculators...",
     allCalculators: "All Calculators",
+    ti84PageTitle: "TI-84 Plus CE Calculator Online",
+    ti84PageLead:
+      "Graph Y1–Y6, edit WINDOW (xMin, xMax, yMin, yMax), and use 2nd-key shortcuts—free in your browser, no download. Type with your keyboard (s, c, t, log, ln, x, pi) or tap the keypad. Practice for class; proctored exams still require an approved physical calculator—check College Board and ACT rules.",
+    ti84SidebarLabel: "TI-84 Plus CE",
     howToUse: "How to Use",
     financialImpact: "Financial Impact & Planning",
     instructions: "Instructions",
@@ -306,6 +310,10 @@ export const translations = {
     terms: "Правила и условия",
     searchPlaceholder: "Поиск калькулятора...",
     allCalculators: "Все калькуляторы",
+    ti84PageTitle: "Калькулятор TI-84 Plus CE онлайн",
+    ti84PageLead:
+      "Графики Y1–Y6, окно WINDOW (xMin, xMax, yMin, yMax) и функции через 2nd — бесплатно в браузере, без установки. Ввод с клавиатуры (s, c, t, log, ln, x, pi) или кнопками. Для занятий и домашней работы; на экзаменах нужен разрешённый физический прибор — смотрите правила вашей организации.",
+    ti84SidebarLabel: "TI-84 Plus CE",
     howToUse: "Как пользоваться",
     financialImpact: "Финансовое влияние и планирование",
     instructions: "Инструкции",

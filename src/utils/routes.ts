@@ -17,6 +17,7 @@ export const ROUTE_PAGES = new Set([
   "bmi",
   "tax",
   "currency",
+  "ti84",
 ]);
 
 export type AppLang = "en" | "ru";
