@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#113a72"/>
+      <stop offset="100%" stop-color="#2e78d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <text x="80" y="120" fill="#dbeafe" font-family="Arial,sans-serif" font-size="34" font-weight="700">Compound Interest</text>
+  <text x="80" y="165" fill="#eff6ff" font-family="Arial,sans-serif" font-size="28">Timing and Frequency Change Real Returns</text>
+  <polyline points="90,500 250,470 410,430 570,370 730,290 890,190 1050,90" fill="none" stroke="#facc15" stroke-width="10"/>
+  <line x1="90" y1="510" x2="1080" y2="510" stroke="#bfdbfe" stroke-width="4"/>
+  <line x1="90" y1="510" x2="90" y2="90" stroke="#bfdbfe" stroke-width="4"/>
+  <text x="980" y="545" fill="#dbeafe" font-family="Arial,sans-serif" font-size="24">Time</text>
+  <text x="20" y="100" fill="#dbeafe" font-family="Arial,sans-serif" font-size="24" transform="rotate(-90 20,100)">Value</text>
+</svg>

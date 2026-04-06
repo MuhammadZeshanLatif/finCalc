@@ -6,104 +6,228 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "compound-interest",
     slug: "compound-interest-guide",
     title: "Compound interest: how timing and frequency change real returns",
-    metaTitle: "Compound interest explained: formula, frequency & early saving | FinCalc",
+    metaTitle: "Compound interest: timing, frequency, and real returns | FinCalc",
     metaDescription:
-      "How compound interest builds wealth, why APY matters, and how to sanity-check projections before you invest. With sources from the SEC and practical examples.",
+      "Learn how timing and compounding frequency change real returns. See formula, practical examples, common mistakes, and ways to maximize results.",
     keywords:
-      "compound interest, APY, compounding frequency, savings growth, investment calculator, SEC investor bulletin",
+      "compound interest, compound interest formula, compounding frequency, APY, simple interest vs compound interest, real returns",
     excerpt:
-      "Small differences in when you start and how often interest compounds can outweigh chasing an extra fraction of a percent on the rate.",
+      "Start date and compounding frequency can change your outcome more than tiny rate differences.",
     datePublished: "2026-01-15",
-    dateModified: "2026-04-03",
+    dateModified: "2026-04-06",
     author: "FinCalc Editorial",
-    readingTimeMinutes: 9,
+    readingTimeMinutes: 7,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Compound_interest.svg/960px-Compound_interest.svg.png",
-      alt: "Chart comparing linear growth versus compound growth over the same time period",
-      caption: "The gap between straight-line savings and compounding widens as time passes.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Compound_interest.svg",
-    },
-    video: {
-      youtubeId: "BFN9fUGmwEY",
-      title: "Khan Academy — introduction to compound interest (educational)",
+      src: "/blog/compound-hero.svg",
+      alt: "Compound interest growth chart showing how returns accelerate with time",
+      caption: "Image 1: compound growth accelerates over time, so timing decisions matter.",
+      credit: "FinCalc visual",
     },
     keyPhrases: [
-      "compound interest definition",
-      "annual percentage yield APY",
-      "compounding monthly vs annually",
-      "starting early vs higher rate",
+      "what is compound interest",
+      "compound interest formula",
+      "timing and frequency impact",
+      "monthly vs annual compounding",
     ],
     blocks: [
       {
         t: "p",
-        text: "Compound interest means you earn returns on both your original principal and interest that was added in earlier periods. The longer the runway, the more the curve bends upward—assuming the rate holds and you leave balances in place.",
+        text: "Most people think returns depend only on the rate. That is only half true. In real life, when you start and how often compounding runs can change your final balance a lot. This is exactly why two people with similar rates can end with very different outcomes.",
+      },
+      {
+        t: "p",
+        text: "Compound interest means your money earns on principal and on past gains. Because of that, growth becomes nonlinear. This guide explains the formula, timing and frequency effects, practical examples, and mistakes to avoid.",
       },
       {
         t: "h2",
-        id: "what-compounding-changes",
-        text: "What actually changes your outcome",
+        id: "what-is-compound-interest",
+        text: "What is compound interest?",
+      },
+      {
+        t: "p",
+        text: "Compound interest is interest calculated on both the initial principal and the accumulated interest from earlier periods. Over time, this creates a snowball effect. The longer money stays invested, the stronger this effect becomes.",
+      },
+      {
+        t: "h2",
+        id: "compound-interest-formula",
+        text: "The compound interest formula",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Core formula",
+        text: "A = P(1 + r/n)^(nt) where A is future value, P is principal, r is annual rate, n is compounding frequency per year, and t is time in years.",
+      },
+      {
+        t: "p",
+        text: "This formula looks technical, but the idea is simple. If n and t increase, you get more compounding cycles. More cycles means more chances to earn on earlier gains.",
+      },
+      {
+        t: "h2",
+        id: "timing-and-frequency",
+        text: "Timing and frequency: where returns really change",
+      },
+      {
+        t: "p",
+        text: "Frequency tells you how many times compounding happens each year. Timing tells you how many years your money gets to compound. Frequency differences matter. Timing differences usually matter even more.",
+      },
+      {
+        t: "table",
+        caption: "Same nominal 5% rate on $10,000 for one year (illustrative)",
+        head: ["Compounding frequency", "Approx ending balance", "Change vs annual"],
+        rows: [
+          ["Annual (1x)", "$10,500.00", "Base"],
+          ["Monthly (12x)", "$10,511.62", "+$11.62"],
+          ["Daily (365x)", "$10,512.67", "+$12.67"],
+        ],
+      },
+      {
+        t: "figure",
+        src: "/blog/compound-frequency.svg",
+        alt: "Comparison of annual monthly and daily compounding outcomes",
+        caption: "Image 2: monthly and daily compounding can beat annual compounding at the same nominal rate.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "h2",
+        id: "start-early-vs-higher-rate",
+        text: "Start date vs rate: why early often wins",
+      },
+      {
+        t: "p",
+        text: "Imagine two savers investing the same amount monthly. One starts ten years earlier at a slightly lower rate. The second starts later at a slightly higher rate. In many scenarios, the early saver still ends ahead because the extra years created many additional compounding rounds.",
+      },
+      {
+        t: "figure",
+        src: "/blog/compound-timing.svg",
+        alt: "Early versus late starting timeline showing larger final values for earlier start",
+        caption: "Image 3: a longer runway often beats a small rate advantage.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "h2",
+        id: "real-world-applications",
+        text: "Real-world applications",
       },
       {
         t: "ul",
         items: [
-          "Time in the market: more periods mean more chances for interest-on-interest.",
-          "Nominal annual rate and compounding frequency (daily, monthly, annually).",
-          "Contributions or withdrawals: steady deposits accelerate the curve; pulling money out flattens it.",
-          "Taxes, fees, and inflation: none of these appear in a textbook graph but they decide your spendable result.",
+          "Savings accounts: APY uses compounding logic and helps fair comparison.",
+          "Investments: reinvested returns increase the compounding base over time.",
+          "Loans and credit cards: compounding can work against you by raising total cost.",
+          "Retirement planning: consistent contributions plus time can dominate short-term rate chasing.",
+        ],
+      },
+      {
+        t: "figure",
+        src: "/blog/compound-application.svg",
+        alt: "Savings investments and loans scenarios where compounding applies",
+        caption: "Image 4: compounding appears in deposits, investments, and debt.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "h2",
+        id: "maximize-compound-interest",
+        text: "How to maximize compound interest",
+      },
+      {
+        t: "ul",
+        items: [
+          "Start as early as possible, even with small amounts.",
+          "Use regular contributions so the base keeps growing.",
+          "Prefer products with transparent APY and low fees.",
+          "Reinvest returns when your goal is long-term growth.",
+          "Avoid unnecessary withdrawals that interrupt compounding.",
         ],
       },
       {
         t: "h2",
-        id: "apy-vs-quoted-rate",
-        text: "APY vs. a quoted annual rate",
+        id: "common-mistakes",
+        text: "Common mistakes to avoid",
+      },
+      {
+        t: "ul",
+        items: [
+          "Confusing nominal rate with APY.",
+          "Ignoring compounding frequency in product comparisons.",
+          "Starting too late while waiting for a perfect rate.",
+          "Comparing projections without matching assumptions.",
+        ],
+      },
+      {
+        t: "h2",
+        id: "faq",
+        text: "Frequently asked questions",
+      },
+      {
+        t: "h3",
+        id: "faq-simple-vs-compound",
+        text: "Simple interest vs compound interest: what is the key difference?",
       },
       {
         t: "p",
-        text: "Banks often advertise annual percentage yield (APY) on savings products because it reflects what you would earn if interest stayed in the account for a year, including the effect of intra-year compounding. A nominal “annual rate” with monthly compounding can produce a slightly higher APY than the same nominal rate compounded once per year.",
+        text: "Simple interest pays only on principal. Compound interest pays on principal and past interest. Over long periods, that difference can become large.",
       },
       {
-        t: "table",
-        caption: "Illustrative: same nominal 5% annual rate, different compounding (not a product offer)",
-        head: ["Compounding", "End balance on $10,000 after 1 year (illustrative)"],
-        rows: [
-          ["Once per year", "$10,500.00"],
-          ["Monthly", "$10,511.62"],
-          ["Daily", "$10,512.67"],
-        ],
+        t: "h3",
+        id: "faq-best-frequency",
+        text: "Is daily compounding always much better than monthly?",
+      },
+      {
+        t: "p",
+        text: "Daily usually gives a slightly higher result at the same nominal rate. However, the gap is often small compared with start timing, contribution size, and fees.",
+      },
+      {
+        t: "h3",
+        id: "faq-late-start",
+        text: "What if I started late?",
+      },
+      {
+        t: "p",
+        text: "Starting today is still useful. You can improve outcomes by increasing contributions, reducing fees, and staying consistent.",
+      },
+      {
+        t: "h3",
+        id: "faq-check-projections",
+        text: "How can I verify provider projections?",
+      },
+      {
+        t: "p",
+        text: "Use an independent calculator with matching inputs: principal, rate, frequency, and timeline. Then compare results and ask about fees or tax assumptions.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "One essential external resource",
+        text: "Learn more about compound interest on Investopedia: https://www.investopedia.com/terms/c/compoundinterest.asp",
+      },
+      {
+        t: "h2",
+        id: "conclusion",
+        text: "Conclusion",
+      },
+      {
+        t: "p",
+        text: "Compound interest is powerful, but only when you use it with time and discipline. The biggest lever is usually starting early and staying consistent. Frequency helps, but habit is the real multiplier.",
       },
       {
         t: "callout",
         variant: "disclaimer",
-        title: "Not investment advice",
-        text: "Numbers here are simplified teaching examples. Real accounts have tiered rates, minimum balances, taxes, and changing market conditions. Confirm any decision with disclosures from your institution or a licensed adviser.",
-      },
-      {
-        t: "h2",
-        id: "early-start-vs-higher-rate",
-        text: "Starting earlier often beats chasing a slightly higher rate",
-      },
-      {
-        t: "p",
-        text: "If two people save the same monthly amount but one starts ten years sooner, the early starter typically ends with a larger balance even when the late starter uses a marginally higher rate. The FinCalc interest calculator is useful for printing two scenarios side by side with the same compounding assumptions so you can see where your plan is sensitive.",
-      },
-      {
-        t: "h2",
-        id: "sources-and-tools",
-        text: "Authoritative reading and next step",
-      },
-      {
-        t: "p",
-        text: "Use the interest calculator on this site to plug in principal, rate, time, and compounding frequency you see in a prospectus or savings disclosure. Compare the output to what the institution states; if they diverge, ask which day-count or fee assumptions differ.",
+        title: "Educational content",
+        text: "This article is for education only and not financial advice. Review official disclosures and consider professional guidance for personal decisions.",
       },
     ],
     sources: [
       {
-        title: "U.S. SEC — interest, compound interest, and APY overview",
+        title: "Investopedia — Compound Interest",
+        url: "https://www.investopedia.com/terms/c/compoundinterest.asp",
+      },
+      {
+        title: "U.S. SEC — Investing basics",
         url: "https://www.investor.gov/additional-resources/information/your-money/investing-basics",
       },
       {
-        title: "CFPB — what is APY?",
+        title: "CFPB — What is APY?",
         url: "https://www.consumerfinance.gov/ask-cfpb/what-is-apy-en-106/",
       },
     ],
@@ -388,52 +512,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     calcLink: "currency",
     hasLiveRates: true,
   },
-  {
-    topicKey: "bmi-insurance",
-    slug: "bmi-insurance-premiums-health-costs",
-    title: "BMI screening and insurance pricing: what the number does and does not prove",
-    metaTitle: "BMI, health screening & insurance costs | FinCalc Blog",
-    metaDescription:
-      "Why insurers use BMI as a coarse risk signal, what WHO-style categories mean, and limits of using any single metric for health or money decisions.",
-    keywords: "BMI calculator, health insurance underwriting, obesity risk factors, WHO BMI categories",
-    excerpt: "BMI is cheap to measure at scale; it is not a full clinical picture.",
-    datePublished: "2026-03-05",
-    dateModified: "2026-04-03",
-    author: "FinCalc Editorial",
-    readingTimeMinutes: 6,
-    hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Bathroom_scale.jpg/640px-Bathroom_scale.jpg",
-      alt: "Analog bathroom scale on a tile floor",
-      caption: "Weight alone ignores body composition—actuaries still use coarse filters for population risk.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Bathroom_scale.jpg",
-    },
-    keyPhrases: ["BMI formula metric", "underwriting wellness programs", "waist circumference", "FinCalc metric-only tool"],
-    blocks: [
-      {
-        t: "p",
-        text: "Body mass index is weight divided by height squared (kg/m²). Epidemiologists use it because it correlates with some population-level risks and is easy to collect. Clinicians supplement it with blood pressure, lipids, sleep, and family history.",
-      },
-      {
-        t: "h2",
-        id: "insurance-use",
-        text: "Why insurers reference weight categories",
-      },
-      {
-        t: "p",
-        text: "Group insurers sometimes offer premium incentives tied to wellness metrics. Rules vary by country and employer. Our BMI tool is metric (kg, cm) to avoid silent imperial/metric errors; always confirm medical decisions with professionals.",
-      },
-      {
-        t: "callout",
-        variant: "disclaimer",
-        text: "FinCalc does not provide medical advice. Categories shown follow common screening breakpoints, not a diagnosis.",
-      },
-    ],
-    sources: [
-      { title: "WHO — BMI classification", url: "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" },
-    ],
-    calcLink: "bmi",
-  },
+
   // ─────────────────────────────────────────────────────────────────────────
   //  VAT / GST invoicing — inclusive vs exclusive
   //  Target KW : VAT inclusive exclusive invoice
@@ -735,7 +814,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinCalc Editorial",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/TI-84_Plus_on_dark_background.JPG/640px-TI-84_Plus_on_dark_background.JPG",
+      src: "https://upload.wikimedia.org/wikipedia/commons/5/56/TI-84_Plus_on_dark_background.JPG",
       alt: "TI-84 Plus graphing calculator on dark background — the most widely used calculator in US high schools and colleges",
       caption: "The TI-84 Plus has been the gold standard in US classrooms. Now you can use it free online — no download, no login.",
       credit: "Wikimedia Commons",
@@ -1490,11 +1569,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinCalc Editorial",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_01.png/640px-Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_01.png",
+      src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
       alt: "Chart showing how principal, interest, and total loan payment change with different interest rates and loan terms — key to understanding EMI",
       caption: "As interest rate rises and loan term stretches, the gap between what you borrowed and what you repay widens dramatically. EMI math makes this visible.",
       credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_01.png",
+      creditUrl: "https://commons.wikimedia.org/wiki/File:Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
     },
     keyPhrases: [
       "EMI formula calculation",

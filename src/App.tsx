@@ -560,6 +560,11 @@ export default function App() {
                             loading="lazy"
                             decoding="async"
                             referrerPolicy="no-referrer"
+                            onError={e => {
+                              const img = e.currentTarget;
+                              img.onerror = null;
+                              img.src = "/og-image.svg";
+                            }}
                           />
                         </a>
                         <div className="card-body d-flex flex-column p-4">

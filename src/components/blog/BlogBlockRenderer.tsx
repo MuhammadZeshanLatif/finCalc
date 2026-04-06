@@ -73,6 +73,11 @@ export function BlogBlockRenderer({ blocks }: { blocks: BlogBlock[] }) {
                   width={960}
                   height={540}
                   referrerPolicy="no-referrer"
+                  onError={e => {
+                    const img = e.currentTarget;
+                    img.onerror = null;
+                    img.src = "/og-image.svg";
+                  }}
                 />
                 {b.caption ? <figcaption className="small text-muted mt-2">{b.caption}</figcaption> : null}
                 {b.credit ? (

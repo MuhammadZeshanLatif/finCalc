@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#111827"/>
+  <text x="60" y="90" fill="#e5e7eb" font-family="Arial" font-size="36" font-weight="700">Starting Early vs Starting Late</text>
+  <line x1="100" y1="520" x2="1120" y2="520" stroke="#9ca3af" stroke-width="4"/>
+  <line x1="100" y1="520" x2="100" y2="120" stroke="#9ca3af" stroke-width="4"/>
+  <polyline points="120,500 240,470 360,430 480,370 600,300 720,225 840,160 960,120" fill="none" stroke="#34d399" stroke-width="8"/>
+  <polyline points="360,505 480,485 600,455 720,410 840,350 960,275 1080,190" fill="none" stroke="#60a5fa" stroke-width="8"/>
+  <circle cx="240" cy="470" r="8" fill="#34d399"/>
+  <circle cx="360" cy="505" r="8" fill="#60a5fa"/>
+  <text x="210" y="450" fill="#34d399" font-family="Arial" font-size="24">Start Age 25</text>
+  <text x="350" y="545" fill="#60a5fa" font-family="Arial" font-size="24">Start Age 35</text>
+</svg>
