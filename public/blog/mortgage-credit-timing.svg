@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" rx="24" fill="#f5f3ff"/>
+  <text x="52" y="70" fill="#5b21b6" font-family="Segoe UI,Arial,sans-serif" font-size="32" font-weight="800">Credit score timing matters</text>
+  <rect x="60" y="120" width="780" height="280" rx="20" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <line x1="110" y1="340" x2="790" y2="340" stroke="#7c3aed" stroke-width="4"/>
+  <rect x="110" y="300" width="120" height="40" fill="#f59e0b"/>
+  <rect x="250" y="270" width="120" height="70" fill="#22c55e"/>
+  <rect x="390" y="245" width="120" height="95" fill="#22c55e"/>
+  <rect x="530" y="215" width="120" height="125" fill="#16a34a"/>
+  <rect x="670" y="185" width="120" height="155" fill="#15803d"/>
+  <text x="110" y="375" fill="#6d28d9" font-family="Segoe UI" font-size="16">-5 months</text>
+  <text x="255" y="375" fill="#6d28d9" font-family="Segoe UI" font-size="16">-4</text>
+  <text x="395" y="375" fill="#6d28d9" font-family="Segoe UI" font-size="16">-3</text>
+  <text x="535" y="375" fill="#6d28d9" font-family="Segoe UI" font-size="16">-2</text>
+  <text x="675" y="375" fill="#6d28d9" font-family="Segoe UI" font-size="16">Apply month</text>
+  <text x="62" y="450" fill="#6b21a8" font-family="Segoe UI" font-size="20">Pull reports early, fix errors, and reduce utilization before application.</text>
+</svg>

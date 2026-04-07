@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="55%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <circle cx="980" cy="120" r="72" fill="url(#sun)" opacity="0.95"/>
+  <path d="M0 420 Q300 360 600 400 T1200 380 L1200 630 L0 630 Z" fill="#1e293b" opacity="0.35"/>
+  <g transform="translate(420 200)">
+    <path d="M180 280 L180 120 L260 60 L340 120 L340 280 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="4"/>
+    <path d="M200 280 L200 180 L320 180 L320 280 Z" fill="#38bdf8" opacity="0.5"/>
+    <path d="M260 60 L180 120 L340 120 Z" fill="#f97316"/>
+    <rect x="248" y="200" width="24" height="80" rx="2" fill="#78350f"/>
+  </g>
+  <g transform="translate(720 340)" filter="url(#soft)">
+    <circle cx="40" cy="40" r="38" fill="#fbbf24" stroke="#b45309" stroke-width="3"/>
+    <rect x="38" y="42" width="8" height="56" rx="2" fill="#92400e"/>
+    <path d="M28 98 L52 98 L48 118 L32 118 Z" fill="#78350f"/>
+  </g>
+  <text x="80" y="120" fill="#f0f9ff" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="800">10 mortgage mistakes</text>
+  <text x="80" y="185" fill="#e0e7ff" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="600">Plan the loan before the dream house steals your focus</text>
+  <rect x="80" y="520" width="280" height="6" rx="3" fill="#fbbf24" opacity="0.9"/>
+</svg>

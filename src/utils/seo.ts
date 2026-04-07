@@ -84,12 +84,15 @@ export function updatePageSeo(opts: {
 }) {
   const base = getSiteUrl();
   const defaultPath = buildPathname(opts.lang, opts.page, null);
+  // Home page canonical must be the bare origin (no trailing slash).
+  // All other pages get their full path. Never produce a bare empty string.
   const pathStr = defaultPath === "/" ? "" : defaultPath;
   const url = opts.blogArticle
     ? `${base}${opts.blogArticle.canonicalPath}`
-    : `${base}${pathStr}`;
-  const fullTitle =
-    opts.page === "home" ? `${opts.title} | ${SITE_NAME}` : `${opts.title} | ${SITE_NAME}`;
+    : pathStr
+      ? `${base}${pathStr}`
+      : base;
+  const fullTitle = opts.blogArticle ? opts.title : `${opts.title} | ${SITE_NAME}`;
   const desc = opts.description || META[opts.lang].defaultDesc;
   const kw = opts.blogArticle
     ? [META[opts.lang].keywords, opts.blogArticle.keywords].filter(Boolean).join(", ")
@@ -157,12 +160,14 @@ export function updatePageSeo(opts: {
   setLink("canonical", url);
 
   document.querySelectorAll('link[data-fc-hreflang="1"]').forEach(el => el.remove());
+  const enPath = buildPathname("en", opts.page, null);
+  const ruPath = buildPathname("ru", opts.page, null);
   const enUrl = opts.blogArticle
     ? `${base}${opts.blogArticle.alternateEnPath}`
-    : `${base}${buildPathname("en", opts.page, null) === "/" ? "" : buildPathname("en", opts.page, null)}`;
+    : enPath === "/" ? base : `${base}${enPath}`;
   const ruUrl = opts.blogArticle
     ? `${base}${opts.blogArticle.alternateRuPath}`
-    : `${base}${buildPathname("ru", opts.page, null) === "/" ? "" : buildPathname("ru", opts.page, null)}`;
+    : ruPath === "/" ? base : `${base}${ruPath}`;
   for (const [hreflang, href] of [
     ["en", enUrl],
     ["ru", ruUrl],

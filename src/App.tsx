@@ -14,7 +14,13 @@ import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
+import { getSiteUrl } from "./config/site";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
+
+const META_DEFAULT: Record<string, string> = {
+  en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up, English & Russian.",
+  ru: "Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации.",
+};
 
 let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null = null;
 function seedRoute(): { lang: AppLang; page: string; blogSlug: string | null } {
@@ -126,81 +132,60 @@ export default function App() {
 
   useEffect(() => {
     const tr = translations[lang];
-    const calcEntry = (tr.calculators as Record<string, { title: string; desc: string } | undefined>)[currentPage];
-    let title = tr.siteTitle;
-    let description = `${tr.siteSubtitle} — ${tr.liveResultsHint}`;
+    // Per-page SEO lookup — covers all calculator pages, static pages, and TI-84
+    const ps = (tr.pageSeo as Record<string, { title: string; desc: string } | undefined>);
+    let title: string = tr.siteTitle;
+    let description: string = META_DEFAULT[lang];
     let calculatorKeywords: string | undefined;
     let blogArticle: BlogSeoPayload | undefined;
 
-    if (calcEntry) {
-      title = calcEntry.title;
-      description = calcEntry.desc;
-      calculatorKeywords = `${calcEntry.title}, calculator, ${tr.siteTitle}`;
-    } else if (currentPage === "ti84") {
-      title = tr.ti84PageTitle;
-      description = tr.ti84PageLead;
-      calculatorKeywords =
-        "TI-84 Plus CE calculator online, free graphing calculator, TI-84 online, graphing calculator students, FinCalc";
+    if (currentPage === "home") {
+      title       = tr.homeSeoHeadline;
+      description = tr.homeSeoDescription;
+      calculatorKeywords = tr.homeSeoCalculatorKeywords;
     } else if (currentPage === "blog" && blogSlug) {
+      // ── Blog article ──────────────────────────────────────────────────────
       const post = getPostBySlug(lang, blogSlug);
       if (!post) {
-        title = lang === "ru" ? "Страница не найдена" : "Page not found";
-        description =
-          lang === "ru"
-            ? "Такой статьи нет. Вернитесь к списку статей."
-            : "This blog post does not exist. Return to the article list.";
+        title       = lang === "ru" ? "Страница не найдена" : "Page not found";
+        description = lang === "ru"
+          ? "Такой статьи нет. Вернитесь к списку статей."
+          : "This blog post does not exist. Return to the article list.";
       } else {
-        const enP = getPostByTopic("en", post.topicKey);
-        const ruP = getPostByTopic("ru", post.topicKey);
-        if (enP && ruP) {
-          title = post.metaTitle;
-          description = post.metaDescription;
-          blogArticle = {
-            canonicalPath: buildPathname(lang, "blog", post.slug),
-            alternateEnPath: buildPathname("en", "blog", enP.slug),
-            alternateRuPath: buildPathname("ru", "blog", ruP.slug),
-            headline: post.title,
-            description: post.metaDescription,
-            keywords: post.keywords,
-            datePublished: post.datePublished,
-            dateModified: post.dateModified,
-            authorName: post.author,
-            imageUrl: post.hero.src,
-            imageAlt: post.hero.alt,
-            blogListLabel: t.blog,
-            wordCountApprox: approxWordCount(post),
-            videoYoutubeId: post.video?.youtubeId,
-          };
-        }
+        title       = post.metaTitle;
+        description = post.metaDescription;
+        const enP   = getPostByTopic("en", post.topicKey);
+        const ruP   = getPostByTopic("ru", post.topicKey);
+        const enSlug = enP?.slug ?? post.slug;
+        blogArticle = {
+          canonicalPath:    buildPathname(lang, "blog", post.slug),
+          alternateEnPath:  buildPathname("en", "blog", enSlug),
+          alternateRuPath:  ruP ? buildPathname("ru", "blog", ruP.slug) : buildPathname("ru", "blog", null),
+          headline:         post.title,
+          description:      post.metaDescription,
+          keywords:         post.keywords,
+          datePublished:    post.datePublished,
+          dateModified:     post.dateModified,
+          authorName:       post.author,
+          imageUrl:         /^https?:\/\//i.test(post.hero.src)
+            ? post.hero.src
+            : `${getSiteUrl()}${post.hero.src.startsWith("/") ? "" : "/"}${post.hero.src}`,
+          imageAlt:         post.hero.alt,
+          blogListLabel:    t.blog,
+          wordCountApprox:  approxWordCount(post),
+          videoYoutubeId:   post.video?.youtubeId,
+        };
       }
-    } else if (currentPage === "blog") {
-      title = tr.latestPosts;
-      description =
-        lang === "ru"
-          ? "Практические статьи о деньгах, налогах и калькуляторах FinCalc — с источниками и ссылками на инструменты."
-          : "Practical money and tax articles from FinCalc — with citations, structured guides, and links to free calculators.";
-    } else if (currentPage === "contact") {
-      title = tr.contact;
-      description =
-        lang === "ru" ? "Свяжитесь с FinCalc — обратная связь и вопросы." : "Contact FinCalc — feedback and questions.";
-    } else if (currentPage === "about") {
-      title = tr.about;
-      description =
-        lang === "ru"
-          ? "FinCalc — бесплатные калькуляторы, блог и инструменты на русском и английском."
-          : "FinCalc — free calculators, blog, and bilingual tools in English and Russian.";
-    } else if (currentPage === "privacy") {
-      title = tr.privacy;
-      description =
-        lang === "ru"
-          ? "Политика конфиденциальности FinCalc: данные, cookie и ваши права."
-          : "FinCalc privacy policy: data collection, cookies, and your rights.";
-    } else if (currentPage === "terms") {
-      title = tr.terms;
-      description =
-        lang === "ru"
-          ? "Условия использования FinCalc и отказ от ответственности."
-          : "FinCalc terms of use and disclaimer.";
+    } else if (ps[currentPage]) {
+      // ── All other pages: use per-page SEO from translations ───────────────
+      title       = ps[currentPage]!.title;
+      description = ps[currentPage]!.desc;
+      // Add keyword hints for calculator + static pages
+      calculatorKeywords = undefined;
+    } else {
+      // Fallback for unknown pages
+      title       = tr.siteTitle;
+      description = META_DEFAULT[lang];
     }
 
     updatePageSeo({

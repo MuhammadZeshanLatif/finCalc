@@ -234,76 +234,283 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     calcLink: "interest",
   },
   {
-    topicKey: "mortgage-mistakes",
-    slug: "mortgage-mistakes-down-payment-piti",
-    title: "Mortgage mistakes that survive closing: PITI, PMI, and the payment you feel",
-    metaTitle: "Common mortgage mistakes: PITI, PMI & payment shock | FinCalc Blog",
+    topicKey: "mortgage-top-10-mistakes",
+    slug: "common-mortgage-mistakes-how-to-avoid",
+    title: "10 Common Mortgage Mistakes and How to Avoid Them",
+    metaTitle: "10 Common Mortgage Mistakes and How to Avoid Them | Finance Calculator",
     metaDescription:
-      "Before you sign, separate the lender’s principal-and-interest quote from taxes, insurance, and possible PMI. How to model it with a mortgage calculator.",
+      "Top 10 mortgage mistakes and how to avoid them: pre-approval, credit checks, rate shopping, and closing-cost planning.",
     keywords:
-      "mortgage payment, PITI, PMI, down payment, mortgage calculator, home loan affordability",
+      "Mortgage mistakes, pre-approval, credit score, mortgage rates, closing costs",
     excerpt:
-      "The number on the marketing flyer is rarely the full monthly housing cash outflow.",
-    datePublished: "2026-02-01",
-    dateModified: "2026-04-03",
+      "Top mortgage mistakes homebuyers make—and how to avoid them: pre-approval, credit, rate shopping, and closing costs.",
+    datePublished: "2026-04-07",
+    dateModified: "2026-04-08",
     author: "FinCalc Editorial",
     readingTimeMinutes: 8,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Subprime_Mortgage_Market_Diagram.png/640px-Subprime_Mortgage_Market_Diagram.png",
-      alt: "Diagram of mortgage market participants and cash flows",
-      caption: "Mortgage products connect borrowers, servicers, and investors; your statement reflects only your piece of that chain.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Subprime_Mortgage_Market_Diagram.png",
+      src: "/blog/mortgage-buying-hero.svg",
+      alt: "Illustration of a house, key, and sunset sky for the mortgage mistakes guide",
+      caption: "Fresh visuals for the same serious topic: plan the loan, then chase the address.",
+      credit: "FinCalc",
     },
-    video: { youtubeId: "zQVUk1oTNdk", title: "Choosing a mortgage — educational overview (YouTube)" },
-    keyPhrases: ["PITI meaning", "PMI when down payment under 20%", "fixed vs adjustable considerations", "total housing cost"],
+    keyPhrases: [
+      "Mortgage mistakes",
+      "Pre-approval",
+      "Credit score",
+      "Mortgage rates",
+      "Closing costs",
+    ],
     blocks: [
       {
         t: "p",
-        text: "A mortgage approval focuses on debt ratios and credit, but your household budget cares about cash leaving the checking account every month. Confusing the two is how buyers end up “approved yet stressed.”",
+        text: "Buying a home pulls you in two directions at once: you are excited, and you are also trying not to miss something expensive. The mortgage piece is where a lot of people trip, often not because they are careless, but because the process has a dozen moving parts. Here are ten mortgage mistakes I see over and over, and what to do instead.",
       },
       {
         t: "h2",
-        id: "piti-breakdown",
-        text: "What PITI includes",
+        id: "ten-mortgage-mistakes",
+        text: "Ten common mortgage mistakes",
       },
       {
-        t: "ul",
-        items: [
-          "Principal: the part of the payment that reduces the loan balance.",
-          "Interest: the cost of borrowing the remaining balance.",
-          "Taxes: often escrowed property taxes unless you waive escrow (where allowed).",
-          "Insurance: homeowner’s hazard insurance; flood or wind coverage may be extra depending on location.",
-        ],
-      },
-      {
-        t: "h2",
-        id: "pmi-and-down-payment",
-        text: "PMI and small down payments",
+        t: "h3",
+        id: "mistake-full-financial-picture",
+        text: "1. Ignoring your full financial picture",
       },
       {
         t: "p",
-        text: "When equity at closing is below conventional thresholds, lenders often require private mortgage insurance until loan-to-value improves. Our mortgage calculator includes a simplified PMI toggle so you can stress-test what happens to the monthly line item if home value or down payment assumptions move.",
-      },
-      {
-        t: "h2",
-        id: "rate-quotes",
-        text: "Reading a rate quote",
+        text: "Lenders do not just look at income. They look at debts, minimum payments, and how much room you really have after life happens. If your debt-to-income ratio is stretched before you even shop, approval gets harder, and so does sleeping at night after you move in.",
       },
       {
         t: "p",
-        text: "APR attempts to bundle some lender fees into the rate for comparison, but it still will not capture every future tax reassessment or insurance renewal. Build a table: lender quote, your modeled PITI, plus maintenance and utilities you already pay elsewhere.",
+        text: "Before you apply, write down income, fixed bills, debts, and a realistic monthly cushion. You want a number that still works if the furnace dies the first winter.",
+      },
+      {
+        t: "h3",
+        id: "mistake-twenty-percent-down",
+        text: "2. Letting the 20% down story scare you off",
+      },
+      {
+        t: "p",
+        text: "Twenty percent is a useful rule of thumb for avoiding PMI on many conventional loans, but it is not a universal gate. FHA and other programs often start much lower, think single digits for down payment in many cases.",
+      },
+      {
+        t: "p",
+        text: "Learn what your options actually require. A smaller down payment might mean PMI or a higher monthly cost, so model both, not just the sticker shock of 20%.",
+      },
+      {
+        t: "h3",
+        id: "mistake-no-preapproval",
+        text: "3. House-hunting without a real pre-approval",
+      },
+      {
+        t: "p",
+        text: "Pre-qualified can be a quick guess. Pre-approval, with documentation and a credit check, tells you what a lender is actually willing to lend under current rules. Without it, you are guessing, and sellers and agents can tell.",
+      },
+      {
+        t: "p",
+        text: "Get pre-approved before you fall in love with a listing. It tightens your budget, speeds up offers, and saves you from touring homes you cannot close on.",
+      },
+      {
+        t: "figure",
+        src: "/blog/mortgage-checklist.svg",
+        alt: "Pre-approval checklist graphic with green checks and a stamped approval card",
+        caption: "Pre-approval is paperwork plus discipline — not a vague online quiz.",
+        credit: "FinCalc",
+      },
+      {
+        t: "h3",
+        id: "mistake-mid-process-changes",
+        text: "4. Shaking up your finances mid-process",
+      },
+      {
+        t: "p",
+        text: "New job, new car loan, big furniture on a card: underwriters hate surprises. Even good changes can delay or derail a file if your profile no longer matches what they approved.",
+      },
+      {
+        t: "p",
+        text: "Freeze the big moves until closing. If something cannot wait, tell your loan officer first and get it in writing how it affects you.",
+      },
+      {
+        t: "h3",
+        id: "mistake-closing-costs",
+        text: "5. Forgetting closing costs until the last week",
+      },
+      {
+        t: "p",
+        text: "Between title, lender fees, prepaids, and recording charges, closing often lands in the 2% to 5% of purchase price neighborhood. Your deal may differ. That is real cash on top of down payment.",
+      },
+      {
+        t: "p",
+        text: "Ask early for a Loan Estimate and keep a closing-cost line in your savings plan. Surprise at the closing table is almost always preventable.",
+      },
+      {
+        t: "figure",
+        src: "/blog/mortgage-closing-costs.svg",
+        alt: "Illustrated breakdown of title, lender fees, prepaids, and cash to close",
+        caption: "Closing costs are several buckets — not one mystery number.",
+        credit: "FinCalc",
+      },
+      {
+        t: "h3",
+        id: "mistake-diy-mortgage",
+        text: "6. Treating the mortgage like a DIY project",
+      },
+      {
+        t: "p",
+        text: "You can read everything online and still miss how your lender interprets guidelines, or which fees are negotiable.",
+      },
+      {
+        t: "p",
+        text: "Use a sharp loan officer or broker as a guide, not as a salesperson you never question. Ask dumb questions on purpose. The expensive mortgage mistakes are usually the ones people were too embarrassed to ask about.",
+      },
+      {
+        t: "h3",
+        id: "mistake-credit-timing",
+        text: "7. Checking credit only when you are already in a hurry",
+      },
+      {
+        t: "p",
+        text: "Scores drive rate tiers. A few points can mean thousands over the life of the loan. If you discover errors or high utilization a week before application, you do not have time to fix much.",
+      },
+      {
+        t: "p",
+        text: "Pull reports months ahead, dispute errors, pay down cards strategically, and avoid new accounts before you apply.",
+      },
+      {
+        t: "figure",
+        src: "/blog/mortgage-credit-timing.svg",
+        alt: "Credit score improvement timeline before mortgage application",
+        caption: "Credit cleanup works best when started months before application.",
+        credit: "FinCalc",
+      },
+      {
+        t: "h3",
+        id: "mistake-first-rate",
+        text: "8. Taking the first rate you are offered",
+      },
+      {
+        t: "p",
+        text: "Rates and fees vary more than people expect. Same rate from two lenders can still be a different deal once points and fees show up.",
+      },
+      {
+        t: "p",
+        text: "Compare at least three credible quotes on the same day if you can, and look at APR and total cost, not just the rate in big font.",
+      },
+      {
+        t: "figure",
+        src: "/blog/mortgage-rate-compare.svg",
+        alt: "Side by side lender quote comparison cards for mortgage shopping",
+        caption: "Compare rate, APR, points, fees, and cash to close on one sheet.",
+        credit: "FinCalc",
+      },
+      {
+        t: "h3",
+        id: "mistake-payment-only",
+        text: "9. Obsessing over the monthly payment alone",
+      },
+      {
+        t: "p",
+        text: "A comfortable payment can hide a longer term, a higher rate, or more upfront costs. The payment is one line on a much bigger spreadsheet.",
+      },
+      {
+        t: "p",
+        text: "Always pair payment with term, rate, PMI, and total interest over the years you plan to keep the loan, or until you would realistically refi.",
+      },
+      {
+        t: "h3",
+        id: "mistake-piti",
+        text: "10. Forgetting that the mortgage is not your whole housing payment",
+      },
+      {
+        t: "p",
+        text: "Principal and interest are only part of PITI: property taxes, homeowners insurance, and often HOA sit next to them. In many loans, escrow wraps taxes and insurance into what feels like the mortgage payment.",
+      },
+      {
+        t: "p",
+        text: "Budget the full monthly housing stack, not just P and I. Your mortgage calculator should reflect taxes, insurance, and PMI if they apply. Otherwise you are planning for a house you cannot quite afford.",
+      },
+      {
+        t: "figure",
+        src: "/blog/mortgage-piti-vivid.svg",
+        alt: "Colorful PITI bar segments plus HOA and maintenance reminder",
+        caption: "PITI is the core stack; HOA and upkeep sit just outside it.",
+        credit: "FinCalc",
+      },
+      {
+        t: "h2",
+        id: "stay-out-of-trouble",
+        text: "How to keep yourself out of trouble",
+      },
+      {
+        t: "p",
+        text: "Most of this boils down to starting early, freezing your profile during underwriting, and comparing apples to apples. Pre-approval, closing-cost planning, and an honest look at PITI do more for you than chasing a slightly lower payment in isolation.",
+      },
+      {
+        t: "h2",
+        id: "faqs-mortgage-mistakes",
+        text: "FAQs",
+      },
+      {
+        t: "h3",
+        id: "faq-preapproval-vs-prequal",
+        text: "What is the difference between pre-approval and pre-qualification?",
+      },
+      {
+        t: "p",
+        text: "Pre-qualification is often a soft, quick estimate. Pre-approval usually means verified income and assets and a credit review, much closer to what the lender will actually stand behind.",
+      },
+      {
+        t: "h3",
+        id: "faq-improve-credit",
+        text: "How can I improve my credit before I apply?",
+      },
+      {
+        t: "p",
+        text: "Pay down revolving balances, do not open new accounts, fix report errors, and keep old accounts open if they are in good standing.",
+      },
+      {
+        t: "h3",
+        id: "faq-closing-costs",
+        text: "What are closing costs, and how much should I budget?",
+      },
+      {
+        t: "p",
+        text: "They are lender and third-party fees plus prepaids like taxes and insurance. Many buyers use 2% to 5% of the price as a planning range. Your Loan Estimate is the real source of truth.",
+      },
+      {
+        t: "h3",
+        id: "faq-best-rate",
+        text: "How do I find the best mortgage rate?",
+      },
+      {
+        t: "p",
+        text: "Shop multiple lenders, compare APR, ask about points and fees, and make sure each quote uses similar assumptions: loan type, term, down payment, and lock period.",
+      },
+      {
+        t: "h2",
+        id: "conclusion-mortgage-mistakes",
+        text: "Conclusion",
+      },
+      {
+        t: "p",
+        text: "Buying a home is emotional; the mortgage is where the emotion meets the math. I rushed pieces of my own first purchase and paid for it in stress, not just dollars. If you slow down on the boring stuff, budget, pre-approval, closing costs, full PITI, and comparing lenders, you give yourself room to enjoy the part that actually matters: turning a key in your own door.",
       },
       {
         t: "callout",
         variant: "note",
-        title: "Practical check",
-        text: "If the proposed payment is more than about 28–36% of gross income (rules of thumb vary by lender and market), pause and model a smaller loan amount before you waive contingencies.",
+        title: "Try it on FinCalc",
+        text: "Model PITI, PMI, and rate changes with the mortgage calculator on this site before you lock a budget in your head.",
       },
     ],
     sources: [
-      { title: "CFPB — compare loan estimates", url: "https://www.consumerfinance.gov/owning-a-home/compare/" },
-      { title: "HUD — homeownership resources", url: "https://www.hud.gov/buying" },
+      {
+        title: "CFPB — Owning a Home: compare loan estimates",
+        url: "https://www.consumerfinance.gov/owning-a-home/compare/",
+      },
+      {
+        title: "HUD — buying a home",
+        url: "https://www.hud.gov/buying",
+      },
     ],
     calcLink: "mortgage",
   },

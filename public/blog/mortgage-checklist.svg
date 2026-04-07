@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" rx="24" fill="#ecfdf5"/>
+  <rect x="48" y="48" width="804" height="424" rx="20" fill="#fff" stroke="#10b981" stroke-width="3"/>
+  <text x="80" y="110" fill="#065f46" font-family="Segoe UI,Arial,sans-serif" font-size="32" font-weight="800">Pre-approval checklist</text>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="22" fill="#047857">
+    <circle cx="100" cy="170" r="14" fill="#22c55e"/>
+    <path d="M94 170 L98 176 L108 162" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="130" y="178">Income docs ready</text>
+    <circle cx="100" cy="230" r="14" fill="#22c55e"/>
+    <path d="M94 230 L98 236 L108 222" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="130" y="238">Credit pulled once, on purpose</text>
+    <circle cx="100" cy="290" r="14" fill="#22c55e"/>
+    <path d="M94 290 L98 296 L108 282" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="130" y="298">Max payment written down</text>
+    <circle cx="100" cy="350" r="14" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+    <text x="128" y="358">Loan officer on speed dial</text>
+  </g>
+  <rect x="520" y="120" width="300" height="200" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="540" y="165" fill="#065f46" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700">PRE-APPROVED</text>
+  <text x="540" y="210" fill="#047857" font-family="Segoe UI,Arial,sans-serif" font-size="16">Budget ceiling: realistic</text>
+  <text x="540" y="245" fill="#047857" font-family="Segoe UI,Arial,sans-serif" font-size="16">Offer strength: higher</text>
+  <text x="540" y="280" fill="#047857" font-family="Segoe UI,Arial,sans-serif" font-size="16">Stress: lower</text>
+</svg>

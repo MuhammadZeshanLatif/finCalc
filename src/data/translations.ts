@@ -1,4 +1,9 @@
-export const translations = {
+/** Ensures `ru` matches `en` so `translations[lang]` is not a lossy union (e.g. home SEO keys). */
+function sameLocaleShape<E, const T extends { en: E; ru: E }>(t: T): T {
+  return t;
+}
+
+export const translations = sameLocaleShape({
   en: {
     siteTitle: "FinCalc",
     siteSubtitle: "Professional Finance Calculators",
@@ -45,6 +50,32 @@ export const translations = {
     prev: "Previous",
     next: "Next",
     liveResultsHint: "Results update as you type. Use any format you like (e.g. 10000 or 10,000.50).",
+    /** Home page only: used for <title> + meta (seo.ts appends ` | ${SITE_NAME}`). */
+    homeSeoHeadline: "Free Mortgage, Loan, EMI & Tax Calculators Online",
+    homeSeoDescription:
+      "Free finance calculators for mortgage, loan, EMI, interest, deposit, VAT, tax, BMI, and currency. Live results in your browser—no sign-up. English & Russian.",
+    homeSeoCalculatorKeywords:
+      "mortgage calculator, loan calculator, EMI calculator, interest calculator, tax calculator, VAT calculator, currency converter, BMI calculator, deposit calculator, free online calculator",
+    /** Per-page SEO: title (50-60 chars) + description (145-160 chars) used in updatePageSeo. */
+    pageSeo: {
+      basic:    { title: "Free Scientific Calculator Online | FinCalc",          desc: "Solve powers, roots, trig, logs, factorial & memory in seconds — free in your browser. No download, no sign-up. Instant math results every time you need them." },
+      interest: { title: "Compound Interest Calculator — Free | FinCalc",        desc: "See exactly how compound interest grows your money. Enter rate, principal & term — get balance, interest earned & compounding effects instantly. Free online." },
+      deposit:  { title: "Deposit & Savings Calculator Online | FinCalc",        desc: "Watch your savings grow month by month. Enter deposit, contributions & rate to see your exact future balance. Free online savings calculator — no sign-up." },
+      loan:     { title: "Loan Calculator — Monthly Payment & Interest | FinCalc", desc: "Know your monthly payment before you borrow. Enter loan amount, rate & term — see total interest & full repayment schedule instantly. Free online loan tool." },
+      mortgage: { title: "Mortgage Calculator — Free Home Loan Tool | FinCalc",  desc: "Find your true monthly mortgage cost including PMI. Enter home value, down payment & rate — get instant breakdown. Free mortgage calculator, no sign-up." },
+      days:     { title: "Date Difference Calculator — Days Between Dates",       desc: "Count exact days, weeks & months between any two dates in seconds. Perfect for deadlines, contracts & loan terms. Free online date difference calculator." },
+      vat:      { title: "VAT Calculator — Add or Remove Tax Instantly | FinCalc", desc: "Add or strip VAT from any amount instantly. Switch inclusive ↔ exclusive with one click. Free online VAT calculator for businesses and freelancers." },
+      emi:      { title: "EMI Calculator — Loan Monthly Installment | FinCalc",   desc: "Calculate your exact EMI before signing any loan. See monthly installment, total interest & full amortization table. Free online EMI calculator, no sign-up." },
+      bmi:      { title: "BMI Calculator — Body Mass Index Online | FinCalc",     desc: "Know your BMI in seconds — metric or imperial. See your category, healthy weight range & what your number means for your health. Free online BMI calculator." },
+      tax:      { title: "Income Tax Calculator — Estimate Your Tax | FinCalc",   desc: "Estimate your take-home pay instantly. See tax by bracket, effective rate & net salary — free income tax calculator, no sign-up, quick and accurate results." },
+      currency: { title: "Currency Converter — Live Exchange Rates | FinCalc",    desc: "Convert 150+ currencies using live ECB rates updated daily. Fast, free online currency converter with real-time exchange rates. No API key, no sign-up." },
+      ti84:     { title: "TI-84 Plus CE Calculator Online Free | FinCalc",        desc: "Use a TI-84 Plus CE graphing calculator free in your browser. Graph functions, use 2nd shortcuts & window settings — no download or login ever needed." },
+      about:    { title: "About FinCalc — Free Finance Calculators Online",       desc: "11+ free financial & scientific calculators in English and Russian. No ads, no sign-up, zero tracking — all calculations run privately in your browser." },
+      contact:  { title: "Contact FinCalc — Feedback & Support",                  desc: "Reach the FinCalc team anytime. Send feedback, report a bug, or ask a question about our free calculators. We reply within 24 hours — always welcome." },
+      privacy:  { title: "Privacy Policy — FinCalc Financial Calculators",        desc: "Zero data collected. All calculations run locally in your browser — no tracking cookies, no servers. Your numbers never leave your device. Guaranteed." },
+      terms:    { title: "Terms of Use — FinCalc Financial Calculators",           desc: "FinCalc results are for guidance only — not legal, tax, or medical advice. Read our plain-language terms before using figures for major financial decisions." },
+      blog:     { title: "Finance Blog — Free Calculators & Money Guides | FinCalc", desc: "Practical money guides, tax tips, EMI breakdowns & calculator tutorials — cited sources, plain English. Free financial insights from the FinCalc team." },
+    },
     richArticleTitle: "Full guide: how it works, FAQs, and limits",
     richArticleReviewed: "Editorial note: content reviewed April 2026.",
     richSectionSteps: "Step-by-step on this page",
@@ -331,6 +362,30 @@ export const translations = {
     prev: "Назад",
     next: "Вперед",
     liveResultsHint: "Результат обновляется при вводе. Можно вводить суммы в любом виде (например 10000 или 10 000,50).",
+    homeSeoHeadline: "Ипотека, кредит, EMI, налоги и валюта — калькуляторы",
+    homeSeoDescription:
+      "Бесплатные калькуляторы: ипотека, кредит, EMI, вклад, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации. Интерфейс на русском и английском.",
+    homeSeoCalculatorKeywords:
+      "ипотечный калькулятор, кредитный калькулятор, EMI, калькулятор процентов, НДС, налоговый калькулятор, конвертер валют, ИМТ, вклад, бесплатный калькулятор онлайн",
+    pageSeo: {
+      basic:    { title: "Научный калькулятор онлайн бесплатно | ФинКальк",         desc: "Бесплатный научный калькулятор: степени, корни, тригонометрия, логарифмы, факториал, память. Мгновенный результат в браузере — без установки и регистрации." },
+      interest: { title: "Калькулятор процентов и вклада онлайн | ФинКальк",        desc: "Рассчитайте сложные и простые проценты по любой сумме, ставке и сроку. Итоговый баланс и начисленные проценты — бесплатно, мгновенно, без регистрации." },
+      deposit:  { title: "Калькулятор вклада и накоплений | ФинКальк",              desc: "Спрогнозируйте рост вклада с учётом пополнений и капитализации. Введите начальную сумму, взносы и ставку — получите итоговый баланс онлайн бесплатно." },
+      loan:     { title: "Кредитный калькулятор — платёж и переплата | ФинКальк",   desc: "Рассчитайте ежемесячный платёж по кредиту, общую переплату и график погашения. Введите сумму, ставку и срок — результат сразу, без регистрации." },
+      mortgage: { title: "Ипотечный калькулятор онлайн бесплатно | ФинКальк",       desc: "Рассчитайте ежемесячный платёж по ипотеке: стоимость жилья, первоначальный взнос, ставка и срок. Полный график и общая переплата — мгновенно и бесплатно." },
+      days:     { title: "Калькулятор дней между датами | ФинКальк",                desc: "Вычислите точное количество дней, недель и месяцев между двумя датами. Бесплатный онлайн-инструмент для расчёта сроков, дедлайнов и договоров." },
+      vat:      { title: "Калькулятор НДС онлайн — добавить или выделить | ФинКальк", desc: "Быстро рассчитайте НДС для любой суммы и ставки. Переключение между суммой с НДС и без одним кликом. Бесплатный инструмент для бизнеса и ИП." },
+      emi:      { title: "EMI калькулятор — расчёт ежемесячного платежа | ФинКальк",  desc: "Рассчитайте ежемесячный платёж (EMI) по любому кредиту. Полная таблица погашения, общая сумма выплат и переплата — онлайн бесплатно и мгновенно." },
+      bmi:      { title: "Калькулятор ИМТ — индекс массы тела | ФинКальк",          desc: "Рассчитайте ИМТ в метрической или дюймовой системе. Узнайте категорию, норму веса и что означает ваш результат для здоровья — бесплатно онлайн." },
+      tax:      { title: "Налоговый калькулятор — расчёт НДФЛ онлайн | ФинКальк",   desc: "Оцените годовой налог и сумму к получению по прогрессивным ставкам. Бесплатный налоговый калькулятор онлайн — быстро, точно, без регистрации." },
+      currency: { title: "Конвертер валют онлайн — актуальный курс | ФинКальк",     desc: "Конвертируйте 150+ валют по актуальным курсам ЕЦБ. Бесплатный онлайн-конвертер с обновляемыми курсами — без ключа API и регистрации." },
+      ti84:     { title: "Калькулятор TI-84 Plus CE онлайн | ФинКальк",             desc: "Используйте графический калькулятор TI-84 Plus CE бесплатно в браузере. Стройте графики, используйте функцию 2nd — без скачивания и регистрации." },
+      about:    { title: "О ФинКальк — бесплатные финансовые калькуляторы",          desc: "ФинКальк — бесплатный набор из 11+ финансовых и научных калькуляторов на русском и английском. Без рекламы, без регистрации, полностью приватно." },
+      contact:  { title: "Контакты ФинКальк — обратная связь",                       desc: "Свяжитесь с командой ФинКальк. Отправьте отзыв, сообщите об ошибке или задайте вопрос о наших калькуляторах. Отвечаем в течение 24 часов." },
+      privacy:  { title: "Политика конфиденциальности | ФинКальк",                   desc: "Мы не собираем личные данные, расчёты выполняются в браузере, отслеживающих cookie нет. Ваши данные не покидают устройство — читайте нашу политику." },
+      terms:    { title: "Условия использования | ФинКальк",                         desc: "Условия использования и отказ от ответственности ФинКальк. Все калькуляторы носят информационный характер. Ознакомьтесь перед использованием результатов." },
+      blog:     { title: "Блог о финансах — статьи и калькуляторы | ФинКальк",      desc: "Практические статьи о деньгах, кредитах, налогах и калькуляторах от ФинКальк. Источники, понятный язык и ссылки на бесплатные инструменты расчётов." },
+    },
     richArticleTitle: "Полный разбор: принцип работы, вопросы и ограничения",
     richArticleReviewed: "Редакция: материал проверен в апреле 2026 г.",
     richSectionSteps: "Пошагово на этой странице",
@@ -571,4 +626,4 @@ export const translations = {
       },
     },
   },
-};
+});
