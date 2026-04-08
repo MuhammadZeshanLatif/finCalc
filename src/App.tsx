@@ -9,6 +9,7 @@ import {
   getPostByTopic,
   getRelatedPosts,
 } from "./data/blog";
+import type { BlogBlock } from "./data/blog/types";
 import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
@@ -56,6 +57,18 @@ const calcMeta: Record<string, { icon: string }> = {
   currency:  { icon: "fa-money-bill-transfer" },
   ti84:      { icon: "fa-microchip" },
 };
+
+function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {
+  const pairs: { q: string; a: string }[] = [];
+  for (let i = 0; i < blocks.length - 1; i++) {
+    const cur = blocks[i];
+    const next = blocks[i + 1];
+    if (cur.t !== "h3" || next.t !== "p") continue;
+    if (!cur.id.startsWith("faq-")) continue;
+    pairs.push({ q: cur.text, a: next.text });
+  }
+  return pairs;
+}
 
 export default function App() {
   const [lang, setLang] = useState<AppLang>(() => seedRoute().lang);
@@ -158,6 +171,7 @@ export default function App() {
         const ruP   = getPostByTopic("ru", post.topicKey);
         const enSlug = enP?.slug ?? post.slug;
         const heroForSocial = post.hero.srcWebp ?? post.hero.src;
+        const faqPairs = extractFaqPairs(post.blocks);
         blogArticle = {
           canonicalPath:    buildPathname(lang, "blog", post.slug),
           alternateEnPath:  buildPathname("en", "blog", enSlug),
@@ -175,6 +189,7 @@ export default function App() {
           blogListLabel:    t.blog,
           wordCountApprox:  approxWordCount(post),
           videoYoutubeId:   post.video?.youtubeId,
+          faqs:             faqPairs,
         };
       }
     } else if (ps[currentPage]) {
@@ -356,7 +371,7 @@ export default function App() {
                 <div className="fc-hero">
                   
                   <h1>{t.siteTitle}</h1>
-                  <p className="fc-hero-lead">{t.siteSubtitle} — accurate, fast, and multilingual.</p>
+                  <p className="fc-hero-lead">{t.siteSubtitle} accurate and fast.</p>
                   <div className="fc-hero-stats">
                     <div className="fc-hero-stat">
                       <span className="stat-num">11+</span>

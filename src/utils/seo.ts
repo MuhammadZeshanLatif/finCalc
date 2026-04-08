@@ -69,6 +69,7 @@ export type BlogSeoPayload = {
   blogListLabel: string;
   wordCountApprox?: number;
   videoYoutubeId?: string;
+  faqs?: { q: string; a: string }[];
 };
 
 export function updatePageSeo(opts: {
@@ -298,6 +299,17 @@ function injectJsonLd(opts: {
       };
     }
     graph.push(blogPosting);
+    if (opts.blogArticle.faqs && opts.blogArticle.faqs.length > 0) {
+      graph.push({
+        "@type": "FAQPage",
+        "@id": `${opts.pageUrl}#faq`,
+        mainEntity: opts.blogArticle.faqs.map(f => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      });
+    }
   } else if (opts.page !== "home") {
     const homeUrl = `${opts.base}${buildPathname(opts.lang, "home") === "/" ? "" : buildPathname(opts.lang, "home")}`;
     graph.push({

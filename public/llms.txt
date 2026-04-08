@@ -1,0 +1,26 @@
+# FinCalc — Financial & multipurpose calculators
+
+FinCalc is a free bilingual (English / Russian) web app with path-based URLs for SEO.
+
+## Site structure
+
+- English home: /
+- Russian home: /ru
+- Calculators (EN): /interest, /loan, /mortgage, /deposit, /days, /vat, /emi, /bmi, /tax, /currency, /basic
+- Same in Russian under /ru/ (e.g. /ru/interest)
+- Blog index: /blog and /ru/blog
+- Blog articles (examples): /blog/compound-interest-guide, /blog/mortgage-mistakes-down-payment-piti, … (see sitemap); Russian slugs under /ru/blog/…
+- About: /about and /ru/about — Contact: /contact and /ru/contact
+
+## What we offer
+
+Scientific calculator; compound interest; savings/deposit projection; loan and mortgage amortization; date difference; VAT inclusive/exclusive; EMI; BMI (metric); simplified progressive tax illustration; currency conversion with demo rates.
+
+## Important limitations
+
+Results are educational estimates only—not financial, tax, medical, or legal advice. Currency rates in the app are illustrative, not live market quotes.
+
+## Machine-readable discovery
+
+- Sitemap: /sitemap.xml
+- robots.txt: /robots.txt
