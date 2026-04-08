@@ -517,53 +517,450 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   {
     topicKey: "emi-strategy",
     slug: "emi-prepayment-strategy",
-    title: "EMI loans: where prepayments actually cut interest",
-    metaTitle: "EMI prepayment strategy: cut tenure or payment? | FinCalc",
+    title: "EMI loans: where prepayments actually cut interest (and where they don't)",
+    metaTitle: "EMI Loan Prepayment: Where It Really Cuts Interest | FinCalc",
     metaDescription:
-      "How equated monthly installments split interest and principal, and why extra payments toward principal change the total interest more than rounding up EMI alone.",
-    keywords: "EMI calculator, loan prepayment, amortization, principal payment, reducing balance loan",
-    excerpt: "Extra money sent to principal attacks the balance that tomorrow’s interest is calculated on.",
+      "US guide to EMI loan prepayment: see when extra payments cut interest, reduce term vs reduce payment, and how to force principal-only posting.",
+    keywords: "EMI prepayment, loan prepayment interest savings, Rule of 78s, reduce tenure vs reduce EMI, principal only payment, prepayment penalty USA, biweekly mortgage payment, amortization prepayment, loan servicer, APR",
+    excerpt:
+      "US borrowers can cut real interest with EMI loan prepayment only when timing, loan type, and principal-only posting are handled correctly.",
     datePublished: "2026-02-12",
-    dateModified: "2026-04-03",
+    dateModified: "2026-04-07",
     author: "FinCalc Editorial",
-    readingTimeMinutes: 7,
+    readingTimeMinutes: 12,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Money_in_a_jar.jpg/640px-Money_in_a_jar.jpg",
-      alt: "Coins and banknotes stored in a glass jar",
-      caption: "Prepaying principal is a deliberate choice; document it with your lender’s rules.",
-      credit: "Wikimedia Commons — Money in a jar",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Money_in_a_jar.jpg",
+      src: "/blog/emi-prepay-hero-advisor-desk.svg",
+      srcWebp: "/blog/emi-prepay-hero-advisor-desk.webp",
+      alt: "US couple reviewing mortgage statement with advisor and amortization chart",
+      caption:
+        "Image 1: a clear prepayment plan starts with loan terms, timing, and principal-only payment instructions.",
+      credit: "FinCalc custom visual",
     },
-    keyPhrases: ["EMI formula intuition", "amortization schedule", "principal vs interest share", "prepayment penalties"],
+    keyPhrases: [
+      "how reducing-balance loans calculate interest",
+      "Rule of 78s precomputed interest trap",
+      "reduce tenure vs reduce EMI comparison",
+      "principal only payment instruction to loan servicer",
+      "when prepaying a loan is the wrong move",
+      "biweekly vs lump sum prepayment savings",
+    ],
     blocks: [
       {
         t: "p",
-        text: "An EMI keeps the installment constant while the internal split between interest and principal shifts every month. Early in the loan, interest dominates; later, principal dominates. That is normal amortizing math, not a bank trick.",
-      },
-      {
-        t: "h2",
-        id: "why-prepay-principal",
-        text: "Why principal prepayment works",
+        text: "You get a bonus. You get a tax refund. And your first thought is: throw it at the loan.",
       },
       {
         t: "p",
-        text: "Interest accrues on the remaining balance. Any payment labeled as principal reduction lowers that balance immediately, so the next period’s interest accrues on a smaller number. Use the EMI calculator here to add an extra principal line and compare total interest paid against the baseline schedule.",
+        text: "That instinct is usually right. But not always. Whether your extra payment actually reduces interest depends on three things: your loan type, your timing, and one instruction most borrowers never give their loan servicer.",
+      },
+      {
+        t: "p",
+        text: "This guide covers all three. No fluff. Just the math, the traps, and the decisions — loan by loan.",
       },
       {
         t: "h2",
-        id: "watch-for-restrictions",
-        text: "Watch for lender rules",
+        id: "how-reducing-balance-works",
+        text: "How reducing-balance loans calculate interest",
+      },
+      {
+        t: "p",
+        text: "Most US loans use the reducing-balance method. Your loan servicer charges interest only on what you still owe. The formula never changes: interest this month = remaining balance times (annual rate divided by 12).",
+      },
+      {
+        t: "p",
+        text: "Your EMI stays the same every month. But the split inside each payment shifts. In month one, most of your payment goes to interest. By the final months, almost all of it goes to principal. This is normal amortization — not a bank trick.",
+      },
+      {
+        t: "p",
+        text: "Example. You borrow $20,000 at 8% APR for 5 years. Monthly EMI: $406. In month 1, $133 goes to interest and $273 to principal. In month 55, nearly the full $406 goes to principal.",
+      },
+      {
+        t: "p",
+        text: "This is exactly why prepayment works on reducing-balance loans. Any extra money applied to principal lowers the balance right away. A lower balance means less interest next month — and every month after that until your payoff date.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Core principle",
+        text: "On a reducing-balance loan, every dollar of principal you prepay eliminates future interest on that exact dollar for every remaining month. The earlier in the amortization schedule you prepay, the more months of interest you erase.",
+      },
+      {
+        t: "h2",
+        id: "rule-of-78s",
+        text: "The Rule of 78s — when prepayment saves you nothing",
+      },
+      {
+        t: "p",
+        text: "Some loans do not use reducing-balance math. They use precomputed interest — also called the Rule of 78s. This changes everything about prepayment.",
+      },
+      {
+        t: "p",
+        text: "Here is how it works. When you sign the loan, the lender calculates total interest for the full term and locks that number in upfront. They front-load it across your payments using a weighted formula. You pay most of the interest in the first half of the loan — by design.",
+      },
+      {
+        t: "p",
+        text: "If you pay off early, you get a small rebate called unearned interest. But the rebate is far smaller than what a reducing-balance loan would save you. In many real cases, the actual savings are close to zero.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "How to check your loan",
+        text: "Search your loan agreement for the words precomputed interest or Rule of 78s. If you find either one, extra payments may not reduce your total interest the way you expect. The CFPB advises all borrowers to check this before making any additional payments.",
+      },
+      {
+        t: "p",
+        text: "Which loans still use this method? Some dealer-financed auto loans. Some older personal loans. Most new US mortgages do not. But always check your paperwork before you assume your extra payment is cutting interest.",
+      },
+      {
+        t: "h2",
+        id: "loan-type-matrix",
+        text: "Loan type matrix — does prepayment work on yours?",
+      },
+      {
+        t: "p",
+        text: "Different loan types follow different rules. Use this table to find your loan and understand what prepayment does to your interest.",
+      },
+      {
+        t: "table",
+        caption: "US loan types: does prepayment actually reduce interest?",
+        head: ["Loan Type", "Interest Method", "Prepayment Cuts Interest?", "Key Watch-Out"],
+        rows: [
+          ["30-yr fixed mortgage", "Reducing balance", "Yes — significantly", "Schedule A deduction shrinks as interest paid drops"],
+          ["Auto loan (bank or credit union)", "Reducing balance", "Yes", "Check for prepayment penalty in first 1-3 years"],
+          ["Auto loan (dealer-financed)", "Often Rule of 78s", "Partially or not at all", "Read contract before paying extra — rebate may be tiny"],
+          ["Personal loan", "Reducing balance (usually)", "Yes", "Must specify principal only — every single payment"],
+          ["Federal student loan — standard repayment", "Reducing balance", "Yes", "Does not auto-reduce your required monthly payment"],
+          ["Federal student loan — IDR or PSLF track", "Reducing balance", "Do not prepay", "Every extra dollar eliminates future forgiveness value"],
+          ["HELOC", "Variable rate, interest-only in draw phase", "Yes — repayment phase only", "APR changes monthly; recalculate before each extra payment"],
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Real borrower scenario",
+        text: "A borrower refinanced a $28,000 dealer auto loan to a credit union. Same balance, same payoff date — but switching from Rule of 78s to a reducing-balance structure saved over $1,400 in interest. The loan type mattered more than the rate.",
+      },
+      {
+        t: "h2",
+        id: "timing-early-vs-late",
+        text: "Timing — early vs. late prepayment with real numbers",
+      },
+      {
+        t: "p",
+        text: "Timing is the biggest variable in how much prepayment saves. An extra $5,000 in year 1 is not the same as $5,000 in year 15. Not even close.",
+      },
+      {
+        t: "p",
+        text: "The reason is simple. Early payments remove principal that would have generated interest for hundreds of remaining months. Late payments remove principal that only had a few months left to charge interest.",
+      },
+      {
+        t: "table",
+        caption: "One-time $5,000 prepayment on a $200,000 mortgage at 7% for 30 years",
+        head: ["When You Prepay", "Total Interest Saved", "Payoff Date Impact"],
+        rows: [
+          ["Month 3", "~$38,000", "~4.5 years earlier"],
+          ["Month 60 (year 5)", "~$22,000", "~2.3 years earlier"],
+          ["Month 120 (year 10)", "~$12,000", "~14 months earlier"],
+          ["Month 180 (year 15)", "~$5,500", "~7 months earlier"],
+        ],
+      },
+      {
+        t: "p",
+        text: "Same $5,000. Four very different payoff dates. A month-3 payment removes principal with 357 months of interest still ahead of it. A year-15 payment removes principal with only 177 months left. That gap is where the savings live.",
+      },
+      {
+        t: "figure",
+        src: "/blog/emi-prepay-biweekly-calendar.svg",
+        srcWebp: "/blog/emi-prepay-biweekly-calendar.webp",
+        alt: "Borrower marking biweekly payment dates on calendar beside calculator",
+        caption:
+          "Image 2: timing discipline is one of the highest-impact drivers of lifetime interest savings.",
+        credit: "FinCalc custom visual",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Rule of thumb",
+        text: "If you can only make one large prepayment in your life, make it as early as possible. The interest savings compound backward — every month you wait, the opportunity shrinks and never comes back.",
+      },
+      {
+        t: "h2",
+        id: "reduce-tenure-vs-emi",
+        text: "Reduce tenure or reduce EMI — the math, not the opinion",
+      },
+      {
+        t: "p",
+        text: "After a prepayment, your loan servicer will usually offer a choice. Lower your monthly EMI and keep the original loan term. Or keep the same EMI and shorten the term. Most borrowers pick the lower payment. The math says that is the more expensive choice — by a wide margin.",
+      },
+      {
+        t: "table",
+        caption: "Reduce tenure vs. reduce EMI — $200,000 at 7% for 30 years, $10,000 prepayment after month 12",
+        head: ["Option", "Monthly EMI", "Remaining Months", "Total Interest Remaining", "Difference"],
+        rows: [
+          ["Reduce tenure (recommended)", "$1,331 — unchanged", "~298 months", "~$209,000", "Saves ~$43,000 more"],
+          ["Reduce EMI", "~$1,263", "348 months — same", "~$252,000", "Baseline"],
+        ],
+      },
+      {
+        t: "p",
+        text: "Same $10,000 prepayment. Same loan. Reducing tenure saves about $43,000 more in total interest than reducing the EMI. The monthly difference is only $68. That feels like a win every month. Over 30 years, it is a $43,000 loss.",
+      },
+      {
+        t: "figure",
+        src: "/blog/emi-prepay-compare-cashflow-family.svg",
+        srcWebp: "/blog/emi-prepay-compare-cashflow-family.webp",
+        alt: "Family comparing lower payment and shorter term loan options at home",
+        caption:
+          "Image 3: reducing payment can ease monthly pressure, while reducing term usually saves more total interest.",
+        credit: "FinCalc custom visual",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "When reducing EMI is the right call",
+        text: "If your monthly cash flow is genuinely tight — variable income, upcoming medical costs, job change ahead — reducing EMI is correct. Cash flow certainty has real value. The math favors tenure reduction, but the right decision accounts for your life, not just the formula.",
+      },
+      {
+        t: "h2",
+        id: "lump-sum-vs-monthly",
+        text: "Lump sum vs. monthly extra vs. biweekly — same dollars, different payoff dates",
+      },
+      {
+        t: "p",
+        text: "You have $1,200 extra this year. Three ways to use it. Three different outcomes.",
+      },
+      {
+        t: "table",
+        caption: "Three prepayment formats — $200,000 mortgage at 7% for 30 years",
+        head: ["Format", "How It Works", "Interest Saved (full loan)", "Payoff Date Impact"],
+        rows: [
+          ["Lump sum on Jan 1", "$1,200 hits principal on day one — full year earns on lower balance", "Highest within the year", "~2-3 years earlier"],
+          ["$100 extra per month", "Balance drops gradually — savings build through the year", "Slightly less than lump sum", "~2-3 years earlier"],
+          ["Biweekly payments", "Half-EMI every 2 weeks = 13 payments per year instead of 12", "~$40,000+ over loan life", "~4-5 years earlier"],
+        ],
+      },
+      {
+        t: "p",
+        text: "The lump sum wins on raw interest savings within a single year. Biweekly payments win on total lifetime savings — because you make one extra full payment every year without needing a bonus or windfall.",
+      },
+      {
+        t: "p",
+        text: "Biweekly math: 26 two-week periods per year. Half your EMI times 26 equals 13 full payments. That 13th payment hits principal directly. On a $200,000 mortgage at 7%, this alone cuts your payoff date by 4 to 5 years and saves over $40,000.",
+      },
+      {
+        t: "p",
+        text: "Before switching to biweekly: confirm your loan servicer processes each half-payment when it arrives. Some banks hold the first half until the second arrives at month-end — then apply both as one payment. In that case, you get zero early-payment benefit. Ask your servicer in writing before you change your payment schedule.",
+      },
+      {
+        t: "h2",
+        id: "principal-only-instruction",
+        text: "The principal-only instruction — the step most borrowers skip",
+      },
+      {
+        t: "p",
+        text: "This is the most common prepayment mistake. And it costs borrowers silently.",
+      },
+      {
+        t: "p",
+        text: "When you send extra money to your loan servicer, many will not apply it to your principal. Instead, they advance your next due date. Your schedule moves forward. Your principal balance stays the same. Your APR does not change. Your payoff date does not move. Future interest does not decrease. At all.",
+      },
+      {
+        t: "p",
+        text: "Your loan servicer — the company collecting your payments — is not always the lender who originated your loan. Servicers follow their own internal processing rules. You must override those rules explicitly, every single time.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "What one borrower found out the hard way",
+        text: "I paid $500 extra every month for six months and my balance barely moved. I called and found out my servicer had been moving my due date forward to August. Not a single dollar had hit my principal. I had to call and have it all reversed and reapplied. This is more common than most borrowers realize. It is completely preventable.",
+      },
+      {
+        t: "p",
+        text: "Here is exactly what to do every time you make an extra payment.",
+      },
+      {
+        t: "figure",
+        src: "/blog/emi-prepay-principal-payment-phone.svg",
+        srcWebp: "/blog/emi-prepay-principal-payment-phone.webp",
+        alt: "Borrower selecting principal-only payment option on mobile banking screen",
+        caption:
+          "Image 4: always label extra funds as principal-only and verify the statement posting after payment clears.",
+        credit: "FinCalc custom visual",
       },
       {
         t: "ul",
         items: [
-          "Some loans charge prepayment fees or apply partial payments to future EMIs unless you specify principal.",
-          "Re-amortization policies differ: your EMI might stay flat while tenure shortens, or the bank might recalculate EMI.",
+          "Write apply to principal only in the memo line of every check you send.",
+          "When paying online, find the field labeled principal payment or payment allocation — do not add extra money to the standard payment total without specifying where it goes.",
+          "Call your loan servicer before your first extra payment. Ask for the exact process to designate a principal-only payment on their specific system.",
+          "After the payment posts, open your statement. Your principal balance should be lower than the standard amortization schedule shows for that date.",
+          "If the servicer advanced your due date instead of reducing the principal, call immediately. Request that they reverse and reapply to principal. The CFPB provides formal guidance on disputing incorrect payment applications at consumerfinance.gov.",
         ],
+      },
+      {
+        t: "callout",
+        variant: "disclaimer",
+        title: "Your legal right",
+        text: "The CFPB has established that borrowers can dispute how a loan servicer applies payments. If your servicer refuses to reapply a misdirected extra payment to principal, file a formal complaint at consumerfinance.gov. Keep records of every extra payment: date, amount, and the instruction you gave.",
+      },
+      {
+        t: "h2",
+        id: "when-not-to-prepay",
+        text: "When prepaying is the wrong move",
+      },
+      {
+        t: "p",
+        text: "Prepaying is not always smart. In four specific situations, sending extra money to your loan is the financially worse decision.",
+      },
+      {
+        t: "h3",
+        id: "student-loans-idr-pslf",
+        text: "1. Federal student loans on IDR or the PSLF track",
+      },
+      {
+        t: "p",
+        text: "If you are on an income-driven repayment plan (IDR) — SAVE, PAYE, IBR, or ICR — and working toward Public Service Loan Forgiveness (PSLF), do not prepay. Not one dollar.",
+      },
+      {
+        t: "p",
+        text: "Under PSLF, your remaining balance is forgiven after 120 qualifying payments. If you prepay aggressively, you are paying money that would have been canceled for free. Every extra dollar you send eliminates forgiveness value you already earned through years of qualifying employment.",
+      },
+      {
+        t: "p",
+        text: "A borrower with $80,000 remaining on the PSLF track who prepays $10,000 does not save $10,000. They forfeit $10,000 in forgiveness they had already qualified for. The only prepayment decision on IDR or PSLF is: none.",
+      },
+      {
+        t: "h3",
+        id: "mortgage-interest-deduction",
+        text: "2. Mortgage for high earners who itemize on Schedule A",
+      },
+      {
+        t: "p",
+        text: "If you itemize deductions on your federal tax return, mortgage interest is deductible under Schedule A. When you prepay faster, you pay less interest each year — which means a smaller deduction and a higher tax bill.",
+      },
+      {
+        t: "p",
+        text: "Example: In the 24% tax bracket, $14,000 per year in mortgage interest saves you $3,360 at tax time. As your prepayments reduce the interest you pay annually, that deduction shrinks dollar for dollar.",
+      },
+      {
+        t: "p",
+        text: "A 7% mortgage does not cost 7% after taxes. In the 24% bracket, your effective after-tax rate is closer to 5.3%. That changes the prepay-vs-invest calculation significantly — especially for higher earners.",
+      },
+      {
+        t: "h3",
+        id: "low-rate-vs-investing",
+        text: "3. Low-APR loans where investing beats prepaying",
+      },
+      {
+        t: "p",
+        text: "Always compare your loan's APR — not just the stated interest rate. APR includes origination fees and other costs. It is the true annual cost of borrowing and the number to benchmark against investment returns.",
+      },
+      {
+        t: "table",
+        caption: "Prepay vs. invest — loan APR vs. after-tax return (22% bracket, S&P 500 historical ~10% CAGR)",
+        head: ["Loan APR", "Est. After-Tax Investment Return", "Better Move", "Why"],
+        rows: [
+          ["4% APR or below", "~7.8%", "Invest", "Expected market return likely beats guaranteed loan savings"],
+          ["4% to 6% APR", "~7.8%", "Split — or clear higher-rate debt first", "Too close to call; your risk tolerance decides"],
+          ["6% APR or above", "~7.8%", "Prepay", "Guaranteed savings outweigh uncertain market returns at this spread"],
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "The certainty argument",
+        text: "Market returns are a probability. Loan interest savings are a guarantee. If you are within 10 years of retirement, or if carrying debt affects how you sleep, prepaying wins at any rate. The psychological return on eliminating debt is real — and it compounds.",
+      },
+      {
+        t: "h3",
+        id: "credit-score-timing",
+        text: "4. Closing a loan right before a major credit application",
+      },
+      {
+        t: "p",
+        text: "Paying off an installment loan closes the account. This can temporarily lower your credit score. Two things happen at once.",
+      },
+      {
+        t: "p",
+        text: "First, your credit mix narrows. Scoring models reward borrowers who carry both revolving accounts (credit cards) and installment accounts (loans). Close your only installment account and that signal disappears.",
+      },
+      {
+        t: "p",
+        text: "Second, if this loan is one of your oldest accounts, paying it off shortens your average account age — another scoring factor.",
+      },
+      {
+        t: "p",
+        text: "If you plan to apply for a mortgage, auto loan, or refinance in the next 6 to 12 months, time your payoff carefully. A 20 to 30 point score drop right before a mortgage application can push you into a higher rate tier — costing more in new loan interest than you saved by paying off the old one.",
+      },
+      {
+        t: "h2",
+        id: "calculate-your-savings",
+        text: "How to calculate your actual savings before you pay",
+      },
+      {
+        t: "p",
+        text: "Use the FinCalc EMI calculator. Enter your loan amount, APR, and term. Add an extra prepayment amount. You get three outputs instantly: total interest saved, your new payoff date, and the number of months cut from the loan.",
+      },
+      {
+        t: "p",
+        text: "Your payoff date is the most concrete number to track. It is the exact month your loan balance hits zero. Watch how it shifts when you adjust the prepayment amount or the timing. In the early years of a 30-year mortgage, a $100 change in your extra monthly payment can shift your payoff date by 12 to 18 months. The amortization math is that sensitive.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "60-second checklist before every extra payment",
+        text: "1) Check your loan documents — reducing-balance or Rule of 78s? 2) Choose your goal — shorter payoff date (reduce tenure) or lower monthly payment (reduce EMI)? 3) Call your loan servicer and confirm the exact step to flag the payment as principal only. 4) Note today's payoff date. After the payment posts, check that your new payoff date moved earlier and your principal dropped — not just your next due date.",
+      },
+      {
+        t: "h2",
+        id: "faqs",
+        text: "Frequently asked questions",
+      },
+      {
+        t: "h3",
+        id: "faq-does-extra-payment-reduce-next-emi",
+        text: "Does an extra payment reduce my next month's EMI automatically?",
+      },
+      {
+        t: "p",
+        text: "No — not automatically. Your EMI amount is fixed for the full loan term. An extra payment reduces your principal balance, which lowers the interest portion of every future EMI. But the total payment amount stays the same unless you formally ask your loan servicer to re-amortize the loan. Some servicers allow this on request; most require it in writing.",
+      },
+      {
+        t: "h3",
+        id: "faq-prepayment-penalty",
+        text: "Can my lender charge a penalty for paying my loan off early?",
+      },
+      {
+        t: "p",
+        text: "Yes, on some loans. Under the Dodd-Frank Act, qualified mortgages can carry prepayment penalties only in the first three years — capped at 2% in years 1 and 2, and 1% in year 3. FHA, VA, and USDA loans cannot have prepayment penalties at all. For auto and personal loans, it varies by lender. Always check your loan contract before sending extra money. The CFPB provides a plain-language guide to prepayment penalties at consumerfinance.gov.",
+      },
+      {
+        t: "h3",
+        id: "faq-halfway-through-loan",
+        text: "Is it too late to prepay if I am already halfway through my loan?",
+      },
+      {
+        t: "p",
+        text: "It is not too late. But the savings are smaller. On any reducing-balance loan, every principal payment still reduces future interest — because interest accrues on remaining balance, not original balance. With fewer months remaining, there are fewer future payments for the savings to multiply across. Run your numbers in the EMI calculator to see your exact new payoff date based on where you stand today.",
+      },
+      {
+        t: "h3",
+        id: "faq-biweekly-servicer",
+        text: "My loan servicer does not offer a biweekly payment program. What can I do?",
+      },
+      {
+        t: "p",
+        text: "Replicate it manually. Add one-twelfth of your monthly EMI to every monthly payment. Over 12 months, that equals one full extra payment per year — exactly what a biweekly program delivers. Label every payment with the principal-only instruction. Full biweekly benefit. No special program required.",
       },
     ],
     sources: [
-      { title: "RBI — fair practices / loan servicing (India context)", url: "https://www.rbi.org.in/" },
+      { title: "CFPB — What is a prepayment penalty?", url: "https://www.consumerfinance.gov/ask-cfpb/what-is-a-prepayment-penalty-en-1957/" },
+      { title: "CFPB — Submit a complaint about a loan servicer", url: "https://www.consumerfinance.gov/complaint/" },
+      { title: "Bankrate — Is prepaying your mortgage a good decision?", url: "https://www.bankrate.com/mortgages/prepaying-your-mortgage/" },
+      { title: "Wells Fargo — Loan amortization and extra payments", url: "https://www.wellsfargo.com/financial-education/homeownership/loan-amortization-extra-payments/" },
+      { title: "Nolo — When are prepayment penalties allowed on new mortgages?", url: "https://www.nolo.com/legal-encyclopedia/when-are-prepayment-penalties-allowed-new-mortgages.html" },
+      { title: "Bankrate — Should you pay off student loans or invest?", url: "https://www.bankrate.com/loans/student-loans/pay-off-student-loans-or-invest/" },
+      { title: "Rocket Mortgage — Monthly vs. biweekly mortgage payments", url: "https://www.rocketmortgage.com/learn/biweekly-vs-monthly-mortgage-payments" },
     ],
     calcLink: "emi",
   },
@@ -571,27 +968,122 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "emergency-fund",
     slug: "emergency-fund-high-yield-savings",
     title: "Emergency funds: liquidity first, yield second",
-    metaTitle: "Emergency fund size, liquidity & deposit growth | FinCalc Blog",
+    metaTitle: "Emergency Fund: Liquidity First, Yield Second | FinCalc",
     metaDescription:
-      "How many months of expenses to hold, where people keep cash, and how to model growth with a deposit calculator without pretending volatility is gone.",
-    keywords: "emergency fund, high yield savings, deposit calculator, liquidity, rainy day fund",
-    excerpt: "The job of emergency cash is to be there when income stops—not to beat the stock market.",
+      "How much emergency cash to save, where to keep it liquid for bills, and why safety beats yield. Model growth in FinCalc deposit calculator.",
+    keywords:
+      "emergency fund, rainy day fund, liquidity, high yield savings, FDIC insurance, essential expenses, deposit calculator, money market, financial cushion",
+    excerpt:
+      "Emergency cash exists to pay rent and groceries when income stops—not to chase stock-like returns. Liquidity and safety come before APY.",
     datePublished: "2026-02-20",
-    dateModified: "2026-04-03",
+    dateModified: "2026-04-08",
     author: "FinCalc Editorial",
-    readingTimeMinutes: 6,
+    readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Piggy_bank_DSC08605.jpg/640px-Piggy_bank_DSC08605.jpg",
-      alt: "Ceramic piggy bank on a table",
-      caption: "Psychological barriers to spending matter as much as yield for emergency cash.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Piggy_bank_DSC08605.jpg",
+      src: "/blog/emergency-fund-hero-safety-jar.svg",
+      srcWebp: "/blog/emergency-fund-hero-safety-jar.webp",
+      alt: "Illustration of emergency savings jar and financial safety theme",
+      caption:
+        "Image 1: treat emergency savings as insurance you can spend—not an investment product to optimize first.",
+      credit: "FinCalc visual",
     },
-    keyPhrases: ["three to six months rule", "joint account access", "FDIC insurance limits", "inflation vs cash"],
+    keyPhrases: [
+      "how much emergency fund",
+      "3 to 6 months expenses rule",
+      "liquidity vs yield",
+      "where to keep emergency cash",
+      "FDIC insurance basics",
+      "high yield savings account",
+      "deposit calculator projection",
+      "what not to use emergency fund for",
+    ],
     blocks: [
       {
         t: "p",
-        text: "Guidelines like three to six months of essential expenses are starting points. Self-employed households, single-income families, or anyone with high fixed costs may rationally hold more. The deposit calculator helps translate “I can save $X per month at Y%” into a future balance under steady assumptions.",
+        text: "A layoff, a medical bill, or a broken car can hit before your next paycheck clears. Without cash on hand, many people borrow at high rates or drain retirement accounts. An emergency fund is the buffer that keeps those shocks from turning into long-term damage.",
+      },
+      {
+        t: "p",
+        text: "FinCalc focuses on calculators and plain-language finance education. This guide follows the same rule we use across the site: liquidity first, yield second. After you understand the job of emergency cash, use the deposit calculator to turn “I can save $X per month at Y% APY” into a projected balance—while remembering that real banks change rates and tiers.",
+      },
+      {
+        t: "h2",
+        id: "what-emergency-fund-is",
+        text: "What an emergency fund is (and is not)",
+      },
+      {
+        t: "p",
+        text: "An emergency fund is money reserved for true surprises: loss of income, urgent repairs, or unavoidable bills you cannot delay. It is not a vacation fund, a down-payment stash you are actively spending, or a place to park money you plan to invest in the market next month.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Core principle",
+        text: "If you cannot access the money quickly when stress is high, it is not doing the job of an emergency fund—no matter how high the advertised yield.",
+      },
+      {
+        t: "h2",
+        id: "how-much-to-save",
+        text: "How much to save: months of essential expenses",
+      },
+      {
+        t: "p",
+        text: "Rules like “three to six months of expenses” are starting points, not laws. Count only essentials: housing, utilities, food, insurance, minimum debt payments, and transport. Discretionary spending usually gets cut first in a crisis, so do not inflate the target with lifestyle extras unless you truly would not cut them.",
+      },
+      {
+        t: "table",
+        caption: "Typical emergency fund targets by situation (illustrative)",
+        head: ["Situation", "Common range", "Why"],
+        rows: [
+          ["Dual income, stable jobs", "3 months essentials", "Second earner reduces single-point-of-failure risk."],
+          ["Single income or one earner", "6 months essentials", "Income gap hits harder if the sole paycheck stops."],
+          ["Self-employed or variable pay", "9–12 months essentials", "Cash flow can swing without a predictable payroll cycle."],
+          ["Major dependents or high fixed costs", "6–12 months essentials", "Harder to cut expenses quickly without disruption."],
+        ],
+      },
+      {
+        t: "figure",
+        src: "/blog/emergency-fund-months-expenses.svg",
+        srcWebp: "/blog/emergency-fund-months-expenses.webp",
+        alt: "Bar chart comparing months of expenses for different household situations",
+        caption:
+          "Image 2: ranges are guides—your real number depends on job security, insurance gaps, and how fast you could cut spending.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "h2",
+        id: "liquidity-first",
+        text: "Liquidity first: what it means in practice",
+      },
+      {
+        t: "p",
+        text: "Liquidity means you can turn savings into spendable money in hours or a few days, without begging for a loan or selling assets at a bad time. For most U.S. households, that means a savings or money market account at an insured institution, with ACH transfer or debit access you have actually tested.",
+      },
+      {
+        t: "ul",
+        items: [
+          "Keep the account separate from everyday checking so you are less tempted to spend it casually.",
+          "Joint households: confirm both partners can access the account if one person is unavailable.",
+          "If you rely on CDs or lock-up products, keep a separate liquid tier for immediate shocks.",
+        ],
+      },
+      {
+        t: "h2",
+        id: "yield-second",
+        text: "Yield second: high yield savings without fooling yourself",
+      },
+      {
+        t: "p",
+        text: "Once liquidity and principal safety are covered, shopping for a competitive APY makes sense. A higher yield on the same liquid account is free money. But chasing the highest teaser rate across obscure products can backfire if you sacrifice same-day access, FDIC or NCUA coverage clarity, or end up in an investment product with volatility.",
+      },
+      {
+        t: "figure",
+        src: "/blog/emergency-fund-three-buckets.svg",
+        srcWebp: "/blog/emergency-fund-three-buckets.webp",
+        alt: "Three priority buckets labeled liquidity safety and yield",
+        caption:
+          "Image 3: order matters—optimize yield only after access and principal protection are nailed down.",
+        credit: "FinCalc visual",
       },
       {
         t: "h2",
@@ -599,21 +1091,134 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         text: "Where people hold emergency money",
       },
       {
-        t: "ul",
-        items: [
-          "Insured bank or credit union savings (check coverage limits in your jurisdiction).",
-          "Money market funds or cash management accounts—read prospectuses for stability mechanisms.",
-          "Short-term treasuries—more steps to sell in a crisis, not always ideal for same-day bills.",
+        t: "p",
+        text: "Most people use a high-yield savings account at a bank or credit union. Money market deposit accounts can work similarly. Brokerage cash sweeps and money market mutual funds exist too, but read disclosures: stability rules, fees, and settlement times differ from a simple savings account.",
+      },
+      {
+        t: "table",
+        caption: "Emergency cash options—tradeoffs at a glance",
+        head: ["Option", "Liquidity", "Notes"],
+        rows: [
+          ["Insured savings (FDIC / NCUA within limits)", "High", "Verify coverage limits and account ownership rules for your country and institution."],
+          ["Money market mutual fund in a brokerage", "Medium", "Not the same as a bank deposit; understand NAV risk and settlement timing."],
+          ["Certificates of deposit (CDs)", "Lower until maturity", "Better yield sometimes, but early withdrawal penalties hurt exactly when you need cash."],
+          ["Stocks, crypto, or long-term funds", "Volatile", "Wrong bucket for emergency money—selling in a downturn turns a shock into a realized loss."],
         ],
+      },
+      {
+        t: "h2",
+        id: "deposit-calculator",
+        text: "Using FinCalc’s deposit calculator",
+      },
+      {
+        t: "p",
+        text: "Open the deposit calculator on this site. Enter your starting balance, monthly contribution, annual rate, and term. The output shows projected growth under steady assumptions. Use it to answer: “If I save $200/month at 4% APY for two years, where does that put me?” Then stress-test: what if the bank cuts the rate next year?",
+      },
+      {
+        t: "figure",
+        src: "/blog/emergency-fund-deposit-growth.svg",
+        srcWebp: "/blog/emergency-fund-deposit-growth.webp",
+        alt: "Upward curve showing savings balance growing with steady contributions",
+        caption:
+          "Image 4: steady contributions beat waiting for a perfect rate—model both in the calculator.",
+        credit: "FinCalc visual",
       },
       {
         t: "callout",
         variant: "disclaimer",
-        text: "FinCalc deposit projections assume constant rates; promotional teaser rates and tiered balances are common in real banks.",
+        title: "Calculator limits",
+        text: "FinCalc deposit projections assume a constant rate and no fees. Real accounts may use tiered balances, promotional rates, or withdrawal limits. Treat projections as planning aids, not promises.",
+      },
+      {
+        t: "h2",
+        id: "what-not-to-fund",
+        text: "What not to use your emergency fund for",
+      },
+      {
+        t: "ul",
+        items: [
+          "Planned discretionary purchases (travel, upgrades, gifts).",
+          "Investing “opportunities” or speculative bets.",
+          "Routine bills you should budget for separately.",
+          "Optional debt prepayment if doing so would leave you below your minimum liquid cushion.",
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "One essential external resource",
+        text: "For consumer-focused steps on building savings from small amounts upward, see the CFPB’s Start Small, Save Up hub: https://www.consumerfinance.gov/start-small-save-up/",
+      },
+      {
+        t: "h2",
+        id: "rebuild-after-use",
+        text: "After you spend it: rebuild the fund",
+      },
+      {
+        t: "p",
+        text: "Using the fund correctly is a success, not a failure. After the crisis passes, redirect a portion of income back into the emergency bucket until you are whole again. If the shock was large, temporarily pause optional goals (extra investing, aggressive loan prepayment) until liquidity is restored.",
+      },
+      {
+        t: "h2",
+        id: "faq-emergency-fund",
+        text: "Frequently asked questions",
+      },
+      {
+        t: "h3",
+        id: "faq-3-vs-6",
+        text: "Is three months enough or do I need six?",
+      },
+      {
+        t: "p",
+        text: "Three months can be enough for stable dual-income households with low fixed costs and strong insurance. Six months is a common default for single earners or anyone with dependents. Self-employed and variable-income households often plan for more.",
+      },
+      {
+        t: "h3",
+        id: "faq-hysa-vs-investing",
+        text: "Should I invest my emergency fund for higher returns?",
+      },
+      {
+        t: "p",
+        text: "Generally no for the core emergency layer. Investments can drop right when you lose a job. Keep the emergency tier in cash-like, liquid vehicles. Long-term investing belongs in a separate plan with a longer time horizon.",
+      },
+      {
+        t: "h3",
+        id: "faq-same-account",
+        text: "Can I keep emergency cash in my checking account?",
+      },
+      {
+        t: "p",
+        text: "You can, but mixing buckets makes accidental spending easier. A dedicated savings sub-account or separate institution often improves behavior. The mechanics matter less than the discipline to not raid the balance.",
+      },
+      {
+        t: "h3",
+        id: "faq-inflation",
+        text: "Does inflation mean emergency funds are pointless?",
+      },
+      {
+        t: "p",
+        text: "Inflation erodes purchasing power—that is true of any cash holding. The point of an emergency fund is not to beat inflation; it is to prevent forced borrowing or fire-sales during shocks. After the safety layer exists, other money can pursue growth.",
+      },
+      {
+        t: "h2",
+        id: "conclusion-emergency-fund",
+        text: "Conclusion",
+      },
+      {
+        t: "p",
+        text: "A solid emergency fund is boring on purpose. Liquidity and principal safety do more for financial resilience than squeezing an extra fraction of a percent of yield. Use FinCalc’s tools to size contributions and project growth, then revisit your target once a year or after major life changes.",
+      },
+      {
+        t: "callout",
+        variant: "disclaimer",
+        title: "Educational content",
+        text: "This article is for education only and not personalized financial, tax, or legal advice. Confirm insurance coverage, account terms, and regulations in your jurisdiction before making decisions.",
       },
     ],
     sources: [
-      { title: "CFPB — building an emergency fund", url: "https://www.consumerfinance.gov/start-small-save-up/" },
+      { title: "CFPB — Start Small, Save Up", url: "https://www.consumerfinance.gov/start-small-save-up/" },
+      { title: "FDIC — Deposit insurance at a glance", url: "https://www.fdic.gov/resources/deposit-insurance/" },
+      { title: "NCUA — Share insurance estimator", url: "https://mycreditunion.gov/insurance-estimator" },
     ],
     calcLink: "deposit",
   },
@@ -621,49 +1226,280 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "tax-brackets",
     slug: "progressive-tax-brackets-net-income",
     title: "Progressive tax brackets: why a raise does not tax your whole paycheck",
-    metaTitle: "How tax brackets work: marginal vs average rate | FinCalc",
+    metaTitle: "Tax Brackets: Raise vs Whole-Paycheck Myth | FinCalc",
     metaDescription:
-      "Marginal bands, effective rates, and how our simplified tax estimator visualizes bracket stacking—without replacing a CPA.",
-    keywords: "tax brackets, marginal tax rate, effective tax rate, income tax estimator, progressive tax",
-    excerpt: "Only the dollars inside a band are taxed at that band’s rate in a classic stair-step model.",
+      "Marginal vs effective tax: U.S. brackets & Russia NDFL 2025 (13-22%). Full paycheck not taxed at top rate. FAQs & FinCalc demo—education only.",
+    keywords:
+      "tax brackets, marginal tax rate, effective tax rate, progressive tax, Russia NDFL, Russian income tax 2025, taxable income, tax withholding, pay raise tax myth, FinCalc tax calculator",
+    excerpt:
+      "Higher brackets apply only to income above each threshold—your entire salary is not taxed at your top rate.",
     datePublished: "2026-02-25",
-    dateModified: "2026-04-03",
+    dateModified: "2026-04-08",
     author: "FinCalc Editorial",
-    readingTimeMinutes: 7,
+    readingTimeMinutes: 13,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/US_Federal_Leviathan_2016.png/640px-US_Federal_Leviathan_2016.png",
-      alt: "Infographic-style chart of U.S. federal spending categories",
-      caption: "Tax policy is political; your paycheck math is arithmetic—keep the two separate when planning.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:US_Federal_Leviathan_2016.png",
+      src: "/blog/tax-brackets-hero-staircase.svg",
+      srcWebp: "/blog/tax-brackets-hero-staircase.webp",
+      alt: "Stair-step diagram showing progressive income taxed in separate bands",
+      caption:
+        "Image 1: think of taxable income climbing steps—each step has its own rate on the dollars inside that band only.",
+      credit: "FinCalc visual",
     },
-    keyPhrases: ["marginal rate definition", "effective rate", "deductions vs credits", "FinCalc demo brackets"],
+    video: {
+      youtubeId: "kYeZko1WKHQ",
+      title: "How Do Tax Brackets Work? (Tax Foundation TaxEDU)",
+    },
+    keyPhrases: [
+      "marginal tax rate meaning",
+      "effective tax rate vs marginal",
+      "tax bracket myth",
+      "progressive taxation staircase",
+      "taxable income vs gross pay",
+      "withholding vs year-end tax",
+      "FinCalc simplified tax demo",
+      "Russia NDFL progressive bands 2025",
+      "13% 15% 18% 20% 22% ruble thresholds",
+    ],
     blocks: [
       {
         t: "p",
-        text: "A progressive system applies higher rates only to income above each threshold. Moving into a higher bracket raises tax on the dollars in that bracket—not retroactively on every dollar you earned below it.",
+        text: "People often hear “I’m in the 22% bracket” and picture 22% of every dollar they earn vanishing. That is not how a progressive income tax works. The system stacks slices of income, and each slice is taxed at the rate assigned to that band. Crossing into a higher band does not rewrite the tax on dollars you already earned below the line.",
+      },
+      {
+        t: "p",
+        text: "FinCalc publishes calculators and educational articles for everyday money decisions. Our on-site tax tool uses a simplified stairstep model so you can see marginal versus average rates in action. It is not a substitute for a CPA, payroll software, or official IRS instructions—real returns depend on filing status, deductions, credits, payroll taxes, and state or local rules. Below the hero image, we embedded a short Tax Foundation explainer video on U.S. federal brackets to reinforce the intuition.",
+      },
+      {
+        t: "h2",
+        id: "how-progressive-brackets-work",
+        text: "How progressive tax brackets work",
+      },
+      {
+        t: "p",
+        text: "Start with taxable income after deductions (conceptually—not the same as your gross salary). That taxable amount is split across brackets. Dollars in the first band pay the first rate. Dollars in the second band pay the second rate, and so on. Your “top” or marginal bracket is simply the rate on the last dollars you earn—not on your entire income.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "One-line definition",
+        text: "Marginal rate = tax on the next $1 of ordinary income in the current bracket stack. Effective (average) rate = total income tax divided by total income.",
+      },
+      {
+        t: "figure",
+        src: "/blog/tax-brackets-raise-myth.svg",
+        srcWebp: "/blog/tax-brackets-raise-myth.webp",
+        alt: "Comparison of myth versus reality when salary crosses a tax bracket",
+        caption:
+          "Image 2: the “whole paycheck retaxed” story is a myth—only income above the new threshold faces the higher marginal rate.",
+        credit: "FinCalc visual",
       },
       {
         t: "h2",
         id: "marginal-vs-effective",
-        text: "Marginal vs. effective rate",
+        text: "Marginal vs. effective (average) rate",
       },
       {
         t: "p",
-        text: "Your marginal rate is the rate on the next dollar of ordinary income. Your effective (average) rate is total tax divided by total income. FinCalc’s tax tool uses a simplified stairstep so you can feel the difference; it does not know your filing status, credits, or local taxes.",
+        text: "Your marginal rate matters for decisions at the margin: overtime, a side project, or deferring income. Your effective rate answers “what share of my income went to this tax in total?” In a progressive system, effective federal income tax rate on ordinary wages is almost always lower than the marginal rate shown in your top bracket—sometimes much lower.",
+      },
+      {
+        t: "figure",
+        src: "/blog/tax-brackets-marginal-effective.svg",
+        srcWebp: "/blog/tax-brackets-marginal-effective.webp",
+        alt: "Side by side boxes explaining marginal tax versus effective average tax",
+        caption:
+          "Image 3: marginal drives the next dollar; effective summarizes what you already paid across all bands.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "h2",
+        id: "worked-example-toy",
+        text: "Worked example with toy brackets (not real law)",
+      },
+      {
+        t: "p",
+        text: "The table below is deliberately simple so the arithmetic is visible. Official U.S. federal brackets, standard deductions, and phase-outs change over time—always verify current IRS publications for filing.",
       },
       {
         t: "table",
-        caption: "Toy example: brackets are illustrative, not real law",
-        head: ["Taxable slice", "Rate (demo)", "Tax on slice"],
+        caption: "Illustrative brackets for mental math only",
+        head: ["Taxable income slice", "Demo rate", "Tax on that slice"],
         rows: [
           ["$0 – $10,000", "10%", "$1,000"],
-          ["Next $30,000", "15%", "$4,500"],
+          ["Next $30,000 ($10,001 – $40,000)", "15%", "$4,500"],
+          ["Above $40,000", "25%", "(25% of dollars only in this slice)"],
         ],
+      },
+      {
+        t: "p",
+        text: "If taxable income is $40,000, tax is $1,000 + $4,500 = $5,500. The marginal rate on the next dollar earned is 25%, but the effective rate on $40,000 is $5,500 ÷ $40,000 ≈ 13.75%. That gap is why headlines about “top tax rates” can feel disconnected from an ordinary paycheck.",
+      },
+      {
+        t: "h2",
+        id: "russia-ndfl-snapshot",
+        text: "Russia (NDFL): a five-band progressive scale for residents",
+      },
+      {
+        t: "p",
+        text: "If you read this from Russia, the same staircase idea applies to personal income tax (NDFL) on the main tax base for tax residents. From 1 January 2025, the general schedule for most employment-like income stacks annual slices at 13%, 15%, 18%, 20%, and 22%—each rate applies only to rubles inside its band, not to your entire income. Rules for dividends, certain deposit interest, special military payments, and other bases can differ; confirm Article 224 of the Tax Code and FNS guidance.",
+      },
+      {
+        t: "table",
+        caption:
+          "Resident snapshot for the main annual tax base (₽). Verify current statutory wording—not tax advice.",
+        head: ["Annual income slice (band)", "NDFL rate", "What it means"],
+        rows: [
+          ["Up to ₽2.4 million (inclusive)", "13%", "Tax applies only to this portion of the year’s combined base"],
+          ["Above ₽2.4m up to ₽5m (inclusive)", "15%", "Only on rubles inside this band"],
+          ["Above ₽5m up to ₽20m (inclusive)", "18%", "Only on rubles inside this band"],
+          ["Above ₽20m up to ₽50m (inclusive)", "20%", "Only on rubles inside this band"],
+          ["Above ₽50m", "22%", "Only on the portion above ₽50m"],
+        ],
+      },
+      {
+        t: "p",
+        text: "Example: ₽4.5m annual base → 13% on ₽2.4m = ₽312k; 15% on the next ₽2.1m = ₽315k; total ₽627k; effective rate ≈ 13.9%. At ₽6m: ₽312k + 15% on ₽2.6m (₽390k) + 18% on ₽1m (₽180k) = ₽882k; effective 14.7%. Employers typically calculate withholding on a cumulative year-to-date basis, so monthly payslips may not look like “annual tax ÷ 12.”",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "FinCalc’s tax tool",
+        text: "The on-site tax calculator remains a U.S.-style teaching demo with fictional dollar bands. It does not implement Russian thresholds or the full Tax Code—use it for marginal-vs-effective intuition, not for Russian filing.",
+      },
+      {
+        t: "h2",
+        id: "raise-and-bracket-creep",
+        text: "Why a raise usually still increases take-home pay",
+      },
+      {
+        t: "p",
+        text: "When a raise pushes part of your income into a higher bracket, only the portion above the bracket edge is taxed at the higher marginal rate. Everything below that edge keeps its old rates. Unless something unusual happens with benefits or withholding settings, you should not earn more gross and magically receive less net solely because you crossed a bracket line.",
+      },
+      {
+        t: "p",
+        text: "If net pay ever drops after a raise, investigate payroll withholding adjustments, benefit elections, bonus withholding rules, retirement contributions, or state and local changes—not the bracket story alone.",
+      },
+      {
+        t: "h2",
+        id: "fincalc-tax-tool",
+        text: "Using FinCalc’s tax calculator as a teaching aid",
+      },
+      {
+        t: "p",
+        text: "Open the tax calculator on this site. Enter taxable income and watch how the tool allocates dollars across demo bands, sums tax per slice, and reports both total tax and an implied average rate. Slide the income up slowly: you should see the marginal band change without “jumping” the tax on earlier slices.",
+      },
+      {
+        t: "figure",
+        src: "/blog/tax-brackets-fincalc-demo.svg",
+        srcWebp: "/blog/tax-brackets-fincalc-demo.webp",
+        alt: "Stacked horizontal bars representing simplified tax slices R1 R2 R3",
+        caption:
+          "Image 4: the demo tool stacks slices—matching how progressive tax is computed before real-world adjustments.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "callout",
+        variant: "disclaimer",
+        title: "Calculator limits",
+        text: "FinCalc does not model AMT, NIIT, capital gains tiers, payroll (FICA) taxes, state or local income tax, credits, or employer-specific benefits. Use IRS forms, publications, or a qualified preparer for a complete return.",
+      },
+      {
+        t: "h2",
+        id: "withholding-vs-return",
+        text: "Withholding on your pay stub vs. your annual return",
+      },
+      {
+        t: "p",
+        text: "Employers withhold based on Form W-4 information and IRS tables. Your pay stub may not show “bracket math” line by line. Year-end Form 1040 reconciles total tax with what was withheld. Understanding brackets still helps you interpret why marginal income might change withholding when you earn more—but the stub is an estimate, not the full tax picture.",
+      },
+      {
+        t: "ul",
+        items: [
+          "Gross wages ≠ taxable income (401(k), HSA, health premiums, and other items can reduce taxable wages).",
+          "Credits (like the Child Tax Credit) reduce tax after bracket math; our demo tool does not include them.",
+          "Investment income can face different rates than ordinary wages—do not mix those rules when reading this guide.",
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Official reference (U.S.)",
+        text: "For current federal brackets and filing rules, start with the IRS: https://www.irs.gov/filing",
+      },
+      {
+        t: "h2",
+        id: "faq-tax-brackets",
+        text: "Frequently asked questions",
+      },
+      {
+        t: "h3",
+        id: "faq-bonus-taxed-more",
+        text: "Why did my bonus look taxed at a higher rate?",
+      },
+      {
+        t: "p",
+        text: "Bonuses are often withheld using supplemental wage withholding methods, which can feel like a giant bite out of one check. That withholding is not the same as your final marginal bracket tax on that income—you may reconcile when you file.",
+      },
+      {
+        t: "h3",
+        id: "faq-itemize",
+        text: "Do brackets apply before or after the standard deduction?",
+      },
+      {
+        t: "p",
+        text: "Bracket schedules apply to taxable income, which is generally after subtracting your standard deduction (or itemized deductions) and certain adjustments. That is one reason gross salary alone does not tell you your bracket stack.",
+      },
+      {
+        t: "h3",
+        id: "faq-marriage-penalty",
+        text: "Are married brackets just double the single brackets?",
+      },
+      {
+        t: "p",
+        text: "No. The IRS publishes separate schedules for single, married filing jointly, and other statuses. Width of each band and rates can differ. Always use the table that matches your filing status.",
+      },
+      {
+        t: "h3",
+        id: "faq-state-taxes",
+        text: "Does this article cover state income tax?",
+      },
+      {
+        t: "p",
+        text: "Many states also use graduated brackets; some use flat rates. Rules vary widely. This page focuses on the federal progressive-bracket concept; add state guidance separately for where you live.",
+      },
+      {
+        t: "h3",
+        id: "faq-russia-ndfl",
+        text: "I’m in Russia—is the FinCalc calculator enough for my paycheck?",
+      },
+      {
+        t: "p",
+        text: "No. The calculator is a simplified demo. For NDFL, rely on your payslip, employer payroll, 1C outputs, and official FNS materials (including cumulative withholding rules). The Russia section above summarizes the five-band resident scale for intuition only.",
+      },
+      {
+        t: "h2",
+        id: "conclusion-tax-brackets",
+        text: "Conclusion",
+      },
+      {
+        t: "p",
+        text: "Progressive taxation means slicing income, not dunking your whole paycheck into your top rate. Understanding marginal versus effective tax helps you interpret raises, side income, and policy headlines without falling for the bracket myth. Pair intuition with official IRS tables—or a professional—when it is time to file.",
+      },
+      {
+        t: "callout",
+        variant: "disclaimer",
+        title: "Educational content",
+        text: "This article is for education only and not tax, legal, or investment advice. Tax law changes; verify amounts and rules for your year and jurisdiction.",
       },
     ],
     sources: [
-      { title: "IRS — tax basics (U.S.)", url: "https://www.irs.gov/filing" },
+      { title: "IRS — Filing information", url: "https://www.irs.gov/filing" },
+      { title: "IRS — Tax topics (search hub)", url: "https://www.irs.gov/taxtopics" },
+      { title: "Tax Foundation — TaxEDU (video series)", url: "https://taxfoundation.org/taxedu/" },
+      {
+        title: "Federal Tax Service of Russia (FNS) — 2025 changes overview",
+        url: "https://www.nalog.gov.ru/rn56/promo/new2025/",
+      },
     ],
     calcLink: "tax",
   },
@@ -671,27 +1507,61 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "currency-travel",
     slug: "currency-exchange-travel-budget",
     title: "Travel FX: bank spreads, not mid-market memes",
-    metaTitle: "Currency exchange for travel: spreads, timing & tools | FinCalc",
+    metaTitle: "Travel currency exchange: mid-market vs bank spread & DCC | FinCalc",
     metaDescription:
-      "Why airport kiosks cost more, how mid-market rates differ from what you pay, and how to use a live converter before you trip-plan.",
-    keywords: "currency exchange, travel money, FX spread, mid-market rate, currency converter",
+      "Travel FX: Google mid-market vs airport & ATM rates, bank spread, DCC pitfalls. Live ECB crosses in-article + FinCalc converter. Education only—not advice.",
+    keywords:
+      "travel money, currency exchange abroad, FX spread, mid-market rate, ECB reference rate, airport currency exchange, ATM foreign fees, DCC dynamic currency conversion, currency converter, FinCalc",
     excerpt: "The rate on Google is not the rate at the departures hall ATM.",
     datePublished: "2026-03-01",
-    dateModified: "2026-04-03",
+    dateModified: "2026-04-08",
     author: "FinCalc Editorial",
-    readingTimeMinutes: 7,
+    readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Euro_coins_and_banknotes.jpg/640px-Euro_coins_and_banknotes.jpg",
-      alt: "Euro banknotes and coins arranged on a surface",
-      caption: "Physical cash is only one piece of cross-border spending; cards embed their own conversion layers.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Euro_coins_and_banknotes.jpg",
+      src: "/blog/currency-travel-hero-airport-board.svg",
+      srcWebp: "/blog/currency-travel-hero-airport-board.webp",
+      alt: "Airport-style exchange board comparing mid-market and retail travel FX quotes",
+      caption: "Image 1: mid-market is a reference; travelers transact at retail rates with spread and fees.",
+      credit: "FinCalc visual",
     },
-    keyPhrases: ["mid-market vs retail FX", "DCC dynamic currency conversion", "ATM foreign fees", "live ECB reference rates"],
+    keyPhrases: [
+      "mid-market vs retail FX spread",
+      "airport currency kiosk worse rate",
+      "DCC pay in home currency abroad",
+      "ATM foreign transaction fee",
+      "live ECB reference rates Frankfurter",
+      "when to use cash vs card traveling",
+      "zero commission exchange myth",
+    ],
     blocks: [
       {
         t: "p",
-        text: "Retail currency purchases include spread, sometimes commission, and often poor airport economics. A mid-market reference—such as ECB data surfaced through public APIs—helps you see the gap between the interbank story and the price you pay.",
+        text: "FinCalc publishes calculators and short guides for everyday money decisions. This page explains why the “exchange rate” you see in search results or on the news rarely matches what you pay at a counter, hotel desk, or foreign card terminal. We pair that intuition with a live ECB-based reference snippet (same data backbone as our currency converter) so you can compare a clean benchmark to your bank’s real quote. Nothing here is personalized advice—fees, networks, and regulations depend on your issuer and destination.",
+      },
+      {
+        t: "h2",
+        id: "mid-market-vs-retail",
+        text: "Mid-market references vs the price you actually trade at",
+      },
+      {
+        t: "p",
+        text: "A mid-market (or “interbank”) reference is the midpoint between bid and ask in wholesale markets. Retail channels—bureaux, airport kiosks, many travel cards—quote you a buy rate and a sell rate around that midpoint. The gap is their spread (plus any flat commission). You are not doing something wrong when your receipt looks worse than Google; you are seeing economics, not a bug.",
+      },
+      {
+        t: "table",
+        caption: "Illustrative USD per 1 EUR (toy numbers—show structure only)",
+        head: ["Quote type", "Example rate (USD per €1)", "Plain-language effect"],
+        rows: [
+          ["Mid-market reference", "1.10", "Benchmark only; not a tradable tourist price"],
+          ["Retailer sells you euros", "1.14", "You hand over more dollars per euro than mid"],
+          ["Retailer buys your euros", "1.06", "You receive fewer dollars per euro than mid"],
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "How to use the table",
+        text: "If both buy and sell quotes sit on the “wrong” side of mid, the counter earns the spread twice. Your job is not to hit mid—it is to recognize spread, compare options, and avoid paying hidden margin twice (for example via DCC plus a weak counter rate).",
       },
       {
         t: "h2",
@@ -700,21 +1570,132 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "This article’s layout includes a live snippet (USD/EUR/GBP) pulled from the same Frankfurter source as our converter. It updates when you load or refresh; your bank still sets the tradable price.",
+        text: "This article’s layout includes a live snippet (USD/EUR/GBP) pulled from the same Frankfurter/ECB pipeline as FinCalc’s currency calculator. It refreshes when you load or reload the page. Your bank, ATM operator, or card network still applies its own spread, fees, and rounding—so treat the widget as a compass, not a contract price.",
+      },
+      {
+        t: "h2",
+        id: "where-rates-hurt",
+        text: "Where tourist FX is usually expensive",
+      },
+      {
+        t: "p",
+        text: "High-rent locations with captive audiences—airside kiosks, major train stations, flagship hotels—often quote wider spreads than city-center banks or ATMs on major networks. That does not mean every airport booth is a scam; it means convenience and insurance costs get priced in. When you are tired and in a hurry, default choices cost more.",
+      },
+      {
+        t: "ul",
+        items: [
+          "Airport arrivals and departures: fast cash, often wide spreads—compare a small withdrawal vs changing a large lump sum blindly.",
+          "Hotel front desks: handy after hours, rarely the best arithmetic.",
+          "“Zero commission” signs: commission can hide inside the exchange rate—always compare against a mid reference.",
+          "Last-minute street booths in tourist cores: verify math before large trades.",
+        ],
       },
       {
         t: "h2",
         id: "card-payments",
-        text: "Card payments abroad",
+        text: "Card payments abroad: networks, issuer FX, and DCC",
+      },
+      {
+        t: "figure",
+        src: "/blog/currency-travel-dcc-terminal-choice.svg",
+        srcWebp: "/blog/currency-travel-dcc-terminal-choice.webp",
+        alt: "Terminal screen showing local currency vs DCC home-currency option",
+        caption: "Image 2: paying in local currency often avoids an extra DCC markup layer.",
+        credit: "FinCalc visual",
       },
       {
         t: "p",
-        text: "Dynamic currency conversion (paying in home currency at a foreign terminal) is convenient but often expensive. Compare the terminal’s implied rate to what your issuer would charge in local currency.",
+        text: "When you tap a card in Paris, the merchant may route the charge in euros (local currency) or offer dynamic currency conversion (DCC) to bill you in dollars, pounds, or your home currency at the terminal. DCC is regulated and disclosed in many regions, but convenience often comes with a weaker implicit rate than letting your issuer convert from the local amount. Declining DCC does not guarantee perfection—it simply avoids one obvious layer of markup.",
+      },
+      {
+        t: "ul",
+        items: [
+          "If prompted, compare the terminal’s home-currency total to a quick mental check using the live ECB snippet plus your issuer’s known fee schedule.",
+          "Some cards advertise “no foreign transaction fee” but still use a network exchange rate that differs slightly from ECB mid—compare outcomes, not slogans.",
+          "Carry a backup card on a different network; outages and holds happen.",
+        ],
+      },
+      {
+        t: "h2",
+        id: "atms-abroad",
+        text: "ATMs: cash access vs stacked fees",
+      },
+      {
+        t: "p",
+        text: "ATMs can beat counters on spread, but watch the full stack: your home bank’s out-of-network fee, the ATM owner’s surcharge, and the conversion layer if the machine offers DCC in your home currency. Choosing local currency withdrawal and letting your bank convert is often cheaper than accepting the machine’s conversion offer—mirroring the in-store DCC lesson.",
+      },
+      {
+        t: "h2",
+        id: "cash-vs-card-heuristic",
+        text: "A practical cash-vs-card heuristic",
+      },
+      {
+        t: "figure",
+        src: "/blog/currency-travel-atm-fee-stack.svg",
+        srcWebp: "/blog/currency-travel-atm-fee-stack.webp",
+        alt: "Stacked bars showing ATM withdrawal cost components",
+        caption: "Image 3: ATM cost is base cash plus surcharge, issuer fee, FX spread, and sometimes DCC markup.",
+        credit: "FinCalc visual",
+      },
+      {
+        t: "p",
+        text: "Cards excel for traceability, dispute rights, and skipping repeated counter visits. Cash still wins for small vendors, transit tickets, or places with unreliable terminals. Many travelers use cards for most spending, keep modest local cash from a vetted ATM, and avoid changing large sums at the first booth they see after landing.",
+      },
+      {
+        t: "h2",
+        id: "faq-travel-fx",
+        text: "Frequently asked questions",
+      },
+      {
+        t: "h3",
+        id: "faq-google-rate",
+        text: "Why doesn’t my kiosk match the Google exchange rate?",
+      },
+      {
+        t: "p",
+        text: "Search widgets and finance sites usually show a mid-market reference (sometimes delayed). Retailers quote customer buy/sell prices around that midpoint and may add commission. The gap is normal wholesale-to-retail pricing, not necessarily an individual error.",
+      },
+      {
+        t: "h3",
+        id: "faq-dcc-decline",
+        text: "Should I ever accept DCC?",
+      },
+      {
+        t: "p",
+        text: "Sometimes DCC is transparently competitive, but often it is not. If you have time, compare the offered conversion to your issuer’s terms using the local currency amount. When in doubt, paying in local currency is the simpler default for many travelers.",
+      },
+      {
+        t: "h3",
+        id: "faq-zero-commission",
+        text: "Is “zero commission” always a good deal?",
+      },
+      {
+        t: "p",
+        text: "Commission-free marketing frequently means the fee is embedded in a wide spread. Evaluate the all-in cost per unit of foreign currency versus a mid reference, not the wording on the sign.",
+      },
+      {
+        t: "h2",
+        id: "conclusion-travel-fx",
+        text: "Conclusion",
+      },
+      {
+        t: "p",
+        text: "Travel FX is less about finding the mythical “true” rate on Google and more about understanding spread, stacked fees, and DCC. Use FinCalc’s converter alongside the live snippet here to benchmark quotes, plan a small sane cash buffer, and let cards do most of the work when networks and fees are favorable.",
+      },
+      {
+        t: "callout",
+        variant: "disclaimer",
+        title: "Educational content",
+        text: "This article is for education only—not travel, banking, or investment advice. Fees, limits, and regulations change by country and product; confirm details with your issuer before you travel.",
       },
     ],
     sources: [
       { title: "ECB — euro foreign exchange reference rates", url: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/" },
       { title: "Frankfurter API (open data)", url: "https://www.frankfurter.app/" },
+      {
+        title: "CFPB — planning financially for international travel (U.S.)",
+        url: "https://www.consumerfinance.gov/about-us/blog/how-plan-financially-international-trip/",
+      },
     ],
     calcLink: "currency",
     hasLiveRates: true,

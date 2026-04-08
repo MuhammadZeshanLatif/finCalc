@@ -8,6 +8,8 @@ export type BlogBlock =
   | {
       t: "figure";
       src: string;
+      /** WebP URL for `<picture>`; `src` stays SVG (or other) fallback */
+      srcWebp?: string;
       alt: string;
       caption?: string;
       credit?: string;
@@ -33,6 +35,7 @@ export type BlogArticle = {
   readingTimeMinutes: number;
   hero: {
     src: string;
+    srcWebp?: string;
     alt: string;
     caption?: string;
     credit?: string;

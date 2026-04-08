@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Months of expenses bar comparison by situation">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <text x="80" y="70" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#0f172a">Months of essential expenses (typical ranges)</text>
+  <text x="80" y="520" font-family="Arial,sans-serif" font-size="20" fill="#64748b">Illustrative; adjust for your job stability and dependents.</text>
+  <g font-family="Arial,sans-serif" font-size="22" fill="#334155">
+    <text x="80" y="150">Dual income, stable</text>
+    <rect x="320" y="125" width="280" height="36" rx="6" fill="#86efac"/>
+    <text x="620" y="152">~3 mo</text>
+    <text x="80" y="230">Single income</text>
+    <rect x="320" y="205" width="420" height="36" rx="6" fill="#4ade80"/>
+    <text x="760" y="232">~6 mo</text>
+    <text x="80" y="310">Self-employed</text>
+    <rect x="320" y="285" width="560" height="36" rx="6" fill="#22c55e"/>
+    <text x="900" y="312">~9-12 mo</text>
+    <text x="80" y="390">High fixed costs</text>
+    <rect x="320" y="365" width="500" height="36" rx="6" fill="#16a34a"/>
+    <text x="840" y="392">~8-12 mo</text>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Couple and advisor reviewing loan chart">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="70" y="90" width="1060" height="470" rx="20" fill="#ffffff" opacity="0.95"/>
+  <rect x="120" y="390" width="960" height="120" rx="12" fill="#e2e8f0"/>
+  <circle cx="240" cy="300" r="48" fill="#334155"/>
+  <rect x="200" y="350" width="80" height="90" rx="18" fill="#475569"/>
+  <circle cx="390" cy="300" r="48" fill="#1e293b"/>
+  <rect x="350" y="350" width="80" height="90" rx="18" fill="#334155"/>
+  <circle cx="870" cy="250" r="52" fill="#0f172a"/>
+  <rect x="825" y="305" width="90" height="140" rx="20" fill="#1e293b"/>
+  <rect x="520" y="195" width="260" height="170" rx="12" fill="#0f172a"/>
+  <polyline points="545,320 605,275 660,290 715,230 760,245" fill="none" stroke="#38bdf8" stroke-width="8"/>
+  <text x="120" y="165" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#0f172a">EMI Prepayment Strategy</text>
+  <text x="120" y="210" font-family="Arial, sans-serif" font-size="26" fill="#334155">Review terms, timing, and principal-only posting</text>
+</svg>

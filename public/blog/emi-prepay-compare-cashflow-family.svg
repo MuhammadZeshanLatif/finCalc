@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Comparison between reducing payment and reducing term">
+  <rect width="1200" height="630" fill="#111827"/>
+  <text x="90" y="90" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#f9fafb">Reduce Payment vs Reduce Term</text>
+  <rect x="90" y="130" width="500" height="420" rx="18" fill="#f8fafc"/>
+  <rect x="610" y="130" width="500" height="420" rx="18" fill="#f8fafc"/>
+  <text x="130" y="185" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#1e40af">Lower Monthly Payment</text>
+  <text x="650" y="185" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#065f46">Shorter Loan Term</text>
+  <text x="130" y="250" font-family="Arial, sans-serif" font-size="24" fill="#334155">+ Cash flow relief now</text>
+  <text x="130" y="300" font-family="Arial, sans-serif" font-size="24" fill="#334155">- Usually less total savings</text>
+  <text x="650" y="250" font-family="Arial, sans-serif" font-size="24" fill="#334155">+ More interest saved</text>
+  <text x="650" y="300" font-family="Arial, sans-serif" font-size="24" fill="#334155">+ Earlier payoff date</text>
+  <circle cx="340" cy="430" r="46" fill="#334155"/>
+  <rect x="300" y="470" width="80" height="70" rx="16" fill="#475569"/>
+  <circle cx="860" cy="430" r="46" fill="#065f46"/>
+  <rect x="820" y="470" width="80" height="70" rx="16" fill="#047857"/>
+</svg>

@@ -157,6 +157,7 @@ export default function App() {
         const enP   = getPostByTopic("en", post.topicKey);
         const ruP   = getPostByTopic("ru", post.topicKey);
         const enSlug = enP?.slug ?? post.slug;
+        const heroForSocial = post.hero.srcWebp ?? post.hero.src;
         blogArticle = {
           canonicalPath:    buildPathname(lang, "blog", post.slug),
           alternateEnPath:  buildPathname("en", "blog", enSlug),
@@ -167,9 +168,9 @@ export default function App() {
           datePublished:    post.datePublished,
           dateModified:     post.dateModified,
           authorName:       post.author,
-          imageUrl:         /^https?:\/\//i.test(post.hero.src)
-            ? post.hero.src
-            : `${getSiteUrl()}${post.hero.src.startsWith("/") ? "" : "/"}${post.hero.src}`,
+          imageUrl:         /^https?:\/\//i.test(heroForSocial)
+            ? heroForSocial
+            : `${getSiteUrl()}${heroForSocial.startsWith("/") ? "" : "/"}${heroForSocial}`,
           imageAlt:         post.hero.alt,
           blogListLabel:    t.blog,
           wordCountApprox:  approxWordCount(post),
@@ -537,7 +538,7 @@ export default function App() {
                           }}
                         >
                           <img
-                            src={post.hero.src}
+                            src={post.hero.srcWebp ?? post.hero.src}
                             alt=""
                             className="card-img-top fc-blog-card-thumb"
                             width={640}

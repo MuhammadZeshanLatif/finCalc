@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="1400" height="900" fill="#0a1225"/>
+  <text x="700" y="120" text-anchor="middle" fill="#e2e8f0" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700">ATM Withdrawal: Fee Stack</text>
+
+  <rect x="250" y="180" width="900" height="110" rx="14" fill="#1e3a8a"/>
+  <text x="300" y="250" fill="#dbeafe" font-size="30" font-family="Arial, Helvetica, sans-serif">Base cash needed (local currency)</text>
+
+  <rect x="250" y="320" width="900" height="90" rx="14" fill="#1d4ed8"/>
+  <text x="300" y="377" fill="#dbeafe" font-size="28" font-family="Arial, Helvetica, sans-serif">+ ATM owner surcharge</text>
+
+  <rect x="250" y="430" width="900" height="90" rx="14" fill="#2563eb"/>
+  <text x="300" y="487" fill="#dbeafe" font-size="28" font-family="Arial, Helvetica, sans-serif">+ Out-of-network / issuer fee</text>
+
+  <rect x="250" y="540" width="900" height="90" rx="14" fill="#3b82f6"/>
+  <text x="300" y="597" fill="#dbeafe" font-size="28" font-family="Arial, Helvetica, sans-serif">+ FX conversion spread</text>
+
+  <rect x="250" y="650" width="900" height="90" rx="14" fill="#ef4444"/>
+  <text x="300" y="707" fill="#fee2e2" font-size="28" font-family="Arial, Helvetica, sans-serif">+ Optional DCC markup (if accepted)</text>
+
+  <text x="700" y="810" text-anchor="middle" fill="#cbd5e1" font-size="28" font-family="Arial, Helvetica, sans-serif">Tip: choose local currency and compare all-in totals.</text>
+</svg>

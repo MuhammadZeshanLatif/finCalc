@@ -1,4 +1,5 @@
 import type { BlogBlock } from "../../data/blog/types";
+import { BlogPostImage } from "./BlogPostImage";
 
 export function BlogBlockRenderer({ blocks }: { blocks: BlogBlock[] }) {
   return (
@@ -64,20 +65,11 @@ export function BlogBlockRenderer({ blocks }: { blocks: BlogBlock[] }) {
           case "figure":
             return (
               <figure key={i} className="fc-blog-figure my-4">
-                <img
+                <BlogPostImage
                   src={b.src}
+                  srcWebp={b.srcWebp}
                   alt={b.alt}
-                  className="img-fluid rounded border w-100"
                   loading="lazy"
-                  decoding="async"
-                  width={960}
-                  height={540}
-                  referrerPolicy="no-referrer"
-                  onError={e => {
-                    const img = e.currentTarget;
-                    img.onerror = null;
-                    img.src = "/og-image.svg";
-                  }}
                 />
                 {b.caption ? <figcaption className="small text-muted mt-2">{b.caption}</figcaption> : null}
                 {b.credit ? (

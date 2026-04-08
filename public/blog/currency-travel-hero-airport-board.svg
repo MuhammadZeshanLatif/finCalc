@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="120" y="120" width="1360" height="660" rx="26" fill="#0b1220" stroke="#334155" stroke-width="6"/>
+  <text x="180" y="215" fill="#e2e8f0" font-size="44" font-family="Arial, Helvetica, sans-serif" font-weight="700">Travel FX: Bank Spreads vs Mid-Market</text>
+  <rect x="180" y="260" width="1240" height="2" fill="#334155"/>
+
+  <text x="180" y="340" fill="#93c5fd" font-size="34" font-family="Arial, Helvetica, sans-serif">MID-MARKET EUR/USD</text>
+  <text x="640" y="340" fill="#f8fafc" font-size="34" font-family="Arial, Helvetica, sans-serif">1.1000</text>
+
+  <text x="180" y="410" fill="#fca5a5" font-size="34" font-family="Arial, Helvetica, sans-serif">AIRPORT KIOSK SELL</text>
+  <text x="640" y="410" fill="#f8fafc" font-size="34" font-family="Arial, Helvetica, sans-serif">1.1450</text>
+
+  <text x="180" y="480" fill="#fca5a5" font-size="34" font-family="Arial, Helvetica, sans-serif">AIRPORT KIOSK BUY</text>
+  <text x="640" y="480" fill="#f8fafc" font-size="34" font-family="Arial, Helvetica, sans-serif">1.0620</text>
+
+  <text x="180" y="550" fill="#86efac" font-size="34" font-family="Arial, Helvetica, sans-serif">CARD (LOCAL CURRENCY)</text>
+  <text x="640" y="550" fill="#f8fafc" font-size="34" font-family="Arial, Helvetica, sans-serif">Network + issuer fees</text>
+
+  <text x="180" y="620" fill="#fde68a" font-size="34" font-family="Arial, Helvetica, sans-serif">CARD (DCC HOME CURRENCY)</text>
+  <text x="640" y="620" fill="#f8fafc" font-size="34" font-family="Arial, Helvetica, sans-serif">Often weaker implied rate</text>
+
+  <text x="180" y="710" fill="#cbd5e1" font-size="30" font-family="Arial, Helvetica, sans-serif">Lesson: Compare total cost, not just "zero commission" labels.</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Staircase diagram of progressive tax brackets">
+  <defs>
+    <linearGradient id="tbbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#tbbg)"/>
+  <text x="70" y="95" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#f8fafc">Progressive tax brackets</text>
+  <text x="70" y="140" font-family="Arial,sans-serif" font-size="24" fill="#94a3b8">Each step taxes only the income inside that band</text>
+  <g stroke="#38bdf8" stroke-width="3" fill="#334155">
+    <rect x="200" y="420" width="160" height="120" rx="6" fill="#475569"/>
+    <rect x="400" y="340" width="160" height="200" rx="6" fill="#3b82f6" opacity="0.85"/>
+    <rect x="600" y="260" width="160" height="280" rx="6" fill="#2563eb" opacity="0.9"/>
+    <rect x="800" y="180" width="160" height="360" rx="6" fill="#1d4ed8"/>
+  </g>
+  <text x="200" y="565" font-family="Arial,sans-serif" font-size="18" fill="#cbd5e1">Band A</text>
+  <text x="400" y="565" font-family="Arial,sans-serif" font-size="18" fill="#cbd5e1">Band B</text>
+  <text x="600" y="565" font-family="Arial,sans-serif" font-size="18" fill="#cbd5e1">Band C</text>
+  <text x="800" y="565" font-family="Arial,sans-serif" font-size="18" fill="#cbd5e1">Band D</text>
+</svg>

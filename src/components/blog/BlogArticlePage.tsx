@@ -2,6 +2,7 @@ import type { BlogArticle } from "../../data/blog/types";
 import { tocFromBlocks } from "../../data/blog/types";
 import { BlogBlockRenderer } from "./BlogBlockRenderer";
 import { BlogLiveRatesSnippet } from "./BlogLiveRatesSnippet";
+import { BlogPostImage } from "./BlogPostImage";
 
 type Glabels = {
   toc: string;
@@ -164,20 +165,11 @@ export function BlogArticlePage({
 
         <div className="col-lg-8 order-lg-1">
           <figure className="fc-blog-hero mb-4">
-            <img
+            <BlogPostImage
               src={post.hero.src}
+              srcWebp={post.hero.srcWebp}
               alt={post.hero.alt}
-              className="img-fluid rounded border w-100"
               loading="eager"
-              decoding="async"
-              width={960}
-              height={540}
-              referrerPolicy="no-referrer"
-              onError={e => {
-                const img = e.currentTarget;
-                img.onerror = null;
-                img.src = "/og-image.svg";
-              }}
             />
             {post.hero.caption ? (
               <figcaption className="small text-muted mt-2">{post.hero.caption}</figcaption>
