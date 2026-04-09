@@ -369,7 +369,7 @@ export default function App() {
               <div>
                 {/* Hero */}
                 <div className="fc-hero">
-                  
+                  <LiveClock lang={lang} />
                   <h1>{t.siteTitle}</h1>
                   <p className="fc-hero-lead">{t.siteSubtitle} accurate and fast.</p>
                   <div className="fc-hero-stats">
@@ -743,6 +743,46 @@ export default function App() {
           </p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function LiveClock({ lang }: { lang: "en" | "ru" }) {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const locale = lang === "ru" ? "ru-RU" : "en-US";
+  const timeStr = now.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const dateStr = now.toLocaleDateString(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const s = now.getSeconds();
+  const hDeg = (h % 12) * 30 + m * 0.5;
+  const mDeg = m * 6 + s * 0.1;
+  const sDeg = s * 6;
+
+  return (
+    <div className="fc-clock-wrap">
+      <div className="fc-clock-face" aria-hidden>
+        <div className="fc-clock-marks">
+          {Array.from({ length: 12 }, (_, i) => (
+            <span key={i} className="fc-clock-mark" style={{ "--i": i } as React.CSSProperties} />
+          ))}
+        </div>
+        <div className="fc-clock-hand fc-clock-hour"   style={{ transform: `rotate(${hDeg}deg)` }} />
+        <div className="fc-clock-hand fc-clock-minute" style={{ transform: `rotate(${mDeg}deg)` }} />
+        <div className="fc-clock-hand fc-clock-second" style={{ transform: `rotate(${sDeg}deg)` }} />
+        <div className="fc-clock-center" />
+      </div>
+      <div className="fc-clock-text">
+        <span className="fc-clock-time">{timeStr}</span>
+        <span className="fc-clock-date">{dateStr}</span>
+      </div>
     </div>
   );
 }
