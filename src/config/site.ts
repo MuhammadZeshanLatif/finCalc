@@ -3,6 +3,10 @@ export const SITE_NAME = "FinanceCalculator";
 /** Official brand profiles (shown in UI + JSON-LD sameAs). */
 export const OFFICIAL_SOCIAL_X = "https://x.com/fincalculat";
 export const OFFICIAL_SOCIAL_INSTAGRAM = "https://www.instagram.com/fincalculat/";
+export const OFFICIAL_SOCIAL_YOUTUBE = "https://www.youtube.com/@FinCalc-i1y";
+export const OFFICIAL_SOCIAL_TIKTOK = "https://www.tiktok.com/@fincalculat";
+export const OFFICIAL_SOCIAL_PINTEREST = "https://www.pinterest.com/fincalculat/";
+export const OFFICIAL_SOCIAL_REDDIT = "https://www.reddit.com/user/fincalculat";
 
 /** Production site URL — set `VITE_SITE_URL` in `.env` when you deploy (no trailing slash). */
 export function getSiteUrl(): string {
@@ -47,7 +51,14 @@ export function getTwitterCreator(): string | undefined {
 
 /** Comma-separated profile URLs for Organization sameAs (e.g. Twitter, Facebook). */
 export function getOrgSameAs(): string[] {
-  const builtIn = [OFFICIAL_SOCIAL_X, OFFICIAL_SOCIAL_INSTAGRAM];
+  const builtIn = [
+    OFFICIAL_SOCIAL_X,
+    OFFICIAL_SOCIAL_INSTAGRAM,
+    OFFICIAL_SOCIAL_YOUTUBE,
+    OFFICIAL_SOCIAL_TIKTOK,
+    OFFICIAL_SOCIAL_PINTEREST,
+    OFFICIAL_SOCIAL_REDDIT,
+  ];
   const raw = import.meta.env.VITE_ORG_SAME_AS as string | undefined;
   const fromEnv = raw?.trim()
     ? raw

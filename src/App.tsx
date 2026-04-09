@@ -14,7 +14,14 @@ import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
-import { OFFICIAL_SOCIAL_INSTAGRAM, OFFICIAL_SOCIAL_X } from "./config/site";
+import {
+  OFFICIAL_SOCIAL_INSTAGRAM,
+  OFFICIAL_SOCIAL_PINTEREST,
+  OFFICIAL_SOCIAL_REDDIT,
+  OFFICIAL_SOCIAL_TIKTOK,
+  OFFICIAL_SOCIAL_X,
+  OFFICIAL_SOCIAL_YOUTUBE,
+} from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { getSiteUrl } from "./config/site";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
@@ -752,8 +759,10 @@ export default function App() {
           { href: "https://facebook.com",  icon: "fa-facebook-f",  label: "Facebook",  cl: "#1877F2" },
           { href: OFFICIAL_SOCIAL_X,        icon: "fa-x-twitter",   label: "Twitter/X", cl: "#000000" },
           { href: OFFICIAL_SOCIAL_INSTAGRAM, icon: "fa-instagram",   label: "Instagram", cl: "#E1306C" },
-          { href: "https://youtube.com",   icon: "fa-youtube",     label: "YouTube",   cl: "#FF0000" },
-          { href: "https://t.me",          icon: "fa-telegram",    label: "Telegram",  cl: "#2AABEE" },
+          { href: OFFICIAL_SOCIAL_YOUTUBE, icon: "fa-youtube",     label: "YouTube",   cl: "#FF0000" },
+          { href: OFFICIAL_SOCIAL_TIKTOK,  icon: "fa-tiktok",      label: "TikTok",    cl: "#000000" },
+          { href: OFFICIAL_SOCIAL_PINTEREST, icon: "fa-pinterest", label: "Pinterest", cl: "#E60023" },
+          { href: OFFICIAL_SOCIAL_REDDIT,    icon: "fa-reddit",    label: "Reddit",    cl: "#FF4500" },
         ].map(s => (
           <a
             key={s.icon}
