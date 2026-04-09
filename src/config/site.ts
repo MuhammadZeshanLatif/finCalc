@@ -4,7 +4,7 @@ export const SITE_NAME = "FinanceCalculator";
 export function getSiteUrl(): string {
   const u = import.meta.env.VITE_SITE_URL as string | undefined;
   if (u && /^https?:\/\//i.test(u)) return u.replace(/\/+$/, "");
-  return "https://fincalc-multipurpose.pro";
+  return "https://financcalculator.ru";
 }
 
 /** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.png`. */
