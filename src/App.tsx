@@ -369,7 +369,9 @@ export default function App() {
               <div>
                 {/* Hero */}
                 <div className="fc-hero">
-                  <LiveClock lang={lang} />
+                  <div className="fc-hero-clock-slot">
+                    <LiveClock lang={lang} />
+                  </div>
                   <h1>{t.siteTitle}</h1>
                   <p className="fc-hero-lead">{t.siteSubtitle} accurate and fast.</p>
                   <div className="fc-hero-stats">
