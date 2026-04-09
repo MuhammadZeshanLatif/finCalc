@@ -1,5 +1,9 @@
 export const SITE_NAME = "FinanceCalculator";
 
+/** Official brand profiles (shown in UI + JSON-LD sameAs). */
+export const OFFICIAL_SOCIAL_X = "https://x.com/fincalculat";
+export const OFFICIAL_SOCIAL_INSTAGRAM = "https://www.instagram.com/fincalculat/";
+
 /** Production site URL — set `VITE_SITE_URL` in `.env` when you deploy (no trailing slash). */
 export function getSiteUrl(): string {
   const u = import.meta.env.VITE_SITE_URL as string | undefined;
@@ -33,22 +37,25 @@ export function getContactEmail(): string | undefined {
 /** @handles without @ for twitter:site / twitter:creator */
 export function getTwitterSite(): string | undefined {
   const h = (import.meta.env.VITE_TWITTER_SITE as string | undefined)?.replace(/^@/, "").trim();
-  return h || undefined;
+  return h || "fincalculat";
 }
 
 export function getTwitterCreator(): string | undefined {
   const h = (import.meta.env.VITE_TWITTER_CREATOR as string | undefined)?.replace(/^@/, "").trim();
-  return h || undefined;
+  return h || "fincalculat";
 }
 
 /** Comma-separated profile URLs for Organization sameAs (e.g. Twitter, Facebook). */
 export function getOrgSameAs(): string[] {
+  const builtIn = [OFFICIAL_SOCIAL_X, OFFICIAL_SOCIAL_INSTAGRAM];
   const raw = import.meta.env.VITE_ORG_SAME_AS as string | undefined;
-  if (!raw?.trim()) return [];
-  return raw
-    .split(",")
-    .map(s => s.trim())
-    .filter(s => /^https?:\/\//i.test(s));
+  const fromEnv = raw?.trim()
+    ? raw
+        .split(",")
+        .map(s => s.trim())
+        .filter(s => /^https?:\/\//i.test(s))
+    : [];
+  return [...new Set([...builtIn, ...fromEnv])];
 }
 
 /**

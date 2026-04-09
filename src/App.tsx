@@ -14,6 +14,7 @@ import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
+import { OFFICIAL_SOCIAL_INSTAGRAM, OFFICIAL_SOCIAL_X } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { getSiteUrl } from "./config/site";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
@@ -749,8 +750,8 @@ export default function App() {
       <div className="fc-social-dock">
         {[
           { href: "https://facebook.com",  icon: "fa-facebook-f",  label: "Facebook",  cl: "#1877F2" },
-          { href: "https://twitter.com",   icon: "fa-x-twitter",   label: "Twitter/X", cl: "#000000" },
-          { href: "https://instagram.com", icon: "fa-instagram",   label: "Instagram", cl: "#E1306C" },
+          { href: OFFICIAL_SOCIAL_X,        icon: "fa-x-twitter",   label: "Twitter/X", cl: "#000000" },
+          { href: OFFICIAL_SOCIAL_INSTAGRAM, icon: "fa-instagram",   label: "Instagram", cl: "#E1306C" },
           { href: "https://youtube.com",   icon: "fa-youtube",     label: "YouTube",   cl: "#FF0000" },
           { href: "https://t.me",          icon: "fa-telegram",    label: "Telegram",  cl: "#2AABEE" },
         ].map(s => (
