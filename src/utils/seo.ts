@@ -229,7 +229,7 @@ function injectJsonLd(opts: {
 
   const sameAs = getOrgSameAs();
   const email = getContactEmail();
-  const logoUrl = `${opts.base}/favicon.svg`;
+  const logoUrl = `${opts.base}/favicon-48x48.png`;
 
   const org: Record<string, unknown> = {
     "@type": "Organization",

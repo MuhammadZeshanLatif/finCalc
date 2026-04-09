@@ -668,7 +668,7 @@ export default function App() {
             {currentPage === "privacy" && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">Privacy Policy</h1>
-                <p>At FinanceCalculator, accessible from fincalc-multipurpose.pro, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinanceCalculator and how we use it.</p>
+                <p>At FinanceCalculator, accessible from financcalculator.ru, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinanceCalculator and how we use it.</p>
                 <h5 className="mt-4 fw-bold">Log Files</h5>
                 <p className="text-muted">FinanceCalculator follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
                 <h5 className="mt-4 fw-bold">Google DoubleClick DART Cookie</h5>
@@ -682,7 +682,7 @@ export default function App() {
             {currentPage === "terms" && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">Terms and Conditions</h1>
-                <p>Welcome to FinanceCalculator! These terms and conditions outline the rules and regulations for the use of FinanceCalculator's Website, located at fincalc-multipurpose.pro.</p>
+                <p>Welcome to FinanceCalculator! These terms and conditions outline the rules and regulations for the use of FinanceCalculator's Website, located at financcalculator.ru.</p>
                 <p className="text-muted">By accessing this website we assume you accept these terms and conditions. Do not continue to use FinanceCalculator if you do not agree to take all of the terms and conditions stated on this page.</p>
                 <h5 className="mt-4 fw-bold">Cookies</h5>
                 <p className="text-muted">We employ the use of cookies. By accessing FinanceCalculator, you agreed to use cookies in agreement with the FinanceCalculator's Privacy Policy.</p>
