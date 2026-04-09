@@ -41,7 +41,7 @@ const EN: Record<string, string[]> = {
   ],
   bmi: [
     "Body Mass Index is weight in kilograms divided by height in meters squared. It correlates with population-level health risk categories but does not measure body fat percentage, bone density, or muscle mass. Athletes with high lean mass may land in a high category without the same metabolic risks as sedentary individuals at the same index.",
-    "FinCalc uses metric inputs only (kilograms and centimeters) to avoid silent unit errors. If you only know imperial measurements, convert carefully before typing. The category bands shown follow common WHO-style breakpoints used for screening, not diagnosis.",
+    "FinanceCalculator uses metric inputs only (kilograms and centimeters) to avoid silent unit errors. If you only know imperial measurements, convert carefully before typing. The category bands shown follow common WHO-style breakpoints used for screening, not diagnosis.",
     "Never use BMI alone to change medication, diet, or exercise plans. Pair screening tools with clinical advice, waist circumference, blood pressure, glucose, lipids, and personal history when evaluating health.",
   ],
   tax: [
@@ -50,7 +50,7 @@ const EN: Record<string, string[]> = {
     "If you compare countries or years, remember that bracket widths and rates change with legislation. Update your mental model when laws change; static demo parameters in any web tool can go stale.",
   ],
   currency: [
-    "Currency conversion multiplies your amount by the ratio between two units. By default FinCalc loads live reference rates in the browser: free ECB-based data via Frankfurter (no key), or—if you set VITE_EXCHANGE_RATE_API_KEY—broader coverage via ExchangeRate-API. These are still not your bank’s bid/ask, card FX markup, or wire desk quotes. For travel, trading, or invoicing, confirm with your institution.",
+    "Currency conversion multiplies your amount by the ratio between two units. By default FinanceCalculator loads live reference rates in the browser: free ECB-based data via Frankfurter (no key), or—if you set VITE_EXCHANGE_RATE_API_KEY—broader coverage via ExchangeRate-API. These are still not your bank’s bid/ask, card FX markup, or wire desk quotes. For travel, trading, or invoicing, confirm with your institution.",
     "Retail conversions embed spreads and fees that widen the gap from the theoretical number. When reconciling accounts, always trace back to the statement line, not to a demo calculator.",
     "If you test scenarios (for example USD to EUR to RUB), you are exploring arithmetic relationships, not executing a chain hedge. Multi-leg conversions in the real world may not be transitive at identical rates because each leg is priced separately.",
   ],
@@ -58,7 +58,7 @@ const EN: Record<string, string[]> = {
     "This page is a TI-84 Plus CE–style graphing workspace: home-screen math, a Y= editor for up to six functions, a WINDOW screen for xMin, xMax, yMin, yMax, and scales, plus GRAPH to plot on a grid. It is built for homework and review when you do not have the physical device—keyboard shortcuts mirror common classroom workflows (type x for the graphing variable, p for π, s/c/t for trig).",
     "Expressions use math.js for evaluation, with radian mode on the status bar like many calculus courses. Inverse sine, cosine, and tangent are available via 2nd + sin/cos/tan. For degree problems, convert inside the argument (for example multiply degrees by pi/180) so the value matches what your teacher expects.",
     "The emulator is not a byte-perfect clone: TI-BASIC programs, statistics apps, data lists, and some menus are not implemented. Zoom/Trace/Calc on the top row are placeholders today—use WINDOW to frame the graph and edit Y= to change functions. If a graph is blank, widen yMax or shift xMin/xMax; that is the same troubleshooting flow as on hardware.",
-    "SAT, ACT, AP, and other tests require an approved handheld calculator on exam day; this tool is for practice only. FinCalc is not affiliated with Texas Instruments. For official menus and every feature, use Texas Instruments’ guide PDF; for rules, read the current calculator policy from the testing organization.",
+    "SAT, ACT, AP, and other tests require an approved handheld calculator on exam day; this tool is for practice only. FinanceCalculator is not affiliated with Texas Instruments. For official menus and every feature, use Texas Instruments’ guide PDF; for rules, read the current calculator policy from the testing organization.",
   ],
   basic: [
     "This scientific calculator is designed for expressive formulas: nested parentheses, transcendental functions, factorial on integers, and memory keys for repeated sub-expressions. Results round for display to fifteen decimal places to reduce runaway floating noise in long chains, though underlying IEEE binary floats still apply beneath the hood.",
@@ -66,9 +66,9 @@ const EN: Record<string, string[]> = {
     "History and memory live in your browser session for convenience. They are not a substitute for version-controlled worksheets or audited computation logs when correctness must be provable. For financial or safety-critical figures, cross-check with an independent method.",
   ],
   about: [
-    "FinCalc is a free, browser-based collection of financial and everyday calculators—compound interest, savings, loans, mortgages, EMI, VAT, tax estimates, currency conversion, BMI, and a full scientific keypad. The site is built for quick what-if checks and learning, with clear labels so you can see which assumptions drive each result.",
+    "FinanceCalculator is a free, browser-based collection of financial and everyday calculators—compound interest, savings, loans, mortgages, EMI, VAT, tax estimates, currency conversion, BMI, and a full scientific keypad. The site is built for quick what-if checks and learning, with clear labels so you can see which assumptions drive each result.",
     "We publish short articles on the blog that tie real scenarios to the tools: when a metric matters, how to read an amortization table, and what typical calculators leave out (fees, taxes, floating rates, jurisdiction-specific rules). Nothing here replaces licensed tax, legal, or investment advice; use professionals when decisions have material consequences.",
-    "FinCalc runs in English and Russian with matching URLs so you can share links in either language. If you spot a bug, have a feature idea, or want to report unclear copy, use the contact page—we read feedback even when we cannot answer individualized planning questions by email.",
+    "FinanceCalculator runs in English and Russian with matching URLs so you can share links in either language. If you spot a bug, have a feature idea, or want to report unclear copy, use the contact page—we read feedback even when we cannot answer individualized planning questions by email.",
   ],
 };
 
@@ -110,7 +110,7 @@ const RU: Record<string, string[]> = {
   ],
   bmi: [
     "ИМТ — вес в килограммах на квадрат роста в метрах. На уровне населения коррелирует с рисками, но не измеряет жир, кость и мышцы. Спортсмены могут попадать в «высокую» зону без тех же рисков, что у малоподвижных людей.",
-    "FinCalc принимает только кг и см, чтобы не было скрытой путаницы единиц. Категории — скрининг по распространённым порогам ВОЗ, не диагноз.",
+    "FinanceCalculator принимает только кг и см, чтобы не было скрытой путаницы единиц. Категории — скрининг по распространённым порогам ВОЗ, не диагноз.",
     "Не меняйте лечение или режим только из-за ИМТ. Нужны врач, анамнез и при необходимости другие анализы.",
   ],
   tax: [
@@ -119,7 +119,7 @@ const RU: Record<string, string[]> = {
     "Ширины диапазонов и ставки меняются законами — сверяйтесь с актуальными правилами вашей страны.",
   ],
   currency: [
-    "Конвертация умножает сумму на отношение единиц. По умолчанию FinCalc подгружает в браузере актуальные ориентиры: бесплатные курсы ЕЦБ через Frankfurter (без ключа) или, если задан VITE_EXCHANGE_RATE_API_KEY, расширенный набор через ExchangeRate-API. Это всё ещё не спред банка, наценка карты или курс для перевода. Для сделок сверяйтесь с вашей организацией.",
+    "Конвертация умножает сумму на отношение единиц. По умолчанию FinanceCalculator подгружает в браузере актуальные ориентиры: бесплатные курсы ЕЦБ через Frankfurter (без ключа) или, если задан VITE_EXCHANGE_RATE_API_KEY, расширенный набор через ExchangeRate-API. Это всё ещё не спред банка, наценка карты или курс для перевода. Для сделок сверяйтесь с вашей организацией.",
     "В рознице есть спред и комиссии — они шире, чем «идеальная» цифра на экране. Сверяйтесь с выпиской.",
     "Цепочки валют в примере показывают арифметику, а не реальный арбитраж: каждое плечо в жизни ценообразуется отдельно.",
   ],
@@ -127,7 +127,7 @@ const RU: Record<string, string[]> = {
     "Здесь эмуляция в духе TI-84 Plus CE: вычисления на главном экране, редактор Y= до шести функций, экран WINDOW для xMin, xMax, yMin, yMax и масштабов, кнопка GRAPH для графика на сетке. Удобно для домашней работы, если под рукой нет прибора; горячие клавиши повторяют привычный ввод (x, p для π, s/c/t для тригонометрии).",
     "Выражения считает math.js; в строке статуса указан RADIAN, как во многих курсах матанализа. Обратные sin/cos/tan — через 2nd и соответствующую клавишу. Для градусов вводите преобразование в аргументе (например градусы × pi/180).",
     "Это не полная копия прошивки: нет TI-BASIC, статистических приложений, списков и части меню. Кнопки zoom/trace в ряду F могут быть заглушками — настройте окно WINDOW и функции в Y=. Пустой график чаще всего из‑за узкого окна: увеличьте yMax или сдвиньте пределы по x.",
-    "На экзаменах нужен разрешённый физический калькулятор; онлайн-версия только для тренировки. FinCalc не связан с Texas Instruments. Официальные функции — в руководстве TI; правила — на сайте вашей экзаменационной организации.",
+    "На экзаменах нужен разрешённый физический калькулятор; онлайн-версия только для тренировки. FinanceCalculator не связан с Texas Instruments. Официальные функции — в руководстве TI; правила — на сайте вашей экзаменационной организации.",
   ],
   basic: [
     "Калькулятор поддерживает скобки, тригонометрию в градусах, логарифмы, факториал целых и память. Пятнадцать знаков после запятой уменьшают визуальный шум в длинных цепочках, но внутри остаётся двоичная арифметика с плавающей точкой.",
@@ -135,7 +135,7 @@ const RU: Record<string, string[]> = {
     "История и память живут в сессии браузера. Для аудита или критичных расчётов дублируйте методом или в таблице с контролем версий.",
   ],
   about: [
-    "FinCalc — бесплатный набор финансовых и бытовых калькуляторов в браузере: сложный процент, накопления, кредиты, ипотека, EMI, НДС, упрощённый налог, валюта, ИМТ и полноценный инженерный режим. Интерфейс заточен под быстрые сценарии «что если» и обучение: видно, какие допущения стоят за результатом.",
+    "FinanceCalculator — бесплатный набор финансовых и бытовых калькуляторов в браузере: сложный процент, накопления, кредиты, ипотека, EMI, НДС, упрощённый налог, валюта, ИМТ и полноценный инженерный режим. Интерфейс заточен под быстрые сценарии «что если» и обучение: видно, какие допущения стоят за результатом.",
     "В блоге мы публикуем короткие материалы: как читать график амортизации, когда важна ставка против срока, чего типичные калькуляторы не учитывают (комиссии, налоги, плавающие ставки, местные правила). Это не замена консультации налогового юриста или инвестора — при серьёзных решениях обращайтесь к специалистам.",
     "Сайт доступен на английском и русском с согласованными URL, чтобы делиться ссылками на нужном языке. Ошибки в расчётах, идеи функций и замечания по тексту можно отправить через страницу контактов — мы читаем обращения, даже если не отвечаем на персональные финансовые вопросы в переписке.",
   ],

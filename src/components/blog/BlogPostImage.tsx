@@ -19,7 +19,7 @@ export function BlogPostImage({
   const onError = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     img.onerror = null;
-    img.src = "/og-image.svg";
+    img.src = "/og-image.png";
   };
   const imgProps = {
     alt,

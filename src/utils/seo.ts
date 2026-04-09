@@ -27,6 +27,15 @@ const META = {
   },
 } as const;
 
+function normalizeSocialImage(url: string): string {
+  const lower = url.toLowerCase();
+  // Many share crawlers are inconsistent with SVG/WebP previews.
+  if (lower.endsWith(".svg") || lower.endsWith(".webp")) {
+    return getOgImageUrl();
+  }
+  return url;
+}
+
 function setMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
   if (!el) {
@@ -100,7 +109,8 @@ export function updatePageSeo(opts: {
     : [META[opts.lang].keywords, opts.calculatorKeywords].filter(Boolean).join(", ") ||
       META[opts.lang].keywords;
 
-  const ogImage = opts.blogArticle?.imageUrl ?? getOgImageUrl();
+  const ogImageRaw = opts.blogArticle?.imageUrl ?? getOgImageUrl();
+  const ogImage = normalizeSocialImage(ogImageRaw);
   const ogAlt = opts.blogArticle?.imageAlt ?? getOgImageAlt(opts.lang);
   const orgName = getOrgName();
   const homeLabel = opts.breadcrumbHomeLabel ?? "Home";
@@ -119,6 +129,9 @@ export function updatePageSeo(opts: {
   setMeta("property", "og:url", url);
   setMeta("property", "og:locale", opts.lang === "ru" ? "ru_RU" : "en_US");
   setMeta("property", "og:image", ogImage);
+  setMeta("property", "og:image:type", "image/png");
+  setMeta("property", "og:image:width", "1200");
+  setMeta("property", "og:image:height", "630");
   setMeta("property", "og:image:alt", ogAlt);
   setMeta("property", "og:image:secure_url", ogImage);
 
@@ -151,6 +164,7 @@ export function updatePageSeo(opts: {
   setMeta("name", "twitter:title", fullTitle);
   setMeta("name", "twitter:description", desc);
   setMeta("name", "twitter:image", ogImage);
+  setMeta("name", "twitter:image:alt", ogAlt);
   const twSite = getTwitterSite();
   const twCreator = getTwitterCreator();
   if (twSite) setMeta("name", "twitter:site", `@${twSite}`);

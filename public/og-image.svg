@@ -6,6 +6,6 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="600" y="280" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="72" font-weight="800">FinCalc</text>
+  <text x="600" y="280" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="72" font-weight="800">FinanceCalculator</text>
   <text x="600" y="360" text-anchor="middle" fill="#e8f0ff" font-family="system-ui,sans-serif" font-size="28">Free financial calculators</text>
 </svg>

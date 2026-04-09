@@ -1,6 +1,6 @@
-# FinCalc — Financial & multipurpose calculators
+# FinanceCalculator — Financial & multipurpose calculators
 
-FinCalc is a free bilingual (English / Russian) web app with path-based URLs for SEO.
+FinanceCalculator is a free bilingual (English / Russian) web app with path-based URLs for SEO.
 
 ## Site structure
 

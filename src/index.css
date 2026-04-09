@@ -1622,7 +1622,7 @@ body {
   white-space: nowrap;
 }
 
-/* ── CALCULATOR LIVE + SCHEDULE (FinCalc) ─────────────────── */
+/* ── CALCULATOR LIVE + SCHEDULE (FinanceCalculator) ─────────────────── */
 .fc-live-hint {
   font-size: 0.78rem;
   color: var(--fc-muted);

@@ -1,6 +1,6 @@
 {
-  "name": "FinCalc — Financial Calculators",
-  "short_name": "FinCalc",
+  "name": "FinanceCalculator — Financial Calculators",
+  "short_name": "FinanceCalculator",
   "description": "Free interest, loan, mortgage, EMI, VAT, tax, currency, BMI, and scientific calculators. English & Russian.",
   "start_url": "/",
   "scope": "/",
@@ -19,9 +19,9 @@
       "purpose": "any"
     },
     {
-      "src": "/og-image.svg",
+      "src": "/og-image.png",
       "sizes": "1200x630",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

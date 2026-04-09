@@ -564,7 +564,7 @@ export default function App() {
                             onError={e => {
                               const img = e.currentTarget;
                               img.onerror = null;
-                              img.src = "/og-image.svg";
+                              img.src = "/og-image.png";
                             }}
                           />
                         </a>
@@ -666,9 +666,9 @@ export default function App() {
             {currentPage === "privacy" && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">Privacy Policy</h1>
-                <p>At FinCalc, accessible from fincalc-multipurpose.pro, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinCalc and how we use it.</p>
+                <p>At FinanceCalculator, accessible from fincalc-multipurpose.pro, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinanceCalculator and how we use it.</p>
                 <h5 className="mt-4 fw-bold">Log Files</h5>
-                <p className="text-muted">FinCalc follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
+                <p className="text-muted">FinanceCalculator follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
                 <h5 className="mt-4 fw-bold">Google DoubleClick DART Cookie</h5>
                 <p className="text-muted">Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet.</p>
                 <h5 className="mt-4 fw-bold">Consent</h5>
@@ -680,10 +680,10 @@ export default function App() {
             {currentPage === "terms" && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">Terms and Conditions</h1>
-                <p>Welcome to FinCalc! These terms and conditions outline the rules and regulations for the use of FinCalc's Website, located at fincalc-multipurpose.pro.</p>
-                <p className="text-muted">By accessing this website we assume you accept these terms and conditions. Do not continue to use FinCalc if you do not agree to take all of the terms and conditions stated on this page.</p>
+                <p>Welcome to FinanceCalculator! These terms and conditions outline the rules and regulations for the use of FinanceCalculator's Website, located at fincalc-multipurpose.pro.</p>
+                <p className="text-muted">By accessing this website we assume you accept these terms and conditions. Do not continue to use FinanceCalculator if you do not agree to take all of the terms and conditions stated on this page.</p>
                 <h5 className="mt-4 fw-bold">Cookies</h5>
-                <p className="text-muted">We employ the use of cookies. By accessing FinCalc, you agreed to use cookies in agreement with the FinCalc's Privacy Policy.</p>
+                <p className="text-muted">We employ the use of cookies. By accessing FinanceCalculator, you agreed to use cookies in agreement with the FinanceCalculator's Privacy Policy.</p>
                 <h5 className="mt-4 fw-bold">Disclaimer</h5>
                 <p className="text-muted">To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will limit or exclude our or your liability for death or personal injury resulting from negligence.</p>
               </div>
@@ -739,7 +739,7 @@ export default function App() {
             ))}
           </div>
           <p className="text-secondary mb-0 fc-footer-copy">
-            © 2026 FinCalc. All rights reserved. Calculations are estimates and should not replace professional financial advice.
+            © 2026 FinanceCalculator. All rights reserved. Calculations are estimates and should not replace professional financial advice.
           </p>
         </div>
       </footer>

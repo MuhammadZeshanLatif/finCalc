@@ -6,21 +6,21 @@ export type SeoHowTo = { name: string; description: string; steps: string[] };
 const FAQ_EN: Record<string, SeoFaq[]> = {
   home: [
     {
-      q: "What is FinCalc?",
-      a: "FinCalc is a free suite of online financial and utility calculators—interest, loans, mortgage, EMI, VAT, tax estimates, currency, BMI, and a scientific calculator—available in English and Russian.",
+      q: "What is FinanceCalculator?",
+      a: "FinanceCalculator is a free suite of online financial and utility calculators—interest, loans, mortgage, EMI, VAT, tax estimates, currency, BMI, and a scientific calculator—available in English and Russian.",
     },
     {
-      q: "Is FinCalc free to use?",
-      a: "Yes. All calculators on FinCalc are free to use in your browser. We do not charge for access to the tools.",
+      q: "Is FinanceCalculator free to use?",
+      a: "Yes. All calculators on FinanceCalculator are free to use in your browser. We do not charge for access to the tools.",
     },
     {
-      q: "Does FinCalc provide financial or tax advice?",
+      q: "Does FinanceCalculator provide financial or tax advice?",
       a: "No. Results are for educational and planning purposes only. Always confirm figures with a qualified professional before making financial or tax decisions.",
     },
   ],
   blog: [
     {
-      q: "What topics does the FinCalc blog cover?",
+      q: "What topics does the FinanceCalculator blog cover?",
       a: "Long-form guides on saving, debt, mortgages, tax brackets, VAT, travel FX, and health-cost context for BMI—each with a table of contents, cited sources, optional video, and links to the matching free calculator.",
     },
     {
@@ -30,7 +30,7 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
   ],
   contact: [
     {
-      q: "How can I contact FinCalc?",
+      q: "How can I contact FinanceCalculator?",
       a: "Use the contact form on this page to send a message. We read feedback about bugs, ideas, and partnerships.",
     },
     {
@@ -40,11 +40,11 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
   ],
   about: [
     {
-      q: "What is FinCalc?",
+      q: "What is FinanceCalculator?",
       a: "A free suite of online calculators for interest, loans, savings, mortgage, EMI, VAT, tax estimates, currency, BMI, and scientific math, with articles and bilingual English/Russian support.",
     },
     {
-      q: "Does FinCalc give financial advice?",
+      q: "Does FinanceCalculator give financial advice?",
       a: "No. Tools and blog posts are for education and planning. Confirm important decisions with qualified professionals.",
     },
     {
@@ -54,17 +54,17 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
   ],
   privacy: [
     {
-      q: "What data does FinCalc collect?",
+      q: "What data does FinanceCalculator collect?",
       a: "This policy describes typical website data such as logs and cookies. See the full text on this page for details.",
     },
     {
-      q: "Can I use FinCalc without accepting marketing cookies?",
+      q: "Can I use FinanceCalculator without accepting marketing cookies?",
       a: "Core calculators work in your browser; third-party ad cookies depend on your browser settings and applicable consent flows.",
     },
   ],
   terms: [
     {
-      q: "What are the FinCalc terms of use?",
+      q: "What are the FinanceCalculator terms of use?",
       a: "The terms explain acceptable use of the website, disclaimers, and limitations of liability. Read the full document on this page.",
     },
     {
@@ -83,7 +83,7 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
     },
     {
       q: "Is my calculation history stored on a server?",
-      a: "History is kept in your browser session for convenience; it is not sent to FinCalc as part of the calculator logic.",
+      a: "History is kept in your browser session for convenience; it is not sent to FinanceCalculator as part of the calculator logic.",
     },
   ],
   interest: [
@@ -97,7 +97,7 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
     },
     {
       q: "Will my bank match this exact number?",
-      a: "Not necessarily. Banks may use different day-count conventions, fees, or rounding. Use FinCalc for estimates, not binding quotes.",
+      a: "Not necessarily. Banks may use different day-count conventions, fees, or rounding. Use FinanceCalculator for estimates, not binding quotes.",
     },
   ],
   deposit: [
@@ -125,7 +125,7 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
     },
     {
       q: "Is this an offer of credit?",
-      a: "No. FinCalc is not a lender. All numbers are illustrative.",
+      a: "No. FinanceCalculator is not a lender. All numbers are illustrative.",
     },
   ],
   mortgage: [
@@ -194,14 +194,14 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "No. Muscle mass, age, and other factors matter. Talk to a healthcare provider for personal guidance.",
     },
     {
-      q: "Which units does FinCalc use?",
+      q: "Which units does FinanceCalculator use?",
       a: "Weight in kilograms and height in centimeters, as labeled in the form.",
     },
   ],
   tax: [
     {
       q: "What does the tax calculator estimate?",
-      a: "It applies the simplified progressive model built into FinCalc to your entered gross income—illustrative only.",
+      a: "It applies the simplified progressive model built into FinanceCalculator to your entered gross income—illustrative only.",
     },
     {
       q: "Will this match my real tax return?",
@@ -229,7 +229,7 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
   ti84: [
     {
       q: "Is this TI-84 calculator online free?",
-      a: "Yes. FinCalc does not charge for this browser graphing tool. No account is required.",
+      a: "Yes. FinanceCalculator does not charge for this browser graphing tool. No account is required.",
     },
     {
       q: "Can I use it on the SAT or ACT instead of a real TI-84?",
@@ -249,11 +249,11 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
 const FAQ_RU: Record<string, SeoFaq[]> = {
   home: [
     {
-      q: "Что такое FinCalc?",
-      a: "FinCalc — бесплатный набор онлайн-калькуляторов: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ и научный калькулятор на русском и английском.",
+      q: "Что такое FinanceCalculator?",
+      a: "FinanceCalculator — бесплатный набор онлайн-калькуляторов: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ и научный калькулятор на русском и английском.",
     },
     {
-      q: "FinCalc бесплатный?",
+      q: "FinanceCalculator бесплатный?",
       a: "Да, инструменты в браузере бесплатны. Мы не взимаем плату за доступ к калькуляторам.",
     },
     {
@@ -263,7 +263,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
   ],
   blog: [
     {
-      q: "О чём блог FinCalc?",
+      q: "О чём блог FinanceCalculator?",
       a: "Развёрнутые материалы о сбережениях, долгах, ипотеке, налоговых шкалах, НДС, валюте в поездках и контексте ИМТ — с оглавлением, источниками, по желанию видео и ссылками на бесплатные калькуляторы.",
     },
     {
@@ -273,7 +273,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
   ],
   contact: [
     {
-      q: "Как связаться с FinCalc?",
+      q: "Как связаться с FinanceCalculator?",
       a: "Через форму на этой странице: отзывы, идеи и вопросы по сайту.",
     },
     {
@@ -283,7 +283,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
   ],
   about: [
     {
-      q: "Что такое FinCalc?",
+      q: "Что такое FinanceCalculator?",
       a: "Бесплатные онлайн-калькуляторы: проценты, кредиты, накопления, ипотека, EMI, НДС, налог, валюта, ИМТ и инженерная математика, плюс статьи и версии на EN/RU.",
     },
     {
@@ -297,7 +297,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
   ],
   privacy: [
     {
-      q: "Какие данные собирает FinCalc?",
+      q: "Какие данные собирает FinanceCalculator?",
       a: "В политике описаны типичные данные сайта (логи, cookie). Подробности — в тексте на этой странице.",
     },
     {
@@ -326,7 +326,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
     },
     {
       q: "История хранится на сервере?",
-      a: "История в браузере для удобства; логика калькулятора не отправляет её на сервер FinCalc.",
+      a: "История в браузере для удобства; логика калькулятора не отправляет её на сервер FinanceCalculator.",
     },
   ],
   interest: [
@@ -368,7 +368,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
     },
     {
       q: "Это предложение кредита?",
-      a: "Нет, FinCalc не кредитор. Только иллюстрация.",
+      a: "Нет, FinanceCalculator не кредитор. Только иллюстрация.",
     },
   ],
   mortgage: [
@@ -472,7 +472,7 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
   ti84: [
     {
       q: "Калькулятор TI-84 онлайн бесплатный?",
-      a: "Да, в браузере FinCalc без оплаты и без регистрации.",
+      a: "Да, в браузере FinanceCalculator без оплаты и без регистрации.",
     },
     {
       q: "Можно вместо настоящего TI-84 на ЕГЭ/SAT?",

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Steady monthly savings growing balance curve">
   <rect width="1200" height="630" fill="#0f172a"/>
   <text x="80" y="90" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#f8fafc">Model growth with steady contributions</text>
-  <text x="80" y="135" font-family="Arial,sans-serif" font-size="22" fill="#94a3b8">Use FinCalc deposit calculator with your rate and monthly save amount.</text>
+  <text x="80" y="135" font-family="Arial,sans-serif" font-size="22" fill="#94a3b8">Use FinanceCalculator deposit calculator with your rate and monthly save amount.</text>
   <polyline points="100,500 200,460 350,400 500,320 700,240 900,180 1050,140" fill="none" stroke="#38bdf8" stroke-width="6"/>
   <circle cx="1050" cy="140" r="12" fill="#22d3ee"/>
   <text x="80" y="580" font-family="Arial,sans-serif" font-size="20" fill="#64748b">Assumes constant APY; real banks use tiers and promo rates.</text>

@@ -1,4 +1,4 @@
-export const SITE_NAME = "FinCalc";
+export const SITE_NAME = "FinanceCalculator";
 
 /** Production site URL — set `VITE_SITE_URL` in `.env` when you deploy (no trailing slash). */
 export function getSiteUrl(): string {
@@ -7,17 +7,17 @@ export function getSiteUrl(): string {
   return "https://fincalc-multipurpose.pro";
 }
 
-/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.svg`. */
+/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.png`. */
 export function getOgImageUrl(): string {
   const u = import.meta.env.VITE_OG_IMAGE_URL as string | undefined;
   if (u && /^https?:\/\//i.test(u)) return u;
-  return `${getSiteUrl()}/og-image.svg`;
+  return `${getSiteUrl()}/og-image.png`;
 }
 
 export function getOgImageAlt(lang: "en" | "ru"): string {
   return lang === "ru"
-    ? "FinCalc — бесплатные финансовые калькуляторы онлайн"
-    : "FinCalc — free online financial calculators";
+    ? "FinanceCalculator — бесплатные финансовые калькуляторы онлайн"
+    : "FinanceCalculator — free online financial calculators";
 }
 
 export function getOrgName(): string {

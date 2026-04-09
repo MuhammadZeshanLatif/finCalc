@@ -6,7 +6,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "compound-interest",
     slug: "compound-interest-guide",
     title: "Compound interest: how timing and frequency change real returns",
-    metaTitle: "Compound interest: timing, frequency, and real returns | FinCalc",
+    metaTitle: "Compound interest: timing, frequency, and real returns | FinanceCalculator",
     metaDescription:
       "Learn how timing and compounding frequency change real returns. See formula, practical examples, common mistakes, and ways to maximize results.",
     keywords:
@@ -15,13 +15,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "Start date and compounding frequency can change your outcome more than tiny rate differences.",
     datePublished: "2026-01-15",
     dateModified: "2026-04-06",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 7,
     hero: {
       src: "/blog/compound-hero.svg",
       alt: "Compound interest growth chart showing how returns accelerate with time",
       caption: "Image 1: compound growth accelerates over time, so timing decisions matter.",
-      credit: "FinCalc visual",
+      credit: "FinanceCalculator visual",
     },
     keyPhrases: [
       "what is compound interest",
@@ -86,7 +86,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/compound-frequency.svg",
         alt: "Comparison of annual monthly and daily compounding outcomes",
         caption: "Image 2: monthly and daily compounding can beat annual compounding at the same nominal rate.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -102,7 +102,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/compound-timing.svg",
         alt: "Early versus late starting timeline showing larger final values for earlier start",
         caption: "Image 3: a longer runway often beats a small rate advantage.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -123,7 +123,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/compound-application.svg",
         alt: "Savings investments and loans scenarios where compounding applies",
         caption: "Image 4: compounding appears in deposits, investments, and debt.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -246,13 +246,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "Top mortgage mistakes homebuyers make—and how to avoid them: pre-approval, credit, rate shopping, and closing costs.",
     datePublished: "2026-04-07",
     dateModified: "2026-04-08",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 8,
     hero: {
       src: "/blog/mortgage-buying-hero.svg",
       alt: "Illustration of a house, key, and sunset sky for the mortgage mistakes guide",
       caption: "Fresh visuals for the same serious topic: plan the loan, then chase the address.",
-      credit: "FinCalc",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "Mortgage mistakes",
@@ -315,7 +315,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/mortgage-checklist.svg",
         alt: "Pre-approval checklist graphic with green checks and a stamped approval card",
         caption: "Pre-approval is paperwork plus discipline — not a vague online quiz.",
-        credit: "FinCalc",
+        credit: "FinanceCalculator",
       },
       {
         t: "h3",
@@ -348,7 +348,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/mortgage-closing-costs.svg",
         alt: "Illustrated breakdown of title, lender fees, prepaids, and cash to close",
         caption: "Closing costs are several buckets — not one mystery number.",
-        credit: "FinCalc",
+        credit: "FinanceCalculator",
       },
       {
         t: "h3",
@@ -381,7 +381,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/mortgage-credit-timing.svg",
         alt: "Credit score improvement timeline before mortgage application",
         caption: "Credit cleanup works best when started months before application.",
-        credit: "FinCalc",
+        credit: "FinanceCalculator",
       },
       {
         t: "h3",
@@ -401,7 +401,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/mortgage-rate-compare.svg",
         alt: "Side by side lender quote comparison cards for mortgage shopping",
         caption: "Compare rate, APR, points, fees, and cash to close on one sheet.",
-        credit: "FinCalc",
+        credit: "FinanceCalculator",
       },
       {
         t: "h3",
@@ -434,7 +434,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         src: "/blog/mortgage-piti-vivid.svg",
         alt: "Colorful PITI bar segments plus HOA and maintenance reminder",
         caption: "PITI is the core stack; HOA and upkeep sit just outside it.",
-        credit: "FinCalc",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -498,7 +498,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "callout",
         variant: "note",
-        title: "Try it on FinCalc",
+        title: "Try it on FinanceCalculator",
         text: "Model PITI, PMI, and rate changes with the mortgage calculator on this site before you lock a budget in your head.",
       },
     ],
@@ -518,7 +518,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "emi-strategy",
     slug: "emi-prepayment-strategy",
     title: "EMI loans: where prepayments actually cut interest (and where they don't)",
-    metaTitle: "EMI Loan Prepayment: Where It Really Cuts Interest | FinCalc",
+    metaTitle: "EMI Loan Prepayment: Where It Really Cuts Interest | FinanceCalculator",
     metaDescription:
       "US guide to EMI loan prepayment: see when extra payments cut interest, reduce term vs reduce payment, and how to force principal-only posting.",
     keywords: "EMI prepayment, loan prepayment interest savings, Rule of 78s, reduce tenure vs reduce EMI, principal only payment, prepayment penalty USA, biweekly mortgage payment, amortization prepayment, loan servicer, APR",
@@ -526,7 +526,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "US borrowers can cut real interest with EMI loan prepayment only when timing, loan type, and principal-only posting are handled correctly.",
     datePublished: "2026-02-12",
     dateModified: "2026-04-07",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 12,
     hero: {
       src: "/blog/emi-prepay-hero-advisor-desk.svg",
@@ -534,7 +534,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       alt: "US couple reviewing mortgage statement with advisor and amortization chart",
       caption:
         "Image 1: a clear prepayment plan starts with loan terms, timing, and principal-only payment instructions.",
-      credit: "FinCalc custom visual",
+      credit: "FinanceCalculator custom visual",
     },
     keyPhrases: [
       "how reducing-balance loans calculate interest",
@@ -675,7 +675,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Borrower marking biweekly payment dates on calendar beside calculator",
         caption:
           "Image 2: timing discipline is one of the highest-impact drivers of lifetime interest savings.",
-        credit: "FinCalc custom visual",
+        credit: "FinanceCalculator custom visual",
       },
       {
         t: "callout",
@@ -712,7 +712,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Family comparing lower payment and shorter term loan options at home",
         caption:
           "Image 3: reducing payment can ease monthly pressure, while reducing term usually saves more total interest.",
-        credit: "FinCalc custom visual",
+        credit: "FinanceCalculator custom visual",
       },
       {
         t: "callout",
@@ -785,7 +785,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Borrower selecting principal-only payment option on mobile banking screen",
         caption:
           "Image 4: always label extra funds as principal-only and verify the statement posting after payment clears.",
-        credit: "FinCalc custom visual",
+        credit: "FinanceCalculator custom visual",
       },
       {
         t: "ul",
@@ -899,7 +899,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Use the FinCalc EMI calculator. Enter your loan amount, APR, and term. Add an extra prepayment amount. You get three outputs instantly: total interest saved, your new payoff date, and the number of months cut from the loan.",
+        text: "Use the FinanceCalculator EMI calculator. Enter your loan amount, APR, and term. Add an extra prepayment amount. You get three outputs instantly: total interest saved, your new payoff date, and the number of months cut from the loan.",
       },
       {
         t: "p",
@@ -968,16 +968,16 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "emergency-fund",
     slug: "emergency-fund-high-yield-savings",
     title: "Emergency funds: liquidity first, yield second",
-    metaTitle: "Emergency Fund: Liquidity First, Yield Second | FinCalc",
+    metaTitle: "Emergency Fund: Liquidity First, Yield Second | FinanceCalculator",
     metaDescription:
-      "How much emergency cash to save, where to keep it liquid for bills, and why safety beats yield. Model growth in FinCalc deposit calculator.",
+      "How much emergency cash to save, where to keep it liquid for bills, and why safety beats yield. Model growth in FinanceCalculator deposit calculator.",
     keywords:
       "emergency fund, rainy day fund, liquidity, high yield savings, FDIC insurance, essential expenses, deposit calculator, money market, financial cushion",
     excerpt:
       "Emergency cash exists to pay rent and groceries when income stops—not to chase stock-like returns. Liquidity and safety come before APY.",
     datePublished: "2026-02-20",
     dateModified: "2026-04-08",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
       src: "/blog/emergency-fund-hero-safety-jar.svg",
@@ -985,7 +985,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       alt: "Illustration of emergency savings jar and financial safety theme",
       caption:
         "Image 1: treat emergency savings as insurance you can spend—not an investment product to optimize first.",
-      credit: "FinCalc visual",
+      credit: "FinanceCalculator visual",
     },
     keyPhrases: [
       "how much emergency fund",
@@ -1004,7 +1004,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "FinCalc focuses on calculators and plain-language finance education. This guide follows the same rule we use across the site: liquidity first, yield second. After you understand the job of emergency cash, use the deposit calculator to turn “I can save $X per month at Y% APY” into a projected balance—while remembering that real banks change rates and tiers.",
+        text: "FinanceCalculator focuses on calculators and plain-language finance education. This guide follows the same rule we use across the site: liquidity first, yield second. After you understand the job of emergency cash, use the deposit calculator to turn “I can save $X per month at Y% APY” into a projected balance—while remembering that real banks change rates and tiers.",
       },
       {
         t: "h2",
@@ -1048,7 +1048,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Bar chart comparing months of expenses for different household situations",
         caption:
           "Image 2: ranges are guides—your real number depends on job security, insurance gaps, and how fast you could cut spending.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -1083,7 +1083,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Three priority buckets labeled liquidity safety and yield",
         caption:
           "Image 3: order matters—optimize yield only after access and principal protection are nailed down.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -1108,7 +1108,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "h2",
         id: "deposit-calculator",
-        text: "Using FinCalc’s deposit calculator",
+        text: "Using FinanceCalculator’s deposit calculator",
       },
       {
         t: "p",
@@ -1121,13 +1121,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Upward curve showing savings balance growing with steady contributions",
         caption:
           "Image 4: steady contributions beat waiting for a perfect rate—model both in the calculator.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "callout",
         variant: "disclaimer",
         title: "Calculator limits",
-        text: "FinCalc deposit projections assume a constant rate and no fees. Real accounts may use tiered balances, promotional rates, or withdrawal limits. Treat projections as planning aids, not promises.",
+        text: "FinanceCalculator deposit projections assume a constant rate and no fees. Real accounts may use tiered balances, promotional rates, or withdrawal limits. Treat projections as planning aids, not promises.",
       },
       {
         t: "h2",
@@ -1206,7 +1206,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "A solid emergency fund is boring on purpose. Liquidity and principal safety do more for financial resilience than squeezing an extra fraction of a percent of yield. Use FinCalc’s tools to size contributions and project growth, then revisit your target once a year or after major life changes.",
+        text: "A solid emergency fund is boring on purpose. Liquidity and principal safety do more for financial resilience than squeezing an extra fraction of a percent of yield. Use FinanceCalculator’s tools to size contributions and project growth, then revisit your target once a year or after major life changes.",
       },
       {
         t: "callout",
@@ -1226,16 +1226,16 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "tax-brackets",
     slug: "progressive-tax-brackets-net-income",
     title: "Progressive tax brackets: why a raise does not tax your whole paycheck",
-    metaTitle: "Tax Brackets: Raise vs Whole-Paycheck Myth | FinCalc",
+    metaTitle: "Tax Brackets: Raise vs Whole-Paycheck Myth | FinanceCalculator",
     metaDescription:
-      "Marginal vs effective tax: U.S. brackets & Russia NDFL 2025 (13-22%). Full paycheck not taxed at top rate. FAQs & FinCalc demo—education only.",
+      "Marginal vs effective tax: U.S. brackets & Russia NDFL 2025 (13-22%). Full paycheck not taxed at top rate. FAQs & FinanceCalculator demo—education only.",
     keywords:
-      "tax brackets, marginal tax rate, effective tax rate, progressive tax, Russia NDFL, Russian income tax 2025, taxable income, tax withholding, pay raise tax myth, FinCalc tax calculator",
+      "tax brackets, marginal tax rate, effective tax rate, progressive tax, Russia NDFL, Russian income tax 2025, taxable income, tax withholding, pay raise tax myth, FinanceCalculator tax calculator",
     excerpt:
       "Higher brackets apply only to income above each threshold—your entire salary is not taxed at your top rate.",
     datePublished: "2026-02-25",
     dateModified: "2026-04-08",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 13,
     hero: {
       src: "/blog/tax-brackets-hero-staircase.svg",
@@ -1243,7 +1243,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       alt: "Stair-step diagram showing progressive income taxed in separate bands",
       caption:
         "Image 1: think of taxable income climbing steps—each step has its own rate on the dollars inside that band only.",
-      credit: "FinCalc visual",
+      credit: "FinanceCalculator visual",
     },
     video: {
       youtubeId: "kYeZko1WKHQ",
@@ -1256,7 +1256,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "progressive taxation staircase",
       "taxable income vs gross pay",
       "withholding vs year-end tax",
-      "FinCalc simplified tax demo",
+      "FinanceCalculator simplified tax demo",
       "Russia NDFL progressive bands 2025",
       "13% 15% 18% 20% 22% ruble thresholds",
     ],
@@ -1267,7 +1267,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "FinCalc publishes calculators and educational articles for everyday money decisions. Our on-site tax tool uses a simplified stairstep model so you can see marginal versus average rates in action. It is not a substitute for a CPA, payroll software, or official IRS instructions—real returns depend on filing status, deductions, credits, payroll taxes, and state or local rules. Below the hero image, we embedded a short Tax Foundation explainer video on U.S. federal brackets to reinforce the intuition.",
+        text: "FinanceCalculator publishes calculators and educational articles for everyday money decisions. Our on-site tax tool uses a simplified stairstep model so you can see marginal versus average rates in action. It is not a substitute for a CPA, payroll software, or official IRS instructions—real returns depend on filing status, deductions, credits, payroll taxes, and state or local rules. Below the hero image, we embedded a short Tax Foundation explainer video on U.S. federal brackets to reinforce the intuition.",
       },
       {
         t: "h2",
@@ -1291,7 +1291,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Comparison of myth versus reality when salary crosses a tax bracket",
         caption:
           "Image 2: the “whole paycheck retaxed” story is a myth—only income above the new threshold faces the higher marginal rate.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -1309,7 +1309,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Side by side boxes explaining marginal tax versus effective average tax",
         caption:
           "Image 3: marginal drives the next dollar; effective summarizes what you already paid across all bands.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "h2",
@@ -1363,7 +1363,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "callout",
         variant: "note",
-        title: "FinCalc’s tax tool",
+        title: "FinanceCalculator’s tax tool",
         text: "The on-site tax calculator remains a U.S.-style teaching demo with fictional dollar bands. It does not implement Russian thresholds or the full Tax Code—use it for marginal-vs-effective intuition, not for Russian filing.",
       },
       {
@@ -1382,7 +1382,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "h2",
         id: "fincalc-tax-tool",
-        text: "Using FinCalc’s tax calculator as a teaching aid",
+        text: "Using FinanceCalculator’s tax calculator as a teaching aid",
       },
       {
         t: "p",
@@ -1395,13 +1395,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         alt: "Stacked horizontal bars representing simplified tax slices R1 R2 R3",
         caption:
           "Image 4: the demo tool stacks slices—matching how progressive tax is computed before real-world adjustments.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "callout",
         variant: "disclaimer",
         title: "Calculator limits",
-        text: "FinCalc does not model AMT, NIIT, capital gains tiers, payroll (FICA) taxes, state or local income tax, credits, or employer-specific benefits. Use IRS forms, publications, or a qualified preparer for a complete return.",
+        text: "FinanceCalculator does not model AMT, NIIT, capital gains tiers, payroll (FICA) taxes, state or local income tax, credits, or employer-specific benefits. Use IRS forms, publications, or a qualified preparer for a complete return.",
       },
       {
         t: "h2",
@@ -1470,7 +1470,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "h3",
         id: "faq-russia-ndfl",
-        text: "I’m in Russia—is the FinCalc calculator enough for my paycheck?",
+        text: "I’m in Russia—is the FinanceCalculator calculator enough for my paycheck?",
       },
       {
         t: "p",
@@ -1507,22 +1507,22 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     topicKey: "currency-travel",
     slug: "currency-exchange-travel-budget",
     title: "Travel FX: bank spreads, not mid-market memes",
-    metaTitle: "Travel currency exchange: mid-market vs bank spread & DCC | FinCalc",
+    metaTitle: "Travel currency exchange: mid-market vs bank spread & DCC | FinanceCalculator",
     metaDescription:
-      "Travel FX: Google mid-market vs airport & ATM rates, bank spread, DCC pitfalls. Live ECB crosses in-article + FinCalc converter. Education only—not advice.",
+      "Travel FX: Google mid-market vs airport & ATM rates, bank spread, DCC pitfalls. Live ECB crosses in-article + FinanceCalculator converter. Education only—not advice.",
     keywords:
-      "travel money, currency exchange abroad, FX spread, mid-market rate, ECB reference rate, airport currency exchange, ATM foreign fees, DCC dynamic currency conversion, currency converter, FinCalc",
+      "travel money, currency exchange abroad, FX spread, mid-market rate, ECB reference rate, airport currency exchange, ATM foreign fees, DCC dynamic currency conversion, currency converter, FinanceCalculator",
     excerpt: "The rate on Google is not the rate at the departures hall ATM.",
     datePublished: "2026-03-01",
     dateModified: "2026-04-08",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
       src: "/blog/currency-travel-hero-airport-board.svg",
       srcWebp: "/blog/currency-travel-hero-airport-board.webp",
       alt: "Airport-style exchange board comparing mid-market and retail travel FX quotes",
       caption: "Image 1: mid-market is a reference; travelers transact at retail rates with spread and fees.",
-      credit: "FinCalc visual",
+      credit: "FinanceCalculator visual",
     },
     keyPhrases: [
       "mid-market vs retail FX spread",
@@ -1536,7 +1536,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     blocks: [
       {
         t: "p",
-        text: "FinCalc publishes calculators and short guides for everyday money decisions. This page explains why the “exchange rate” you see in search results or on the news rarely matches what you pay at a counter, hotel desk, or foreign card terminal. We pair that intuition with a live ECB-based reference snippet (same data backbone as our currency converter) so you can compare a clean benchmark to your bank’s real quote. Nothing here is personalized advice—fees, networks, and regulations depend on your issuer and destination.",
+        text: "FinanceCalculator publishes calculators and short guides for everyday money decisions. This page explains why the “exchange rate” you see in search results or on the news rarely matches what you pay at a counter, hotel desk, or foreign card terminal. We pair that intuition with a live ECB-based reference snippet (same data backbone as our currency converter) so you can compare a clean benchmark to your bank’s real quote. Nothing here is personalized advice—fees, networks, and regulations depend on your issuer and destination.",
       },
       {
         t: "h2",
@@ -1570,7 +1570,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "This article’s layout includes a live snippet (USD/EUR/GBP) pulled from the same Frankfurter/ECB pipeline as FinCalc’s currency calculator. It refreshes when you load or reload the page. Your bank, ATM operator, or card network still applies its own spread, fees, and rounding—so treat the widget as a compass, not a contract price.",
+        text: "This article’s layout includes a live snippet (USD/EUR/GBP) pulled from the same Frankfurter/ECB pipeline as FinanceCalculator’s currency calculator. It refreshes when you load or reload the page. Your bank, ATM operator, or card network still applies its own spread, fees, and rounding—so treat the widget as a compass, not a contract price.",
       },
       {
         t: "h2",
@@ -1601,7 +1601,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         srcWebp: "/blog/currency-travel-dcc-terminal-choice.webp",
         alt: "Terminal screen showing local currency vs DCC home-currency option",
         caption: "Image 2: paying in local currency often avoids an extra DCC markup layer.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "p",
@@ -1635,7 +1635,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         srcWebp: "/blog/currency-travel-atm-fee-stack.webp",
         alt: "Stacked bars showing ATM withdrawal cost components",
         caption: "Image 3: ATM cost is base cash plus surcharge, issuer fee, FX spread, and sometimes DCC markup.",
-        credit: "FinCalc visual",
+        credit: "FinanceCalculator visual",
       },
       {
         t: "p",
@@ -1680,7 +1680,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Travel FX is less about finding the mythical “true” rate on Google and more about understanding spread, stacked fees, and DCC. Use FinCalc’s converter alongside the live snippet here to benchmark quotes, plan a small sane cash buffer, and let cards do most of the work when networks and fees are favorable.",
+        text: "Travel FX is less about finding the mythical “true” rate on Google and more about understanding spread, stacked fees, and DCC. Use FinanceCalculator’s converter alongside the live snippet here to benchmark quotes, plan a small sane cash buffer, and let cards do most of the work when networks and fees are favorable.",
       },
       {
         t: "callout",
@@ -1705,22 +1705,22 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   //  VAT / GST invoicing — inclusive vs exclusive
   //  Target KW : VAT inclusive exclusive invoice
   //  Silo      : Business & Tax Tools → VAT / sales tax
-  //  Author    : FinCalc Editorial  |  Readability: Grade 8
+  //  Author    : FinanceCalculator Editorial  |  Readability: Grade 8
   // ─────────────────────────────────────────────────────────────────────────
   {
     topicKey: "vat-invoicing",
     slug: "vat-gst-invoicing-inclusive-exclusive",
     title: "VAT on invoices: inclusive vs exclusive in the real world",
-    metaTitle: "VAT inclusive vs exclusive pricing for invoices | FinCalc Blog",
+    metaTitle: "VAT inclusive vs exclusive pricing for invoices | FinanceCalculator Blog",
     metaDescription:
-      "Learn VAT-inclusive vs VAT-exclusive pricing on real invoices: formulas, line items, rounding, discounts, B2B quotes, and common audit mistakes—plus how FinCalc’s VAT calculator matches your PDFs.",
+      "Learn VAT-inclusive vs VAT-exclusive pricing on real invoices: formulas, line items, rounding, discounts, B2B quotes, and common audit mistakes—plus how FinanceCalculator’s VAT calculator matches your PDFs.",
     keywords:
       "VAT inclusive vs exclusive, VAT invoice, gross net tax, split VAT from total, small business invoicing, VAT calculator, tax-exclusive price",
     excerpt:
       "Mixing inclusive and exclusive modes is the fastest way to misstate revenue, VAT owed, and cash flow. This guide walks through real invoices, numbers, and edge cases—not textbook definitions only.",
     datePublished: "2026-03-10",
     dateModified: "2026-04-05",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
       src: "https://upload.wikimedia.org/wikipedia/commons/0/0b/ReceiptSwiss.jpg",
@@ -1744,7 +1744,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "FinCalc’s VAT calculator lets you toggle inclusive and exclusive modes so you can mirror how a quote or PDF is written. However, rules for rates, registration, and filing depend on your country and your customer’s location. Therefore, treat this guide as practical arithmetic and process advice—not legal or tax filing advice. When in doubt, confirm with your accountant or tax authority.",
+        text: "FinanceCalculator’s VAT calculator lets you toggle inclusive and exclusive modes so you can mirror how a quote or PDF is written. However, rules for rates, registration, and filing depend on your country and your customer’s location. Therefore, treat this guide as practical arithmetic and process advice—not legal or tax filing advice. When in doubt, confirm with your accountant or tax authority.",
       },
       {
         t: "h2",
@@ -1776,7 +1776,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Algebraically, if gross G = net N × (1 + r/100), then N = G ÷ (1 + r/100) and VAT = G − N. You can also write VAT = G × (r / (100 + r)). Both forms are equivalent; use whichever fits your template. FinCalc’s tool applies the same math so you can check a supplier invoice or sanity-check your own export.",
+        text: "Algebraically, if gross G = net N × (1 + r/100), then N = G ÷ (1 + r/100) and VAT = G − N. You can also write VAT = G × (r / (100 + r)). Both forms are equivalent; use whichever fits your template. FinanceCalculator’s tool applies the same math so you can check a supplier invoice or sanity-check your own export.",
       },
       {
         t: "figure",
@@ -1808,7 +1808,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         t: "figure",
         src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Casio_fx-991EX.jpg",
         alt: "Scientific calculator on a desk — useful for double-checking net, VAT, and gross before you post to accounting",
-        caption: "A quick handheld check (or FinCalc’s VAT tool) catches the classic error: treating a VAT-inclusive total as if it were net.",
+        caption: "A quick handheld check (or FinanceCalculator’s VAT tool) catches the classic error: treating a VAT-inclusive total as if it were net.",
         credit: "Wikimedia Commons — Sebastian Wallroth",
         creditUrl: "https://commons.wikimedia.org/wiki/File:Casio_fx-991EX.jpg",
       },
@@ -1946,7 +1946,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "h3",
         id: "faq-calculator-match",
-        text: "Can FinCalc match my invoice PDF?",
+        text: "Can FinanceCalculator match my invoice PDF?",
       },
       {
         t: "p",
@@ -1956,7 +1956,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         t: "callout",
         variant: "disclaimer",
         title: "Not tax or legal advice",
-        text: "VAT, GST, and sales tax rules depend on jurisdiction, registration, product type, and customer location. FinCalc provides calculators and educational content only. For filing positions, use a qualified adviser and official guidance.",
+        text: "VAT, GST, and sales tax rules depend on jurisdiction, registration, product type, and customer location. FinanceCalculator provides calculators and educational content only. For filing positions, use a qualified adviser and official guidance.",
       },
       {
         t: "h2",
@@ -1969,7 +1969,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Start with one real invoice this week. Split the gross using net = gross ÷ (1 + r/100), tie it to your ledger, then open FinCalc’s VAT calculator and confirm the same numbers in both inclusive and exclusive views. Once that habit sticks, inclusive vs exclusive stops being a mystery—and becomes a checkbox you already trust.",
+        text: "Start with one real invoice this week. Split the gross using net = gross ÷ (1 + r/100), tie it to your ledger, then open FinanceCalculator’s VAT calculator and confirm the same numbers in both inclusive and exclusive views. Once that habit sticks, inclusive vs exclusive stops being a mystery—and becomes a checkbox you already trust.",
       },
     ],
     sources: [
@@ -1984,13 +1984,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   //  TI-84 Plus CE Online Calculator — Full SEO Article
   //  Target KW : "TI-84 Plus CE calculator online"
   //  Silo      : Free Online Calculators → Graphing & Scientific Tools
-  //  Author    : FinCalc Editorial  |  Readability: Grade 8
+  //  Author    : FinanceCalculator Editorial  |  Readability: Grade 8
   // ─────────────────────────────────────────────────────────────────────────
   {
     topicKey: "ti84-calculator-online",
     slug: "ti84-plus-ce-calculator-online",
     title: "TI-84 Plus CE Calculator Online: Free Graphing Tool That Actually Works",
-    metaTitle: "TI-84 Plus CE Calculator Online — Free & Full-Featured | FinCalc",
+    metaTitle: "TI-84 Plus CE Calculator Online — Free & Full-Featured | FinanceCalculator",
     metaDescription:
       "Use the free TI-84 Plus CE calculator online. Graph functions, solve trig, use 2nd key shortcuts, adjust window settings — no download needed. Works on any device.",
     keywords:
@@ -1999,7 +1999,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "Forgot your TI-84 at home? This free online version graphs functions, handles trig, and works with your keyboard — no app, no login, no cost.",
     datePublished: "2026-04-05",
     dateModified: "2026-04-05",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
       src: "https://upload.wikimedia.org/wikipedia/commons/5/56/TI-84_Plus_on_dark_background.JPG",
@@ -2019,7 +2019,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── INTRO: PAS Formula Hook ──────────────────────────────────────────
       {
         t: "p",
-        text: "You are sitting in the library. Your TI-84 is at home. The exam is tomorrow. You search for an online graphing calculator and get five confusing tools that barely work on mobile. Sound familiar? That exact situation is why FinCalc built a full TI-84 Plus CE simulator right in your browser — no download, no login, no cost. I have been in that exact spot during finals week, and I know how stressful it is to hunt for a reliable tool the night before a big test. This guide will show you exactly how to use every key, graph any function, and solve problems the same way your real TI-84 works.",
+        text: "You are sitting in the library. Your TI-84 is at home. The exam is tomorrow. You search for an online graphing calculator and get five confusing tools that barely work on mobile. Sound familiar? That exact situation is why FinanceCalculator built a full TI-84 Plus CE simulator right in your browser — no download, no login, no cost. I have been in that exact spot during finals week, and I know how stressful it is to hunt for a reliable tool the night before a big test. This guide will show you exactly how to use every key, graph any function, and solve problems the same way your real TI-84 works.",
       },
       // ── SECTION 1 ────────────────────────────────────────────────────────
       {
@@ -2088,7 +2088,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── TABLE 1: Keyboard shortcuts ──────────────────────────────────────
       {
         t: "table",
-        caption: "Keyboard shortcuts for the FinCalc TI-84 online calculator",
+        caption: "Keyboard shortcuts for the FinanceCalculator TI-84 online calculator",
         head: ["Keyboard Key", "Calculator Action", "Example"],
         rows: [
           ["0–9, .", "Type digits and decimal point", "3.14"],
@@ -2243,12 +2243,12 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Not all online calculators are equal. Many tools handle basic arithmetic but fail on graphing or trig. Additionally, some require sign-up or show annoying ads. Here is how the FinCalc TI-84 compares to common alternatives students search for.",
+        text: "Not all online calculators are equal. Many tools handle basic arithmetic but fail on graphing or trig. Additionally, some require sign-up or show annoying ads. Here is how the FinanceCalculator TI-84 compares to common alternatives students search for.",
       },
       {
         t: "table",
         caption: "Online graphing calculator comparison — features students care about",
-        head: ["Feature", "FinCalc TI-84", "Desmos", "Mathway", "GeoGebra"],
+        head: ["Feature", "FinanceCalculator TI-84", "Desmos", "Mathway", "GeoGebra"],
         rows: [
           ["TI-84 exact interface", "✅ Yes", "❌ No", "❌ No", "❌ No"],
           ["No login required", "✅ Yes", "✅ Yes", "❌ Required", "✅ Yes"],
@@ -2319,7 +2319,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Yes. The FinCalc TI-84 Plus CE online calculator is 100% free with no sign-up, no trial, and no hidden fees. You can use it on any device with a modern browser. There is no download required. Furthermore, all features including graphing, 2nd key functions, and window settings are available without any account.",
+        text: "Yes. The FinanceCalculator TI-84 Plus CE online calculator is 100% free with no sign-up, no trial, and no hidden fees. You can use it on any device with a modern browser. There is no download required. Furthermore, all features including graphing, 2nd key functions, and window settings are available without any account.",
       },
       {
         t: "h3",
@@ -2353,7 +2353,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
         t: "callout",
         variant: "disclaimer",
         title: "Exam Policy Notice",
-        text: "Always verify your exam's calculator policy with the official testing organization. This online tool is for practice and learning only. FinCalc is not affiliated with Texas Instruments or any testing body.",
+        text: "Always verify your exam's calculator policy with the official testing organization. This online tool is for practice and learning only. FinanceCalculator is not affiliated with Texas Instruments or any testing body.",
       },
       // ── SECTION 14: Conclusion with EEAT ────────────────────────────────
       {
@@ -2367,7 +2367,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Start using it today. Press Y=, type x^2, press GRAPH, and see the parabola appear in seconds. That is the power of a real graphing calculator at your fingertips — for free, forever. If you want to go deeper into financial math, explore the other calculators on FinCalc: from compound interest to mortgage payments, we have every calculation a student or professional needs.",
+        text: "Start using it today. Press Y=, type x^2, press GRAPH, and see the parabola appear in seconds. That is the power of a real graphing calculator at your fingertips — for free, forever. If you want to go deeper into financial math, explore the other calculators on FinanceCalculator: from compound interest to mortgage payments, we have every calculation a student or professional needs.",
       },
     ],
     sources: [
@@ -2392,13 +2392,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   //  Target KW : "BMI screening insurance pricing"
   //  Silo      : Health & Financial Tools → BMI & Insurance
   //  Steps     : Full 15-step SEO workflow applied
-  //  Author    : FinCalc Editorial  |  Readability: Grade 8
+  //  Author    : FinanceCalculator Editorial  |  Readability: Grade 8
   // ─────────────────────────────────────────────────────────────────────────
   {
     topicKey: "bmi-insurance-pricing",
     slug: "bmi-screening-insurance-pricing",
     title: "BMI Screening and Insurance Pricing: What the Number Does and Does Not Prove",
-    metaTitle: "BMI Screening & Insurance Pricing: What the Number Really Means | FinCalc",
+    metaTitle: "BMI Screening & Insurance Pricing: What the Number Really Means | FinanceCalculator",
     metaDescription:
       "Insurance companies use BMI in pricing — but the number has real limits. Learn what BMI proves, what it misses, and how to protect yourself when applying for coverage.",
     keywords:
@@ -2407,7 +2407,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "Your BMI is one number. Insurers treat it as a risk signal. But scientists, doctors, and regulators all agree it tells only part of the story — here is what you need to know.",
     datePublished: "2026-04-05",
     dateModified: "2026-04-05",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 12,
     hero: {
       src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png",
@@ -2611,7 +2611,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
           "Consider waist circumference data. Some progressive insurers are beginning to accept this as a supplementary metric. Ask your broker.",
           "Work with an independent broker. They represent multiple carriers and can pre-screen which underwriters are most favorable for your profile.",
           "Understand the look-back period. Most insurers re-underwrite at renewal or when you increase coverage. Improvements to your health profile can lower rates over time.",
-          "Use the FinCalc BMI calculator first. Know your number, understand the category, and prepare your conversation before you talk to an insurer.",
+          "Use the FinanceCalculator BMI calculator first. Know your number, understand the category, and prepare your conversation before you talk to an insurer.",
         ],
       },
 
@@ -2694,7 +2694,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Use the FinCalc BMI calculator on this site — enter your height and weight and it immediately shows your BMI, your category, and what that typically means. For insurance purposes: a BMI below 25 generally qualifies for standard or preferred rates with most carriers. A BMI of 25–29.9 may still get standard rates depending on other health factors. A BMI of 30 or above typically triggers additional scrutiny and a potential surcharge. However, these are general patterns — individual insurer guidelines vary widely, and your broker can tell you which carriers are most favorable for your specific profile.",
+        text: "Use the FinanceCalculator BMI calculator on this site — enter your height and weight and it immediately shows your BMI, your category, and what that typically means. For insurance purposes: a BMI below 25 generally qualifies for standard or preferred rates with most carriers. A BMI of 25–29.9 may still get standard rates depending on other health factors. A BMI of 30 or above typically triggers additional scrutiny and a potential surcharge. However, these are general patterns — individual insurer guidelines vary widely, and your broker can tell you which carriers are most favorable for your specific profile.",
       },
 
       // ── CONCLUSION: EEAT + Personal experience ────────────────────────────
@@ -2709,7 +2709,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Nonetheless, you are not powerless. Calculate your BMI today with our tool, know your category, and go into every insurance conversation with your full health picture ready. Blood pressure, blood glucose, cholesterol, activity level — bring it all. The carriers that deserve your business are the ones willing to look at more than one number. Use FinCalc's BMI calculator to start that conversation with confidence.",
+        text: "Nonetheless, you are not powerless. Calculate your BMI today with our tool, know your category, and go into every insurance conversation with your full health picture ready. Blood pressure, blood glucose, cholesterol, activity level — bring it all. The carriers that deserve your business are the ones willing to look at more than one number. Use FinanceCalculator's BMI calculator to start that conversation with confidence.",
       },
     ],
     sources: [
@@ -2739,13 +2739,13 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   //  Silo      : Financial Calculators → Loan & Debt Management
   //  Target KW : "how to calculate EMI"
   //  Secondary : EMI formula, EMI calculator, loan monthly payment
-  //  Author    : FinCalc Editorial  |  Grade 8 English | ~1,500 words
+  //  Author    : FinanceCalculator Editorial  |  Grade 8 English | ~1,500 words
   // ─────────────────────────────────────────────────────────────────────────
   {
     topicKey: "how-to-calculate-emi",
     slug: "how-to-calculate-emi-loan-monthly-payment",
     title: "How to Calculate EMI: The Formula, the Math, and What Lenders Do Not Tell You",
-    metaTitle: "How to Calculate EMI: Formula, Examples & Loan Payment Guide | FinCalc",
+    metaTitle: "How to Calculate EMI: Formula, Examples & Loan Payment Guide | FinanceCalculator",
     metaDescription:
       "Learn how to calculate EMI (Equated Monthly Installment) using the exact formula, see worked examples, and find out what factors secretly raise your total loan cost.",
     keywords:
@@ -2754,7 +2754,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       "Your monthly loan payment looks simple. But the math behind it — and what the lender chooses not to show you — can cost thousands over the life of a loan.",
     datePublished: "2026-04-05",
     dateModified: "2026-04-05",
-    author: "FinCalc Editorial",
+    author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
       src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
@@ -3009,7 +3009,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "EMI is your fixed monthly payment amount. APR (Annual Percentage Rate) is the true annualized cost of borrowing, including fees and charges, not just the interest rate. Two loans can have the same EMI but very different APRs if one includes processing fees, insurance, or other charges. Therefore, always compare loans using APR rather than just the stated rate or monthly payment. The FinCalc EMI calculator shows the total amount repaid, which helps you see the full picture beyond just the monthly number.",
+        text: "EMI is your fixed monthly payment amount. APR (Annual Percentage Rate) is the true annualized cost of borrowing, including fees and charges, not just the interest rate. Two loans can have the same EMI but very different APRs if one includes processing fees, insurance, or other charges. Therefore, always compare loans using APR rather than just the stated rate or monthly payment. The FinanceCalculator EMI calculator shows the total amount repaid, which helps you see the full picture beyond just the monthly number.",
       },
       {
         t: "h3",
@@ -3018,7 +3018,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Yes — if you use the correct reducing balance formula (P × r × (1+r)ⁿ ÷ [(1+r)ⁿ−1]), the result matches bank calculations precisely for standard fixed-rate loans. The FinCalc EMI calculator uses this exact formula. Differences between online calculators and bank statements typically arise from day-count conventions, rounding policies, processing fees, or variable-rate adjustments — none of which relate to the formula itself.",
+        text: "Yes — if you use the correct reducing balance formula (P × r × (1+r)ⁿ ÷ [(1+r)ⁿ−1]), the result matches bank calculations precisely for standard fixed-rate loans. The FinanceCalculator EMI calculator uses this exact formula. Differences between online calculators and bank statements typically arise from day-count conventions, rounding policies, processing fees, or variable-rate adjustments — none of which relate to the formula itself.",
       },
       {
         t: "h3",
@@ -3051,7 +3051,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "p",
-        text: "Use the FinCalc EMI calculator right now. Enter your loan amount, rate, and tenure. Then change one variable at a time and watch what happens to the total interest. That exercise alone will make you a smarter borrower. Furthermore, if you are comparing multiple loan offers, run each one through the calculator and compare the total repayment — not just the monthly payment. The difference is often eye-opening.",
+        text: "Use the FinanceCalculator EMI calculator right now. Enter your loan amount, rate, and tenure. Then change one variable at a time and watch what happens to the total interest. That exercise alone will make you a smarter borrower. Furthermore, if you are comparing multiple loan offers, run each one through the calculator and compare the total repayment — not just the monthly payment. The difference is often eye-opening.",
       },
     ],
     sources: [
