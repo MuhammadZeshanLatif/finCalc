@@ -285,6 +285,123 @@ body {
   margin-top: 2px;
 }
 
+/* ── 404 PAGE ───────────────────────────────────────────── */
+.fc-404-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3.5rem 1.5rem 4rem;
+  min-height: 60vh;
+}
+
+.fc-404-graphic {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.8rem;
+  line-height: 1;
+}
+
+.fc-404-num {
+  font-size: 7rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--fc-primary) 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -4px;
+}
+
+.fc-404-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--fc-primary) 0%, #7C3AED 100%);
+  box-shadow: 0 8px 28px rgba(79,70,229,0.35);
+  animation: fc404-bounce 2.4s ease-in-out infinite;
+}
+
+.fc-404-calc-icon {
+  font-size: 2.6rem;
+  color: #fff;
+}
+
+@keyframes fc404-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.fc-404-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--fc-dark);
+  margin-bottom: 0.6rem;
+}
+
+.fc-404-desc {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  max-width: 380px;
+}
+
+.fc-404-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.fc-404-btn-home {
+  padding: 0.6rem 1.6rem;
+}
+
+.fc-404-btn-calc {
+  padding: 0.6rem 1.6rem;
+  background: transparent;
+  border: 2px solid var(--fc-primary);
+  color: var(--fc-primary);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.2s;
+}
+
+.fc-404-btn-calc:hover {
+  background: var(--fc-primary);
+  color: #fff;
+}
+
+.fc-404-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fc-404-pill {
+  background: #f3f4f6;
+  border: none;
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-size: 0.82rem;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.fc-404-pill:hover {
+  background: var(--fc-primary);
+  color: #fff;
+}
+
 /* ── LIVE CLOCK ─────────────────────────────────────────── */
 .fc-hero-clock-slot {
   position: absolute;

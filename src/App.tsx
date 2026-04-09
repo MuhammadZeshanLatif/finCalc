@@ -691,6 +691,56 @@ export default function App() {
               </div>
             )}
 
+            {/* ── 404 Not Found ───────────────────────────── */}
+            {currentPage === "notfound" && (
+              <div className="fc-404-wrap">
+                <div className="fc-404-graphic">
+                  <span className="fc-404-num">4</span>
+                  <span className="fc-404-icon-wrap">
+                    <i className="fa-solid fa-calculator fc-404-calc-icon"></i>
+                  </span>
+                  <span className="fc-404-num">4</span>
+                </div>
+                <h1 className="fc-404-title">
+                  {lang === "ru" ? "Страница не найдена" : "Page Not Found"}
+                </h1>
+                <p className="fc-404-desc">
+                  {lang === "ru"
+                    ? "Похоже, эта страница не существует или была перемещена."
+                    : "Looks like this page doesn't exist or has been moved."}
+                </p>
+                <div className="fc-404-actions">
+                  <button
+                    className="btn fc-calc-btn fc-404-btn-home"
+                    onClick={() => navigateTo("home")}
+                  >
+                    <i className="fa-solid fa-house me-2"></i>
+                    {lang === "ru" ? "На главную" : "Go Home"}
+                  </button>
+                  <button
+                    className="btn fc-404-btn-calc"
+                    onClick={() => navigateTo("basic")}
+                  >
+                    <i className="fa-solid fa-calculator me-2"></i>
+                    {lang === "ru" ? "Открыть калькулятор" : "Open Calculator"}
+                  </button>
+                </div>
+                <div className="fc-404-links">
+                  {[
+                    { id: "interest", label: lang === "ru" ? "Проценты" : "Interest" },
+                    { id: "loan",     label: lang === "ru" ? "Кредит"   : "Loan" },
+                    { id: "mortgage", label: lang === "ru" ? "Ипотека"  : "Mortgage" },
+                    { id: "currency", label: lang === "ru" ? "Валюта"   : "Currency" },
+                    { id: "bmi",      label: "BMI" },
+                  ].map(l => (
+                    <button key={l.id} className="fc-404-pill" onClick={() => navigateTo(l.id)}>
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
           </main>
         </div>
       </div>

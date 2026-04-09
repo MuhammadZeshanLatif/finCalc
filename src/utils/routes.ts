@@ -18,6 +18,7 @@ export const ROUTE_PAGES = new Set([
   "tax",
   "currency",
   "ti84",
+  "notfound",
 ]);
 
 export type AppLang = "en" | "ru";
@@ -69,5 +70,5 @@ export function buildPathname(lang: AppLang, page: string, blogSlug?: string | n
 }
 
 export function normalizePage(page: string): string {
-  return ROUTE_PAGES.has(page) ? page : "home";
+  return ROUTE_PAGES.has(page) ? page : "notfound";
 }
