@@ -33,9 +33,19 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy via rsync
+      - name: Clear remote folder
         run: |
-          rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT || 22 }} -o StrictHostKeyChecking=no" \
-            dist/ \
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT || 22 }} \
+            -o StrictHostKeyChecking=no \
+            theins20@${{ secrets.SSH_HOST }} \
+            "rm -rf /home/theins20/financcalculator.ru/* /home/theins20/financcalculator.ru/.[!.]*"
+
+      - name: Deploy via scp
+        run: |
+          scp -r \
+            -i ~/.ssh/deploy_key \
+            -P ${{ secrets.SSH_PORT || 22 }} \
+            -o StrictHostKeyChecking=no \
+            dist/. \
             theins20@${{ secrets.SSH_HOST }}:/home/theins20/financcalculator.ru/
