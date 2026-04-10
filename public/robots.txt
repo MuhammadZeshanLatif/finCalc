@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Yandex bots
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&ref&fbclid&gclid
+
+User-agent: YandexImages
+Allow: /
+
+User-agent: YandexVideo
+Allow: /
+
+User-agent: YandexNews
+Allow: /
+
+User-agent: YandexMobileBot
+Allow: /
 
 Sitemap: https://financcalculator.ru/sitemap.xml

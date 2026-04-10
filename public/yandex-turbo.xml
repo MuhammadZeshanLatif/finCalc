@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Yandex Turbo Pages RSS feed — FULL SITE
+  Submit in Yandex Webmaster → Turbo Pages → Add Feed:
+    https://financcalculator.ru/yandex-turbo.xml
+  Docs: https://yandex.ru/dev/turbo/doc/rss/
+-->
+<rss
+  xmlns:turbo="http://turbo.yandex.ru"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  version="2.0"
+>
+  <channel>
+    <title>FinanceCalculator — Финансовые калькуляторы онлайн</title>
+    <link>https://financcalculator.ru/</link>
+    <description>Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Без регистрации.</description>
+    <language>ru</language>
+    <lastBuildDate>Fri, 11 Apr 2026 00:00:00 +0000</lastBuildDate>
+
+    <!-- ================================================
+         HOME
+    ================================================ -->
+    <item turbo="true">
+      <title>FinanceCalculator — Бесплатные финансовые калькуляторы</title>
+      <link>https://financcalculator.ru/ru</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>FinanceCalculator</h1>
+          <p>Бесплатные финансовые калькуляторы онлайн: проценты, вклад, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ, дни. Работает в браузере без регистрации.</p>
+        </header>
+        <section>
+          <h2>Все калькуляторы</h2>
+          <ul>
+            <li><a href="https://financcalculator.ru/ru/basic">Базовый калькулятор</a></li>
+            <li><a href="https://financcalculator.ru/ru/interest">Калькулятор процентов</a></li>
+            <li><a href="https://financcalculator.ru/ru/deposit">Калькулятор вклада</a></li>
+            <li><a href="https://financcalculator.ru/ru/loan">Калькулятор кредита</a></li>
+            <li><a href="https://financcalculator.ru/ru/mortgage">Ипотечный калькулятор</a></li>
+            <li><a href="https://financcalculator.ru/ru/emi">Калькулятор EMI</a></li>
+            <li><a href="https://financcalculator.ru/ru/vat">Калькулятор НДС</a></li>
+            <li><a href="https://financcalculator.ru/ru/tax">Калькулятор налогов</a></li>
+            <li><a href="https://financcalculator.ru/ru/currency">Конвертер валют</a></li>
+            <li><a href="https://financcalculator.ru/ru/bmi">Калькулятор ИМТ</a></li>
+            <li><a href="https://financcalculator.ru/ru/days">Калькулятор дней</a></li>
+          </ul>
+        </section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>FinanceCalculator — Free Financial Calculators</title>
+      <link>https://financcalculator.ru/</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>FinanceCalculator</h1>
+          <p>Free online financial calculators: compound interest, loan, mortgage, EMI, VAT, tax, currency, BMI, and more. No sign-up required.</p>
+        </header>
+        <section>
+          <h2>All Calculators</h2>
+          <ul>
+            <li><a href="https://financcalculator.ru/basic">Basic Calculator</a></li>
+            <li><a href="https://financcalculator.ru/interest">Interest Calculator</a></li>
+            <li><a href="https://financcalculator.ru/deposit">Deposit Calculator</a></li>
+            <li><a href="https://financcalculator.ru/loan">Loan Calculator</a></li>
+            <li><a href="https://financcalculator.ru/mortgage">Mortgage Calculator</a></li>
+            <li><a href="https://financcalculator.ru/emi">EMI Calculator</a></li>
+            <li><a href="https://financcalculator.ru/vat">VAT Calculator</a></li>
+            <li><a href="https://financcalculator.ru/tax">Tax Calculator</a></li>
+            <li><a href="https://financcalculator.ru/currency">Currency Converter</a></li>
+            <li><a href="https://financcalculator.ru/bmi">BMI Calculator</a></li>
+            <li><a href="https://financcalculator.ru/days">Days Calculator</a></li>
+          </ul>
+        </section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         CALCULATORS — RUSSIAN
+    ================================================ -->
+    <item turbo="true">
+      <title>Базовый калькулятор онлайн</title>
+      <link>https://financcalculator.ru/ru/basic</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Базовый калькулятор</h1>
+          <p>Стандартный онлайн-калькулятор для быстрых арифметических вычислений прямо в браузере.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/basic">Открыть калькулятор →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор процентов онлайн — сложные и простые проценты</title>
+      <link>https://financcalculator.ru/ru/interest</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор процентов</h1>
+          <p>Рассчитайте сложные и простые проценты за любой период. Узнайте итоговую сумму и доход от вложений.</p>
+        </header>
+        <section>
+          <h2>Формулы</h2>
+          <p><strong>Простые проценты:</strong> A = P × (1 + r × t)</p>
+          <p><strong>Сложные проценты:</strong> A = P × (1 + r/n)^(n×t)</p>
+          <p>Где P — начальная сумма, r — годовая ставка, t — срок в годах, n — частота начисления в год.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/interest">Открыть калькулятор процентов →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор вклада — расчёт дохода по депозиту</title>
+      <link>https://financcalculator.ru/ru/deposit</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор вклада</h1>
+          <p>Рассчитайте доходность банковского вклада с учётом капитализации процентов и ежемесячных пополнений.</p>
+        </header>
+        <section>
+          <h2>Капитализация процентов</h2>
+          <p>При капитализации проценты начисляются на накопленную сумму, а не только на первоначальный взнос. Это увеличивает итоговый доход.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/deposit">Открыть калькулятор вклада →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор кредита — ежемесячный платёж и переплата</title>
+      <link>https://financcalculator.ru/ru/loan</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор кредита</h1>
+          <p>Рассчитайте ежемесячный платёж, общую переплату и полную стоимость кредита. Поддержка аннуитетных и дифференцированных платежей.</p>
+        </header>
+        <section>
+          <h2>Аннуитетный платёж</h2>
+          <p>Формула: M = P × r(1+r)ⁿ / ((1+r)ⁿ − 1), где P — сумма кредита, r — месячная ставка, n — число месяцев.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/loan">Открыть калькулятор кредита →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Ипотечный калькулятор — расчёт ипотеки онлайн</title>
+      <link>https://financcalculator.ru/ru/mortgage</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Ипотечный калькулятор</h1>
+          <p>Рассчитайте ипотечный платёж, переплату и полную стоимость ипотеки с учётом первоначального взноса.</p>
+        </header>
+        <section>
+          <h2>Что входит в платёж</h2>
+          <p>Ипотечный платёж включает: основной долг (P), проценты (I), налог на имущество (T) и страховку (I) — вместе PITI.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/mortgage">Открыть ипотечный калькулятор →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор EMI — ежемесячный платёж по кредиту</title>
+      <link>https://financcalculator.ru/ru/emi</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор EMI</h1>
+          <p>EMI (Equated Monthly Instalment) — равный ежемесячный платёж по кредиту. Введите сумму, ставку и срок — результат мгновенный.</p>
+        </header>
+        <section>
+          <h2>Формула EMI</h2>
+          <p>EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p>
+          <p>Где P — основной долг, r — месячная процентная ставка, n — количество месяцев.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/emi">Открыть калькулятор EMI →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор НДС — выделить и начислить НДС онлайн</title>
+      <link>https://financcalculator.ru/ru/vat</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор НДС</h1>
+          <p>Выделите НДС из суммы или начислите сверху. Ставки: 20%, 10%, 0%. Мгновенный результат.</p>
+        </header>
+        <section>
+          <h2>Расчёт НДС</h2>
+          <p><strong>Начислить НДС:</strong> Сумма с НДС = Цена × (1 + ставка/100)</p>
+          <p><strong>Выделить НДС:</strong> НДС = Цена − Цена / (1 + ставка/100)</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/vat">Открыть калькулятор НДС →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор налогов — прогрессивные ставки НДФЛ</title>
+      <link>https://financcalculator.ru/ru/tax</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор налогов</h1>
+          <p>Рассчитайте налог на доходы с учётом прогрессивных ставок. Подходит для расчётов НДФЛ в России и других странах.</p>
+        </header>
+        <section>
+          <h2>Прогрессивный налог</h2>
+          <p>При прогрессивной системе повышенная ставка применяется только к сумме сверх порога, а не ко всему доходу.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/tax">Открыть калькулятор налогов →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Конвертер валют онлайн — актуальные курсы 160+ валют</title>
+      <link>https://financcalculator.ru/ru/currency</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Конвертер валют</h1>
+          <p>Конвертируйте между 160+ валютами по актуальным курсам. USD, EUR, RUB, GBP, CNY и многие другие.</p>
+        </header>
+        <section>
+          <h2>Источник курсов</h2>
+          <p>Курсы обновляются в реальном времени. Используются данные ЕЦБ и других авторитетных источников.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/currency">Открыть конвертер валют →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор ИМТ — индекс массы тела онлайн</title>
+      <link>https://financcalculator.ru/ru/bmi</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор ИМТ</h1>
+          <p>Рассчитайте индекс массы тела (ИМТ) по весу и росту. Норма, избыток веса или дефицит — узнайте мгновенно.</p>
+        </header>
+        <section>
+          <h2>Формула ИМТ</h2>
+          <p>ИМТ = вес (кг) / рост² (м). Норма: 18.5–24.9. Избыточный вес: 25–29.9. Ожирение: ≥ 30.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/bmi">Открыть калькулятор ИМТ →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Калькулятор дней — разница между датами</title>
+      <link>https://financcalculator.ru/ru/days</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Калькулятор дней</h1>
+          <p>Рассчитайте количество дней, месяцев и лет между двумя датами. Добавляйте или вычитайте дни из любой даты.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/days">Открыть калькулятор дней →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         CALCULATORS — ENGLISH
+    ================================================ -->
+    <item turbo="true">
+      <title>Basic Calculator Online — Free</title>
+      <link>https://financcalculator.ru/basic</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Basic Calculator</h1>
+          <p>Simple online calculator for quick arithmetic. Works instantly in your browser.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/basic">Open Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Compound Interest Calculator — Simple &amp; Compound</title>
+      <link>https://financcalculator.ru/interest</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Interest Calculator</h1>
+          <p>Calculate simple and compound interest for any amount, rate, and time period. See the full breakdown instantly.</p>
+        </header>
+        <section>
+          <h2>Formulas</h2>
+          <p><strong>Simple:</strong> A = P × (1 + r × t)</p>
+          <p><strong>Compound:</strong> A = P × (1 + r/n)^(n×t)</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/interest">Open Interest Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Deposit / Savings Calculator — Interest Earnings</title>
+      <link>https://financcalculator.ru/deposit</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Deposit Calculator</h1>
+          <p>Calculate earnings on your savings deposit with or without compound interest. Supports regular top-ups.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/deposit">Open Deposit Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Loan Calculator — Monthly Payment &amp; Total Cost</title>
+      <link>https://financcalculator.ru/loan</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Loan Calculator</h1>
+          <p>Find your monthly payment, total interest, and full repayment schedule. Supports annuity and differentiated payments.</p>
+        </header>
+        <section>
+          <h2>Annuity Formula</h2>
+          <p>M = P × r(1+r)ⁿ / ((1+r)ⁿ − 1), where P = principal, r = monthly rate, n = number of months.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/loan">Open Loan Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Mortgage Calculator — Monthly Payment &amp; Amortization</title>
+      <link>https://financcalculator.ru/mortgage</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Mortgage Calculator</h1>
+          <p>Calculate your monthly mortgage payment, total interest paid, and full amortization schedule. Enter loan amount, rate, and term.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/mortgage">Open Mortgage Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>EMI Calculator — Equated Monthly Instalment</title>
+      <link>https://financcalculator.ru/emi</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>EMI Calculator</h1>
+          <p>Calculate your Equated Monthly Instalment (EMI) for any loan. Instant results with full amortization table.</p>
+        </header>
+        <section>
+          <h2>EMI Formula</h2>
+          <p>EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/emi">Open EMI Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>VAT Calculator — Add or Remove VAT Online</title>
+      <link>https://financcalculator.ru/vat</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>VAT Calculator</h1>
+          <p>Add VAT to a price or extract VAT from a VAT-inclusive amount. Supports any rate (20%, 10%, custom).</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/vat">Open VAT Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Tax Calculator — Progressive Tax Brackets</title>
+      <link>https://financcalculator.ru/tax</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Tax Calculator</h1>
+          <p>Calculate income tax using progressive brackets. Understand your effective tax rate and net take-home pay.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/tax">Open Tax Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Currency Converter — Live Rates 160+ Currencies</title>
+      <link>https://financcalculator.ru/currency</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Currency Converter</h1>
+          <p>Convert between 160+ currencies with live exchange rates. USD, EUR, GBP, RUB, CNY, JPY, and more.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/currency">Open Currency Converter →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>BMI Calculator — Body Mass Index Online</title>
+      <link>https://financcalculator.ru/bmi</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>BMI Calculator</h1>
+          <p>Calculate your Body Mass Index (BMI) from weight and height. Supports metric and imperial units.</p>
+        </header>
+        <section>
+          <h2>BMI Formula</h2>
+          <p>BMI = weight (kg) / height² (m). Normal: 18.5–24.9. Overweight: 25–29.9. Obese: ≥ 30.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/bmi">Open BMI Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Days Calculator — Date Difference &amp; Add / Subtract Days</title>
+      <link>https://financcalculator.ru/days</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Days Calculator</h1>
+          <p>Calculate the number of days between two dates, or add/subtract days from any date.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/days">Open Days Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>TI-84 Plus CE Calculator Online — Free Graphing Tool</title>
+      <link>https://financcalculator.ru/ti84</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>TI-84 Plus CE Online</h1>
+          <p>Free online graphing calculator that works like a TI-84 Plus CE. Plot functions, solve equations, and use for SAT, AP, and coursework.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ti84">Open TI-84 Calculator →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         BLOG INDEX
+    ================================================ -->
+    <item turbo="true">
+      <title>Блог о финансах — статьи и руководства</title>
+      <link>https://financcalculator.ru/ru/blog</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Финансовый блог</h1>
+          <p>Полезные статьи о процентах, кредитах, ипотеке, налогах, валюте и личных финансах.</p>
+        </header>
+        <section>
+          <ul>
+            <li><a href="https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr">Сложный процент: время и частота капитализации</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi">10 ошибок по ипотеке</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie">EMI: досрочное погашение</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost">Резервный фонд</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki">Прогрессивные ставки налога</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy">Валюта в поездке</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez">НДС в счёте</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn">TI-84 онлайн</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki">ИМТ и страховка</a></li>
+            <li><a href="https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh">Как рассчитать EMI</a></li>
+          </ul>
+        </section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Finance Blog — Articles &amp; Guides</title>
+      <link>https://financcalculator.ru/blog</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Finance Blog</h1>
+          <p>Practical articles on interest, loans, mortgages, taxes, currency, and personal finance.</p>
+        </header>
+        <section>
+          <ul>
+            <li><a href="https://financcalculator.ru/blog/compound-interest-guide">Compound Interest Guide</a></li>
+            <li><a href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid">10 Mortgage Mistakes</a></li>
+            <li><a href="https://financcalculator.ru/blog/emi-prepayment-strategy">EMI Prepayment Strategy</a></li>
+            <li><a href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings">Emergency Fund Guide</a></li>
+            <li><a href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income">Progressive Tax Brackets</a></li>
+            <li><a href="https://financcalculator.ru/blog/currency-exchange-travel-budget">Travel FX Guide</a></li>
+            <li><a href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive">VAT on Invoices</a></li>
+            <li><a href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online">TI-84 Online Calculator</a></li>
+            <li><a href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing">BMI &amp; Insurance</a></li>
+            <li><a href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment">How to Calculate EMI</a></li>
+          </ul>
+        </section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         BLOG POSTS — RUSSIAN
+    ================================================ -->
+    <item turbo="true">
+      <title>Сложный процент: как время и частота капитализации меняют результат</title>
+      <link>https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Сложный процент: как время и частота капитализации меняют результат</h1>
+          <p>Разбираемся, как работают сложные проценты, в чём разница между номинальной и эффективной ставкой (APR и APY), и как применять их на практике.</p>
+        </header>
+        <section>
+          <h2>Базовая формула</h2>
+          <p>A = P × (1 + r/n)^(n×t), где P — начальная сумма, r — годовая ставка, n — частота начисления в год, t — срок в годах.</p>
+        </section>
+        <section>
+          <h2>APR против APY</h2>
+          <p>APR — номинальная ставка без учёта капитализации. APY — эффективная ставка с учётом капитализации. Чем чаще капитализация, тем больше разница.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>10 частых ошибок по ипотеке и как их избежать</title>
+      <link>https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>10 частых ошибок по ипотеке</h1>
+          <p>Самые распространённые ошибки заёмщиков: недооценка PITI, игнорирование PMI, неправильный расчёт бюджета и другие подводные камни.</p>
+        </header>
+        <section>
+          <h2>Что такое PITI</h2>
+          <p>PITI = Principal (основной долг) + Interest (проценты) + Taxes (налог на имущество) + Insurance (страховка). Именно это реальный месячный расход.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>EMI-кредиты: где досрочное погашение реально снижает проценты</title>
+      <link>https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>EMI: где досрочное погашение снижает проценты</h1>
+          <p>Досрочное погашение выгоднее в начале срока кредита, когда большая часть платежа — это проценты, а не основной долг.</p>
+        </header>
+        <section>
+          <h2>Два варианта досрочки</h2>
+          <p><strong>Сократить срок</strong> — экономит больше на процентах. <strong>Снизить платёж</strong> — снижает нагрузку на бюджет каждый месяц.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Резервный фонд: сначала ликвидность, потом доходность</title>
+      <link>https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Резервный фонд: ликвидность прежде всего</h1>
+          <p>Резервный фонд должен покрывать 3–6 месяцев расходов. Главный критерий — мгновенный доступ к деньгам, а не максимальная доходность.</p>
+        </header>
+        <section>
+          <h2>Где хранить резерв</h2>
+          <p>Накопительный счёт с высоким процентом или краткосрочный депозит с возможностью досрочного снятия — оптимальные варианты для резервного фонда.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Прогрессивные налоговые ставки: почему повышение зарплаты не облагает весь доход</title>
+      <link>https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Прогрессивные налоговые ставки</h1>
+          <p>При прогрессивной шкале повышенная ставка применяется только к сумме сверх порога. Весь доход под верхнюю ставку не подпадает.</p>
+        </header>
+        <section>
+          <h2>Пример (Россия, 2025)</h2>
+          <p>Ставка 15% применяется только к части дохода, превышающей 5 млн рублей в год — не ко всей зарплате.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Валюта в поездке: спред важнее курса</title>
+      <link>https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Валюта в поездке: спред важнее курса</h1>
+          <p>Реальная стоимость обмена валюты определяется не официальным курсом, а спредом — разницей между курсом покупки и продажи.</p>
+        </header>
+        <section>
+          <h2>Как сэкономить на обмене</h2>
+          <p>Сравнивайте спреды разных банков и обменников. Снятие в банкомате зарубежного банка часто выгоднее, чем обмен в аэропорту.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>НДС в счёте: сумма с налогом и без налога</title>
+      <link>https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>НДС в счёте: «с налогом» и «без налога»</h1>
+          <p>Разбираемся, как правильно выставлять счета с НДС и без, в чём разница между inclusive и exclusive НДС, и как это влияет на итоговую сумму.</p>
+        </header>
+        <section>
+          <h2>Формулы</h2>
+          <p><strong>НДС сверху (exclusive):</strong> Итого = Цена × 1,20</p>
+          <p><strong>НДС внутри (inclusive):</strong> НДС = Итого − Итого / 1,20</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>TI-84 Plus CE онлайн: бесплатный графический калькулятор</title>
+      <link>https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>TI-84 Plus CE онлайн</h1>
+          <p>Бесплатный онлайн-аналог графического калькулятора TI-84 Plus CE. Подходит для учёбы, построения графиков и решения уравнений.</p>
+        </header>
+        <section>
+          <h2>Что умеет</h2>
+          <p>Построение графиков функций, решение уравнений, вычисление производных и интегралов, статистические функции.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>ИМТ и стоимость страхования: что показывает индекс, а что нет</title>
+      <link>https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>ИМТ и стоимость страхования</h1>
+          <p>Индекс массы тела (ИМТ) используется страховщиками для оценки рисков. Разбираем, насколько это справедливо и что ИМТ не учитывает.</p>
+        </header>
+        <section>
+          <h2>Ограничения ИМТ</h2>
+          <p>ИМТ не различает жировую и мышечную массу, не учитывает возраст, пол и распределение жира. Он — один из индикаторов, но не диагноз.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Как рассчитать EMI: формула, примеры и скрытая стоимость кредита</title>
+      <link>https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Как рассчитать EMI</h1>
+          <p>Подробный разбор формулы EMI, пошаговые примеры расчёта и объяснение скрытых затрат, о которых банки умалчивают.</p>
+        </header>
+        <section>
+          <h2>Формула</h2>
+          <p>EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p>
+          <p>Где P — сумма кредита, r — месячная ставка (годовая / 12), n — срок в месяцах.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh">Читать полную статью →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         BLOG POSTS — ENGLISH
+    ================================================ -->
+    <item turbo="true">
+      <title>Compound Interest: How Timing and Frequency Change Real Returns</title>
+      <link>https://financcalculator.ru/blog/compound-interest-guide</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Compound Interest Guide</h1>
+          <p>How timing, compounding frequency, and APY vs APR affect your real investment returns — explained with clear examples.</p>
+        </header>
+        <section>
+          <h2>Core Formula</h2>
+          <p>A = P × (1 + r/n)^(n×t) — where P = principal, r = annual rate, n = compounding frequency, t = years.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/compound-interest-guide">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>10 Common Mortgage Mistakes and How to Avoid Them</title>
+      <link>https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>10 Common Mortgage Mistakes</h1>
+          <p>Avoid the most costly mortgage errors: underestimating PITI, ignoring PMI, skipping pre-approval, and more.</p>
+        </header>
+        <section>
+          <h2>What is PITI?</h2>
+          <p>PITI = Principal + Interest + Taxes + Insurance. Your actual monthly housing cost — not just the loan payment.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>EMI Loans: Where Prepayments Actually Cut Interest</title>
+      <link>https://financcalculator.ru/blog/emi-prepayment-strategy</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>EMI Prepayment Strategy</h1>
+          <p>Prepayments cut the most interest in the early years of a loan when interest dominates your EMI. Here is how to decide when and how much to prepay.</p>
+        </header>
+        <section>
+          <h2>Two Options</h2>
+          <p><strong>Reduce term:</strong> saves more total interest. <strong>Reduce EMI:</strong> improves monthly cash flow.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/emi-prepayment-strategy">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Emergency Funds: Liquidity First, Yield Second</title>
+      <link>https://financcalculator.ru/blog/emergency-fund-high-yield-savings</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Emergency Fund Guide</h1>
+          <p>Your emergency fund should cover 3–6 months of expenses. The key metric is instant access — not maximum yield.</p>
+        </header>
+        <section>
+          <h2>Where to Keep It</h2>
+          <p>High-yield savings accounts or short-term deposits with penalty-free withdrawal are ideal for emergency funds.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Progressive Tax Brackets: Why a Raise Does Not Tax Your Whole Paycheck</title>
+      <link>https://financcalculator.ru/blog/progressive-tax-brackets-net-income</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Progressive Tax Brackets Explained</h1>
+          <p>A higher bracket taxes only the income above the threshold — not your entire earnings. Here is how it really works.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Travel FX: Bank Spreads, Not Mid-Market Memes</title>
+      <link>https://financcalculator.ru/blog/currency-exchange-travel-budget</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Travel Currency Guide</h1>
+          <p>The real cost of currency exchange is the spread — not the rate you see on Google. Learn how to minimise FX costs when travelling.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/blog/currency-exchange-travel-budget">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>VAT on Invoices: Inclusive vs Exclusive in the Real World</title>
+      <link>https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>VAT on Invoices</h1>
+          <p>When should you show VAT inclusive vs exclusive on an invoice? How does GST differ? Clear explanations with real-world examples.</p>
+        </header>
+        <section>
+          <h2>Quick Formulas</h2>
+          <p><strong>VAT exclusive:</strong> Total = Price × 1.20</p>
+          <p><strong>Extract VAT:</strong> VAT = Total − Total / 1.20</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>TI-84 Plus CE Calculator Online: Free Graphing Tool That Actually Works</title>
+      <link>https://financcalculator.ru/blog/ti84-plus-ce-calculator-online</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>TI-84 Plus CE Online</h1>
+          <p>A free browser-based graphing calculator that works like a TI-84 Plus CE. Graph functions, solve equations, and use it for AP exams and coursework.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>BMI Screening and Insurance Pricing: What the Number Does and Does Not Prove</title>
+      <link>https://financcalculator.ru/blog/bmi-screening-insurance-pricing</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>BMI and Insurance Pricing</h1>
+          <p>BMI is used by insurers to price risk, but it has real limitations. It cannot distinguish fat from muscle or account for age and body distribution.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>How to Calculate EMI: The Formula, the Math, and What Lenders Do Not Tell You</title>
+      <link>https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>How to Calculate EMI</h1>
+          <p>A step-by-step breakdown of the EMI formula, worked examples, and the hidden costs lenders often bury in the fine print.</p>
+        </header>
+        <section>
+          <h2>The Formula</h2>
+          <p>EMI = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p>
+          <p>Where P = loan amount, r = monthly rate (annual ÷ 12), n = number of months.</p>
+        </section>
+        <section><p><a href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment">Read full article →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         STATIC PAGES — RUSSIAN
+    ================================================ -->
+    <item turbo="true">
+      <title>О нас — FinanceCalculator</title>
+      <link>https://financcalculator.ru/ru/about</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>О FinanceCalculator</h1>
+          <p>FinanceCalculator — бесплатный сервис финансовых калькуляторов онлайн. Работает без регистрации на любом устройстве. Доступен на русском и английском языке.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/about">Узнать больше →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Контакты — FinanceCalculator</title>
+      <link>https://financcalculator.ru/ru/contact</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Свяжитесь с нами</h1>
+          <p>Есть вопросы, предложения или нашли ошибку? Напишите нам через форму обратной связи.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/contact">Написать →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Политика конфиденциальности — FinanceCalculator</title>
+      <link>https://financcalculator.ru/ru/privacy</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Политика конфиденциальности</h1>
+          <p>Информация о том, какие данные мы собираем и как их используем на сайте FinanceCalculator.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/privacy">Читать политику →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Условия использования — FinanceCalculator</title>
+      <link>https://financcalculator.ru/ru/terms</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Условия использования</h1>
+          <p>Правила использования сервиса FinanceCalculator. Пожалуйста, ознакомьтесь перед использованием.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/ru/terms">Читать условия →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <!-- ================================================
+         STATIC PAGES — ENGLISH
+    ================================================ -->
+    <item turbo="true">
+      <title>About — FinanceCalculator</title>
+      <link>https://financcalculator.ru/about</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>About FinanceCalculator</h1>
+          <p>FinanceCalculator is a free suite of financial calculators. No sign-up, no ads, works on any device in English and Russian.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/about">Learn more →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Contact — FinanceCalculator</title>
+      <link>https://financcalculator.ru/contact</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Contact Us</h1>
+          <p>Questions, suggestions, or found a bug? Send us a message using the contact form.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/contact">Get in touch →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Privacy Policy — FinanceCalculator</title>
+      <link>https://financcalculator.ru/privacy</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Privacy Policy</h1>
+          <p>Information about what data FinanceCalculator collects and how it is used.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/privacy">Read policy →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+    <item turbo="true">
+      <title>Terms of Use — FinanceCalculator</title>
+      <link>https://financcalculator.ru/terms</link>
+      <turbo:content><![CDATA[
+        <header>
+          <h1>Terms of Use</h1>
+          <p>Terms and conditions for using the FinanceCalculator service. Please read before using.</p>
+        </header>
+        <section><p><a href="https://financcalculator.ru/terms">Read terms →</a></p></section>
+      ]]></turbo:content>
+    </item>
+
+  </channel>
+</rss>

@@ -1,57 +1,523 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://financcalculator.ru/</loc><changefreq>daily</changefreq><priority>1</priority></url>
-  <url><loc>https://financcalculator.ru/blog</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/blog/compound-interest-guide</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/emi-prepayment-strategy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/emergency-fund-high-yield-savings</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/progressive-tax-brackets-net-income</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/currency-exchange-travel-budget</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/ti84-plus-ce-calculator-online</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/bmi-screening-insurance-pricing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/about</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://financcalculator.ru/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://financcalculator.ru/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://financcalculator.ru/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://financcalculator.ru/basic</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/interest</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/deposit</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/loan</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/mortgage</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/days</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/vat</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/emi</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/bmi</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/tax</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/currency</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru</loc><changefreq>daily</changefreq><priority>0.95</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://financcalculator.ru/ru/about</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://financcalculator.ru/ru/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://financcalculator.ru/ru/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://financcalculator.ru/ru/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://financcalculator.ru/ru/basic</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/interest</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/deposit</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/loan</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/mortgage</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/days</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru/vat</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru/emi</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://financcalculator.ru/ru/bmi</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru/tax</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://financcalculator.ru/ru/currency</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ===== HOME ===== -->
+  <url>
+    <loc>https://financcalculator.ru/</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/"/>
+  </url>
+
+  <!-- ===== CALCULATORS ===== -->
+  <url>
+    <loc>https://financcalculator.ru/basic</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/basic"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/basic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/basic"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/basic</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/basic"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/basic"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/basic"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/interest</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/interest"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/interest"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/interest"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/interest</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/interest"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/interest"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/interest"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/deposit</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/deposit"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/deposit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/deposit"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/deposit</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/deposit"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/deposit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/deposit"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/loan</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/loan"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/loan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/loan"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/loan</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/loan"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/loan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/loan"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/mortgage</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/mortgage"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/mortgage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/mortgage"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/mortgage</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/mortgage"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/mortgage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/mortgage"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/emi</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/emi"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/emi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/emi"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/emi</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/emi"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/emi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/emi"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/days</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/days"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/days"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/days"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/days</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/days"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/days"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/days"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/vat</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/vat"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/vat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/vat"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/vat</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/vat"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/vat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/vat"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/bmi</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/bmi"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/bmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/bmi"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/bmi</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/bmi"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/bmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/bmi"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/tax</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/tax"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/tax"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/tax"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/tax</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/tax"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/tax"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/tax"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/currency</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/currency"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/currency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/currency"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/currency</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/currency"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/currency"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/currency"/>
+  </url>
+
+  <!-- ===== BLOG INDEX ===== -->
+  <url>
+    <loc>https://financcalculator.ru/blog</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog"/>
+  </url>
+
+  <!-- ===== BLOG POSTS ===== -->
+  <url>
+    <loc>https://financcalculator.ru/blog/compound-interest-guide</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/compound-interest-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/compound-interest-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/compound-interest-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/slozhnye-protsenty-apr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/compound-interest-guide"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ipoteka-oshibki-piti-pmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/common-mortgage-mistakes-how-to-avoid"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/emi-prepayment-strategy</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/emi-prepayment-strategy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/emi-prepayment-strategy"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/emi-prepayment-strategy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/emi-dosrochnoe-pogashenie"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/emi-prepayment-strategy"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/emergency-fund-high-yield-savings</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/rezervnyy-fond-likvidnost"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/emergency-fund-high-yield-savings"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/progressive-tax-brackets-net-income</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/progressivnye-nalogovye-stavki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/progressive-tax-brackets-net-income"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/currency-exchange-travel-budget</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/currency-exchange-travel-budget"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/currency-exchange-travel-budget"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/currency-exchange-travel-budget"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/valyuta-puteshestvie-kursy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/currency-exchange-travel-budget"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/ti84-plus-ce-calculator-online</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ti84-plus-ce-kalkulyator-onlayn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/ti84-plus-ce-calculator-online"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/bmi-screening-insurance-pricing</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/imt-skrining-i-stoimost-strahovki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/bmi-screening-insurance-pricing"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kak-rasschitat-emi-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/how-to-calculate-emi-loan-monthly-payment"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive"/>
+  </url>
+
+  <!-- ===== STATIC PAGES ===== -->
+  <url>
+    <loc>https://financcalculator.ru/about</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/about"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/about"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/about</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/about"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/about"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/contact</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/contact"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/contact</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/contact"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/privacy</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/privacy"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/privacy</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/privacy"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/terms</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/terms"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/terms</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/terms"/>
+  </url>
+
 </urlset>
