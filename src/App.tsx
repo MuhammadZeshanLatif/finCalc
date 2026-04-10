@@ -28,7 +28,7 @@ import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
 
 const META_DEFAULT: Record<string, string> = {
   en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up, English & Russian.",
-  ru: "Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации.",
+  ru: "Бесплатные финансовые калькулятор: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации.",
 };
 
 let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null = null;
@@ -546,7 +546,7 @@ export default function App() {
                 </h1>
                 <p className="text-body-secondary mb-4 fc-blog-index-lead">
                   {lang === "ru"
-                    ? "Статьи с оглавлением, источниками и разметкой для поиска. Открывайте полный текст — калькуляторы связаны внутри материала."
+                    ? "Статьи с оглавлением, источниками и разметкой для поиска. Открывайте полный текст — калькулятор связаны внутри материала."
                     : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
                 </p>
                 <div className="row g-4">

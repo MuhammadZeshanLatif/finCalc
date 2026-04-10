@@ -24,7 +24,7 @@ export function getOgImageUrl(): string {
 
 export function getOgImageAlt(lang: "en" | "ru"): string {
   return lang === "ru"
-    ? "FinanceCalculator — бесплатные финансовые калькуляторы онлайн"
+    ? "FinanceCalculator — бесплатные финансовые калькулятор онлайн"
     : "FinanceCalculator — free online financial calculators";
 }
 
