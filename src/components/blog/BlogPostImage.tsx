@@ -1,4 +1,5 @@
 import type { SyntheticEvent } from "react";
+import { SITE_PREVIEW_IMAGE_PATH } from "../../config/site";
 
 type Props = {
   src: string;
@@ -19,7 +20,7 @@ export function BlogPostImage({
   const onError = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     img.onerror = null;
-    img.src = "/og-image.png";
+    img.src = SITE_PREVIEW_IMAGE_PATH;
   };
   const imgProps = {
     alt,

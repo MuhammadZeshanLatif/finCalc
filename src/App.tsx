@@ -23,6 +23,7 @@ import {
   OFFICIAL_SOCIAL_X,
   OFFICIAL_SOCIAL_YOUTUBE,
   SITE_LOGO_URL,
+  SITE_PREVIEW_IMAGE_PATH,
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
@@ -585,7 +586,7 @@ export default function App() {
                             onError={e => {
                               const img = e.currentTarget;
                               img.onerror = null;
-                              img.src = "/og-image.png";
+                              img.src = SITE_PREVIEW_IMAGE_PATH;
                             }}
                           />
                         </a>

@@ -3,6 +3,9 @@ export const SITE_NAME = "FinanceCalculator";
 /** Site logo (navbar, hero, structured data). */
 export const SITE_LOGO_URL = "/logo.webp";
 
+/** Default Open Graph / Twitter / link preview image (absolute path on origin). */
+export const SITE_PREVIEW_IMAGE_PATH = "/preview-image.webp";
+
 /** Official brand profiles (shown in UI + JSON-LD sameAs). */
 export const OFFICIAL_SOCIAL_X = "https://x.com/fincalculat";
 export const OFFICIAL_SOCIAL_INSTAGRAM = "https://www.instagram.com/fincalculat/";
@@ -18,11 +21,11 @@ export function getSiteUrl(): string {
   return "https://financcalculator.ru";
 }
 
-/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.png`. */
+/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/preview-image.webp`. */
 export function getOgImageUrl(): string {
   const u = import.meta.env.VITE_OG_IMAGE_URL as string | undefined;
   if (u && /^https?:\/\//i.test(u)) return u;
-  return `${getSiteUrl()}/og-image.png`;
+  return `${getSiteUrl()}${SITE_PREVIEW_IMAGE_PATH}`;
 }
 
 export function getOgImageAlt(lang: "en" | "ru"): string {

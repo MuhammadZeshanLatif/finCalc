@@ -13,6 +13,15 @@ import {
 import { getSeoFaqs, getSeoHowTo } from "../data/seoContent";
 import { buildPathname, type AppLang } from "./routes";
 
+function ogImageMimeType(url: string): string {
+  const path = (url.split("?")[0] ?? "").toLowerCase();
+  if (path.endsWith(".webp")) return "image/webp";
+  if (path.endsWith(".png")) return "image/png";
+  if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+  if (path.endsWith(".gif")) return "image/gif";
+  return "image/png";
+}
+
 const META = {
   en: {
     defaultDesc:
@@ -130,7 +139,7 @@ export function updatePageSeo(opts: {
   setMeta("property", "og:url", url);
   setMeta("property", "og:locale", opts.lang === "ru" ? "ru_RU" : "en_US");
   setMeta("property", "og:image", ogImage);
-  setMeta("property", "og:image:type", "image/png");
+  setMeta("property", "og:image:type", ogImageMimeType(ogImage));
   setMeta("property", "og:image:width", "1200");
   setMeta("property", "og:image:height", "630");
   setMeta("property", "og:image:alt", ogAlt);
