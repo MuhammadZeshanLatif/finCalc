@@ -7,6 +7,7 @@ import {
   getSiteUrl,
   getTwitterCreator,
   getTwitterSite,
+  SITE_LOGO_URL,
   SITE_NAME,
 } from "../config/site";
 import { getSeoFaqs, getSeoHowTo } from "../data/seoContent";
@@ -229,7 +230,7 @@ function injectJsonLd(opts: {
 
   const sameAs = getOrgSameAs();
   const email = getContactEmail();
-  const logoUrl = `${opts.base}/favicon-48x48.png`;
+  const logoUrl = `${opts.base}${SITE_LOGO_URL}`;
 
   const org: Record<string, unknown> = {
     "@type": "Organization",

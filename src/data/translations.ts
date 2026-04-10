@@ -83,6 +83,14 @@ export const translations = sameLocaleShape({
     richSectionLimits: "Accuracy, privacy, and when to call a professional",
     richLimitsBody:
       "FinanceCalculator runs entirely in your browser: we do not receive your typed amounts as part of the calculation logic, and nothing here connects to your bank or tax authority. Numbers are produced from the formulas and simplifications coded into each tool—rounding, day-count rules, fees, tiered rates, local taxes, and contract fine print may differ in real life. This is not legal, tax, medical, or personalized investment advice. Before large decisions, confirm figures on official statements and speak with a qualified professional in your jurisdiction.",
+    homeHeroLead: "Professional finance calculators — accurate and fast.",
+    homeStatCalcNum: "11+",
+    homeStatCalcLabel: "Calculators",
+    homeStatLangNum: "2",
+    homeStatLangLabel: "Languages",
+    homeStatFreeNum: "Free",
+    homeStatFreeLabel: "Always",
+    homeSectionFinancialCalculators: "Financial calculators",
     homeTrustLive: "Live results",
     homeTrustFree: "No sign-up",
     homeTrustLang: "English & Russian",
@@ -317,8 +325,8 @@ export const translations = sameLocaleShape({
     },
   },
   ru: {
-    siteTitle: "FinanceCalculator",
-    siteSubtitle: "Профессиональные финансовые калькулятор",
+    siteTitle: "Финансовый калькулятор",
+    siteSubtitle: "Профессиональные финансовые калькуляторы",
     home: "Главная",
     blog: "Блог",
     blogTableOfContents: "На этой странице",
@@ -340,7 +348,7 @@ export const translations = sameLocaleShape({
     privacy: "Политика конфиденциальности",
     terms: "Правила и условия",
     searchPlaceholder: "Поиск калькулятора...",
-    allCalculators: "Все калькулятор",
+    allCalculators: "Все калькуляторы",
     ti84PageTitle: "Калькулятор TI-84 Plus CE онлайн",
     ti84PageLead:
       "Графики Y1–Y6, окно WINDOW (xMin, xMax, yMin, yMax) и функции через 2nd — бесплатно в браузере, без установки. Ввод с клавиатуры (s, c, t, log, ln, x, pi) или кнопками. Для занятий и домашней работы; на экзаменах нужен разрешённый физический прибор — смотрите правила вашей организации.",
@@ -364,7 +372,7 @@ export const translations = sameLocaleShape({
     liveResultsHint: "Результат обновляется при вводе. Можно вводить суммы в любом виде (например 10000 или 10 000,50).",
     homeSeoHeadline: "Ипотека, кредит, EMI, налоги и валюта — калькулятор",
     homeSeoDescription:
-      "Бесплатные калькулятор: ипотека, кредит, EMI, вклад, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации. Интерфейс на русском и английском.",
+      "Бесплатные калькуляторы: ипотека, кредит, EMI, вклад, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации. Интерфейс на русском и английском.",
     homeSeoCalculatorKeywords:
       "ипотечный калькулятор, кредитный калькулятор, EMI, калькулятор процентов, НДС, налоговый калькулятор, конвертер валют, ИМТ, вклад, бесплатный калькулятор онлайн",
     pageSeo: {
@@ -393,6 +401,14 @@ export const translations = sameLocaleShape({
     richSectionLimits: "Точность, конфиденциальность и когда нужен специалист",
     richLimitsBody:
       "FinanceCalculator работает в браузере: введённые суммы не отправляются на наши серверы как часть логики расчёта, и инструменты не подключаются к банку или налоговой. Цифры получаются из заложенных в код формул и упрощений — округление, базы дней, комиссии, лестничные ставки, местные налоги и условия договора в реальности могут отличаться. Это не юридическая, налоговая, медицинская или персональная инвестиционная консультация. Перед крупными решениями сверяйтесь с первичными документами и квалифицированным специалистом в вашей стране.",
+    homeHeroLead: "Профессиональные финансовые калькуляторы — точно и быстро.",
+    homeStatCalcNum: "11+",
+    homeStatCalcLabel: "калькуляторов",
+    homeStatLangNum: "2",
+    homeStatLangLabel: "языка",
+    homeStatFreeNum: "Бесплатно",
+    homeStatFreeLabel: "Всегда",
+    homeSectionFinancialCalculators: "Финансовые калькуляторы",
     homeTrustLive: "Счёт в реальном времени",
     homeTrustFree: "Без регистрации",
     homeTrustLang: "Английский и русский",

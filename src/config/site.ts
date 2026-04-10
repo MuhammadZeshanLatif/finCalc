@@ -1,5 +1,8 @@
 export const SITE_NAME = "FinanceCalculator";
 
+/** Site logo (navbar, hero, structured data). */
+export const SITE_LOGO_URL = "/logo.webp";
+
 /** Official brand profiles (shown in UI + JSON-LD sameAs). */
 export const OFFICIAL_SOCIAL_X = "https://x.com/fincalculat";
 export const OFFICIAL_SOCIAL_INSTAGRAM = "https://www.instagram.com/fincalculat/";

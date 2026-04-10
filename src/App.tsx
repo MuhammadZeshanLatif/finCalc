@@ -15,15 +15,16 @@ import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import {
+  getSiteUrl,
   OFFICIAL_SOCIAL_INSTAGRAM,
   OFFICIAL_SOCIAL_PINTEREST,
   OFFICIAL_SOCIAL_REDDIT,
   OFFICIAL_SOCIAL_TIKTOK,
   OFFICIAL_SOCIAL_X,
   OFFICIAL_SOCIAL_YOUTUBE,
+  SITE_LOGO_URL,
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
-import { getSiteUrl } from "./config/site";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
 
 const META_DEFAULT: Record<string, string> = {
@@ -241,7 +242,7 @@ export default function App() {
             onClick={e => { e.preventDefault(); navigateTo("home"); }}
           >
             <span className="fc-brand-icon">
-              <i className="fa-solid fa-coins text-dark fs-5"></i>
+              <img src={SITE_LOGO_URL} alt="" width={38} height={38} decoding="async" />
             </span>
             <div>
               <span className="fw-bold text-white fc-navbar-brand-title">
@@ -380,20 +381,30 @@ export default function App() {
                   <div className="fc-hero-clock-slot">
                     <LiveClock lang={lang} />
                   </div>
-                  <h1>{t.siteTitle}</h1>
-                  <p className="fc-hero-lead">{t.siteSubtitle} accurate and fast.</p>
+                  <h1 className="fc-hero-title d-flex align-items-center  flex-wrap gap-3">
+                    <img
+                      src={SITE_LOGO_URL}
+                      alt=""
+                      className="fc-hero-logo"
+                      width={56}
+                      height={56}
+                      decoding="async"
+                    />
+                    <span>{t.siteTitle}</span>
+                  </h1>
+                  <p className="fc-hero-lead">{t.homeHeroLead}</p>
                   <div className="fc-hero-stats">
                     <div className="fc-hero-stat">
-                      <span className="stat-num">11+</span>
-                      <span className="stat-label">Calculators</span>
+                      <span className="stat-num">{t.homeStatCalcNum}</span>
+                      <span className="stat-label">{t.homeStatCalcLabel}</span>
                     </div>
                     <div className="fc-hero-stat">
-                      <span className="stat-num">2</span>
-                      <span className="stat-label">Languages</span>
+                      <span className="stat-num">{t.homeStatLangNum}</span>
+                      <span className="stat-label">{t.homeStatLangLabel}</span>
                     </div>
                     <div className="fc-hero-stat">
-                      <span className="stat-num">Free</span>
-                      <span className="stat-label">Always</span>
+                      <span className="stat-num">{t.homeStatFreeNum}</span>
+                      <span className="stat-label">{t.homeStatFreeLabel}</span>
                     </div>
                   </div>
 
@@ -443,7 +454,7 @@ export default function App() {
                 <div className="fc-section-rule">
                   <div className="fc-section-rule__line"></div>
                   <span className="fc-section-rule__label">
-                    <i className="fa-solid fa-calculator"></i> Financial Calculators
+                    <i className="fa-solid fa-calculator"></i> {t.homeSectionFinancialCalculators}
                   </span>
                   <div className="fc-section-rule__line"></div>
                 </div>

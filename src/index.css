@@ -33,7 +33,7 @@ body {
 }
 
 .fc-brand-icon {
-  background: var(--fc-amber);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   width: 38px;
   height: 38px;
@@ -41,7 +41,15 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(245,166,35,0.4);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fc-brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .fc-lang-btn {
@@ -257,6 +265,13 @@ body {
   letter-spacing: -0.02em;
   margin-bottom: 10px;
   line-height: 1.2;
+}
+
+.fc-hero-title .fc-hero-logo {
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
 }
 
 .fc-hero p {
@@ -2245,6 +2260,10 @@ body {
     border-bottom: 1px solid var(--fc-border);
   }
   .fc-hero h1 { font-size: 1.5rem; }
+  .fc-hero-title .fc-hero-logo {
+    width: 48px;
+    height: 48px;
+  }
   .fc-hero { padding: 1.8rem; }
 }
 
