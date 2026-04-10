@@ -6,6 +6,12 @@ export const SITE_LOGO_URL = "/logo.webp";
 /** Default Open Graph / Twitter / link preview image (absolute path on origin). */
 export const SITE_PREVIEW_IMAGE_PATH = "/preview-image.webp";
 
+/**
+ * Organization logo for JSON-LD (Google recommends ≥112×112; matches site favicon artwork).
+ * Raster PNG generated from `logo.webp`.
+ */
+export const SITE_ORG_LOGO_PATH = "/apple-touch-icon.png";
+
 /** Official brand profiles (shown in UI + JSON-LD sameAs). */
 export const OFFICIAL_SOCIAL_X = "https://x.com/fincalculat";
 export const OFFICIAL_SOCIAL_INSTAGRAM = "https://www.instagram.com/fincalculat/";

@@ -7,8 +7,9 @@ import {
   getSiteUrl,
   getTwitterCreator,
   getTwitterSite,
-  SITE_LOGO_URL,
   SITE_NAME,
+  SITE_ORG_LOGO_PATH,
+  SITE_PREVIEW_IMAGE_PATH,
 } from "../config/site";
 import { getSeoFaqs, getSeoHowTo } from "../data/seoContent";
 import { buildPathname, type AppLang } from "./routes";
@@ -239,14 +240,20 @@ function injectJsonLd(opts: {
 
   const sameAs = getOrgSameAs();
   const email = getContactEmail();
-  const logoUrl = `${opts.base}${SITE_LOGO_URL}`;
+  const orgLogoUrl = `${opts.base}${SITE_ORG_LOGO_PATH}`;
+  const previewImageUrl = `${opts.base}${SITE_PREVIEW_IMAGE_PATH}`;
 
   const org: Record<string, unknown> = {
     "@type": "Organization",
     "@id": `${opts.base}/#org`,
     name: opts.orgName,
     url: opts.base,
-    logo: { "@type": "ImageObject", url: logoUrl },
+    logo: {
+      "@type": "ImageObject",
+      url: orgLogoUrl,
+      width: 180,
+      height: 180,
+    },
   };
   if (sameAs.length) org.sameAs = sameAs;
   if (email) {
@@ -268,12 +275,19 @@ function injectJsonLd(opts: {
       inLanguage: [opts.lang === "ru" ? "ru-RU" : "en-US", opts.lang === "ru" ? "en-US" : "ru-RU"],
       description: META[opts.lang].defaultDesc,
       publisher: { "@id": `${opts.base}/#org` },
+      image: {
+        "@type": "ImageObject",
+        url: previewImageUrl,
+        width: 1200,
+        height: 630,
+      },
     },
     org,
     {
       "@type": "WebApplication",
       name: opts.orgName,
       url: opts.base,
+      image: previewImageUrl,
       applicationCategory: "FinanceApplication",
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript",
@@ -281,6 +295,22 @@ function injectJsonLd(opts: {
       inLanguage: ["en", "ru"],
     },
   ];
+
+  if (opts.page === "home" && !opts.blogArticle) {
+    graph.splice(1, 0, {
+      "@type": "WebPage",
+      "@id": `${opts.pageUrl}#webpage`,
+      url: opts.pageUrl,
+      name: opts.pageTitle,
+      isPartOf: { "@id": `${opts.base}/#website` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: previewImageUrl,
+        width: 1200,
+        height: 630,
+      },
+    });
+  }
 
   if (opts.blogArticle) {
     const homeUrl = `${opts.base}${buildPathname(opts.lang, "home") === "/" ? "" : buildPathname(opts.lang, "home")}`;
