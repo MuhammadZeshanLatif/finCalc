@@ -7,6 +7,7 @@ import {
   getSiteUrl,
   getTwitterCreator,
   getTwitterSite,
+  HREFLANG_X_DEFAULT_LANG,
   SITE_NAME,
   SITE_ORG_LOGO_PATH,
   SITE_PREVIEW_IMAGE_PATH,
@@ -194,10 +195,11 @@ export function updatePageSeo(opts: {
   const ruUrl = opts.blogArticle
     ? `${base}${opts.blogArticle.alternateRuPath}`
     : ruPath === "/" ? base : `${base}${ruPath}`;
+  const xDefaultUrl = HREFLANG_X_DEFAULT_LANG === "ru" ? ruUrl : enUrl;
   for (const [hreflang, href] of [
     ["en", enUrl],
     ["ru", ruUrl],
-    ["x-default", enUrl],
+    ["x-default", xDefaultUrl],
   ] as const) {
     const l = document.createElement("link");
     l.rel = "alternate";
@@ -272,7 +274,8 @@ function injectJsonLd(opts: {
       "@id": `${opts.base}/#website`,
       url: opts.base,
       name: opts.orgName,
-      inLanguage: [opts.lang === "ru" ? "ru-RU" : "en-US", opts.lang === "ru" ? "en-US" : "ru-RU"],
+      /* Russian listed first = primary market signal; both locales remain indexed via hreflang. */
+      inLanguage: ["ru-RU", "en-US"],
       description: META[opts.lang].defaultDesc,
       publisher: { "@id": `${opts.base}/#org` },
       image: {

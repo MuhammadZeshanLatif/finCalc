@@ -1,5 +1,11 @@
 export const SITE_NAME = "FinanceCalculator";
 
+/**
+ * Hreflang `x-default` points at this locale’s URL — “fallback” when Google can’t match a user’s language.
+ * `ru` = Russia-first positioning (does not replace good RU content, links, or Search Console).
+ */
+export const HREFLANG_X_DEFAULT_LANG: "en" | "ru" = "ru";
+
 /** Site logo (navbar, hero, structured data). */
 export const SITE_LOGO_URL = "/logo.webp";
 
