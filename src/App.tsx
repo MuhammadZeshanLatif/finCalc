@@ -12,6 +12,7 @@ import {
 import type { BlogBlock } from "./data/blog/types";
 import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
+import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import { isAbsoluteHttpUrl } from "./components/blog/BlogPostImage";
@@ -68,6 +69,7 @@ const calcMeta: Record<string, { icon: string }> = {
   currency:  { icon: "fa-money-bill-transfer" },
   ti84:      { icon: "fa-microchip" },
   salestax:  { icon: "fa-tags" },
+  desmos:    { icon: "fa-chart-line" },
 };
 
 function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {
@@ -369,6 +371,17 @@ export default function App() {
                   </span>
                   <span>{t.ti84SidebarLabel}</span>
                 </a>
+                {/* Desmos special entry */}
+                <a
+                  href={buildPathname(lang, "desmos")}
+                  onClick={e => { e.preventDefault(); navigateTo("desmos"); }}
+                  className={`fc-sidebar-item ${currentPage === "desmos" ? "is-active" : ""}`}
+                >
+                  <span className="fc-sidebar-item__icon item-icon" style={{ background: "#2a4a7f", color: "#7ec8e3" }}>
+                    <i className="fa-solid fa-chart-line"></i>
+                  </span>
+                  <span>{t.desmosSidebarLabel}</span>
+                </a>
               </div>
             </div>
           </div>
@@ -510,6 +523,20 @@ export default function App() {
                 </div>
                 <TI84CalculatorPage />
                 <CalculatorRichArticle id="ti84" lang={lang} />
+              </div>
+            )}
+
+            {/* ── Graphing calculator (/desmos) ─────────── */}
+            {currentPage === "desmos" && (
+              <div className="fc-calc-page fc-calc-page--graphing">
+                <div className="fc-calc-header">
+                  <h1>
+                    <i className="fa-solid fa-chart-line me-2 fc-calc-header-icon" style={{ color: "#7ec8e3" }} />
+                    {t.desmosPageTitle}
+                  </h1>
+                  <p>{t.desmosPageLead}</p>
+                </div>
+                <DesmosCalculatorPage lang={lang} />
               </div>
             )}
 

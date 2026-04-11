@@ -33,6 +33,10 @@ export const translations = sameLocaleShape({
     ti84PageLead:
       "Graph Y1–Y6, edit WINDOW (xMin, xMax, yMin, yMax), and use 2nd-key shortcuts—free in your browser, no download. Type with your keyboard (s, c, t, log, ln, x, pi) or tap the keypad. Practice for class; proctored exams still require an approved physical calculator—check College Board and ACT rules.",
     ti84SidebarLabel: "TI-84 Plus CE",
+    desmosPageTitle: "Graphing Calculator Online — Free",
+    desmosPageLead:
+      "Plot up to six functions in your browser with zoom, pan, trace, and a value table — similar to a Desmos-style workflow, but built into this site (no iframe). No download or sign-up; calculations run locally on your device.",
+    desmosSidebarLabel: "Graphing Calculator",
     howToUse: "How to Use",
     financialImpact: "Financial Impact & Planning",
     instructions: "Instructions",
@@ -71,6 +75,7 @@ export const translations = sameLocaleShape({
       currency: { title: "Currency Converter — Live Exchange Rates | FinanceCalculator",    desc: "Convert 150+ currencies using live ECB rates updated daily. Fast, free online currency converter with real-time exchange rates. No API key, no sign-up." },
       ti84:     { title: "TI-84 Plus CE Calculator Online Free | FinanceCalculator",        desc: "Use a TI-84 Plus CE graphing calculator free in your browser. Graph functions, use 2nd shortcuts & window settings — no download or login ever needed." },
       salestax: { title: "Sales Tax Calculator — Add or Remove Tax Instantly",              desc: "Calculate sales tax on any price in seconds. Add tax to a pre-tax price or extract tax from a total. Free online sales tax calculator — no sign-up needed." },
+      desmos:   { title: "Free Graphing Calculator Online | FinanceCalculator",               desc: "Graph up to six functions in your browser: zoom, pan, trace, and a numeric table. No download or sign-up — runs locally like a Desmos-style tool." },
       about:    { title: "About FinanceCalculator — Free Finance Calculators Online",       desc: "11+ free financial & scientific calculators in English and Russian. No ads, no sign-up, zero tracking — all calculations run privately in your browser." },
       contact:  { title: "Contact FinanceCalculator — Feedback & Support",                  desc: "Reach the FinanceCalculator team anytime. Send feedback, report a bug, or ask a question about our free calculators. We reply within 24 hours — always welcome." },
       privacy:  { title: "Privacy Policy — FinanceCalculator Financial Calculators",        desc: "Zero data collected. All calculations run locally in your browser — no tracking cookies, no servers. Your numbers never leave your device. Guaranteed." },
@@ -370,6 +375,10 @@ export const translations = sameLocaleShape({
     ti84PageLead:
       "Графики Y1–Y6, окно WINDOW (xMin, xMax, yMin, yMax) и функции через 2nd — бесплатно в браузере, без установки. Ввод с клавиатуры (s, c, t, log, ln, x, pi) или кнопками. Для занятий и домашней работы; на экзаменах нужен разрешённый физический прибор — смотрите правила вашей организации.",
     ti84SidebarLabel: "TI-84 Plus CE",
+    desmosPageTitle: "Графический калькулятор онлайн бесплатно",
+    desmosPageLead:
+      "До 6 функций в браузере: масштаб, перенос, трассировка и таблица значений — похоже на привычный Desmos-стиль, но это встроенный инструмент сайта (не iframe). Без установки и регистрации, расчёты выполняются у вас на устройстве.",
+    desmosSidebarLabel: "Графический калькулятор",
     howToUse: "Как пользоваться",
     financialImpact: "Финансовое влияние и планирование",
     instructions: "Инструкции",
@@ -406,6 +415,7 @@ export const translations = sameLocaleShape({
       currency: { title: "Конвертер валют онлайн — актуальный курс | ФинКальк",     desc: "Конвертируйте 150+ валют по актуальным курсам ЕЦБ. Бесплатный онлайн-конвертер с обновляемыми курсами — без ключа API и регистрации." },
       ti84:     { title: "Калькулятор TI-84 Plus CE онлайн | ФинКальк",             desc: "Используйте графический калькулятор TI-84 Plus CE бесплатно в браузере. Стройте графики, используйте функцию 2nd — без скачивания и регистрации." },
       salestax: { title: "Калькулятор налога с продаж онлайн — добавить или выделить", desc: "Рассчитайте налог с продаж для любой цены и ставки. Добавьте налог к цене без налога или выделите его из суммы с налогом. Бесплатно, без регистрации." },
+      desmos:   { title: "Графический калькулятор онлайн бесплатно | ФинКальк", desc: "Стройте до 6 графиков в браузере: масштаб, сдвиг, трассировка и таблица значений. Без установки — локально, в духе Desmos." },
       about:    { title: "О ФинКальк — бесплатные финансовые калькулятор",          desc: "ФинКальк — бесплатный набор из 11+ финансовых и научных калькуляторов на русском и английском. Без рекламы, без регистрации, полностью приватно." },
       contact:  { title: "Контакты ФинКальк — обратная связь",                       desc: "Свяжитесь с командой ФинКальк. Отправьте отзыв, сообщите об ошибке или задайте вопрос о наших калькуляторах. Отвечаем в течение 24 часов." },
       privacy:  { title: "Политика конфиденциальности | ФинКальк",                   desc: "Мы не собираем личные данные, расчёты выполняются в браузере, отслеживающих cookie нет. Ваши данные не покидают устройство — читайте нашу политику." },

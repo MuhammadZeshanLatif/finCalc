@@ -19,6 +19,7 @@ export const ROUTE_PAGES = new Set([
   "currency",
   "ti84",
   "salestax",
+  "desmos",
   "notfound",
 ]);
 
