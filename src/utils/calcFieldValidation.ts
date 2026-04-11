@@ -92,6 +92,10 @@ export function getCalculatorFieldErrors(id: string, s: State, m: VMsg): Record<
     case "currency":
       moneyOk(s.currAmount, "currAmount");
       break;
+    case "salestax":
+      moneyOk(s.vatAmount, "vatAmount");
+      if (!Number.isFinite(s.vatRate) || s.vatRate < 0 || s.vatRate > MAX_RATE) e.vatRate = m.rateRange;
+      break;
     default:
       break;
   }

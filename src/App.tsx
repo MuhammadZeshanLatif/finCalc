@@ -66,6 +66,7 @@ const calcMeta: Record<string, { icon: string }> = {
   tax:       { icon: "fa-file-invoice-dollar" },
   currency:  { icon: "fa-money-bill-transfer" },
   ti84:      { icon: "fa-microchip" },
+  salestax:  { icon: "fa-tags" },
 };
 
 function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {

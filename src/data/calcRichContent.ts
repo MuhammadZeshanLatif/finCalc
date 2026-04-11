@@ -70,6 +70,11 @@ const EN: Record<string, string[]> = {
     "We publish short articles on the blog that tie real scenarios to the tools: when a metric matters, how to read an amortization table, and what typical calculators leave out (fees, taxes, floating rates, jurisdiction-specific rules). Nothing here replaces licensed tax, legal, or investment advice; use professionals when decisions have material consequences.",
     "FinanceCalculator runs in English and Russian with matching URLs so you can share links in either language. If you spot a bug, have a feature idea, or want to report unclear copy, use the contact page—we read feedback even when we cannot answer individualized planning questions by email.",
   ],
+  salestax: [
+    "Sales tax is a consumption tax levied by a government on the sale of goods and services. Unlike VAT—which is collected at each stage of production—sales tax is typically applied only at the final point of sale to the end consumer. Rates vary widely: in the United States, for example, combined state and local rates range from 0% in states with no sales tax to over 10% in some jurisdictions.",
+    "The key distinction in any sales tax calculation is whether the quoted price already includes tax (inclusive) or whether tax will be added on top (exclusive). Retailers often display exclusive prices so the sticker price looks lower, while some markets quote inclusive prices for transparency. This calculator handles both modes: enter the price, pick the mode, enter the rate, and the math is done instantly.",
+    "For sellers, correctly computing sales tax prevents under-collection (which creates a liability with the tax authority) and over-collection (which creates customer trust issues). For buyers, knowing the after-tax price before reaching the register helps with budgeting—especially for large purchases or business expense tracking. This tool is for arithmetic only; tax authority rules, exemptions, and filing requirements vary by location and must be confirmed independently.",
+  ],
 };
 
 const RU: Record<string, string[]> = {
@@ -138,6 +143,11 @@ const RU: Record<string, string[]> = {
     "FinanceCalculator — бесплатный набор финансовых и бытовых калькуляторов в браузере: сложный процент, накопления, кредиты, ипотека, EMI, НДС, упрощённый налог, валюта, ИМТ и полноценный инженерный режим. Интерфейс заточен под быстрые сценарии «что если» и обучение: видно, какие допущения стоят за результатом.",
     "В блоге мы публикуем короткие материалы: как читать график амортизации, когда важна ставка против срока, чего типичные калькулятор не учитывают (комиссии, налоги, плавающие ставки, местные правила). Это не замена консультации налогового юриста или инвестора — при серьёзных решениях обращайтесь к специалистам.",
     "Сайт доступен на английском и русском с согласованными URL, чтобы делиться ссылками на нужном языке. Ошибки в расчётах, идеи функций и замечания по тексту можно отправить через страницу контактов — мы читаем обращения, даже если не отвечаем на персональные финансовые вопросы в переписке.",
+  ],
+  salestax: [
+    "Налог с продаж — это потребительский налог, который государство взимает при продаже товаров и услуг конечному покупателю. В отличие от НДС, который собирается на каждом этапе производственной цепочки, налог с продаж применяется только в точке конечной продажи. Ставки существенно различаются: в США, например, совокупные ставки штата и муниципалитета варьируются от 0% в штатах без налога с продаж до более чем 10% в отдельных юрисдикциях.",
+    "Главное различие в расчёте — включён ли налог в указанную цену (inclusive) или будет начислен сверху (exclusive). Розничные продавцы часто указывают цену без налога, чтобы ценник выглядел привлекательнее; другие рынки указывают цену с налогом для прозрачности. Калькулятор поддерживает оба режима: введите цену, выберите режим и ставку — результат мгновенный.",
+    "Для продавцов правильный расчёт налога с продаж предотвращает недоначисление (которое создаёт обязательства перед налоговыми органами) и излишнее начисление (которое подрывает доверие клиентов). Для покупателей знание итоговой цены помогает бюджетировать покупки, особенно крупные или корпоративные. Инструмент выполняет только арифметику; правила налоговых органов, льготы и требования к отчётности зависят от юрисдикции и должны уточняться в официальных источниках.",
   ],
 };
 

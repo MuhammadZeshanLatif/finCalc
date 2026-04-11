@@ -55,13 +55,16 @@ const resultLabels: Record<string, string> = {
   increasePct: "Return (%)",
   closingDate: "Closing date",
   baseAmount: "Net / base amount",
+  salesTaxAmount: "Tax Amount",
+  totalAfterTax: "Total (after tax)",
+  preTaxPrice: "Pre-tax Price",
 };
 
 const monetaryKeys = [
   "totalBalance", "totalInterest", "monthly", "projected",
   "calculatedVat", "totalAmount", "monthlyEmi", "totalPayment",
   "calculatedTax", "netIncome", "totalRepaid", "totalContributed",
-  "baseAmount",
+  "baseAmount", "salesTaxAmount", "totalAfterTax", "preTaxPrice",
 ];
 
 const pctKeys = ["increasePct"];
@@ -91,6 +94,7 @@ const calcIcons: Record<string, string> = {
   bmi: "fa-weight-scale",
   tax: "fa-file-invoice-dollar",
   currency: "fa-money-bill-transfer",
+  salestax: "fa-tags",
 };
 
 type ScheduleBlock = {
@@ -827,6 +831,57 @@ function FinancialCalculator({ id, lang }: Props) {
       return { result, insights, schedules, charts, formatValue };
     }
 
+    if (id === "salestax") {
+      let base: number;
+      let stax: number;
+      let total: number;
+      if (vatType === "inclusive") {
+        total = vatAmount;
+        base = vatAmount / (1 + vatRate / 100);
+        stax = vatAmount - base;
+      } else {
+        base = vatAmount;
+        stax = vatAmount * (vatRate / 100);
+        total = vatAmount + stax;
+      }
+      const result = {
+        salesTaxAmount: stax.toFixed(2),
+        totalAfterTax: total.toFixed(2),
+        preTaxPrice: base.toFixed(2),
+      };
+      schedules.push({
+        title: sl.vatTitle,
+        columns: [
+          { key: "k", label: "" },
+          { key: "v", label: sl.colEndBal },
+        ],
+        rows: [
+          { k: lang === "ru" ? "Цена без налога" : "Pre-tax price", v: fmtMoney(base) },
+          { k: lang === "ru" ? "Налог с продаж" : "Sales tax", v: fmtMoney(stax) },
+        ],
+        totalRow: { k: sl.total, v: fmtMoney(total) },
+      });
+      charts.push({
+        kind: "donut",
+        title: sl.ratioDonut,
+        parts: [
+          { label: lang === "ru" ? "Цена без налога" : "Pre-tax", value: base, color: "#3B72C4" },
+          { label: lang === "ru" ? "Налог" : "Tax", value: stax, color: "#F59E0B" },
+        ],
+        center: fmtMoney(total),
+        sub: lang === "ru" ? "Итого с налогом" : "Total after tax",
+      });
+      const insights: ResultInsight[] = [];
+      if (total > 0) {
+        insights.push({
+          icon: "fa-tags",
+          value: `${((stax / total) * 100).toFixed(1)}%`,
+          label: lang === "ru" ? "Налог % от итога" : "Tax % of total",
+        });
+      }
+      return { result, insights, schedules, charts, formatValue };
+    }
+
     return { result: null, insights: [] as ResultInsight[], schedules, charts, formatValue };
   }, [
     id, lang, locale, gl, principal, rate, time, compounding,
@@ -1141,6 +1196,34 @@ function FinancialCalculator({ id, lang }: Props) {
                   invalid={decInv("grossIncome")}
                   onDecimalSyntaxBad={bad => setSyntaxField("grossIncome", bad)}
                 />
+              </CalcField>
+            </div>
+          )}
+
+          {id === "salestax" && (
+            <div>
+              <CalcField label={t.amount} error={decErr("vatAmount")}>
+                <MoneyInput
+                  value={vatAmount}
+                  onChange={setVatAmount}
+                  invalid={decInv("vatAmount")}
+                  onDecimalSyntaxBad={bad => setSyntaxField("vatAmount", bad)}
+                />
+              </CalcField>
+              <CalcField label={t.rate} error={decErr("vatRate")}>
+                <PctInput
+                  value={vatRate}
+                  onChange={setVatRate}
+                  step="1"
+                  invalid={decInv("vatRate")}
+                  onDecimalSyntaxBad={bad => setSyntaxField("vatRate", bad)}
+                />
+              </CalcField>
+              <CalcField label={t.type}>
+                <select className="form-select" value={vatType} onChange={e => setVatType(e.target.value)}>
+                  <option value="exclusive">{t.exclusive}</option>
+                  <option value="inclusive">{t.inclusive}</option>
+                </select>
               </CalcField>
             </div>
           )}

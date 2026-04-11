@@ -244,6 +244,28 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "Not in this version. Core scientific math, Y= graphing, and WINDOW editing are supported; advanced TI menus and programming are not.",
     },
   ],
+  salestax: [
+    {
+      q: "What is sales tax?",
+      a: "Sales tax is a government-imposed percentage added to the sale price of goods and services. The seller collects it at the point of sale and remits it to the tax authority.",
+    },
+    {
+      q: "What is the difference between inclusive and exclusive sales tax?",
+      a: "Exclusive (before tax): the price shown does not include tax — tax is added on top. Inclusive (tax included): the price already contains the tax and you need to extract it. Choose the mode that matches how your price is quoted.",
+    },
+    {
+      q: "How do I calculate sales tax on a price?",
+      a: "Multiply the pre-tax price by the tax rate divided by 100. For example, a $200 item at 8% sales tax: 200 x 0.08 = $16 tax, so the total is $216.",
+    },
+    {
+      q: "How do I extract sales tax from a total price?",
+      a: "Divide the total by (1 + rate/100), then subtract from the total. For a $216 total at 8%: pre-tax = 216 / 1.08 = $200, tax = $216 - $200 = $16.",
+    },
+    {
+      q: "Is the result from this calculator legally accurate?",
+      a: "No. This tool performs arithmetic only. Actual sales tax depends on your jurisdiction, product category, exemptions, and rounding rules. Always confirm with official sources.",
+    },
+  ],
 };
 
 const FAQ_RU: Record<string, SeoFaq[]> = {
@@ -487,6 +509,28 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "В этой версии нет. Есть научные функции, Y= и WINDOW; расширенные меню TI не эмулируются.",
     },
   ],
+  salestax: [
+    {
+      q: "Что такое налог с продаж?",
+      a: "Налог с продаж — это государственный процент, начисляемый на стоимость товаров и услуг в момент продажи. Продавец собирает его и перечисляет в бюджет.",
+    },
+    {
+      q: "В чём разница между ценой с налогом и без налога?",
+      a: "Без налога (exclusive): указанная цена не включает налог — он добавляется сверху. С налогом (inclusive): цена уже содержит налог, его нужно выделить. Выберите режим в соответствии с тем, как указана цена.",
+    },
+    {
+      q: "Как рассчитать налог с продаж?",
+      a: "Умножьте цену без налога на ставку, делённую на 100. Например, товар за 200 $ при ставке 8%: 200 × 0,08 = 16 $ налога, итого 216 $.",
+    },
+    {
+      q: "Как выделить налог из суммы с налогом?",
+      a: "Разделите общую сумму на (1 + ставка/100), затем вычтите из неё результат. Для 216 $ при 8%: цена без налога = 216 / 1,08 = 200 $, налог = 216 - 200 = 16 $.",
+    },
+    {
+      q: "Результат калькулятора юридически точен?",
+      a: "Нет. Инструмент выполняет только арифметику. Фактический налог зависит от юрисдикции, категории товара, льгот и правил округления. Всегда уточняйте у официальных источников.",
+    },
+  ],
 };
 
 const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
@@ -607,6 +651,16 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Press on to reset the home screen stack. Remember: practice only—exams require approved hardware.",
     ],
   },
+  salestax: {
+    name: "How to calculate sales tax",
+    description: "Add or remove sales tax from any price using a custom rate.",
+    steps: [
+      "Enter the price in the Price field.",
+      "Enter the sales tax rate as a percentage (e.g. 8 for 8%).",
+      "Select 'Before tax' if your price does not include tax, or 'Tax included' if it already does.",
+      "Press Calculate — the tax amount, pre-tax price, and total are shown instantly.",
+    ],
+  },
 };
 
 const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
@@ -725,6 +779,16 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Нажмите graph для построения. Y2–Y6 — дополнительные кривые.",
       "2nd включает синие подписи: обратная тригонометрия, π, корень и т.д.",
       "on сбрасывает стек главного экрана. На экзамене нужен физический калькулятор по правилам организатора.",
+    ],
+  },
+  salestax: {
+    name: "Как рассчитать налог с продаж",
+    description: "Добавьте или выделите налог с продаж из любой цены по произвольной ставке.",
+    steps: [
+      "Введите цену в поле «Цена».",
+      "Введите ставку налога в процентах (например, 8 для 8%).",
+      "Выберите «Без налога», если цена не включает налог, или «С налогом», если налог уже входит в цену.",
+      "Нажмите «Рассчитать» — сумма налога, цена без налога и итог появятся мгновенно.",
     ],
   },
 };

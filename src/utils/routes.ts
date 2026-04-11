@@ -18,6 +18,7 @@ export const ROUTE_PAGES = new Set([
   "tax",
   "currency",
   "ti84",
+  "salestax",
   "notfound",
 ]);
 
