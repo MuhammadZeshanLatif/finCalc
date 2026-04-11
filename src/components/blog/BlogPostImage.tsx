@@ -10,6 +10,11 @@ type Props = {
   loading: "eager" | "lazy";
 };
 
+/** True when `url` is an http(s) asset (e.g. Wikimedia); omit `referrerPolicy="no-referrer"` so it can load. */
+export function isAbsoluteHttpUrl(url: string): boolean {
+  return /^https?:\/\//i.test(url);
+}
+
 export function BlogPostImage({
   src,
   srcWebp,
@@ -22,6 +27,8 @@ export function BlogPostImage({
     img.onerror = null;
     img.src = SITE_PREVIEW_IMAGE_PATH;
   };
+  /** Wikimedia and many CDNs reject or throttle `no-referrer` hotlinks; then onError shows generic preview. */
+  const externalAsset = isAbsoluteHttpUrl(src) || (srcWebp != null && isAbsoluteHttpUrl(srcWebp));
   const imgProps = {
     alt,
     className,
@@ -29,7 +36,7 @@ export function BlogPostImage({
     decoding: "async" as const,
     width: 960,
     height: 540,
-    referrerPolicy: "no-referrer" as const,
+    ...(externalAsset ? {} : { referrerPolicy: "no-referrer" as const }),
     onError,
   };
   if (srcWebp) {

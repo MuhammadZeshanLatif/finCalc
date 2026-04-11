@@ -3070,4 +3070,297 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     ],
     calcLink: "emi",
   },
+
+  {
+    topicKey: "salestax-ndfl-nedvizhimost",
+    slug: "sales-tax-calculator-russia-property-ndfl",
+    title: "Sales Tax Calculator: How to Calculate Tax When Selling Property (Russia)",
+    metaTitle: "Sales Tax & Property Sale Tax in Russia — NDFL Guide | FinanceCalculator",
+    metaDescription:
+      "What “sales tax” means in Russia, how NDFL hits flat sales, ownership period, cadastral value, deductions, and how calculators help before you file.",
+    keywords:
+      "Russia NDFL, property sale tax, sales tax calculator, sell apartment Russia, cadastral value, tax deduction, VAT vs NDFL",
+    excerpt:
+      "Russia doesn’t do US-style sales tax on a flat sale — you’re usually in NDFL territory. Here’s how people actually run the numbers.",
+    datePublished: "2026-04-10",
+    dateModified: "2026-04-11",
+    author: "FinanceCalculator Editorial",
+    readingTimeMinutes: 12,
+    hero: {
+      src: "/blog/tax-brackets-hero-staircase.svg",
+      srcWebp: "/blog/tax-brackets-hero-staircase.webp",
+      alt: "Stylised tax brackets — same idea as the Russian article hero",
+      caption: "NDFL, deductions, and ownership length when you sell a home.",
+      credit: "FinanceCalculator visual",
+    },
+    keyPhrases: [
+      "sales tax vs NDFL in Russia",
+      "tax when selling an apartment",
+      "ownership period and exemptions",
+      "cadastral vs contract price",
+      "VAT is not your flat-sale tax",
+    ],
+    blocks: [
+      {
+        t: "h2",
+        id: "what-is-sales-tax-russia",
+        text: "What is sales tax?",
+      },
+      {
+        t: "p",
+        text: "In plain language, “sales tax” often means tax on profit from selling goods or services. Russia doesn’t really use that label the way the US does for a private flat sale. When you sell a home or land, personal income tax (NDFL) is usually what shows up — not a separate “sales tax” line on the contract. Old standalone sales-tax setups are gone; other rules replaced them.",
+      },
+      {
+        t: "p",
+        text: "VAT is what you see on invoices and receipts for goods and services. A flat sale is a different file: the tax office cares about NDFL and your gain from the deal, not “VAT on the apartment”.",
+      },
+      {
+        t: "figure",
+        src: "/images/sales-tax-calculator/happy-customer-tax-calculator.webp",
+        alt: "Happy user with laptop using tax calculator tool.",
+        caption: "Run the numbers calmly before you touch the paperwork.",
+        credit: "FinanceCalculator",
+      },
+      {
+        t: "h2",
+        id: "why-calculator-matters",
+        text: "Why bother with a sales tax calculator?",
+      },
+      {
+        t: "p",
+        text: "A calculator gives you a draft figure before the declaration: price, how long you’ve owned the place, cadastral value, deductions. It’s not the tax office’s final word — but you’re less likely to botch the arithmetic at 11 p.m. before the deadline.",
+      },
+      {
+        t: "h2",
+        id: "sale-scenario-examples",
+        text: "A few sale scenarios",
+      },
+      {
+        t: "h3",
+        id: "example-selling-a-car",
+        text: "Example 1: Selling a car",
+      },
+      {
+        t: "p",
+        text: "Roughly the same idea as property: own it under three years and you’ll often owe NDFL on the gain (unless something exempts you). Own it longer — frequently no tax, if you meet the conditions.",
+      },
+      {
+        t: "h3",
+        id: "example-selling-business-assets",
+        text: "Example 2: Selling business assets",
+      },
+      {
+        t: "p",
+        text: "Equipment, IP, software licences — selling those can also create taxable income. How much NDFL depends on what you got for it, what you spent, and how long you held it.",
+      },
+      {
+        t: "h2",
+        id: "how-calculator-asks",
+        text: "What a sales tax calculator usually asks for",
+      },
+      {
+        t: "p",
+        text: "Typical fields:",
+      },
+      {
+        t: "ul",
+        items: [
+          "Sale price — what’s in the contract.",
+          "Ownership period — what the extract says, not what feels true.",
+          "Property value — cadastral and/or market, depending on the tool.",
+          "Deductions — which breaks the form thinks you can claim.",
+        ],
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Quick example",
+        text: "You sold a flat for 3,000,000 ₽ and owned it five years — a decent calculator tells you what might be due instead of you doing long division by hand.",
+      },
+      {
+        t: "figure",
+        src: "/images/sales-tax-calculator/property-sales-text-calculator.webp",
+        alt: "Tax calculator screen: price, tenure, cadastral, deductions.",
+        caption: "Typical online form fields before you file.",
+        credit: "FinanceCalculator",
+      },
+      {
+        t: "h2",
+        id: "how-to-calculate-flat-sale-tax",
+        text: "How to calculate tax on selling a flat",
+      },
+      {
+        t: "h3",
+        id: "step-property-value",
+        text: "1. Lock in the numbers",
+      },
+      {
+        t: "p",
+        text: "Start with cadastral value from the extract and the real contract price. They diverge more often than people expect; sometimes the rules use the number you weren’t staring at.",
+      },
+      {
+        t: "h3",
+        id: "step-ownership-period",
+        text: "2. Count ownership properly",
+      },
+      {
+        t: "p",
+        text: "Under three years in your name — plan on NDFL on the gain unless a relief applies. Over three years plus sole home — many people owe nothing, but “sole home” and “three years” follow the tax office’s definitions, not gut feeling.",
+      },
+      {
+        t: "callout",
+        variant: "note",
+        title: "Note",
+        text: "For tax purposes the clock usually starts from registration of ownership, not the day you “bought” it informally.",
+      },
+      {
+        t: "h3",
+        id: "step-tax-deductions",
+        text: "3. Stack deductions if you can",
+      },
+      {
+        t: "p",
+        text: "Reliefs exist, but they’re not a generic cashback button. Length of ownership, shares, sole-home status, whether you bought a replacement — all of that matters. Check the Tax Code and FTS (nalog.gov.ru); this page only points you in the right direction.",
+      },
+      {
+        t: "figure",
+        src: "/images/sales-tax-calculator/real-estate-tax-calculation-example.webp",
+        alt: "Real estate sale tax example with price and tenure.",
+        caption: "Price, ownership stretch, and rate in one visual flow.",
+        credit: "FinanceCalculator",
+      },
+      {
+        t: "h2",
+        id: "sales-tax-vs-vat-vs-ndfl",
+        text: "How this differs from VAT and NDFL in Russia",
+      },
+      {
+        t: "p",
+        text: "VAT is about supply chains and shelf prices. NDFL on a flat sale is about your personal income from the deal. Mix them up and the declaration won’t match reality.",
+      },
+      {
+        t: "p",
+        text: "Short ownership — you often pay on the gain if no exemption. Long ownership plus deductions can wipe or slash the base — only if you actually qualify.",
+      },
+      {
+        t: "h2",
+        id: "interactive-calculators-online",
+        text: "Interactive calculators",
+      },
+      {
+        t: "p",
+        text: "Sites like nalogia.ru or calcus.ru let you punch in price, tenure, cadastral value, and get a ballpark in minutes. Handy before you pay an accountant; still reconcile with your papers and current rates.",
+      },
+      {
+        t: "p",
+        text: "The FinanceCalculator “sales tax” tool here is separate: it only adds or strips a percentage from a price (inclusive vs exclusive). That won’t file your Russian NDFL return, but it’s useful for quick arithmetic on any rate.",
+      },
+      {
+        t: "figure",
+        src: "/images/sales-tax-calculator/faq-section-image.webp",
+        alt: "FAQ checklist layout for property tax questions.",
+        caption: "What people usually ask before they crunch numbers.",
+        credit: "FinanceCalculator",
+      },
+      {
+        t: "h2",
+        id: "faq-sales-tax-property-ru",
+        text: "FAQ",
+      },
+      {
+        t: "h3",
+        id: "faq-how-calculate-property-tax-ru",
+        text: "How do I calculate tax on selling property?",
+      },
+      {
+        t: "p",
+        text: "Contract price, cadastral value, time in ownership, deductions — that’s the bundle. A calculator rolls it into one estimate so you’re not doing it on scrap paper.",
+      },
+      {
+        t: "h3",
+        id: "faq-tax-on-apartment-russia",
+        text: "What tax applies when I sell a flat in Russia?",
+      },
+      {
+        t: "p",
+        text: "Under three years — usually NDFL on the gain unless you’re covered by a relief. Over three years and sole home — often zero for many people; “often” isn’t legal advice, check your case.",
+      },
+      {
+        t: "h3",
+        id: "faq-deduction-selling-flat",
+        text: "Is there a deduction when I sell?",
+      },
+      {
+        t: "p",
+        text: "Yes, there are deductions and exemptions tied to tenure and sole-home rules — not a universal discount. Read the relevant articles of the Tax Code and FTS guidance.",
+      },
+      {
+        t: "h3",
+        id: "faq-how-use-sales-tax-calculator",
+        text: "How do I use a sales tax calculator?",
+      },
+      {
+        t: "p",
+        text: "Enter sale price, ownership length, sometimes cadastral value and deduction toggles — out comes a number. Garbage in, garbage out; the more honest the inputs, the closer the draft is to reality.",
+      },
+      {
+        t: "h2",
+        id: "takeaway-chart-sales-tax-ru",
+        text: "Takeaway chart",
+      },
+      {
+        t: "table",
+        caption: "Takeaway chart",
+        head: ["Factor", "Description", "Impact on tax calculation"],
+        rows: [
+          [
+            "Price of sale",
+            "The sale price of the property or asset.",
+            "Determines the basis for tax calculation.",
+          ],
+          [
+            "Ownership period",
+            "How long the property was owned.",
+            "If owned for more than 3 years, tax may be exempt.",
+          ],
+          [
+            "Cadastral value",
+            "Government-assessed value of the property.",
+            "Affects how much tax can be due.",
+          ],
+          [
+            "Tax deduction",
+            "Legal deductions (e.g. personal exemptions).",
+            "Shrinks taxable income and the final bill.",
+          ],
+          [
+            "Tax rate",
+            "NDFL rate or rate for the specific deal.",
+            "Sets how much you owe if something is due.",
+          ],
+        ],
+      },
+      {
+        t: "figure",
+        src: "/images/sales-tax-calculator/takeaway-chart-tax-calculation.webp",
+        alt: "Sale price, tenure, cadastral value, deductions, tax rate.",
+        caption: "Key factors at a glance before the wrap-up.",
+        credit: "FinanceCalculator",
+      },
+      {
+        t: "h2",
+        id: "conclusion-sales-tax-property-ru",
+        text: "Bottom line",
+      },
+      {
+        t: "p",
+        text: "A flat sale is money, paperwork, and FTS deadlines. The sales tax calculator on this site plus tools like nalogia.ru stop you guessing in the dark. I once used the contract date instead of the extract for ownership length — never again; extract first, then numbers. Weird deal structure? Pay a competent accountant for an hour instead of fixing assessments later.",
+      },
+    ],
+    sources: [
+      { title: "Federal Tax Service of Russia (FTS)", url: "https://www.nalog.gov.ru/" },
+      { title: "FTS Russia — NDFL section", url: "https://www.nalog.gov.ru/rn77/taxation/taxes/ndfl/" },
+    ],
+    calcLink: "salestax",
+  },
 ];

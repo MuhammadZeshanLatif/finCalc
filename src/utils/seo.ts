@@ -40,9 +40,10 @@ const META = {
 } as const;
 
 function normalizeSocialImage(url: string): string {
-  const lower = url.toLowerCase();
-  // Many share crawlers are inconsistent with SVG/WebP previews.
-  if (lower.endsWith(".svg") || lower.endsWith(".webp")) {
+  const pathOnly = (url.split("?")[0] ?? url).toLowerCase();
+  // SVG is unreliable in OG/Twitter crawlers; fall back to site default preview.
+  // WebP blog heroes must pass through so each article keeps its real image in shares.
+  if (pathOnly.endsWith(".svg")) {
     return getOgImageUrl();
   }
   return url;

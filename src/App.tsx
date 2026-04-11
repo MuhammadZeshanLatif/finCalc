@@ -14,6 +14,7 @@ import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
+import { isAbsoluteHttpUrl } from "./components/blog/BlogPostImage";
 import {
   getSiteUrl,
   OFFICIAL_SOCIAL_INSTAGRAM,
@@ -563,7 +564,10 @@ export default function App() {
                     : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
                 </p>
                 <div className="row g-4">
-                  {paginatedPosts.map(post => (
+                  {paginatedPosts.map(post => {
+                    const thumbSrc = post.hero.srcWebp ?? post.hero.src;
+                    const thumbExternal = isAbsoluteHttpUrl(thumbSrc);
+                    return (
                     <div className="col-md-6" key={post.slug}>
                       <article className="fc-blog-card card border-0 h-100 overflow-hidden">
                         <a
@@ -576,14 +580,14 @@ export default function App() {
                           }}
                         >
                           <img
-                            src={post.hero.srcWebp ?? post.hero.src}
+                            src={thumbSrc}
                             alt=""
                             className="card-img-top fc-blog-card-thumb"
                             width={640}
                             height={360}
                             loading="lazy"
                             decoding="async"
-                            referrerPolicy="no-referrer"
+                            {...(thumbExternal ? {} : { referrerPolicy: "no-referrer" })}
                             onError={e => {
                               const img = e.currentTarget;
                               img.onerror = null;
@@ -619,7 +623,8 @@ export default function App() {
                         </div>
                       </article>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
