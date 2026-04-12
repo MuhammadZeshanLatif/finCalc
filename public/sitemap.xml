@@ -271,6 +271,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/desmos"/>
   </url>
 
+  <!-- ===== TI-84 PLUS CE CALCULATOR ===== -->
+  <url>
+    <loc>https://financcalculator.ru/ti84</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/ti84"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/ti84"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/ti84"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/ti84</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/ti84"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/ti84"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/ti84"/>
+  </url>
+
   <!-- ===== BLOG INDEX ===== -->
   <url>
     <loc>https://financcalculator.ru/blog</loc>
@@ -475,7 +495,7 @@
   <url>
     <loc>https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez</loc>
     <lastmod>2026-04-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/vat-gst-invoicing-inclusive-exclusive"/>
     <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/nds-scheta-s-nalogom-i-bez"/>

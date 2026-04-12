@@ -15,6 +15,13 @@ import {
 import { getSeoFaqs, getSeoHowTo } from "../data/seoContent";
 import { buildPathname, type AppLang } from "./routes";
 
+/** Pages that are interactive calculators — get per-page SoftwareApplication schema. */
+const CALCULATOR_PAGES = new Set([
+  "basic", "interest", "deposit", "loan", "mortgage",
+  "days", "vat", "emi", "bmi", "tax", "currency",
+  "ti84", "salestax", "desmos",
+]);
+
 function ogImageMimeType(url: string): string {
   const path = (url.split("?")[0] ?? "").toLowerCase();
   if (path.endsWith(".webp")) return "image/webp";
@@ -251,6 +258,7 @@ function injectJsonLd(opts: {
     "@id": `${opts.base}/#org`,
     name: opts.orgName,
     url: opts.base,
+    description: META[opts.lang].defaultDesc,
     logo: {
       "@type": "ImageObject",
       url: orgLogoUrl,
@@ -333,7 +341,8 @@ function injectJsonLd(opts: {
     const blogPosting: Record<string, unknown> = {
       "@type": "BlogPosting",
       "@id": `${opts.pageUrl}#article`,
-      mainEntityOfPage: { "@type": "WebPage", "@id": opts.pageUrl },
+      url: opts.pageUrl,
+      mainEntityOfPage: { "@type": "WebPage", "@id": `${opts.pageUrl}#webpage` },
       headline: opts.blogArticle.headline,
       description: opts.blogArticle.description,
       datePublished: `${opts.blogArticle.datePublished}T08:00:00.000Z`,
@@ -352,6 +361,8 @@ function injectJsonLd(opts: {
       blogPosting.video = {
         "@type": "VideoObject",
         name: opts.blogArticle.headline,
+        description: opts.blogArticle.description,
+        uploadDate: `${opts.blogArticle.datePublished}T08:00:00.000Z`,
         embedUrl: `https://www.youtube.com/embed/${opts.blogArticle.videoYoutubeId}`,
         thumbnailUrl: `https://i.ytimg.com/vi/${opts.blogArticle.videoYoutubeId}/hqdefault.jpg`,
       };
@@ -390,6 +401,35 @@ function injectJsonLd(opts: {
     });
   }
 
+  // WebPage node for every non-home page (Google/Yandex require explicit WebPage for rich results).
+  if (opts.page !== "home") {
+    const webPageName = opts.blogArticle ? opts.blogArticle.headline : opts.pageTitle;
+    graph.push({
+      "@type": "WebPage",
+      "@id": `${opts.pageUrl}#webpage`,
+      url: opts.pageUrl,
+      name: webPageName,
+      isPartOf: { "@id": `${opts.base}/#website` },
+      breadcrumb: { "@id": `${opts.pageUrl}#breadcrumb` },
+      inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
+    });
+  }
+
+  // Per-calculator SoftwareApplication node — richer signal for each tool page.
+  if (!opts.blogArticle && CALCULATOR_PAGES.has(opts.page)) {
+    graph.push({
+      "@type": ["WebApplication", "SoftwareApplication"],
+      "@id": `${opts.pageUrl}#app`,
+      name: opts.pageTitle,
+      url: opts.pageUrl,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "Any",
+      browserRequirements: "Requires JavaScript",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
+    });
+  }
+
   if (opts.faqs.length > 0) {
     graph.push({
       "@type": "FAQPage",
@@ -412,6 +452,7 @@ function injectJsonLd(opts: {
       step: opts.howTo.steps.map((text, i) => ({
         "@type": "HowToStep",
         position: i + 1,
+        name: text.split(/[.!?]/)[0]?.trim().substring(0, 80) || `Step ${i + 1}`,
         text,
       })),
     });
