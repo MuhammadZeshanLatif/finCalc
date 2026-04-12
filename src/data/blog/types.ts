@@ -49,6 +49,8 @@ export type BlogArticle = {
   calcLink: string;
   /** Show ECB/Frankfurter snippet */
   hasLiveRates?: boolean;
+  /** BlogPosting.articleSection (e.g. Mathematics). Defaults in SEO when omitted. */
+  articleSection?: string;
 };
 
 export function tocFromBlocks(blocks: BlogBlock[]): { id: string; text: string; level: 2 | 3 }[] {

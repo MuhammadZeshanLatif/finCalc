@@ -186,6 +186,13 @@ export default function App() {
         const enSlug = enP?.slug ?? post.slug;
         const heroForSocial = post.hero.srcWebp ?? post.hero.src;
         const faqPairs = extractFaqPairs(post.blocks);
+        const siteBase = getSiteUrl();
+        const toAbsAsset = (u: string) =>
+          /^https?:\/\//i.test(u) ? u : `${siteBase}${u.startsWith("/") ? "" : "/"}${u}`;
+        const heroImageAbs = toAbsAsset(heroForSocial);
+        const articleImageGallery = post.blocks
+          .filter((b): b is Extract<BlogBlock, { t: "figure" }> => b.t === "figure")
+          .map(b => ({ url: toAbsAsset(b.src), caption: b.alt }));
         blogArticle = {
           canonicalPath:    buildPathname(lang, "blog", post.slug),
           alternateEnPath:  buildPathname("en", "blog", enSlug),
@@ -196,13 +203,14 @@ export default function App() {
           datePublished:    post.datePublished,
           dateModified:     post.dateModified,
           authorName:       post.author,
-          imageUrl:         /^https?:\/\//i.test(heroForSocial)
-            ? heroForSocial
-            : `${getSiteUrl()}${heroForSocial.startsWith("/") ? "" : "/"}${heroForSocial}`,
+          imageUrl:         heroImageAbs,
           imageAlt:         post.hero.alt,
+          articleImageGallery,
           blogListLabel:    t.blog,
           wordCountApprox:  approxWordCount(post),
           videoYoutubeId:   post.video?.youtubeId,
+          videoTitle:       post.video?.title,
+          articleSection:   post.articleSection,
           faqs:             faqPairs,
         };
       }
@@ -536,7 +544,7 @@ export default function App() {
                   </h1>
                   <p>{t.desmosPageLead}</p>
                 </div>
-                <DesmosCalculatorPage lang={lang} />
+                <DesmosCalculatorPage lang={lang} onNavigate={navigateTo} />
               </div>
             )}
 

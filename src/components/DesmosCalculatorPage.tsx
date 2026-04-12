@@ -1,5 +1,11 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { evaluate } from "mathjs";
+import { buildPathname } from "../utils/routes";
+
+const GRAPHING_GUIDE_BLOG_SLUG = {
+  en: "what-is-graphing-calculator",
+  ru: "chto-takoe-graficheskiy-kalkulyator",
+} as const;
 
 // ── Constants ─────────────────────────────────────────────────
 const COLORS = ["#e11d48", "#2563eb", "#16a34a", "#d97706", "#7c3aed", "#0891b2"];
@@ -109,7 +115,13 @@ function traceLabel(rows: LayerRow[], ci: number, isRu: boolean): string {
 }
 
 // ── Main Component ────────────────────────────────────────────
-export default function DesmosCalculatorPage({ lang }: { lang: "en" | "ru" }) {
+export default function DesmosCalculatorPage({
+  lang,
+  onNavigate,
+}: {
+  lang: "en" | "ru";
+  onNavigate?: (page: string, opts?: { blogSlug?: string | null }) => void;
+}) {
   const isRu = lang === "ru";
 
   const [rows, setRows] = useState<LayerRow[]>(() => [
@@ -1137,9 +1149,139 @@ export default function DesmosCalculatorPage({ lang }: { lang: "en" | "ru" }) {
       {!isFullscreen && (
         <article className="dg-article">
           <h2 className="dg-article__h2">
+            {isRu ? "Что такое графический калькулятор?" : "What is a graphing calculator?"}
+          </h2>
+          <p className="dg-article__p">
+            {isRu
+              ? "Графический калькулятор строит графики уравнений и данных, решает многие задачи алгебры и анализа в численном виде и часто включает статистику и программирование. В отличие от простого калькулятора, вы видите зависимость y от x на экране — параболы, синусоиды, точки пересечения."
+              : "A graphing calculator plots equations and data, handles algebra and calculus numerically, and often adds statistics and programming. Unlike a basic calculator, you see how y depends on x—parabolas, sine waves, intersections—right on the screen."}
+          </p>
+          <p className="dg-article__p">
+            {isRu
+              ? "Портативные модели (TI-84, Casio, HP и др.) до сих пор нужны на многих экзаменах. Онлайн-инструменты вроде Desmos и GeoGebra — бесплатный способ тренироваться дома; эта страница даёт многослойный график прямо в браузере без установки."
+              : "Handheld models (TI-84, Casio, HP, and others) are still required on many standardized tests. Online tools like Desmos and GeoGebra are free for practice at home; this page gives you a multi-layer graph in the browser with no install."}
+          </p>
+
+          <h2 className="dg-article__h2">
+            {isRu ? "Как это работает" : "How it works"}
+          </h2>
+          <p className="dg-article__p">
+            {isRu
+              ? "Вы вводите выражение от x или точки (x, y). Программа вычисляет значения на диапазоне и рисует кривую; масштаб и положение окна задаются вручную или жестами. Так можно быстро проверить решение системы уравнений по пересечениям графиков."
+              : "You enter an expression in x or a list of (x, y) points. The software samples values and draws the curve; you set the view with controls or gestures. That makes it easy to check systems of equations from intersection points."}
+          </p>
+
+          <h2 className="dg-article__h2">
+            {isRu ? "Основные возможности" : "Key features"}
+          </h2>
+          <ul className="dg-article__ul">
+            {(isRu
+              ? [
+                  "Построение нескольких графиков в одной системе координат.",
+                  "Численное решение уравнений и поиск пересечений.",
+                  "Статистика, регрессия и диаграммы рассеяния (на многих устройствах).",
+                  "Программирование на калькуляторе (TI-Basic и др.) — с учётом правил экзамена.",
+                ]
+              : [
+                  "Plot several graphs in one coordinate plane.",
+                  "Solve equations numerically and find intersections.",
+                  "Statistics, regression, and scatter plots on many devices.",
+                  "On-calculator programming (e.g. TI-Basic)—subject to exam rules.",
+                ]
+            ).map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
+
+          <h2 className="dg-article__h2">
+            {isRu ? "Популярные модели (ориентир)" : "Popular models (at a glance)"}
+          </h2>
+          <table className="dg-article__compare">
+            <thead>
+              <tr>
+                <th>{isRu ? "Модель" : "Model"}</th>
+                <th>{isRu ? "Цена" : "Price"}</th>
+                <th>{isRu ? "Экран" : "Screen"}</th>
+                <th>{isRu ? "Особенности" : "Highlights"}</th>
+                <th>{isRu ? "Экзамены" : "Tests"}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(
+                isRu
+                  ? [
+                      ["TI-84 Plus", "$$", '~3.5"', "Школа, алгебра, статистика", "SAT, ACT, AP"],
+                      ["Casio fx-9750GII", "$", '~2.8"', "Доступная графика", "SAT, ACT"],
+                      ["HP Prime", "$$$", '~3.5"', "Сенсор, CAS-опции", "SAT, ACT"],
+                      ["TI-Nspire CX", "$$$$", '~3.5"', "3D, документы, CAS", "SAT, ACT, AP"],
+                    ]
+                  : [
+                      ["TI-84 Plus", "$$", '~3.5"', "School standard, algebra, stats", "SAT, ACT, AP"],
+                      ["Casio fx-9750GII", "$", '~2.8"', "Budget graphing", "SAT, ACT"],
+                      ["HP Prime", "$$$", '~3.5"', "Touchscreen, CAS options", "SAT, ACT"],
+                      ["TI-Nspire CX", "$$$$", '~3.5"', "3D, documents, CAS", "SAT, ACT, AP"],
+                    ]
+              ).map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td key={ci}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="dg-article__p dg-article__muted">
+            {isRu
+              ? "Проверяйте актуальные списки допуска у организатора экзамена."
+              : "Always confirm the latest allowed-model list from your testing agency."}
+          </p>
+
+          <h2 className="dg-article__h2">
+            {isRu ? "Железо, приложения и эта страница" : "Hardware, apps, and this page"}
+          </h2>
+          <p className="dg-article__p">
+            {isRu
+              ? "На экзамене часто требуется физический калькулятор из списка. Дома удобно сочетать бесплатные приложения и веб-инструменты. Ниже — как пользоваться именно графическим калькулятором на FinanceCalculator."
+              : "Exams usually require an approved physical device. At home, free apps and web tools are ideal for exploration. Below: how to use FinanceCalculator’s own graphing workspace."}
+          </p>
+          <p className="dg-article__p">
+            {isRu ? (
+              <>
+                Полное руководство с историей, сравнением и советами — в блоге:{" "}
+                <a
+                  href={buildPathname(lang, "blog", GRAPHING_GUIDE_BLOG_SLUG[lang])}
+                  className="dg-article__link"
+                  onClick={e => {
+                    e.preventDefault();
+                    onNavigate?.("blog", { blogSlug: GRAPHING_GUIDE_BLOG_SLUG[lang] });
+                  }}
+                >
+                  «Что такое графический калькулятор? Полное руководство»
+                </a>
+                .
+              </>
+            ) : (
+              <>
+                Read the full guide on our blog:{" "}
+                <a
+                  href={buildPathname(lang, "blog", GRAPHING_GUIDE_BLOG_SLUG[lang])}
+                  className="dg-article__link"
+                  onClick={e => {
+                    e.preventDefault();
+                    onNavigate?.("blog", { blogSlug: GRAPHING_GUIDE_BLOG_SLUG[lang] });
+                  }}
+                >
+                  What Is a Graphing Calculator? A Complete Guide
+                </a>
+                .
+              </>
+            )}
+          </p>
+
+          <h2 className="dg-article__h2">
             {isRu ? "Графический калькулятор онлайн — всё о возможностях" : "Online Graphing Calculator — Full Feature Guide"}
           </h2>
-          <p>
+          <p className="dg-article__p">
             {isRu
               ? "Калькулятор работает в браузере: любое число слоёв — выражения f(x) и таблицы точек (x, y). Масштаб колёсиком, сдвиг перетаскиванием, трассировка у кривых и точек."
               : "Runs in your browser with any number of layers — f(x) expressions and (x, y) data tables. Zoom with the scroll wheel, pan by dragging, and trace curves or plotted points."}
@@ -1237,6 +1379,24 @@ export default function DesmosCalculatorPage({ lang }: { lang: "en" | "ru" }) {
               a: isRu
                 ? "Вкладка «Таблица» над графиком — только для выражений f(x). Точки (x,y) вводятся в боковой «Таблице» через меню «+»."
                 : "The Table tab above the graph samples y from each f(x). For manual (x,y) points, add a Table layer from the + menu on the left.",
+            },
+            {
+              q: isRu ? "Помогает ли графический калькулятор в геометрии?" : "Can a graphing calculator help with geometry?",
+              a: isRu
+                ? "Да: по уравнениям можно строить фигуры, смотреть пересечения и проверять длины и углы численно."
+                : "Yes—you can plot relations, read intersections, and check lengths and angles numerically.",
+            },
+            {
+              q: isRu ? "Разрешён ли такой инструмент на экзаменах?" : "Are graphing calculators allowed on exams?",
+              a: isRu
+                ? "Часто да, но только физические модели из официального списка. Эта веб-страница для практики дома, не для зала экзамена."
+                : "Often yes for approved handhelds on official lists. This web tool is for practice at home, not the exam hall.",
+            },
+            {
+              q: isRu ? "Есть ли поддержка «как в Desmos»?" : "Is this the same as Desmos?",
+              a: isRu
+                ? "Похожий рабочий процесс (слои, масштаб, таблица), но это отдельный инструмент на FinanceCalculator, не продукт Desmos."
+                : "Similar workflow (layers, zoom, table), but this is FinanceCalculator’s own tool—not affiliated with Desmos.",
             },
           ].map((item, i) => (
             <details key={i} className="dg-faq">

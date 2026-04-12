@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./types";
+import { graphingCalculatorGuideEn } from "./graphingCalculatorGuide.en";
 
 /** English articles — editorial tone: specific, cited, no filler. */
 export const BLOG_POSTS_EN: BlogArticle[] = [
@@ -3363,4 +3364,5 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     ],
     calcLink: "salestax",
   },
+  graphingCalculatorGuideEn,
 ];

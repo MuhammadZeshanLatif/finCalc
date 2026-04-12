@@ -3721,6 +3721,63 @@ body {
 
 .dg-article__ol li { margin-bottom: .4rem; }
 
+.dg-article__p {
+  margin: .5rem 0;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.dg-article__muted {
+  font-size: .88rem;
+  color: #6b7280;
+}
+
+.dg-article__ul {
+  margin: .35rem 0 1rem;
+  padding-left: 1.35rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.dg-article__ul li { margin-bottom: .35rem; }
+
+.dg-article__compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .8rem;
+  margin: .5rem 0 .35rem;
+  color: #374151;
+}
+
+.dg-article__compare th,
+.dg-article__compare td {
+  border: 1px solid #c7d2fe;
+  padding: .4rem .45rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dg-article__compare th {
+  background: #eef2ff;
+  color: #312e81;
+  font-weight: 700;
+}
+
+.dg-article__compare tbody tr:nth-child(even) {
+  background: #f8faff;
+}
+
+.dg-article__link {
+  color: #4338ca;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dg-article__link:hover {
+  color: #6366f1;
+}
+
 /* ── Syntax reference grid ── */
 .dg-syntax-grid {
   display: grid;

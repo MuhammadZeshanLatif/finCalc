@@ -244,6 +244,28 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "Not in this version. Core scientific math, Y= graphing, and WINDOW editing are supported; advanced TI menus and programming are not.",
     },
   ],
+  desmos: [
+    {
+      q: "What is a graphing calculator?",
+      a: "A graphing calculator plots equations and data so you can see functions visually. It goes beyond basic arithmetic: algebra, trig, statistics, and often programming. This page runs a free multi-layer graphing workspace in your browser.",
+    },
+    {
+      q: "Is this the same as Desmos?",
+      a: "It is an independent in-browser tool with a similar workflow: multiple expressions, zoom, pan, trace, tables, and fullscreen. It is not affiliated with Desmos.",
+    },
+    {
+      q: "Can I use this on the SAT, ACT, or AP exams?",
+      a: "No. Proctored exams require approved physical calculators. Use this page to practice graphing concepts and tables before test day.",
+    },
+    {
+      q: "How do I graph an equation here?",
+      a: "Tap + on the left, choose Expression f(x), type your formula (for example sin(x) or x^2/4-2), and view the Graph tab. Adjust zoom with the toolbar or scroll wheel, and drag to pan.",
+    },
+    {
+      q: "Where can I read a full guide to graphing calculators?",
+      a: "Open the FinanceCalculator blog article “What Is a Graphing Calculator? A Complete Guide” for hardware vs apps, popular models, exams, and troubleshooting.",
+    },
+  ],
   salestax: [
     {
       q: "What is sales tax?",
@@ -509,6 +531,28 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "В этой версии нет. Есть научные функции, Y= и WINDOW; расширенные меню TI не эмулируются.",
     },
   ],
+  desmos: [
+    {
+      q: "Что такое графический калькулятор?",
+      a: "Это устройство или программа, которая строит графики уравнений и данных. Здесь — бесплатный многослойный график в браузере: выражения f(x), таблицы, масштаб и трассировка.",
+    },
+    {
+      q: "Это официальный Desmos?",
+      a: "Нет, это отдельный инструмент на FinanceCalculator с похожей логикой слоёв и графика. К Desmos не привязан.",
+    },
+    {
+      q: "Можно на SAT/ACT/ЕГЭ вместо калькулятора?",
+      a: "Нет, на экзамене нужен разрешённый физический прибор. Страница для практики и понимания графиков дома.",
+    },
+    {
+      q: "Как построить график?",
+      a: "Нажмите «+» слева, выберите «Выражение f(x)», введите формулу (например sin(x)), откройте вкладку «График». Масштаб — колёсико или кнопки, сдвиг — перетаскивание.",
+    },
+    {
+      q: "Где полное руководство?",
+      a: "В блоге FinanceCalculator статья «Что такое графический калькулятор? Полное руководство» — модели, экзамены, приложения и советы.",
+    },
+  ],
   salestax: [
     {
       q: "Что такое налог с продаж?",
@@ -651,6 +695,17 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Press on to reset the home screen stack. Remember: practice only—exams require approved hardware.",
     ],
   },
+  desmos: {
+    name: "How to use this online graphing calculator",
+    description: "Plot multiple functions, tables, and read values from the graph.",
+    steps: [
+      "Tap + in the Layers header and choose Expression f(x) or Table (x, y) to add a layer.",
+      "Type a formula using x (for example sin(x), x^2, or log(x)). Use the Insert keypad when a layer row is focused.",
+      "Open the Graph tab. Scroll to zoom, drag to pan, and hover near a curve to trace x and y.",
+      "Switch to the Table tab to sample numeric y(x) for enabled expressions.",
+      "Use fullscreen if you need more space. For exam rules, rely on approved handhelds—this page is for practice.",
+    ],
+  },
   salestax: {
     name: "How to calculate sales tax",
     description: "Add or remove sales tax from any price using a custom rate.",
@@ -779,6 +834,17 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Нажмите graph для построения. Y2–Y6 — дополнительные кривые.",
       "2nd включает синие подписи: обратная тригонометрия, π, корень и т.д.",
       "on сбрасывает стек главного экрана. На экзамене нужен физический калькулятор по правилам организатора.",
+    ],
+  },
+  desmos: {
+    name: "Как пользоваться графическим калькулятором онлайн",
+    description: "Несколько функций, таблицы и чтение значений с графика.",
+    steps: [
+      "Нажмите «+» у заголовка «Слои» и выберите «Выражение f(x)» или «Таблица (x, y)».",
+      "Введите формулу через x (например sin(x), x^2). Панель «Вставить» работает, когда активна строка выражения.",
+      "Откройте вкладку «График»: колёсико — масштаб, перетаскивание — сдвиг, наведение у кривой — координаты.",
+      "Вкладка «Таблица» показывает численные y(x) для включённых выражений.",
+      "Полноэкранный режим удобнее на маленьком экране. На экзамене ориентируйтесь на список разрешённых устройств.",
     ],
   },
   salestax: {

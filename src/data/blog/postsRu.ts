@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./types";
+import { graphingCalculatorGuideRu } from "./graphingCalculatorGuide.ru";
 
 /** Russian articles — same topicKey as EN for hreflang pairing. */
 export const BLOG_POSTS_RU: BlogArticle[] = [
@@ -2354,4 +2355,5 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     ],
     calcLink: "salestax",
   },
+  graphingCalculatorGuideRu,
 ];

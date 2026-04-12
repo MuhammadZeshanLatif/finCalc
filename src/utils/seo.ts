@@ -95,9 +95,15 @@ export type BlogSeoPayload = {
   authorName: string;
   imageUrl: string;
   imageAlt: string;
+  /** In-article figures (absolute URLs) as ImageObject nodes after the hero. */
+  articleImageGallery?: { url: string; caption?: string }[];
   blogListLabel: string;
   wordCountApprox?: number;
   videoYoutubeId?: string;
+  /** VideoObject.name / iframe title */
+  videoTitle?: string;
+  /** BlogPosting.articleSection */
+  articleSection?: string;
   faqs?: { q: string; a: string }[];
 };
 
@@ -159,7 +165,11 @@ export function updatePageSeo(opts: {
     setMeta("property", "article:published_time", `${opts.blogArticle.datePublished}T08:00:00.000Z`);
     setMeta("property", "article:modified_time", `${opts.blogArticle.dateModified}T08:00:00.000Z`);
     setMeta("property", "article:author", opts.blogArticle.authorName);
-    setMeta("property", "article:section", "Personal finance");
+    setMeta(
+      "property",
+      "article:section",
+      opts.blogArticle.articleSection ?? "Personal finance",
+    );
   } else {
     removeMeta("property", "article:published_time");
     removeMeta("property", "article:modified_time");
@@ -338,6 +348,21 @@ function injectJsonLd(opts: {
       ],
     });
 
+    const heroImageObject = {
+      "@type": "ImageObject",
+      url: opts.blogArticle.imageUrl,
+      caption: opts.blogArticle.imageAlt,
+    };
+    const gallery = opts.blogArticle.articleImageGallery ?? [];
+    const extraImages = gallery
+      .filter(g => g.url && g.url !== opts.blogArticle!.imageUrl)
+      .map(g => ({
+        "@type": "ImageObject" as const,
+        url: g.url,
+        ...(g.caption ? { caption: g.caption } : {}),
+      }));
+    const imageList: Record<string, unknown>[] = [heroImageObject, ...extraImages];
+
     const blogPosting: Record<string, unknown> = {
       "@type": "BlogPosting",
       "@id": `${opts.pageUrl}#article`,
@@ -349,22 +374,27 @@ function injectJsonLd(opts: {
       dateModified: `${opts.blogArticle.dateModified}T08:00:00.000Z`,
       author: { "@type": "Organization", name: opts.blogArticle.authorName },
       publisher: { "@id": `${opts.base}/#org` },
-      image: [opts.blogArticle.imageUrl],
+      image: imageList,
       inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
-      articleSection: "Personal finance",
+      articleSection: opts.blogArticle.articleSection ?? "Personal finance",
       isAccessibleForFree: true,
     };
     if (opts.blogArticle.wordCountApprox) {
       blogPosting.wordCount = opts.blogArticle.wordCountApprox;
     }
     if (opts.blogArticle.videoYoutubeId) {
+      const vid = opts.blogArticle.videoYoutubeId;
+      const vName = opts.blogArticle.videoTitle?.trim() || opts.blogArticle.headline;
       blogPosting.video = {
         "@type": "VideoObject",
-        name: opts.blogArticle.headline,
+        "@id": `${opts.pageUrl}#video`,
+        name: vName,
         description: opts.blogArticle.description,
         uploadDate: `${opts.blogArticle.datePublished}T08:00:00.000Z`,
-        embedUrl: `https://www.youtube.com/embed/${opts.blogArticle.videoYoutubeId}`,
-        thumbnailUrl: `https://i.ytimg.com/vi/${opts.blogArticle.videoYoutubeId}/hqdefault.jpg`,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${vid}`,
+        contentUrl: `https://www.youtube.com/watch?v=${vid}`,
+        thumbnailUrl: `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`,
+        publisher: { "@id": `${opts.base}/#org` },
       };
     }
     graph.push(blogPosting);
@@ -404,7 +434,7 @@ function injectJsonLd(opts: {
   // WebPage node for every non-home page (Google/Yandex require explicit WebPage for rich results).
   if (opts.page !== "home") {
     const webPageName = opts.blogArticle ? opts.blogArticle.headline : opts.pageTitle;
-    graph.push({
+    const webPage: Record<string, unknown> = {
       "@type": "WebPage",
       "@id": `${opts.pageUrl}#webpage`,
       url: opts.pageUrl,
@@ -412,7 +442,15 @@ function injectJsonLd(opts: {
       isPartOf: { "@id": `${opts.base}/#website` },
       breadcrumb: { "@id": `${opts.pageUrl}#breadcrumb` },
       inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
-    });
+    };
+    if (opts.blogArticle) {
+      webPage.primaryImageOfPage = {
+        "@type": "ImageObject",
+        url: opts.blogArticle.imageUrl,
+        caption: opts.blogArticle.imageAlt,
+      };
+    }
+    graph.push(webPage);
   }
 
   // Per-calculator SoftwareApplication node — richer signal for each tool page.
