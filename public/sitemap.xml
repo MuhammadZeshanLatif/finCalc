@@ -251,6 +251,25 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/salestax"/>
   </url>
 
+  <url>
+    <loc>https://financcalculator.ru/autoloan</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/autoloan"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/autoloan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/autoloan"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/autoloan</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/autoloan"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/autoloan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/autoloan"/>
+  </url>
+
   <!-- ===== DESMOS GRAPHING CALCULATOR ===== -->
   <url>
     <loc>https://financcalculator.ru/desmos</loc>

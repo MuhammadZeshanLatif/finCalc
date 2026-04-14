@@ -20,6 +20,7 @@ export const ROUTE_PAGES = new Set([
   "ti84",
   "salestax",
   "desmos",
+  "autoloan",
   "notfound",
 ]);
 

@@ -23,6 +23,16 @@ type State = {
   bmiHeight: number;
   grossIncome: number;
   currAmount: number;
+  autoMode: "price" | "monthly";
+  autoPrice: number;
+  autoMonthlyBudget: number;
+  autoLoanTerm: number;
+  autoCashIncentives: number;
+  autoDownPayment: number;
+  autoTradeIn: number;
+  autoAmountOwed: number;
+  autoSalesTaxRate: number;
+  autoFees: number;
 };
 
 const MAX_MONEY = 1e15;
@@ -95,6 +105,18 @@ export function getCalculatorFieldErrors(id: string, s: State, m: VMsg): Record<
     case "salestax":
       moneyOk(s.vatAmount, "vatAmount");
       if (!Number.isFinite(s.vatRate) || s.vatRate < 0 || s.vatRate > MAX_RATE) e.vatRate = m.rateRange;
+      break;
+    case "autoloan":
+      if (s.autoMode === "price") moneyOk(s.autoPrice, "autoPrice");
+      else moneyOk(s.autoMonthlyBudget, "autoMonthlyBudget");
+      if (!Number.isFinite(s.autoLoanTerm) || s.autoLoanTerm < 1 || s.autoLoanTerm > 600) e.autoLoanTerm = m.monthsRange;
+      rateOk(s.rate, "rate");
+      moneyOk(s.autoCashIncentives, "autoCashIncentives");
+      moneyOk(s.autoDownPayment, "autoDownPayment");
+      moneyOk(s.autoTradeIn, "autoTradeIn");
+      moneyOk(s.autoAmountOwed, "autoAmountOwed");
+      if (!Number.isFinite(s.autoSalesTaxRate) || s.autoSalesTaxRate < 0 || s.autoSalesTaxRate > MAX_RATE) e.autoSalesTaxRate = m.rateRange;
+      moneyOk(s.autoFees, "autoFees");
       break;
     default:
       break;

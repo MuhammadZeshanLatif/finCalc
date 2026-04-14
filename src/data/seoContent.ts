@@ -128,6 +128,20 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "No. FinanceCalculator is not a lender. All numbers are illustrative.",
     },
   ],
+  autoloan: [
+    {
+      q: "How is the auto loan payment calculated?",
+      a: "The calculator estimates payment from loan principal, annual interest rate, and term in months. Principal depends on vehicle price, down payment, trade-in equity, incentives, sales tax, and fees.",
+    },
+    {
+      q: "Should I roll taxes and fees into the auto loan?",
+      a: "Rolling them into the loan lowers upfront cash but increases principal, so you pay interest on those amounts. Paying tax and fees upfront usually reduces total interest cost.",
+    },
+    {
+      q: "What is trade-in equity in an auto loan?",
+      a: "Trade-in equity is trade-in value minus payoff amount on your current vehicle loan. Positive equity reduces the new loan; negative equity increases it.",
+    },
+  ],
   mortgage: [
     {
       q: "How is the mortgage payment estimated?",
@@ -415,6 +429,20 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "Нет, FinanceCalculator не кредитор. Только иллюстрация.",
     },
   ],
+  autoloan: [
+    {
+      q: "Как считается платёж по автокредиту?",
+      a: "Платёж рассчитывается по сумме кредита, годовой ставке и сроку в месяцах. Сама сумма кредита зависит от цены авто, взноса, trade-in, скидок, налога и сборов.",
+    },
+    {
+      q: "Выгодно ли включать налог и сборы в кредит?",
+      a: "Так меньше первоначальные расходы, но выше тело кредита и переплата по процентам. При оплате налога и сборов сразу итоговая стоимость обычно ниже.",
+    },
+    {
+      q: "Что такое эквити trade-in?",
+      a: "Эквити trade-in — это разница между стоимостью сдаваемого авто и остатком долга по нему. Положительное уменьшает новый кредит, отрицательное увеличивает.",
+    },
+  ],
   mortgage: [
     {
       q: "Как оценивается ипотечный платёж?",
@@ -608,6 +636,17 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Remember: exclude fees unless you add them separately in your plan.",
     ],
   },
+  autoloan: {
+    name: "How to use the auto loan calculator",
+    description: "Estimate monthly payment, total interest, and full cost of financing a vehicle.",
+    steps: [
+      "Choose calculation mode: by vehicle price or by monthly budget.",
+      "Enter loan term in months and annual interest rate.",
+      "Fill in down payment, trade-in value, amount owed, incentives, sales tax, and fees.",
+      "Decide whether tax and fees are financed or paid upfront.",
+      "Review monthly payment, loan amount, total interest, and amortization schedule.",
+    ],
+  },
   mortgage: {
     name: "How to use the mortgage calculator",
     description: "Approximate a home loan payment from value, down payment, rate, and term.",
@@ -747,6 +786,17 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Укажите дату первого платежа, если есть поле.",
       "Смотрите платёж и график.",
       "Комиссии учитывайте отдельно при планировании.",
+    ],
+  },
+  autoloan: {
+    name: "Как пользоваться калькулятором автокредита",
+    description: "Оцените ежемесячный платёж, переплату и полную стоимость покупки авто в кредит.",
+    steps: [
+      "Выберите режим расчёта: по цене авто или по желаемому ежемесячному платежу.",
+      "Введите срок кредита в месяцах и годовую процентную ставку.",
+      "Укажите взнос, trade-in, остаток долга по trade-in, скидки, налог и сборы.",
+      "Отметьте, включаются ли налог и сборы в кредит или оплачиваются сразу.",
+      "Проверьте платёж в месяц, сумму кредита, переплату и график погашения.",
     ],
   },
   mortgage: {

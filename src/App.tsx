@@ -70,6 +70,7 @@ const calcMeta: Record<string, { icon: string }> = {
   ti84:      { icon: "fa-microchip" },
   salestax:  { icon: "fa-tags" },
   desmos:    { icon: "fa-chart-line" },
+  autoloan:  { icon: "fa-car" },
 };
 
 function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {
@@ -160,7 +161,7 @@ export default function App() {
   useEffect(() => {
     const tr = translations[lang];
     // Per-page SEO lookup — covers all calculator pages, static pages, and TI-84
-    const ps = (tr.pageSeo as Record<string, { title: string; desc: string } | undefined>);
+    const ps = (tr.pageSeo as Record<string, { title: string; desc: string; keywords?: string } | undefined>);
     let title: string = tr.siteTitle;
     let description: string = META_DEFAULT[lang];
     let calculatorKeywords: string | undefined;
@@ -218,8 +219,7 @@ export default function App() {
       // ── All other pages: use per-page SEO from translations ───────────────
       title       = ps[currentPage]!.title;
       description = ps[currentPage]!.desc;
-      // Add keyword hints for calculator + static pages
-      calculatorKeywords = undefined;
+      calculatorKeywords = ps[currentPage]!.keywords;
     } else {
       // Fallback for unknown pages
       title       = tr.siteTitle;
