@@ -13,6 +13,10 @@ export type LoanRow = {
   balance: number;
 };
 
+export type LoanEarlyRow = LoanRow & {
+  extraPrincipal: number;
+};
+
 export function loanAmortization(
   principal: number,
   annualRatePct: number,
@@ -51,6 +55,93 @@ export function loanAmortization(
   const totalPaid = rows.reduce((s, x) => s + x.payment, 0);
   const endDate = rows.length ? rows[rows.length - 1]!.date : firstPaymentDate;
   return { monthly: pmt, totalInterest: totalInt, totalPaid, endDate, rows };
+}
+
+export function loanWithEarlyRepayment(
+  principal: number,
+  annualRatePct: number,
+  termMonths: number,
+  firstPaymentDate: Date,
+  opts?: {
+    paymentType?: "annuity" | "differentiated";
+    extraMonthly?: number;
+    extraStartMonth?: number;
+  },
+): {
+  plannedMonthly: number;
+  totalInterest: number;
+  totalPaid: number;
+  endDate: Date;
+  rows: LoanEarlyRow[];
+  savedInterest: number;
+  savedMonths: number;
+} {
+  const p = Math.max(0, principal);
+  const n = Math.max(0, Math.floor(termMonths));
+  const r = annualRatePct / 100 / 12;
+  const paymentType = opts?.paymentType ?? "annuity";
+  const extraMonthly = Math.max(0, opts?.extraMonthly ?? 0);
+  const extraStartMonth = Math.max(1, Math.floor(opts?.extraStartMonth ?? 1));
+
+  const annuityBase =
+    r === 0 || n === 0 ? (n === 0 ? 0 : p / n) : (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const diffPrincipalBase = n === 0 ? 0 : p / n;
+
+  const simulate = (extra: number): { rows: LoanEarlyRow[]; totalInterest: number; totalPaid: number } => {
+    if (p === 0 || n === 0) return { rows: [], totalInterest: 0, totalPaid: 0 };
+    const rows: LoanEarlyRow[] = [];
+    let bal = p;
+    let totalInterest = 0;
+    let i = 1;
+    const hardLimit = Math.max(2, n) + 2400;
+
+    while (bal > 1e-6 && i <= hardLimit) {
+      const interest = bal * r;
+      const regularPrincipalTarget =
+        paymentType === "annuity"
+          ? Math.max(0, annuityBase - interest)
+          : diffPrincipalBase;
+      const regularPrincipal = Math.min(bal, regularPrincipalTarget);
+      const extraPrincipal = i >= extraStartMonth ? extra : 0;
+      const principalPaid = Math.min(bal, regularPrincipal + extraPrincipal);
+      const extraApplied = Math.max(0, principalPaid - regularPrincipal);
+      const payment = interest + principalPaid;
+      bal -= principalPaid;
+      totalInterest += interest;
+      if (bal < 1e-6) bal = 0;
+      rows.push({
+        n: i,
+        date: addMonths(firstPaymentDate, i - 1),
+        payment,
+        interest,
+        principal: principalPaid,
+        extraPrincipal: extraApplied,
+        balance: bal,
+      });
+      i += 1;
+    }
+
+    const totalPaid = rows.reduce((sum, row) => sum + row.payment, 0);
+    return { rows, totalInterest, totalPaid };
+  };
+
+  const baseline = simulate(0);
+  const withExtra = simulate(extraMonthly);
+  const endDate = withExtra.rows.length ? withExtra.rows[withExtra.rows.length - 1]!.date : firstPaymentDate;
+  const plannedMonthly =
+    paymentType === "annuity"
+      ? annuityBase
+      : (p > 0 && n > 0 ? (p / n + p * r) : 0);
+
+  return {
+    plannedMonthly,
+    totalInterest: withExtra.totalInterest,
+    totalPaid: withExtra.totalPaid,
+    endDate,
+    rows: withExtra.rows,
+    savedInterest: Math.max(0, baseline.totalInterest - withExtra.totalInterest),
+    savedMonths: Math.max(0, baseline.rows.length - withExtra.rows.length),
+  };
 }
 
 export type DepositRow = {

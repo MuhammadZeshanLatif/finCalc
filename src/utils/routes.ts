@@ -21,6 +21,7 @@ export const ROUTE_PAGES = new Set([
   "salestax",
   "desmos",
   "autoloan",
+  "loanearly",
   "notfound",
 ]);
 

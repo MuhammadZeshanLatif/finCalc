@@ -19,6 +19,11 @@ const EN: Record<string, string[]> = {
     "Lenders may add origination fees, insurance bundles, or variable rates that change your true cost of borrowing. This interface assumes a stable annual rate and regular payments without prepayment for simplicity. If you plan extra principal payments, your actual payoff date and total interest will be lower than shown; use the table as a starting conversation with the lender’s official disclosure.",
     "Keeping total debt service within common budgeting guidelines (often discussed as a percentage of gross income) is a personal choice, not a rule enforced here. The value of the tool is transparency: you see how much of each currency unit goes to interest versus principal over the life of the loan.",
   ],
+  loanearly: [
+    "A loan with early repayment follows standard amortization, but you intentionally pay extra principal before schedule. Since interest is charged on the remaining balance, each additional principal payment lowers future interest and can shorten the payoff period. This is most powerful in early months, when interest share is highest.",
+    "This calculator lets you compare annuity and differentiated payment behavior under the same inputs. Annuity plans usually feel smoother for monthly budgeting, while differentiated schedules start heavier and decline over time. Early repayment can work in both cases, but the cash-flow pattern differs.",
+    "Use realistic assumptions before acting: check whether your lender charges prepayment fees, requires notice, or applies partial prepayments differently (reduce term vs reduce monthly payment). The model here is a planning tool and should be verified against your lender’s official repayment policy.",
+  ],
   mortgage: [
     "A mortgage blends the same amortization logic as smaller loans with larger principals and longer horizons. Down payment percentage immediately changes the borrowed amount and, indirectly, whether ancillary costs like mortgage insurance might apply in real life. Our optional PMI-style toggle is a simplified hint only; actual insurance rules depend on jurisdiction, lender, and loan program.",
     "Property taxes, homeowners insurance, and escrow handling vary enormously by location. Unless explicitly separated in your workflow, treat the monthly payment shown as principal-and-interest focused. Closing costs, points, and adjustable-rate features are also outside the default model. Always validate against a Loan Estimate or equivalent document before signing.",
@@ -97,6 +102,11 @@ const RU: Record<string, string[]> = {
     "Аннуитетный кредит делит платёж на проценты с остатка и основной долг. Со временем доля процентов падает, доля тела растёт — это видно в таблице, если она выводится. Типичный случай — потребительский или автокредит с фиксированной ставкой.",
     "Банк может добавить комиссии, страховки или плавающую ставку. Здесь — стабильная годовая ставка без досрочных погашений в модели. При досрочке фактические проценты и срок будут меньше расчётных.",
     "Инструмент даёт прозрачность: сколько из каждого платежа уходит на проценты за весь срок. Решение о долговой нагрузке остаётся за вами и вашим бюджетом.",
+  ],
+  loanearly: [
+    "Кредит с досрочным погашением использует ту же амортизацию, но вы дополнительно вносите сумму в основной долг раньше графика. Так как проценты начисляются на остаток долга, каждый досрочный платеж уменьшает будущие проценты и может заметно сократить срок кредита.",
+    "Калькулятор помогает сравнить аннуитетный и дифференцированный график при одинаковых вводных. Аннуитет обычно удобнее для стабильного бюджета, а дифференцированные платежи выше в начале и снижаются со временем. В обоих вариантах досрочка уменьшает переплату.",
+    "Перед реальными платежами проверьте условия банка: комиссии за досрочку, необходимость заявления и порядок зачета (сокращение срока или платежа). Этот расчёт — инструмент планирования, а окончательные цифры нужно сверять с официальным графиком кредитора.",
   ],
   mortgage: [
     "Ипотека — тот же принцип амортизации, но с крупной суммой и длинным горизонтом. Размер первоначального взноса меняет тело кредита и может влиять на страхование — переключатель PMI здесь лишь упрощённая подсказка, не норма конкретной страны.",

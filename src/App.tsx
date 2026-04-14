@@ -71,6 +71,7 @@ const calcMeta: Record<string, { icon: string }> = {
   salestax:  { icon: "fa-tags" },
   desmos:    { icon: "fa-chart-line" },
   autoloan:  { icon: "fa-car" },
+  loanearly: { icon: "fa-calendar-check" },
 };
 
 function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {

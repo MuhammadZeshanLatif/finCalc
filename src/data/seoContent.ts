@@ -128,6 +128,20 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "No. FinanceCalculator is not a lender. All numbers are illustrative.",
     },
   ],
+  loanearly: [
+    {
+      q: "How does early repayment reduce loan interest?",
+      a: "Early repayment sends extra money to principal sooner. Because interest is charged on remaining principal, your future interest charges drop and the loan closes faster.",
+    },
+    {
+      q: "What is the difference between annuity and differentiated payments?",
+      a: "Annuity keeps the payment more stable each month, while differentiated payments start higher and decline over time as principal falls.",
+    },
+    {
+      q: "Can small monthly prepayments make a real difference?",
+      a: "Yes. Even modest recurring prepayments can reduce both total interest and loan term, especially when started early in the schedule.",
+    },
+  ],
   autoloan: [
     {
       q: "How is the auto loan payment calculated?",
@@ -429,6 +443,20 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "Нет, FinanceCalculator не кредитор. Только иллюстрация.",
     },
   ],
+  loanearly: [
+    {
+      q: "Как досрочное погашение снижает переплату по кредиту?",
+      a: "Досрочный платеж раньше уменьшает основной долг. Проценты считаются на остаток долга, поэтому последующие проценты становятся меньше, а кредит закрывается быстрее.",
+    },
+    {
+      q: "Чем отличаются аннуитетные и дифференцированные платежи?",
+      a: "При аннуитете платеж более ровный, а при дифференцированном графике в начале он выше и постепенно снижается по мере уменьшения долга.",
+    },
+    {
+      q: "Имеет ли смысл небольшая ежемесячная досрочка?",
+      a: "Да. Даже небольшие регулярные досрочные платежи сокращают срок кредита и общую переплату, особенно если начать их в первые месяцы.",
+    },
+  ],
   autoloan: [
     {
       q: "Как считается платёж по автокредиту?",
@@ -636,6 +664,17 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Remember: exclude fees unless you add them separately in your plan.",
     ],
   },
+  loanearly: {
+    name: "How to use the loan early repayment calculator",
+    description: "Estimate how monthly prepayments affect payoff date and total interest.",
+    steps: [
+      "Enter loan amount, annual rate, and term in years.",
+      "Set the first payment date.",
+      "Choose annuity or differentiated payment type.",
+      "Enter monthly early repayment amount and start month.",
+      "Review interest saved, months saved, and updated payoff schedule.",
+    ],
+  },
   autoloan: {
     name: "How to use the auto loan calculator",
     description: "Estimate monthly payment, total interest, and full cost of financing a vehicle.",
@@ -786,6 +825,17 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Укажите дату первого платежа, если есть поле.",
       "Смотрите платёж и график.",
       "Комиссии учитывайте отдельно при планировании.",
+    ],
+  },
+  loanearly: {
+    name: "Как пользоваться калькулятором досрочного погашения кредита",
+    description: "Оцените, как ежемесячная досрочка влияет на дату закрытия кредита и переплату.",
+    steps: [
+      "Введите сумму кредита, ставку и срок в годах.",
+      "Укажите дату первого платежа.",
+      "Выберите тип графика: аннуитетный или дифференцированный.",
+      "Задайте сумму ежемесячной досрочки и месяц начала.",
+      "Проверьте сэкономленные месяцы, переплату и обновленный график.",
     ],
   },
   autoloan: {

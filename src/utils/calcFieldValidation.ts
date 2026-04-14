@@ -33,6 +33,9 @@ type State = {
   autoAmountOwed: number;
   autoSalesTaxRate: number;
   autoFees: number;
+  loanEarlyType: "annuity" | "differentiated";
+  loanEarlyExtra: number;
+  loanEarlyStartMonth: number;
 };
 
 const MAX_MONEY = 1e15;
@@ -71,6 +74,15 @@ export function getCalculatorFieldErrors(id: string, s: State, m: VMsg): Record<
       moneyOk(s.loanAmount, "loanAmount");
       rateOk(s.rate, "rate");
       if (!Number.isFinite(s.loanTerm) || s.loanTerm <= 0 || s.loanTerm > MAX_YEARS) e.loanTerm = m.yearsRange;
+      break;
+    case "loanearly":
+      moneyOk(s.loanAmount, "loanAmount");
+      rateOk(s.rate, "rate");
+      if (!Number.isFinite(s.loanTerm) || s.loanTerm <= 0 || s.loanTerm > MAX_YEARS) e.loanTerm = m.yearsRange;
+      moneyOk(s.loanEarlyExtra, "loanEarlyExtra");
+      if (!Number.isFinite(s.loanEarlyStartMonth) || s.loanEarlyStartMonth < 1 || s.loanEarlyStartMonth > 1200) {
+        e.loanEarlyStartMonth = m.monthsRange;
+      }
       break;
     case "mortgage":
       moneyOk(s.homeValue, "homeValue");
