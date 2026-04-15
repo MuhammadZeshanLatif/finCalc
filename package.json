@@ -5,12 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "npx vercel dev --listen 3000",
     "build": "vite build",
     "preview": "vite preview",
     "blog:webp": "node scripts/svg-to-webp.mjs"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@supabase/supabase-js": "^2.103.0",
     "clsx": "2.1.1",
+    "dotenv": "^16.4.7",
     "mathjs": "^15.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
