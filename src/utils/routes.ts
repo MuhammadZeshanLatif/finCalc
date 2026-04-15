@@ -2,6 +2,8 @@
 export const ROUTE_PAGES = new Set([
   "home",
   "blog",
+  "login",
+  "blogstudio",
   "about",
   "contact",
   "privacy",

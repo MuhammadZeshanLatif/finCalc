@@ -85,6 +85,11 @@ export const translations = sameLocaleShape({
         desc: "Calculate your car loan monthly payment, total interest & full amortization schedule. Enter vehicle price, down payment, trade-in & rate — instant results. Free.",
         keywords: "auto loan calculator, car loan calculator, vehicle loan payment calculator, auto loan monthly payment, auto loan amortization schedule, car financing calculator",
       },
+      blogstudio: {
+        title: "AI Blog Generator & Auto Upload | FinanceCalculator",
+        desc: "Enter a topic and auto-generate an SEO-friendly blog post, then upload it directly to your website publish endpoint in one flow.",
+        keywords: "ai blog generator, seo blog generator, auto publish blog, blog automation page, topic to blog workflow",
+      },
       desmos:   { title: "Free Graphing Calculator Online | FinanceCalculator",               desc: "Graph up to six functions in your browser: zoom, pan, trace, and a numeric table. No download or sign-up — runs locally like a Desmos-style tool." },
       about:    { title: "About FinanceCalculator — Free Finance Calculators Online",       desc: "11+ free financial & scientific calculators in English and Russian. No ads, no sign-up, zero tracking — all calculations run privately in your browser." },
       contact:  { title: "Contact FinanceCalculator — Feedback & Support",                  desc: "Reach the FinanceCalculator team anytime. Send feedback, report a bug, or ask a question about our free calculators. We reply within 24 hours — always welcome." },
@@ -477,6 +482,11 @@ export const translations = sameLocaleShape({
         title: "Калькулятор автокредита — платёж и переплата | ФинКальк",
         desc: "Рассчитайте ежемесячный платёж по автокредиту, налог, первоначальный взнос и полный график погашения. Введите цену авто, взнос и ставку — результат мгновенно.",
         keywords: "калькулятор автокредита, автокредит онлайн, расчёт платежа по автокредиту, переплата по автокредиту, калькулятор кредита на авто",
+      },
+      blogstudio: {
+        title: "AI генератор блога и автозагрузка | ФинКальк",
+        desc: "Введите тему и автоматически получите SEO-статью с прямой отправкой на ваш endpoint публикации.",
+        keywords: "ai генератор блога, seo статья автоматически, автопубликация блога, генерация статьи по теме",
       },
       about:    { title: "О ФинКальк — бесплатные финансовые калькулятор",          desc: "ФинКальк — бесплатный набор из 11+ финансовых и научных калькуляторов на русском и английском. Без рекламы, без регистрации, полностью приватно." },
       contact:  { title: "Контакты ФинКальк — обратная связь",                       desc: "Свяжитесь с командой ФинКальк. Отправьте отзыв, сообщите об ошибке или задайте вопрос о наших калькуляторах. Отвечаем в течение 24 часов." },

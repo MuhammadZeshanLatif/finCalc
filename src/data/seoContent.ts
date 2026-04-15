@@ -28,6 +28,20 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "No. Posts are general information. Your situation may differ; use professionals for personal advice.",
     },
   ],
+  blogstudio: [
+    {
+      q: "How does the AI blog generator workflow work?",
+      a: "Enter a topic, choose draft or publish mode, and submit. The system generates an SEO-focused article, then sends it to your configured upload endpoint.",
+    },
+    {
+      q: "What does my upload endpoint receive?",
+      a: "It receives JSON with article metadata (title, slug, meta tags, keywords, excerpt) and HTML body content for publishing.",
+    },
+    {
+      q: "Can I keep generated articles as drafts first?",
+      a: "Yes. Choose draft mode to review before publishing, or publish mode for immediate posting if your endpoint supports it.",
+    },
+  ],
   contact: [
     {
       q: "How can I contact FinanceCalculator?",
@@ -341,6 +355,20 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
     {
       q: "Это персональные рекомендации?",
       a: "Нет, это общая информация. Для личных решений обращайтесь к профессионалам.",
+    },
+  ],
+  blogstudio: [
+    {
+      q: "Как работает AI-генератор блога?",
+      a: "Вы вводите тему, выбираете режим черновика или публикации, а система генерирует SEO-статью и отправляет ее на указанный endpoint.",
+    },
+    {
+      q: "Что получает endpoint загрузки?",
+      a: "Endpoint получает JSON с метаданными статьи (title, slug, meta, keywords, excerpt) и HTML-контентом для публикации.",
+    },
+    {
+      q: "Можно ли сначала сохранять как черновик?",
+      a: "Да. Выберите режим черновика для проверки перед публикацией, либо режим публикации для мгновенной отправки.",
     },
   ],
   contact: [
@@ -784,6 +812,17 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Use fullscreen if you need more space. For exam rules, rely on approved handhelds—this page is for practice.",
     ],
   },
+  blogstudio: {
+    name: "How to use the AI blog generator page",
+    description: "Generate and upload an SEO blog post from a topic in one automated flow.",
+    steps: [
+      "Enter the blog topic in the input field.",
+      "Paste your upload endpoint URL.",
+      "Optionally add an upload bearer token.",
+      "Choose draft or publish mode.",
+      "Submit and review the generated title, slug, and upload status.",
+    ],
+  },
   salestax: {
     name: "How to calculate sales tax",
     description: "Add or remove sales tax from any price using a custom rate.",
@@ -945,6 +984,17 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Откройте вкладку «График»: колёсико — масштаб, перетаскивание — сдвиг, наведение у кривой — координаты.",
       "Вкладка «Таблица» показывает численные y(x) для включённых выражений.",
       "Полноэкранный режим удобнее на маленьком экране. На экзамене ориентируйтесь на список разрешённых устройств.",
+    ],
+  },
+  blogstudio: {
+    name: "Как пользоваться страницей AI-генерации блога",
+    description: "Создайте и отправьте SEO-статью по теме в одном автоматизированном процессе.",
+    steps: [
+      "Введите тему статьи в поле ввода.",
+      "Укажите URL вашего endpoint для загрузки.",
+      "При необходимости добавьте Bearer-токен.",
+      "Выберите режим: черновик или публикация.",
+      "Нажмите отправить и проверьте title, slug и статус загрузки.",
     ],
   },
   salestax: {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import clsx from "clsx";
 import { translations } from "./data/translations";
 import {
@@ -8,11 +8,14 @@ import {
   getPostBySlug,
   getPostByTopic,
   getRelatedPosts,
+  refreshSupabaseBlogPosts,
 } from "./data/blog";
 import type { BlogBlock } from "./data/blog/types";
 import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
+import BlogAutomationPage from "./components/BlogAutomationPage";
+import AdminLoginPage from "./components/AdminLoginPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import { isAbsoluteHttpUrl } from "./components/blog/BlogPostImage";
@@ -93,6 +96,7 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [blogPage, setBlogPage] = useState<number>(1);
   const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
+  const [blogSyncTick, setBlogSyncTick] = useState(0);
   const postsPerPage = 6;
 
   useEffect(() => {
@@ -110,6 +114,32 @@ export default function App() {
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    const sync = async () => {
+      try {
+        const [changedEn, changedRu] = await Promise.all([
+          refreshSupabaseBlogPosts("en"),
+          refreshSupabaseBlogPosts("ru"),
+        ]);
+        if (mounted && (changedEn || changedRu)) {
+          setBlogSyncTick(x => x + 1);
+        }
+      } finally {
+        // no-op
+      }
+    };
+    const onUpdated = () => {
+      void sync();
+    };
+    window.addEventListener("fc-blog-updated", onUpdated);
+    void sync();
+    return () => {
+      mounted = false;
+      window.removeEventListener("fc-blog-updated", onUpdated);
+    };
   }, []);
 
   const changeLang = (newLang: AppLang) => {
@@ -153,7 +183,7 @@ export default function App() {
     c.desc.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const currentBlogPosts = getBlogPosts(lang);
+  const currentBlogPosts = useMemo(() => getBlogPosts(lang), [lang, blogSyncTick]);
   const activeBlogPost = blogSlug ? getPostBySlug(lang, blogSlug) : undefined;
   const indexOfLastPost = blogPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -681,6 +711,20 @@ export default function App() {
                   </button>
                 </div>
               </div>
+            )}
+
+            {currentPage === "blogstudio" && (
+              <BlogAutomationPage
+                lang={lang}
+                onOpenGeneratedPost={slug => navigateTo("blog", { blogSlug: slug })}
+                onGoLogin={() => navigateTo("login")}
+              />
+            )}
+            {currentPage === "login" && (
+              <AdminLoginPage
+                lang={lang}
+                onSuccess={() => navigateTo("blogstudio")}
+              />
             )}
 
             {/* ── About Page ─────────────────────────── */}
