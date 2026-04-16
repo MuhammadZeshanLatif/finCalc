@@ -43,15 +43,11 @@ function seedRoute(): { lang: AppLang; page: string; blogSlug: string | null } {
   if (fcRouteSeed) return fcRouteSeed;
   let { lang, page, blogSlug } = parsePathname(window.location.pathname);
 
-  // Auto-redirect Russian-language browsers to /ru on first visit to root.
-  // .ru domain visitors who speak Russian should land on Russian content by default.
+  // .ru domain: always default to Russian at the root URL.
+  // English version remains accessible via the language toggle (/ru → /).
   if (lang === "en" && page === "home" && window.location.pathname === "/") {
-    const browserLang = (navigator.language || "").toLowerCase();
-    const isRussian = browserLang.startsWith("ru") || browserLang.startsWith("be") || browserLang.startsWith("uk");
-    if (isRussian) {
-      window.history.replaceState({}, "", "/ru");
-      lang = "ru";
-    }
+    window.history.replaceState({}, "", "/ru");
+    lang = "ru";
   }
 
   const hash = window.location.hash.replace(/^#/, "");
