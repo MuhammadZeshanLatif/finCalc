@@ -6,7 +6,8 @@
       "Bash(cp /tmp/build_emi.cjs \"e:/Projects/finCalc/build_emi.cjs\")",
       "Bash(node \"e:/Projects/finCalc/build_emi.cjs\")",
       "Bash(node build_emi.cjs)",
-      "Bash(node -e \"require\\('e:/Projects/finCalc/build_emi.cjs'\\)\")"
+      "Bash(node -e \"require\\('e:/Projects/finCalc/build_emi.cjs'\\)\")",
+      "WebFetch(domain:x-calculator.ru)"
     ]
   }
 }
