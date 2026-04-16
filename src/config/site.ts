@@ -2,9 +2,10 @@ export const SITE_NAME = "FinanceCalculator";
 
 /**
  * Hreflang `x-default` points at this locale’s URL — “fallback” when Google can’t match a user’s language.
- * `ru` = Russia-first positioning (does not replace good RU content, links, or Search Console).
+ * `en` = consistent with static index.html and sitemap.xml (both already use EN URLs for x-default).
+ * Keeping all three sources in sync avoids Google seeing conflicting hreflang signals.
  */
-export const HREFLANG_X_DEFAULT_LANG: "en" | "ru" = "ru";
+export const HREFLANG_X_DEFAULT_LANG: “en” | “ru” = “en”;
 
 /** Site logo (navbar, hero, structured data). */
 export const SITE_LOGO_URL = "/logo.webp";

@@ -647,7 +647,7 @@ export default function App() {
                         >
                           <img
                             src={thumbSrc}
-                            alt=""
+                            alt={post.title}
                             className="card-img-top fc-blog-card-thumb"
                             width={640}
                             height={360}
