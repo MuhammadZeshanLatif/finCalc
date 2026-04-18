@@ -7,7 +7,14 @@
       "Bash(node \"e:/Projects/finCalc/build_emi.cjs\")",
       "Bash(node build_emi.cjs)",
       "Bash(node -e \"require\\('e:/Projects/finCalc/build_emi.cjs'\\)\")",
+<<<<<<< HEAD
       "WebFetch(domain:x-calculator.ru)"
+=======
+      "WebFetch(domain:x-calculator.ru)",
+      "Bash(grep -r \"navigator.language\" e:\\\\\\\\Projects\\\\\\\\finCalc/src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -A 4 \"https://financcalculator.ru/\\\\\">$\" \"e:/Projects/finCalc/public/sitemap.xml\")",
+      "Bash(node -e ' *)"
+>>>>>>> c6d0e01cbb5314d123ce6cecc3a8ca0ecf633862
     ]
   }
 }
