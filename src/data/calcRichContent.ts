@@ -19,11 +19,6 @@ const EN: Record<string, string[]> = {
     "Lenders may add origination fees, insurance bundles, or variable rates that change your true cost of borrowing. This interface assumes a stable annual rate and regular payments without prepayment for simplicity. If you plan extra principal payments, your actual payoff date and total interest will be lower than shown; use the table as a starting conversation with the lender’s official disclosure.",
     "Keeping total debt service within common budgeting guidelines (often discussed as a percentage of gross income) is a personal choice, not a rule enforced here. The value of the tool is transparency: you see how much of each currency unit goes to interest versus principal over the life of the loan.",
   ],
-  loanearly: [
-    "A loan with early repayment follows standard amortization, but you intentionally pay extra principal before schedule. Since interest is charged on the remaining balance, each additional principal payment lowers future interest and can shorten the payoff period. This is most powerful in early months, when interest share is highest.",
-    "This calculator lets you compare annuity and differentiated payment behavior under the same inputs. Annuity plans usually feel smoother for monthly budgeting, while differentiated schedules start heavier and decline over time. Early repayment can work in both cases, but the cash-flow pattern differs.",
-    "Use realistic assumptions before acting: check whether your lender charges prepayment fees, requires notice, or applies partial prepayments differently (reduce term vs reduce monthly payment). The model here is a planning tool and should be verified against your lender’s official repayment policy.",
-  ],
   mortgage: [
     "A mortgage blends the same amortization logic as smaller loans with larger principals and longer horizons. Down payment percentage immediately changes the borrowed amount and, indirectly, whether ancillary costs like mortgage insurance might apply in real life. Our optional PMI-style toggle is a simplified hint only; actual insurance rules depend on jurisdiction, lender, and loan program.",
     "Property taxes, homeowners insurance, and escrow handling vary enormously by location. Unless explicitly separated in your workflow, treat the monthly payment shown as principal-and-interest focused. Closing costs, points, and adjustable-rate features are also outside the default model. Always validate against a Loan Estimate or equivalent document before signing.",
@@ -80,11 +75,6 @@ const EN: Record<string, string[]> = {
     "The key distinction in any sales tax calculation is whether the quoted price already includes tax (inclusive) or whether tax will be added on top (exclusive). Retailers often display exclusive prices so the sticker price looks lower, while some markets quote inclusive prices for transparency. This calculator handles both modes: enter the price, pick the mode, enter the rate, and the math is done instantly.",
     "For sellers, correctly computing sales tax prevents under-collection (which creates a liability with the tax authority) and over-collection (which creates customer trust issues). For buyers, knowing the after-tax price before reaching the register helps with budgeting—especially for large purchases or business expense tracking. This tool is for arithmetic only; tax authority rules, exemptions, and filing requirements vary by location and must be confirmed independently.",
   ],
-  autoloan: [
-    "An auto loan is an amortizing loan—each monthly payment covers interest on the remaining balance plus principal that reduces what you owe. Because early payments are more interest-heavy, the impact of your interest rate compounds over the full term. Even a single percentage-point difference on a $30,000 loan over 60 months can shift total interest by several hundred dollars, which is why comparing offers before you visit the dealership matters.",
-    "Three figures drive your monthly payment: the loan principal (vehicle price minus down payment, trade-in equity, and cash incentives), the annual interest rate, and the term in months. Sales tax and fees are handled separately—they either get rolled into the loan or paid upfront, depending on what you choose. Rolling them in lowers the upfront cost but increases the amount you pay interest on, so the true total cost rises.",
-    "Trade-in equity is the difference between your trade-in value and any outstanding balance on that vehicle. Positive equity reduces the loan amount; negative equity (being underwater) adds to it. Always verify your trade-in payoff with your lender before signing, and read the dealer's official finance disclosure—this calculator uses simplified formulas that do not account for dealer markup, manufacturer incentives, extended warranties, or jurisdiction-specific registration rules.",
-  ],
 };
 
 const RU: Record<string, string[]> = {
@@ -102,11 +92,6 @@ const RU: Record<string, string[]> = {
     "Аннуитетный кредит делит платёж на проценты с остатка и основной долг. Со временем доля процентов падает, доля тела растёт — это видно в таблице, если она выводится. Типичный случай — потребительский или автокредит с фиксированной ставкой.",
     "Банк может добавить комиссии, страховки или плавающую ставку. Здесь — стабильная годовая ставка без досрочных погашений в модели. При досрочке фактические проценты и срок будут меньше расчётных.",
     "Инструмент даёт прозрачность: сколько из каждого платежа уходит на проценты за весь срок. Решение о долговой нагрузке остаётся за вами и вашим бюджетом.",
-  ],
-  loanearly: [
-    "Кредит с досрочным погашением использует ту же амортизацию, но вы дополнительно вносите сумму в основной долг раньше графика. Так как проценты начисляются на остаток долга, каждый досрочный платеж уменьшает будущие проценты и может заметно сократить срок кредита.",
-    "Калькулятор помогает сравнить аннуитетный и дифференцированный график при одинаковых вводных. Аннуитет обычно удобнее для стабильного бюджета, а дифференцированные платежи выше в начале и снижаются со временем. В обоих вариантах досрочка уменьшает переплату.",
-    "Перед реальными платежами проверьте условия банка: комиссии за досрочку, необходимость заявления и порядок зачета (сокращение срока или платежа). Этот расчёт — инструмент планирования, а окончательные цифры нужно сверять с официальным графиком кредитора.",
   ],
   mortgage: [
     "Ипотека — тот же принцип амортизации, но с крупной суммой и длинным горизонтом. Размер первоначального взноса меняет тело кредита и может влиять на страхование — переключатель PMI здесь лишь упрощённая подсказка, не норма конкретной страны.",
@@ -163,11 +148,6 @@ const RU: Record<string, string[]> = {
     "Налог с продаж — это потребительский налог, который государство взимает при продаже товаров и услуг конечному покупателю. В отличие от НДС, который собирается на каждом этапе производственной цепочки, налог с продаж применяется только в точке конечной продажи. Ставки существенно различаются: в США, например, совокупные ставки штата и муниципалитета варьируются от 0% в штатах без налога с продаж до более чем 10% в отдельных юрисдикциях.",
     "Главное различие в расчёте — включён ли налог в указанную цену (inclusive) или будет начислен сверху (exclusive). Розничные продавцы часто указывают цену без налога, чтобы ценник выглядел привлекательнее; другие рынки указывают цену с налогом для прозрачности. Калькулятор поддерживает оба режима: введите цену, выберите режим и ставку — результат мгновенный.",
     "Для продавцов правильный расчёт налога с продаж предотвращает недоначисление (которое создаёт обязательства перед налоговыми органами) и излишнее начисление (которое подрывает доверие клиентов). Для покупателей знание итоговой цены помогает бюджетировать покупки, особенно крупные или корпоративные. Инструмент выполняет только арифметику; правила налоговых органов, льготы и требования к отчётности зависят от юрисдикции и должны уточняться в официальных источниках.",
-  ],
-  autoloan: [
-    "Автокредит — это аннуитетный займ: каждый ежемесячный платёж покрывает проценты на остаток долга плюс часть основного долга. В начале срока большая часть платежа идёт на проценты, и эффект ставки накапливается на протяжении всего срока. Даже разница в один процентный пункт по займу на 2 000 000 ₽ на 60 месяцев может сдвинуть суммарную переплату на десятки тысяч рублей.",
-    "Ежемесячный платёж определяют три параметра: основной долг (цена авто минус первоначальный взнос, стоимость trade-in и скидки), годовая ставка и срок в месяцах. Налог с продаж и сборы учитываются отдельно: они либо включаются в кредит, либо оплачиваются наличными — включение в кредит снижает первоначальный взнос, но увеличивает сумму, на которую начисляются проценты.",
-    "Эквити trade-in — разница между оценочной стоимостью вашего авто и остатком по существующему кредиту. Положительное эквити уменьшает новый кредит; отрицательное — увеличивает. Уточните сумму погашения у своего кредитора до подписания договора и всегда сверяйтесь с официальным графиком банка: наш калькулятор использует упрощённые формулы без учёта дилерской маржи, специальных программ производителей и локальных регистрационных правил.",
   ],
 };
 

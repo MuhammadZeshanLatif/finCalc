@@ -28,20 +28,6 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
       a: "No. Posts are general information. Your situation may differ; use professionals for personal advice.",
     },
   ],
-  blogstudio: [
-    {
-      q: "How does the AI blog generator workflow work?",
-      a: "Enter a topic, choose draft or publish mode, and submit. The system generates an SEO-focused article, then sends it to your configured upload endpoint.",
-    },
-    {
-      q: "What does my upload endpoint receive?",
-      a: "It receives JSON with article metadata (title, slug, meta tags, keywords, excerpt) and HTML body content for publishing.",
-    },
-    {
-      q: "Can I keep generated articles as drafts first?",
-      a: "Yes. Choose draft mode to review before publishing, or publish mode for immediate posting if your endpoint supports it.",
-    },
-  ],
   contact: [
     {
       q: "How can I contact FinanceCalculator?",
@@ -140,34 +126,6 @@ const FAQ_EN: Record<string, SeoFaq[]> = {
     {
       q: "Is this an offer of credit?",
       a: "No. FinanceCalculator is not a lender. All numbers are illustrative.",
-    },
-  ],
-  loanearly: [
-    {
-      q: "How does early repayment reduce loan interest?",
-      a: "Early repayment sends extra money to principal sooner. Because interest is charged on remaining principal, your future interest charges drop and the loan closes faster.",
-    },
-    {
-      q: "What is the difference between annuity and differentiated payments?",
-      a: "Annuity keeps the payment more stable each month, while differentiated payments start higher and decline over time as principal falls.",
-    },
-    {
-      q: "Can small monthly prepayments make a real difference?",
-      a: "Yes. Even modest recurring prepayments can reduce both total interest and loan term, especially when started early in the schedule.",
-    },
-  ],
-  autoloan: [
-    {
-      q: "How is the auto loan payment calculated?",
-      a: "The calculator estimates payment from loan principal, annual interest rate, and term in months. Principal depends on vehicle price, down payment, trade-in equity, incentives, sales tax, and fees.",
-    },
-    {
-      q: "Should I roll taxes and fees into the auto loan?",
-      a: "Rolling them into the loan lowers upfront cash but increases principal, so you pay interest on those amounts. Paying tax and fees upfront usually reduces total interest cost.",
-    },
-    {
-      q: "What is trade-in equity in an auto loan?",
-      a: "Trade-in equity is trade-in value minus payoff amount on your current vehicle loan. Positive equity reduces the new loan; negative equity increases it.",
     },
   ],
   mortgage: [
@@ -357,20 +315,6 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
       a: "Нет, это общая информация. Для личных решений обращайтесь к профессионалам.",
     },
   ],
-  blogstudio: [
-    {
-      q: "Как работает AI-генератор блога?",
-      a: "Вы вводите тему, выбираете режим черновика или публикации, а система генерирует SEO-статью и отправляет ее на указанный endpoint.",
-    },
-    {
-      q: "Что получает endpoint загрузки?",
-      a: "Endpoint получает JSON с метаданными статьи (title, slug, meta, keywords, excerpt) и HTML-контентом для публикации.",
-    },
-    {
-      q: "Можно ли сначала сохранять как черновик?",
-      a: "Да. Выберите режим черновика для проверки перед публикацией, либо режим публикации для мгновенной отправки.",
-    },
-  ],
   contact: [
     {
       q: "Как связаться с FinanceCalculator?",
@@ -469,34 +413,6 @@ const FAQ_RU: Record<string, SeoFaq[]> = {
     {
       q: "Это предложение кредита?",
       a: "Нет, FinanceCalculator не кредитор. Только иллюстрация.",
-    },
-  ],
-  loanearly: [
-    {
-      q: "Как досрочное погашение снижает переплату по кредиту?",
-      a: "Досрочный платеж раньше уменьшает основной долг. Проценты считаются на остаток долга, поэтому последующие проценты становятся меньше, а кредит закрывается быстрее.",
-    },
-    {
-      q: "Чем отличаются аннуитетные и дифференцированные платежи?",
-      a: "При аннуитете платеж более ровный, а при дифференцированном графике в начале он выше и постепенно снижается по мере уменьшения долга.",
-    },
-    {
-      q: "Имеет ли смысл небольшая ежемесячная досрочка?",
-      a: "Да. Даже небольшие регулярные досрочные платежи сокращают срок кредита и общую переплату, особенно если начать их в первые месяцы.",
-    },
-  ],
-  autoloan: [
-    {
-      q: "Как считается платёж по автокредиту?",
-      a: "Платёж рассчитывается по сумме кредита, годовой ставке и сроку в месяцах. Сама сумма кредита зависит от цены авто, взноса, trade-in, скидок, налога и сборов.",
-    },
-    {
-      q: "Выгодно ли включать налог и сборы в кредит?",
-      a: "Так меньше первоначальные расходы, но выше тело кредита и переплата по процентам. При оплате налога и сборов сразу итоговая стоимость обычно ниже.",
-    },
-    {
-      q: "Что такое эквити trade-in?",
-      a: "Эквити trade-in — это разница между стоимостью сдаваемого авто и остатком долга по нему. Положительное уменьшает новый кредит, отрицательное увеличивает.",
     },
   ],
   mortgage: [
@@ -692,28 +608,6 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Remember: exclude fees unless you add them separately in your plan.",
     ],
   },
-  loanearly: {
-    name: "How to use the loan early repayment calculator",
-    description: "Estimate how monthly prepayments affect payoff date and total interest.",
-    steps: [
-      "Enter loan amount, annual rate, and term in years.",
-      "Set the first payment date.",
-      "Choose annuity or differentiated payment type.",
-      "Enter monthly early repayment amount and start month.",
-      "Review interest saved, months saved, and updated payoff schedule.",
-    ],
-  },
-  autoloan: {
-    name: "How to use the auto loan calculator",
-    description: "Estimate monthly payment, total interest, and full cost of financing a vehicle.",
-    steps: [
-      "Choose calculation mode: by vehicle price or by monthly budget.",
-      "Enter loan term in months and annual interest rate.",
-      "Fill in down payment, trade-in value, amount owed, incentives, sales tax, and fees.",
-      "Decide whether tax and fees are financed or paid upfront.",
-      "Review monthly payment, loan amount, total interest, and amortization schedule.",
-    ],
-  },
   mortgage: {
     name: "How to use the mortgage calculator",
     description: "Approximate a home loan payment from value, down payment, rate, and term.",
@@ -812,17 +706,6 @@ const HOWTO_EN: Record<string, SeoHowTo | undefined> = {
       "Use fullscreen if you need more space. For exam rules, rely on approved handhelds—this page is for practice.",
     ],
   },
-  blogstudio: {
-    name: "How to use the AI blog generator page",
-    description: "Generate and upload an SEO blog post from a topic in one automated flow.",
-    steps: [
-      "Enter the blog topic in the input field.",
-      "Paste your upload endpoint URL.",
-      "Optionally add an upload bearer token.",
-      "Choose draft or publish mode.",
-      "Submit and review the generated title, slug, and upload status.",
-    ],
-  },
   salestax: {
     name: "How to calculate sales tax",
     description: "Add or remove sales tax from any price using a custom rate.",
@@ -864,28 +747,6 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Укажите дату первого платежа, если есть поле.",
       "Смотрите платёж и график.",
       "Комиссии учитывайте отдельно при планировании.",
-    ],
-  },
-  loanearly: {
-    name: "Как пользоваться калькулятором досрочного погашения кредита",
-    description: "Оцените, как ежемесячная досрочка влияет на дату закрытия кредита и переплату.",
-    steps: [
-      "Введите сумму кредита, ставку и срок в годах.",
-      "Укажите дату первого платежа.",
-      "Выберите тип графика: аннуитетный или дифференцированный.",
-      "Задайте сумму ежемесячной досрочки и месяц начала.",
-      "Проверьте сэкономленные месяцы, переплату и обновленный график.",
-    ],
-  },
-  autoloan: {
-    name: "Как пользоваться калькулятором автокредита",
-    description: "Оцените ежемесячный платёж, переплату и полную стоимость покупки авто в кредит.",
-    steps: [
-      "Выберите режим расчёта: по цене авто или по желаемому ежемесячному платежу.",
-      "Введите срок кредита в месяцах и годовую процентную ставку.",
-      "Укажите взнос, trade-in, остаток долга по trade-in, скидки, налог и сборы.",
-      "Отметьте, включаются ли налог и сборы в кредит или оплачиваются сразу.",
-      "Проверьте платёж в месяц, сумму кредита, переплату и график погашения.",
     ],
   },
   mortgage: {
@@ -984,17 +845,6 @@ const HOWTO_RU: Record<string, SeoHowTo | undefined> = {
       "Откройте вкладку «График»: колёсико — масштаб, перетаскивание — сдвиг, наведение у кривой — координаты.",
       "Вкладка «Таблица» показывает численные y(x) для включённых выражений.",
       "Полноэкранный режим удобнее на маленьком экране. На экзамене ориентируйтесь на список разрешённых устройств.",
-    ],
-  },
-  blogstudio: {
-    name: "Как пользоваться страницей AI-генерации блога",
-    description: "Создайте и отправьте SEO-статью по теме в одном автоматизированном процессе.",
-    steps: [
-      "Введите тему статьи в поле ввода.",
-      "Укажите URL вашего endpoint для загрузки.",
-      "При необходимости добавьте Bearer-токен.",
-      "Выберите режим: черновик или публикация.",
-      "Нажмите отправить и проверьте title, slug и статус загрузки.",
     ],
   },
   salestax: {

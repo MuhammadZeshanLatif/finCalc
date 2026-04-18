@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { translations } from "./data/translations";
 import {
@@ -8,14 +8,11 @@ import {
   getPostBySlug,
   getPostByTopic,
   getRelatedPosts,
-  refreshSupabaseBlogPosts,
 } from "./data/blog";
 import type { BlogBlock } from "./data/blog/types";
 import Calculators from "./components/Calculators";
 import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
-import BlogAutomationPage from "./components/BlogAutomationPage";
-import AdminLoginPage from "./components/AdminLoginPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
 import { isAbsoluteHttpUrl } from "./components/blog/BlogPostImage";
@@ -42,14 +39,6 @@ let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null
 function seedRoute(): { lang: AppLang; page: string; blogSlug: string | null } {
   if (fcRouteSeed) return fcRouteSeed;
   let { lang, page, blogSlug } = parsePathname(window.location.pathname);
-
-  // .ru domain: always default to Russian at the root URL.
-  // English version remains accessible via the language toggle (/ru → /).
-  if (lang === "en" && page === "home" && window.location.pathname === "/") {
-    window.history.replaceState({}, "", "/ru");
-    lang = "ru";
-  }
-
   const hash = window.location.hash.replace(/^#/, "");
   if (hash) {
     page = normalizePage(hash);
@@ -81,8 +70,6 @@ const calcMeta: Record<string, { icon: string }> = {
   ti84:      { icon: "fa-microchip" },
   salestax:  { icon: "fa-tags" },
   desmos:    { icon: "fa-chart-line" },
-  autoloan:  { icon: "fa-car" },
-  loanearly: { icon: "fa-calendar-check" },
 };
 
 function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {
@@ -104,7 +91,6 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [blogPage, setBlogPage] = useState<number>(1);
   const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
-  const [blogSyncTick, setBlogSyncTick] = useState(0);
   const postsPerPage = 6;
 
   useEffect(() => {
@@ -122,32 +108,6 @@ export default function App() {
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, []);
-
-  useEffect(() => {
-    let mounted = true;
-    const sync = async () => {
-      try {
-        const [changedEn, changedRu] = await Promise.all([
-          refreshSupabaseBlogPosts("en"),
-          refreshSupabaseBlogPosts("ru"),
-        ]);
-        if (mounted && (changedEn || changedRu)) {
-          setBlogSyncTick(x => x + 1);
-        }
-      } finally {
-        // no-op
-      }
-    };
-    const onUpdated = () => {
-      void sync();
-    };
-    window.addEventListener("fc-blog-updated", onUpdated);
-    void sync();
-    return () => {
-      mounted = false;
-      window.removeEventListener("fc-blog-updated", onUpdated);
-    };
   }, []);
 
   const changeLang = (newLang: AppLang) => {
@@ -191,7 +151,7 @@ export default function App() {
     c.desc.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const currentBlogPosts = useMemo(() => getBlogPosts(lang), [lang, blogSyncTick]);
+  const currentBlogPosts = getBlogPosts(lang);
   const activeBlogPost = blogSlug ? getPostBySlug(lang, blogSlug) : undefined;
   const indexOfLastPost = blogPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -200,7 +160,7 @@ export default function App() {
   useEffect(() => {
     const tr = translations[lang];
     // Per-page SEO lookup — covers all calculator pages, static pages, and TI-84
-    const ps = (tr.pageSeo as Record<string, { title: string; desc: string; keywords?: string } | undefined>);
+    const ps = (tr.pageSeo as Record<string, { title: string; desc: string } | undefined>);
     let title: string = tr.siteTitle;
     let description: string = META_DEFAULT[lang];
     let calculatorKeywords: string | undefined;
@@ -258,7 +218,8 @@ export default function App() {
       // ── All other pages: use per-page SEO from translations ───────────────
       title       = ps[currentPage]!.title;
       description = ps[currentPage]!.desc;
-      calculatorKeywords = ps[currentPage]!.keywords;
+      // Add keyword hints for calculator + static pages
+      calculatorKeywords = undefined;
     } else {
       // Fallback for unknown pages
       title       = tr.siteTitle;
@@ -655,7 +616,7 @@ export default function App() {
                         >
                           <img
                             src={thumbSrc}
-                            alt={post.title}
+                            alt=""
                             className="card-img-top fc-blog-card-thumb"
                             width={640}
                             height={360}
@@ -719,20 +680,6 @@ export default function App() {
                   </button>
                 </div>
               </div>
-            )}
-
-            {currentPage === "blogstudio" && (
-              <BlogAutomationPage
-                lang={lang}
-                onOpenGeneratedPost={slug => navigateTo("blog", { blogSlug: slug })}
-                onGoLogin={() => navigateTo("login")}
-              />
-            )}
-            {currentPage === "login" && (
-              <AdminLoginPage
-                lang={lang}
-                onSuccess={() => navigateTo("blogstudio")}
-              />
             )}
 
             {/* ── About Page ─────────────────────────── */}

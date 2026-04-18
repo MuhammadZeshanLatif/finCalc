@@ -23,19 +23,6 @@ type State = {
   bmiHeight: number;
   grossIncome: number;
   currAmount: number;
-  autoMode: "price" | "monthly";
-  autoPrice: number;
-  autoMonthlyBudget: number;
-  autoLoanTerm: number;
-  autoCashIncentives: number;
-  autoDownPayment: number;
-  autoTradeIn: number;
-  autoAmountOwed: number;
-  autoSalesTaxRate: number;
-  autoFees: number;
-  loanEarlyType: "annuity" | "differentiated";
-  loanEarlyExtra: number;
-  loanEarlyStartMonth: number;
 };
 
 const MAX_MONEY = 1e15;
@@ -75,15 +62,6 @@ export function getCalculatorFieldErrors(id: string, s: State, m: VMsg): Record<
       rateOk(s.rate, "rate");
       if (!Number.isFinite(s.loanTerm) || s.loanTerm <= 0 || s.loanTerm > MAX_YEARS) e.loanTerm = m.yearsRange;
       break;
-    case "loanearly":
-      moneyOk(s.loanAmount, "loanAmount");
-      rateOk(s.rate, "rate");
-      if (!Number.isFinite(s.loanTerm) || s.loanTerm <= 0 || s.loanTerm > MAX_YEARS) e.loanTerm = m.yearsRange;
-      moneyOk(s.loanEarlyExtra, "loanEarlyExtra");
-      if (!Number.isFinite(s.loanEarlyStartMonth) || s.loanEarlyStartMonth < 1 || s.loanEarlyStartMonth > 1200) {
-        e.loanEarlyStartMonth = m.monthsRange;
-      }
-      break;
     case "mortgage":
       moneyOk(s.homeValue, "homeValue");
       if (!Number.isFinite(s.downpayment) || s.downpayment < 0 || s.downpayment > 100) e.downpayment = m.downpaymentRange;
@@ -117,18 +95,6 @@ export function getCalculatorFieldErrors(id: string, s: State, m: VMsg): Record<
     case "salestax":
       moneyOk(s.vatAmount, "vatAmount");
       if (!Number.isFinite(s.vatRate) || s.vatRate < 0 || s.vatRate > MAX_RATE) e.vatRate = m.rateRange;
-      break;
-    case "autoloan":
-      if (s.autoMode === "price") moneyOk(s.autoPrice, "autoPrice");
-      else moneyOk(s.autoMonthlyBudget, "autoMonthlyBudget");
-      if (!Number.isFinite(s.autoLoanTerm) || s.autoLoanTerm < 1 || s.autoLoanTerm > 600) e.autoLoanTerm = m.monthsRange;
-      rateOk(s.rate, "rate");
-      moneyOk(s.autoCashIncentives, "autoCashIncentives");
-      moneyOk(s.autoDownPayment, "autoDownPayment");
-      moneyOk(s.autoTradeIn, "autoTradeIn");
-      moneyOk(s.autoAmountOwed, "autoAmountOwed");
-      if (!Number.isFinite(s.autoSalesTaxRate) || s.autoSalesTaxRate < 0 || s.autoSalesTaxRate > MAX_RATE) e.autoSalesTaxRate = m.rateRange;
-      moneyOk(s.autoFees, "autoFees");
       break;
     default:
       break;

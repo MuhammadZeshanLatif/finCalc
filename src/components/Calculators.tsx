@@ -11,7 +11,6 @@ import {
   compoundByPeriod,
   depositSchedule,
   loanAmortization,
-  loanWithEarlyRepayment,
   progressiveTaxRows,
 } from "../utils/calculatorOutputs";
 import { getCalculatorFieldErrors } from "../utils/calcFieldValidation";
@@ -59,16 +58,6 @@ const resultLabels: Record<string, string> = {
   salesTaxAmount: "Tax Amount",
   totalAfterTax: "Total (after tax)",
   preTaxPrice: "Pre-tax Price",
-  autoVehiclePrice: "Vehicle Price",
-  autoMonthlyPayment: "Monthly Payment",
-  autoLoanAmount: "Total Loan Amount",
-  autoSalesTax: "Sale Tax",
-  autoUpfrontPayment: "Upfront Payment",
-  autoTotalPayments: "Total Loan Payments",
-  autoTotalInterest: "Total Loan Interest",
-  autoTotalCost: "Total Cost (price, interest, tax, fees)",
-  earlySavedInterest: "Interest Saved",
-  earlySavedMonths: "Months Saved",
 };
 
 const monetaryKeys = [
@@ -76,8 +65,6 @@ const monetaryKeys = [
   "calculatedVat", "totalAmount", "monthlyEmi", "totalPayment",
   "calculatedTax", "netIncome", "totalRepaid", "totalContributed",
   "baseAmount", "salesTaxAmount", "totalAfterTax", "preTaxPrice",
-  "autoVehiclePrice", "autoMonthlyPayment", "autoLoanAmount", "autoSalesTax",
-  "autoUpfrontPayment", "autoTotalPayments", "autoTotalInterest", "autoTotalCost", "earlySavedInterest",
 ];
 
 const pctKeys = ["increasePct"];
@@ -108,62 +95,7 @@ const calcIcons: Record<string, string> = {
   tax: "fa-file-invoice-dollar",
   currency: "fa-money-bill-transfer",
   salestax: "fa-tags",
-  autoloan: "fa-car",
-  loanearly: "fa-calendar-check",
 };
-
-const US_STATES: { abbr: string; name: string; rate: number }[] = [
-  { abbr: "AL", name: "Alabama", rate: 4.00 },
-  { abbr: "AK", name: "Alaska", rate: 0.00 },
-  { abbr: "AZ", name: "Arizona", rate: 5.60 },
-  { abbr: "AR", name: "Arkansas", rate: 6.50 },
-  { abbr: "CA", name: "California", rate: 7.25 },
-  { abbr: "CO", name: "Colorado", rate: 2.90 },
-  { abbr: "CT", name: "Connecticut", rate: 6.35 },
-  { abbr: "DE", name: "Delaware", rate: 0.00 },
-  { abbr: "FL", name: "Florida", rate: 6.00 },
-  { abbr: "GA", name: "Georgia", rate: 4.00 },
-  { abbr: "HI", name: "Hawaii", rate: 4.00 },
-  { abbr: "ID", name: "Idaho", rate: 6.00 },
-  { abbr: "IL", name: "Illinois", rate: 6.25 },
-  { abbr: "IN", name: "Indiana", rate: 7.00 },
-  { abbr: "IA", name: "Iowa", rate: 6.00 },
-  { abbr: "KS", name: "Kansas", rate: 6.50 },
-  { abbr: "KY", name: "Kentucky", rate: 6.00 },
-  { abbr: "LA", name: "Louisiana", rate: 4.45 },
-  { abbr: "ME", name: "Maine", rate: 5.50 },
-  { abbr: "MD", name: "Maryland", rate: 6.00 },
-  { abbr: "MA", name: "Massachusetts", rate: 6.25 },
-  { abbr: "MI", name: "Michigan", rate: 6.00 },
-  { abbr: "MN", name: "Minnesota", rate: 6.875 },
-  { abbr: "MS", name: "Mississippi", rate: 7.00 },
-  { abbr: "MO", name: "Missouri", rate: 4.225 },
-  { abbr: "MT", name: "Montana", rate: 0.00 },
-  { abbr: "NE", name: "Nebraska", rate: 5.50 },
-  { abbr: "NV", name: "Nevada", rate: 6.85 },
-  { abbr: "NH", name: "New Hampshire", rate: 0.00 },
-  { abbr: "NJ", name: "New Jersey", rate: 6.625 },
-  { abbr: "NM", name: "New Mexico", rate: 5.00 },
-  { abbr: "NY", name: "New York", rate: 4.00 },
-  { abbr: "NC", name: "North Carolina", rate: 4.75 },
-  { abbr: "ND", name: "North Dakota", rate: 5.00 },
-  { abbr: "OH", name: "Ohio", rate: 5.75 },
-  { abbr: "OK", name: "Oklahoma", rate: 3.25 },
-  { abbr: "OR", name: "Oregon", rate: 0.00 },
-  { abbr: "PA", name: "Pennsylvania", rate: 6.00 },
-  { abbr: "RI", name: "Rhode Island", rate: 7.00 },
-  { abbr: "SC", name: "South Carolina", rate: 6.00 },
-  { abbr: "SD", name: "South Dakota", rate: 4.50 },
-  { abbr: "TN", name: "Tennessee", rate: 7.00 },
-  { abbr: "TX", name: "Texas", rate: 6.25 },
-  { abbr: "UT", name: "Utah", rate: 4.85 },
-  { abbr: "VT", name: "Vermont", rate: 6.00 },
-  { abbr: "VA", name: "Virginia", rate: 4.15 },
-  { abbr: "WA", name: "Washington", rate: 6.50 },
-  { abbr: "WV", name: "West Virginia", rate: 6.00 },
-  { abbr: "WI", name: "Wisconsin", rate: 5.00 },
-  { abbr: "WY", name: "Wyoming", rate: 4.00 },
-];
 
 type ScheduleBlock = {
   title: string;
@@ -208,9 +140,6 @@ function FinancialCalculator({ id, lang }: Props) {
   const [loanAmount, setLoanAmount] = useState(20000);
   const [loanTerm, setLoanTerm] = useState(5);
   const [loanStartDate, setLoanStartDate] = useState(today);
-  const [loanEarlyType, setLoanEarlyType] = useState<"annuity" | "differentiated">("annuity");
-  const [loanEarlyExtra, setLoanEarlyExtra] = useState(0);
-  const [loanEarlyStartMonth, setLoanEarlyStartMonth] = useState(1);
 
   const [homeValue, setHomeValue] = useState(300000);
   const [downpayment, setDownpayment] = useState(20);
@@ -236,19 +165,6 @@ function FinancialCalculator({ id, lang }: Props) {
   const [currFrom, setCurrFrom] = useState("USD");
   const [currTo, setCurrTo] = useState("EUR");
   const [resultViewCompact, setResultViewCompact] = useState(false);
-
-  const [autoMode, setAutoMode] = useState<"price" | "monthly">("price");
-  const [autoPrice, setAutoPrice] = useState(30000);
-  const [autoMonthlyBudget, setAutoMonthlyBudget] = useState(500);
-  const [autoLoanTerm, setAutoLoanTerm] = useState(60);
-  const [autoCashIncentives, setAutoCashIncentives] = useState(0);
-  const [autoDownPayment, setAutoDownPayment] = useState(5000);
-  const [autoTradeIn, setAutoTradeIn] = useState(0);
-  const [autoAmountOwed, setAutoAmountOwed] = useState(0);
-  const [autoStateAbbr, setAutoStateAbbr] = useState("CA");
-  const [autoSalesTaxRate, setAutoSalesTaxRate] = useState(7.25);
-  const [autoFees, setAutoFees] = useState(2800);
-  const [autoTaxInLoan, setAutoTaxInLoan] = useState(false);
 
   const {
     codes: fxCodes,
@@ -300,19 +216,6 @@ function FinancialCalculator({ id, lang }: Props) {
         bmiHeight,
         grossIncome,
         currAmount,
-        autoMode,
-        autoPrice,
-        autoMonthlyBudget,
-        autoLoanTerm,
-        autoCashIncentives,
-        autoDownPayment,
-        autoTradeIn,
-        autoAmountOwed,
-        autoSalesTaxRate,
-        autoFees,
-        loanEarlyType,
-        loanEarlyExtra,
-        loanEarlyStartMonth,
       }, validationMsgs),
     [
       id,
@@ -338,19 +241,6 @@ function FinancialCalculator({ id, lang }: Props) {
       bmiHeight,
       grossIncome,
       currAmount,
-      autoMode,
-      autoPrice,
-      autoMonthlyBudget,
-      autoLoanTerm,
-      autoCashIncentives,
-      autoDownPayment,
-      autoTradeIn,
-      autoAmountOwed,
-      autoSalesTaxRate,
-      autoFees,
-      loanEarlyType,
-      loanEarlyExtra,
-      loanEarlyStartMonth,
       validationMsgs,
     ],
   );
@@ -597,87 +487,6 @@ function FinancialCalculator({ id, lang }: Props) {
           icon: "fa-calendar-day",
           value: `${((rows[0].interest / rows[0].payment) * 100).toFixed(1)}%`,
           label: gl.insightFirstPayInterest,
-        });
-      }
-      return { result, insights, schedules, charts, formatValue };
-    }
-
-    if (id === "loanearly") {
-      const n = Math.max(1, Math.round(loanTerm * 12));
-      const start = new Date(loanStartDate + "T12:00:00");
-      const sim = loanWithEarlyRepayment(loanAmount, rate, n, start, {
-        paymentType: loanEarlyType,
-        extraMonthly: loanEarlyExtra,
-        extraStartMonth: loanEarlyStartMonth,
-      });
-      const extraTotal = sim.rows.reduce((sum, row) => sum + row.extraPrincipal, 0);
-      const result = {
-        monthly: sim.plannedMonthly.toFixed(2),
-        totalInterest: sim.totalInterest.toFixed(2),
-        totalRepaid: sim.totalPaid.toFixed(2),
-        earlySavedInterest: sim.savedInterest.toFixed(2),
-        earlySavedMonths: String(sim.savedMonths),
-        endDate: fmtDate(sim.endDate),
-      };
-      schedules.push({
-        title: sl.paymentTitle,
-        columns: [
-          { key: "no", label: sl.colNo },
-          { key: "dt", label: sl.colDate },
-          { key: "pay", label: sl.colPayment },
-          { key: "int", label: sl.colInterest },
-          { key: "pr", label: sl.colPrincipal },
-          { key: "ep", label: lang === "ru" ? "Досрочно" : "Early repay" },
-          { key: "bal", label: sl.colBalance },
-        ],
-        rows: sim.rows.map(rw => ({
-          no: rw.n,
-          dt: fmtDate(rw.date),
-          pay: fmtMoney(rw.payment),
-          int: fmtMoney(rw.interest),
-          pr: fmtMoney(rw.principal),
-          ep: fmtMoney(rw.extraPrincipal),
-          bal: fmtMoney(rw.balance),
-        })),
-        totalRow: {
-          no: sl.total,
-          dt: "—",
-          pay: fmtMoney(sim.totalPaid),
-          int: fmtMoney(sim.totalInterest),
-          pr: fmtMoney(loanAmount),
-          ep: fmtMoney(extraTotal),
-          bal: "—",
-        },
-      });
-      charts.push({
-        kind: "donut",
-        title: sl.ratioDonut,
-        parts: [
-          { label: sl.colPrincipal, value: loanAmount, color: "#10B981" },
-          { label: sl.colInterest, value: Math.max(0, sim.totalInterest), color: "#F59E0B" },
-        ],
-        center: fmtMoney(sim.totalPaid),
-        sub: sl.totalRepaid,
-      });
-      charts.push({
-        kind: "line",
-        title: sl.balanceChart,
-        points: sim.rows.map(rw => ({ x: rw.n, y: rw.balance })),
-        color: "#2563EB",
-      });
-      const insights: ResultInsight[] = [];
-      if (loanAmount > 0) {
-        insights.push({
-          icon: "fa-scale-balanced",
-          value: `${((sim.totalInterest / loanAmount) * 100).toFixed(1)}%`,
-          label: gl.insightInterestVsPrincipal,
-        });
-      }
-      if (sim.savedMonths > 0) {
-        insights.push({
-          icon: "fa-forward-fast",
-          value: `${sim.savedMonths}`,
-          label: lang === "ru" ? "Месяцев сэкономлено" : "Months shortened",
         });
       }
       return { result, insights, schedules, charts, formatValue };
@@ -1073,139 +882,6 @@ function FinancialCalculator({ id, lang }: Props) {
       return { result, insights, schedules, charts, formatValue };
     }
 
-    if (id === "autoloan") {
-      const r = rate / 100 / 12;
-      const n = autoLoanTerm;
-      const factor = r === 0 ? n : (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
-      const netTrade = autoTradeIn - autoAmountOwed;
-
-      let vehiclePrice: number;
-      let loanPrincipal: number;
-      let salesTaxAmt: number;
-      let upfront: number;
-
-      if (autoMode === "price") {
-        vehiclePrice = autoPrice;
-        salesTaxAmt = vehiclePrice * autoSalesTaxRate / 100;
-        loanPrincipal = vehiclePrice - autoDownPayment - netTrade - autoCashIncentives;
-        if (autoTaxInLoan) loanPrincipal += salesTaxAmt + autoFees;
-        loanPrincipal = Math.max(0, loanPrincipal);
-        if (autoTaxInLoan) {
-          upfront = autoDownPayment + Math.max(0, -netTrade);
-        } else {
-          upfront = autoDownPayment + Math.max(0, -netTrade) + salesTaxAmt + autoFees;
-        }
-      } else {
-        // monthly mode: derive vehicle price from budget
-        loanPrincipal = autoMonthlyBudget * factor;
-        if (autoTaxInLoan) {
-          vehiclePrice = Math.max(0, (loanPrincipal + autoDownPayment + netTrade + autoCashIncentives - autoFees) / (1 + autoSalesTaxRate / 100));
-        } else {
-          vehiclePrice = Math.max(0, loanPrincipal + autoDownPayment + netTrade + autoCashIncentives);
-        }
-        salesTaxAmt = vehiclePrice * autoSalesTaxRate / 100;
-        // Recalculate exact loan principal from derived vehicle price
-        loanPrincipal = vehiclePrice - autoDownPayment - netTrade - autoCashIncentives;
-        if (autoTaxInLoan) loanPrincipal += salesTaxAmt + autoFees;
-        loanPrincipal = Math.max(0, loanPrincipal);
-        if (autoTaxInLoan) {
-          upfront = autoDownPayment + Math.max(0, -netTrade);
-        } else {
-          upfront = autoDownPayment + Math.max(0, -netTrade) + salesTaxAmt + autoFees;
-        }
-      }
-
-      const monthly = r === 0 ? loanPrincipal / n : loanPrincipal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
-      const totalPayments = monthly * n;
-      const totalInterest = Math.max(0, totalPayments - loanPrincipal);
-      const totalCost = vehiclePrice + salesTaxAmt + autoFees + totalInterest;
-
-      const result = autoMode === "price"
-        ? {
-            autoMonthlyPayment: monthly.toFixed(2),
-            autoLoanAmount: loanPrincipal.toFixed(2),
-            autoSalesTax: salesTaxAmt.toFixed(2),
-            autoUpfrontPayment: upfront.toFixed(2),
-            autoTotalPayments: totalPayments.toFixed(2),
-            autoTotalInterest: totalInterest.toFixed(2),
-            autoTotalCost: totalCost.toFixed(2),
-          }
-        : {
-            autoVehiclePrice: vehiclePrice.toFixed(2),
-            autoMonthlyPayment: monthly.toFixed(2),
-            autoLoanAmount: loanPrincipal.toFixed(2),
-            autoSalesTax: salesTaxAmt.toFixed(2),
-            autoUpfrontPayment: upfront.toFixed(2),
-            autoTotalPayments: totalPayments.toFixed(2),
-            autoTotalInterest: totalInterest.toFixed(2),
-            autoTotalCost: totalCost.toFixed(2),
-          };
-
-      const start = new Date();
-      const { rows } = loanAmortization(loanPrincipal, rate, n, start, 0);
-
-      schedules.push({
-        title: sl.paymentTitle,
-        columns: [
-          { key: "no", label: sl.colNo },
-          { key: "pay", label: sl.colPayment },
-          { key: "int", label: sl.colInterest },
-          { key: "pr", label: sl.colPrincipal },
-          { key: "bal", label: sl.colBalance },
-        ],
-        rows: rows.map(row => ({
-          no: row.n,
-          pay: fmtMoney(row.payment),
-          int: fmtMoney(row.interest),
-          pr: fmtMoney(row.principal),
-          bal: fmtMoney(row.balance),
-        })),
-        totalRow: {
-          no: sl.total,
-          pay: fmtMoney(totalPayments),
-          int: fmtMoney(totalInterest),
-          pr: fmtMoney(loanPrincipal),
-          bal: "—",
-        },
-      });
-
-      charts.push({
-        kind: "donut",
-        title: sl.ratioDonut,
-        parts: [
-          { label: sl.colPrincipal, value: loanPrincipal, color: "#3B72C4" },
-          { label: sl.colInterest, value: Math.max(0, totalInterest), color: "#22C55E" },
-        ],
-        center: fmtMoney(totalPayments),
-        sub: sl.totalRepaid,
-      });
-
-      charts.push({
-        kind: "line",
-        title: sl.balanceChart,
-        points: rows.map(row => ({ x: row.n, y: row.balance })),
-        color: "#3B72C4",
-      });
-
-      const insights: ResultInsight[] = [];
-      if (loanPrincipal > 0) {
-        insights.push({
-          icon: "fa-scale-balanced",
-          value: `${((totalInterest / loanPrincipal) * 100).toFixed(1)}%`,
-          label: gl.insightInterestVsPrincipal,
-        });
-      }
-      if (vehiclePrice > 0) {
-        insights.push({
-          icon: "fa-receipt",
-          value: `${((salesTaxAmt / vehiclePrice) * 100).toFixed(2)}%`,
-          label: lang === "ru" ? "Налог % от цены авто" : "Tax % of vehicle price",
-        });
-      }
-
-      return { result, insights, schedules, charts, formatValue };
-    }
-
     return { result: null, insights: [] as ResultInsight[], schedules, charts, formatValue };
   }, [
     id, lang, locale, gl, principal, rate, time, compounding,
@@ -1217,10 +893,6 @@ function FinancialCalculator({ id, lang }: Props) {
     hasInputErrors,
     fxRates,
     fxBanner,
-    autoMode, autoPrice, autoMonthlyBudget, autoLoanTerm,
-    autoCashIncentives, autoDownPayment, autoTradeIn, autoAmountOwed,
-    autoSalesTaxRate, autoFees, autoTaxInLoan,
-    loanEarlyType, loanEarlyExtra, loanEarlyStartMonth,
   ]);
 
   const { result, insights, schedules, charts, formatValue } = computed;
@@ -1356,76 +1028,6 @@ function FinancialCalculator({ id, lang }: Props) {
               </CalcField>
               <CalcField label={sl.firstPayment}>
                 <input type="date" className="form-control" value={loanStartDate} onChange={e => setLoanStartDate(e.target.value)} />
-              </CalcField>
-            </div>
-          )}
-
-          {id === "loanearly" && (
-            <div>
-              <CalcField label={t.amount} error={decErr("loanAmount")}>
-                <MoneyInput
-                  value={loanAmount}
-                  onChange={setLoanAmount}
-                  invalid={decInv("loanAmount")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("loanAmount", bad)}
-                />
-              </CalcField>
-              <CalcField label={t.term} error={decErr("loanTerm")}>
-                <YrsInput
-                  value={loanTerm}
-                  onChange={setLoanTerm}
-                  invalid={decInv("loanTerm")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("loanTerm", bad)}
-                />
-              </CalcField>
-              <CalcField label={sl.firstPayment}>
-                <input type="date" className="form-control" value={loanStartDate} onChange={e => setLoanStartDate(e.target.value)} />
-              </CalcField>
-              <CalcField label={t.rate} error={decErr("rate")}>
-                <PctInput
-                  value={rate}
-                  onChange={setRate}
-                  invalid={decInv("rate")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("rate", bad)}
-                />
-              </CalcField>
-              <CalcField label={lang === "ru" ? "Тип платежей" : "Type of monthly payments"}>
-                <div className="d-flex flex-column gap-2">
-                  <label className="form-check-label d-flex align-items-center gap-2">
-                    <input
-                      className="form-check-input mt-0"
-                      type="radio"
-                      checked={loanEarlyType === "annuity"}
-                      onChange={() => setLoanEarlyType("annuity")}
-                    />
-                    <span>{lang === "ru" ? "Аннуитет" : "Annuity"}</span>
-                  </label>
-                  <label className="form-check-label d-flex align-items-center gap-2">
-                    <input
-                      className="form-check-input mt-0"
-                      type="radio"
-                      checked={loanEarlyType === "differentiated"}
-                      onChange={() => setLoanEarlyType("differentiated")}
-                    />
-                    <span>{lang === "ru" ? "Дифференцированный" : "Differentiated"}</span>
-                  </label>
-                </div>
-              </CalcField>
-              <CalcField label={lang === "ru" ? "Досрочное погашение в месяц ($)" : "Monthly early repayment ($)"} error={decErr("loanEarlyExtra")}>
-                <MoneyInput
-                  value={loanEarlyExtra}
-                  onChange={setLoanEarlyExtra}
-                  invalid={decInv("loanEarlyExtra")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("loanEarlyExtra", bad)}
-                />
-              </CalcField>
-              <CalcField label={lang === "ru" ? "Начать досрочку с месяца" : "Start early repayment from month"} error={decErr("loanEarlyStartMonth")}>
-                <MoInput
-                  value={loanEarlyStartMonth}
-                  onChange={setLoanEarlyStartMonth}
-                  invalid={decInv("loanEarlyStartMonth")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("loanEarlyStartMonth", bad)}
-                />
               </CalcField>
             </div>
           )}
@@ -1626,151 +1228,6 @@ function FinancialCalculator({ id, lang }: Props) {
             </div>
           )}
 
-          {id === "autoloan" && (
-            <div>
-              <div className="btn-group w-100 mb-3" role="group" aria-label={lang === "ru" ? "Режим расчёта" : "Calculation mode"}>
-                <button
-                  type="button"
-                  className={clsx("btn btn-sm", autoMode === "price" ? "btn-primary" : "btn-outline-secondary")}
-                  onClick={() => setAutoMode("price")}
-                >
-                  {t.tabTotalPrice}
-                </button>
-                <button
-                  type="button"
-                  className={clsx("btn btn-sm", autoMode === "monthly" ? "btn-primary" : "btn-outline-secondary")}
-                  onClick={() => setAutoMode("monthly")}
-                >
-                  {t.tabMonthlyPay}
-                </button>
-              </div>
-
-              {autoMode === "price" ? (
-                <CalcField label={t.autoPrice} error={decErr("autoPrice")}>
-                  <MoneyInput
-                    value={autoPrice}
-                    onChange={setAutoPrice}
-                    invalid={decInv("autoPrice")}
-                    onDecimalSyntaxBad={bad => setSyntaxField("autoPrice", bad)}
-                  />
-                </CalcField>
-              ) : (
-                <CalcField label={t.monthlyBudget} error={decErr("autoMonthlyBudget")}>
-                  <MoneyInput
-                    value={autoMonthlyBudget}
-                    onChange={setAutoMonthlyBudget}
-                    invalid={decInv("autoMonthlyBudget")}
-                    onDecimalSyntaxBad={bad => setSyntaxField("autoMonthlyBudget", bad)}
-                  />
-                </CalcField>
-              )}
-
-              <CalcField label={t.loanTerm} error={decErr("autoLoanTerm")}>
-                <MoInput
-                  value={autoLoanTerm}
-                  onChange={setAutoLoanTerm}
-                  invalid={decInv("autoLoanTerm")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoLoanTerm", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.rate} error={decErr("rate")}>
-                <PctInput
-                  value={rate}
-                  onChange={setRate}
-                  invalid={decInv("rate")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("rate", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.cashIncentives} error={decErr("autoCashIncentives")}>
-                <MoneyInput
-                  value={autoCashIncentives}
-                  onChange={setAutoCashIncentives}
-                  invalid={decInv("autoCashIncentives")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoCashIncentives", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.downPayment} error={decErr("autoDownPayment")}>
-                <MoneyInput
-                  value={autoDownPayment}
-                  onChange={setAutoDownPayment}
-                  invalid={decInv("autoDownPayment")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoDownPayment", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.tradeIn} error={decErr("autoTradeIn")}>
-                <MoneyInput
-                  value={autoTradeIn}
-                  onChange={setAutoTradeIn}
-                  invalid={decInv("autoTradeIn")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoTradeIn", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.amountOwed} error={decErr("autoAmountOwed")}>
-                <MoneyInput
-                  value={autoAmountOwed}
-                  onChange={setAutoAmountOwed}
-                  invalid={decInv("autoAmountOwed")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoAmountOwed", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.state}>
-                <select
-                  className="form-select"
-                  value={autoStateAbbr}
-                  onChange={e => {
-                    const abbr = e.target.value;
-                    setAutoStateAbbr(abbr);
-                    const st = US_STATES.find(s => s.abbr === abbr);
-                    if (st) setAutoSalesTaxRate(st.rate);
-                  }}
-                >
-                  {US_STATES.map(s => (
-                    <option key={s.abbr} value={s.abbr}>{s.name}</option>
-                  ))}
-                </select>
-              </CalcField>
-
-              <CalcField label={t.salesTaxRate} error={decErr("autoSalesTaxRate")}>
-                <PctInput
-                  value={autoSalesTaxRate}
-                  onChange={setAutoSalesTaxRate}
-                  invalid={decInv("autoSalesTaxRate")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoSalesTaxRate", bad)}
-                />
-              </CalcField>
-
-              <CalcField label={t.fees} error={decErr("autoFees")}>
-                <MoneyInput
-                  value={autoFees}
-                  onChange={setAutoFees}
-                  invalid={decInv("autoFees")}
-                  onDecimalSyntaxBad={bad => setSyntaxField("autoFees", bad)}
-                />
-              </CalcField>
-
-              <div className="fc-form-group">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="autoTaxInLoan"
-                    checked={autoTaxInLoan}
-                    onChange={e => setAutoTaxInLoan(e.target.checked)}
-                  />
-                  <label className="form-check-label" htmlFor="autoTaxInLoan">
-                    {t.taxInLoan}
-                  </label>
-                </div>
-              </div>
-            </div>
-          )}
-
           {id === "currency" && (
             <div>
               {fxLoading ? (
@@ -1869,24 +1326,6 @@ function FinancialCalculator({ id, lang }: Props) {
               </div>
             ) : null}
           </div>
-
-          {id === "autoloan" && result && (
-            <div className="fc-autoloan-banner">
-              <div className="fc-autoloan-banner__label">
-                <i className="fa-solid fa-car me-2"></i>
-                {autoMode === "price"
-                  ? (lang === "ru" ? "Ежемесячный платёж" : "Monthly Payment")
-                  : (lang === "ru" ? "Цена авто" : "Vehicle Price")}
-              </div>
-              <div className="fc-autoloan-banner__value">
-                {(() => {
-                  const r = result as Record<string, string>;
-                  const val = autoMode === "price" ? (r.autoMonthlyPayment ?? "0") : (r.autoVehiclePrice ?? "0");
-                  return `$${parseFloat(val).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                })()}
-              </div>
-            </div>
-          )}
 
           {result ? (
             <div className={clsx("fc-result-box fc-animate", resultViewCompact && "fc-result-box--compact")}>

@@ -2,18 +2,11 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# Yandex bots — Clean-param prevents duplicate content from tracker/session URL variants
+# Yandex bots
 User-agent: YandexBot
 Allow: /
 Crawl-delay: 1
-Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
-Clean-param: ref&fbclid&gclid&yclid&_openstat
-Clean-param: from&source&via&share
-Clean-param: lang&locale
-Clean-param: a&p&pp&r&dp&i&ii&d&c1&c2&c3
-Clean-param: dd&etext&position
-Clean-param: _ym_debug&_ym_lang&_ym_status-check
-Clean-param: tab&view&sort&order&page&offset&limit
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&ref&fbclid&gclid
 
 User-agent: YandexImages
 Allow: /
@@ -26,9 +19,5 @@ Allow: /
 
 User-agent: YandexMobileBot
 Allow: /
-Crawl-delay: 1
-Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
-Clean-param: ref&fbclid&gclid&yclid&_openstat
-Clean-param: lang&locale
 
 Sitemap: https://financcalculator.ru/sitemap.xml

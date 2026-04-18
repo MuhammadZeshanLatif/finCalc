@@ -19,7 +19,7 @@ import { buildPathname, type AppLang } from "./routes";
 const CALCULATOR_PAGES = new Set([
   "basic", "interest", "deposit", "loan", "mortgage",
   "days", "vat", "emi", "bmi", "tax", "currency",
-  "ti84", "salestax", "desmos", "autoloan", "loanearly",
+  "ti84", "salestax", "desmos",
 ]);
 
 function ogImageMimeType(url: string): string {

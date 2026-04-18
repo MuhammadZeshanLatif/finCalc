@@ -2,8 +2,6 @@
 export const ROUTE_PAGES = new Set([
   "home",
   "blog",
-  "login",
-  "blogstudio",
   "about",
   "contact",
   "privacy",
@@ -22,8 +20,6 @@ export const ROUTE_PAGES = new Set([
   "ti84",
   "salestax",
   "desmos",
-  "autoloan",
-  "loanearly",
   "notfound",
 ]);
 
