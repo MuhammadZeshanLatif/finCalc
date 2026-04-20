@@ -70,21 +70,11 @@ function removeMeta(attr: "name" | "property", key: string) {
   document.querySelector(`meta[${attr}="${key}"]`)?.remove();
 }
 
-function setLink(rel: string, href: string) {
-  let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
-  if (!el) {
-    el = document.createElement("link");
-    el.rel = rel;
-    document.head.appendChild(el);
-  }
-  el.href = href;
-}
-
 let jsonLdId = "fc-jsonld-root";
 
 export type BlogSeoPayload = {
-  /** Path only, e.g. `/blog/compound-interest-guide` */
-  canonicalPath: string;
+  /** Path only, e.g. `/blog/compound-interest-guide` — page URL for OG / JSON-LD. */
+  articlePath: string;
   alternateEnPath: string;
   alternateRuPath: string;
   headline: string;
@@ -115,16 +105,15 @@ export function updatePageSeo(opts: {
   calculatorKeywords?: string;
   /** Breadcrumb first item label (e.g. localized "Home"). */
   breadcrumbHomeLabel?: string;
-  /** Blog post: full Article / BlogPosting SEO + correct canonical/hreflang. */
+  /** Blog post: full Article / BlogPosting SEO + hreflang. */
   blogArticle?: BlogSeoPayload;
 }) {
   const base = getSiteUrl();
   const defaultPath = buildPathname(opts.lang, opts.page, null);
-  // Home page canonical must be the bare origin (no trailing slash).
-  // All other pages get their full path. Never produce a bare empty string.
+  // Home page URL is bare origin (no trailing slash). Other pages use full path.
   const pathStr = defaultPath === "/" ? "" : defaultPath;
   const url = opts.blogArticle
-    ? `${base}${opts.blogArticle.canonicalPath}`
+    ? `${base}${opts.blogArticle.articlePath}`
     : pathStr
       ? `${base}${pathStr}`
       : base;
@@ -202,7 +191,7 @@ export function updatePageSeo(opts: {
   if (twCreator) setMeta("name", "twitter:creator", `@${twCreator}`);
   else removeMeta("name", "twitter:creator");
 
-  setLink("canonical", url);
+  document.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
 
   document.querySelectorAll('link[data-fc-hreflang="1"]').forEach(el => el.remove());
   const enPath = buildPathname("en", opts.page, null);

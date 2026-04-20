@@ -194,7 +194,7 @@ export default function App() {
           .filter((b): b is Extract<BlogBlock, { t: "figure" }> => b.t === "figure")
           .map(b => ({ url: toAbsAsset(b.src), caption: b.alt }));
         blogArticle = {
-          canonicalPath:    buildPathname(lang, "blog", post.slug),
+          articlePath:      buildPathname(lang, "blog", post.slug),
           alternateEnPath:  buildPathname("en", "blog", enSlug),
           alternateRuPath:  ruP ? buildPathname("ru", "blog", ruP.slug) : buildPathname("ru", "blog", null),
           headline:         post.title,
