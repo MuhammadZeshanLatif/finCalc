@@ -2,8 +2,18 @@ Options -MultiViews -Indexes
 RewriteEngine On
 RewriteBase /
 
+# Consolidate host to avoid duplicate www/non-www indexing
+RewriteCond %{HTTP_HOST} ^www\.financcalculator\.ru$ [NC]
+RewriteRule ^ https://financcalculator.ru%{REQUEST_URI} [R=301,L]
+
+# Normalize trailing slash for route URLs (except root)
+RewriteCond %{REQUEST_URI} .+/$
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
 # Serve existing FILES directly (images, css, js, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 # Everything else (including directories like /blog/) → index.html
 RewriteRule ^ index.html [L]

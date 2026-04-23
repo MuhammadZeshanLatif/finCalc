@@ -135,7 +135,14 @@ export function updatePageSeo(opts: {
 
   setMeta("name", "description", desc);
   setMeta("name", "keywords", kw);
-  setMeta("name", "robots", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+  const isNotFoundPage = opts.page === "notfound";
+  setMeta(
+    "name",
+    "robots",
+    isNotFoundPage
+      ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  );
 
   setMeta("property", "og:type", opts.blogArticle ? "article" : "website");
   setMeta("property", "og:site_name", orgName);
@@ -192,28 +199,36 @@ export function updatePageSeo(opts: {
   else removeMeta("name", "twitter:creator");
 
   document.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
+  if (!isNotFoundPage) {
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = url;
+    document.head.appendChild(canonical);
+  }
 
   document.querySelectorAll('link[data-fc-hreflang="1"]').forEach(el => el.remove());
-  const enPath = buildPathname("en", opts.page, null);
-  const ruPath = buildPathname("ru", opts.page, null);
-  const enUrl = opts.blogArticle
-    ? `${base}${opts.blogArticle.alternateEnPath}`
-    : enPath === "/" ? base : `${base}${enPath}`;
-  const ruUrl = opts.blogArticle
-    ? `${base}${opts.blogArticle.alternateRuPath}`
-    : ruPath === "/" ? base : `${base}${ruPath}`;
-  const xDefaultUrl = HREFLANG_X_DEFAULT_LANG === "ru" ? ruUrl : enUrl;
-  for (const [hreflang, href] of [
-    ["en", enUrl],
-    ["ru", ruUrl],
-    ["x-default", xDefaultUrl],
-  ] as const) {
-    const l = document.createElement("link");
-    l.rel = "alternate";
-    l.hreflang = hreflang;
-    l.href = href;
-    l.setAttribute("data-fc-hreflang", "1");
-    document.head.appendChild(l);
+  if (!isNotFoundPage) {
+    const enPath = buildPathname("en", opts.page, null);
+    const ruPath = buildPathname("ru", opts.page, null);
+    const enUrl = opts.blogArticle
+      ? `${base}${opts.blogArticle.alternateEnPath}`
+      : enPath === "/" ? base : `${base}${enPath}`;
+    const ruUrl = opts.blogArticle
+      ? `${base}${opts.blogArticle.alternateRuPath}`
+      : ruPath === "/" ? base : `${base}${ruPath}`;
+    const xDefaultUrl = HREFLANG_X_DEFAULT_LANG === "ru" ? ruUrl : enUrl;
+    for (const [hreflang, href] of [
+      ["en", enUrl],
+      ["ru", ruUrl],
+      ["x-default", xDefaultUrl],
+    ] as const) {
+      const l = document.createElement("link");
+      l.rel = "alternate";
+      l.hreflang = hreflang;
+      l.href = href;
+      l.setAttribute("data-fc-hreflang", "1");
+      document.head.appendChild(l);
+    }
   }
 
   const faqs = opts.blogArticle ? [] : getSeoFaqs(opts.lang, opts.page);
@@ -303,7 +318,7 @@ function injectJsonLd(opts: {
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      inLanguage: ["en", "ru"],
+      inLanguage: ["en-US", "ru-RU"],
     },
   ];
 
