@@ -136,10 +136,11 @@ export function updatePageSeo(opts: {
   setMeta("name", "description", desc);
   setMeta("name", "keywords", kw);
   const isNotFoundPage = opts.page === "notfound";
+  const isNoindexPage = isNotFoundPage || opts.page === "privacy" || opts.page === "terms";
   setMeta(
     "name",
     "robots",
-    isNotFoundPage
+    isNoindexPage
       ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   );
