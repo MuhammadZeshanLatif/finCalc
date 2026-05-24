@@ -377,7 +377,10 @@ function injectJsonLd(opts: {
       description: opts.blogArticle.description,
       datePublished: `${opts.blogArticle.datePublished}T08:00:00.000Z`,
       dateModified: `${opts.blogArticle.dateModified}T08:00:00.000Z`,
-      author: { "@type": "Organization", name: opts.blogArticle.authorName },
+      author: [
+        { "@type": "Person", name: opts.blogArticle.authorName, url: `${opts.base}/about` },
+        { "@type": "Organization", "@id": `${opts.base}/#org` },
+      ],
       publisher: { "@id": `${opts.base}/#org` },
       image: imageList,
       inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
