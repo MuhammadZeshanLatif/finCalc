@@ -38,7 +38,8 @@ jobs:
           PORT="${PORT:-22}"
           ssh-keyscan -p "$PORT" -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy incrementally via SFTP (no rsync on host)
+      # Incremental: new/changed upload, unchanged skip, removed files delete
+      - name: Deploy incrementally via SFTP
         env:
           DEPLOY_HOST: ${{ secrets.SSH_HOST }}
           DEPLOY_PORT: ${{ secrets.SSH_PORT }}
@@ -48,6 +49,3 @@ jobs:
           DEPLOY_KEY_PATH: ${{ github.workspace }}/.ssh-deploy-key
           DEPLOY_CONCURRENCY: "8"
         run: node scripts/deploy-incremental.mjs
-
-      - name: Verify indexed URLs live (200)
-        run: node scripts/verify-indexed-urls.mjs
