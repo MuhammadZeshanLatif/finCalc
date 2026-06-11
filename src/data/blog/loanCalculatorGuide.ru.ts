@@ -19,6 +19,7 @@ export const loanCalculatorGuideRu: BlogArticle = {
   readingTimeMinutes: 11,
   hero: {
     src: "/blog/loan-calculator-hero.svg",
+    srcWebp: "/blog/loan-calculator-hero.webp",
     alt: "Экран кредитного калькулятора с вводом 20 000 $, ежемесячным платежом и диаграммой тела кредита и процентов.",
     caption: "Кредитный калькулятор показывает ежемесячный платёж, переплату и долю тела и процентов по сроку.",
     credit: "FinanceCalculator",
@@ -106,6 +107,7 @@ export const loanCalculatorGuideRu: BlogArticle = {
     {
       t: "figure",
       src: "/blog/loan-payment-schedule.svg",
+      srcWebp: "/blog/loan-payment-schedule.webp",
       alt: "Столбчатая диаграмма: доля процентов в платеже падает, доля тела растёт от 1-го к 4-му году.",
       caption: "В начале срока больше процентов; к концу — больше погашения тела.",
       credit: "FinanceCalculator",

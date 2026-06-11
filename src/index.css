@@ -1276,6 +1276,11 @@ body {
   font-size: 0.85rem;
 }
 
+.fc-blog-img--failed,
+.fc-blog-card-thumb.fc-blog-img--failed {
+  display: none !important;
+}
+
 .fc-blog-hero img {
   max-height: 420px;
   object-fit: cover;

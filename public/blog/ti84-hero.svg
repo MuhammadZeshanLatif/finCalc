@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="TI-84 graphing calculator">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#3B72C4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(380 80)">
+    <rect x="0" y="0" width="440" height="470" rx="28" fill="#2d3748" stroke="#94a3b8" stroke-width="4"/>
+    <rect x="40" y="40" width="360" height="200" rx="8" fill="#9ae6b4"/>
+    <path d="M60,200 C120,80 200,60 280,120 C340,160 360,100 380,80" fill="none" stroke="#2B5CA8" stroke-width="4"/>
+    <path d="M60,180 L340,140" fill="none" stroke="#e53e3e" stroke-width="3"/>
+    <rect x="40" y="270" width="70" height="50" rx="6" fill="#4a5568"/>
+    <rect x="120" y="270" width="70" height="50" rx="6" fill="#4a5568"/>
+    <rect x="200" y="270" width="70" height="50" rx="6" fill="#4a5568"/>
+    <rect x="280" y="270" width="70" height="50" rx="6" fill="#3B72C4"/>
+    <rect x="360" y="270" width="40" height="110" rx="6" fill="#718096"/>
+    <text x="55" y="305" fill="#fff" font-family="monospace" font-size="20">7</text>
+    <text x="135" y="305" fill="#fff" font-family="monospace" font-size="20">8</text>
+    <text x="215" y="305" fill="#fff" font-family="monospace" font-size="20">9</text>
+    <text x="48" y="360" fill="#fff" font-family="monospace" font-size="16">Y=</text>
+    <text x="90" y="360" fill="#9ae6b4" font-family="monospace" font-size="16">X^2</text>
+  </g>
+  <text x="640" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">TI-84 Plus CE Online</text>
+  <text x="640" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#EBF3FF">Graph functions in your browser</text>
+</svg>

@@ -19,6 +19,7 @@ export const loanCalculatorGuideEn: BlogArticle = {
   readingTimeMinutes: 11,
   hero: {
     src: "/blog/loan-calculator-hero.svg",
+    srcWebp: "/blog/loan-calculator-hero.webp",
     alt: "Loan calculator screen showing $20,000 loan inputs, monthly payment result, and principal versus interest donut chart.",
     caption: "A loan calculator shows monthly payment, total interest, and how principal and interest split over the term.",
     credit: "FinanceCalculator",
@@ -106,6 +107,7 @@ export const loanCalculatorGuideEn: BlogArticle = {
     {
       t: "figure",
       src: "/blog/loan-payment-schedule.svg",
+      srcWebp: "/blog/loan-payment-schedule.webp",
       alt: "Bar chart showing how each year's loan payment shifts from mostly interest to mostly principal over four years.",
       caption: "Early payments are interest-heavy; later payments retire principal faster.",
       credit: "FinanceCalculator",

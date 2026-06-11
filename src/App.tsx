@@ -15,7 +15,6 @@ import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
-import { isAbsoluteHttpUrl } from "./components/blog/BlogPostImage";
 import {
   getSiteUrl,
   OFFICIAL_SOCIAL_INSTAGRAM,
@@ -25,7 +24,6 @@ import {
   OFFICIAL_SOCIAL_X,
   OFFICIAL_SOCIAL_YOUTUBE,
   SITE_LOGO_URL,
-  SITE_PREVIEW_IMAGE_PATH,
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
@@ -632,7 +630,6 @@ export default function App() {
                 <div className="row g-4">
                   {paginatedPosts.map(post => {
                     const thumbSrc = post.hero.srcWebp ?? post.hero.src;
-                    const thumbExternal = isAbsoluteHttpUrl(thumbSrc);
                     return (
                     <div key={post.slug} className="col-md-6">
                       <article className="fc-blog-card card border-0 h-100 overflow-hidden">
@@ -653,11 +650,11 @@ export default function App() {
                             height={360}
                             loading="lazy"
                             decoding="async"
-                            {...(thumbExternal ? {} : { referrerPolicy: "no-referrer" })}
                             onError={e => {
                               const img = e.currentTarget;
                               img.onerror = null;
-                              img.src = SITE_PREVIEW_IMAGE_PATH;
+                              img.classList.add("fc-blog-img--failed");
+                              img.removeAttribute("src");
                             }}
                           />
                         </a>

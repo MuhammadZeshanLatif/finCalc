@@ -4,6 +4,7 @@ import { mortgagePaymentGuideRu } from "./mortgagePaymentGuide.ru";
 import { loanCalculatorGuideRu } from "./loanCalculatorGuide.ru";
 import { depositCalculatorGuideRu } from "./depositCalculatorGuide.ru";
 import { ndfl2026CalculatorGuideRu } from "./ndfl2026CalculatorGuide.ru";
+import { vat20CalculatorGuideRu } from "./vat20CalculatorGuide.ru";
 
 /** Russian articles — same topicKey as EN for hreflang pairing. */
 export const BLOG_POSTS_RU: BlogArticle[] = [
@@ -1422,11 +1423,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     author: "Редакция FinanceCalculator",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/0/0b/ReceiptSwiss.jpg",
-      alt: "Бумажный чек со строками, ставкой налога и итогами",
+      src: "/blog/vat-20-calculator-hero.svg",
+      srcWebp: "/blog/vat-20-calculator-hero.webp",
+      alt: "Калькулятор НДС: нетто, 20% налог и брутто на макете счёта",
       caption: "Счёт и чек должны однозначно показывать базу, ставку и итог. То же соглашение — в КП и в учёте.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:ReceiptSwiss.jpg",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "формула НДС из суммы с налогом",
@@ -1478,11 +1479,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Arithmetic_operations.svg",
+        src: "/blog/vat-20-net-gross.svg",
+        srcWebp: "/blog/vat-20-net-gross.webp",
         alt: "Знаки сложения, вычитания, умножения, деления и равенства — база для расчёта нетто и НДС",
         caption: "Выделение НДС — это аккуратная арифметика: сначала делите брутто, чтобы получить базу, затем вычитайте или используйте краткую формулу для суммы налога.",
-        credit: "Wikimedia Commons — Phlsph7",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Arithmetic_operations.svg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -1504,11 +1505,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Casio_fx-991EX.jpg",
+        src: "/blog/vat-20-net-gross.svg",
+        srcWebp: "/blog/vat-20-net-gross.webp",
         alt: "Инженерный калькулятор — удобно перепроверить нетто, НДС и брутто до проводки",
         caption: "Ручная перепроверка или калькулятор FinanceCalculator ловят типичную ошибку: принять сумму «с НДС» за нетто.",
-        credit: "Wikimedia Commons — Sebastian Wallroth",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Casio_fx-991EX.jpg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -1588,11 +1589,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/3/31/TI-84_Plus_calculator_HS1.jpg",
+        src: "/blog/ti84-hero.svg",
+        srcWebp: "/blog/ti84-hero.webp",
         alt: "Ученик с графическим калькулятором TI-84 Plus — тот же принцип: дважды проверить итоги, как в таблице со счётом",
         caption: "В задачах перепроверяют ответ; в финансах — нетто, НДС и брутто перед закрытием месяца.",
-        credit: "Wikimedia Commons — Hayden Schiff",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:TI-84_Plus_calculator_HS1.jpg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -1692,11 +1693,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     author: "Редакция FinanceCalculator",
     readingTimeMinutes: 9,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/5/56/TI-84_Plus_on_dark_background.JPG",
+      src: "/blog/ti84-hero.svg",
+      srcWebp: "/blog/ti84-hero.webp",
       alt: "Графический калькулятор TI-84 Plus на тёмном фоне",
       caption: "TI-84 остаётся стандартом для многих учебных программ; онлайн-симулятор ускоряет практику.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:TI-84_Plus_on_dark_background.JPG",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "TI-84 Plus CE онлайн бесплатно",
@@ -1830,11 +1831,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     author: "Редакция FinanceCalculator",
     readingTimeMinutes: 8,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png",
+      src: "/blog/bmi-hero.svg",
+      srcWebp: "/blog/bmi-hero.webp",
       alt: "Таблица ИМТ с категориями массы тела",
       caption: "ИМТ удобен для массового скрининга, но не заменяет полноценную оценку здоровья.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:BMI_chart.png",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "ИМТ и андеррайтинг",
@@ -1954,11 +1955,11 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     author: "Редакция FinanceCalculator",
     readingTimeMinutes: 9,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
+      src: "/blog/loan-calculator-hero.svg",
+      srcWebp: "/blog/loan-calculator-hero.webp",
       alt: "График зависимости переплаты по кредиту от ставки и срока",
       caption: "Чем выше ставка и длиннее срок, тем быстрее растёт полная стоимость кредита.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "формула EMI",
@@ -2364,4 +2365,5 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
   loanCalculatorGuideRu,
   depositCalculatorGuideRu,
   ndfl2026CalculatorGuideRu,
+  vat20CalculatorGuideRu,
 ];

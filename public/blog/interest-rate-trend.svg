@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Interest rate trend chart">
+  <rect width="960" height="540" fill="#fff"/>
+  <rect x="24" y="24" width="912" height="492" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="48" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">Rate changes shift EMI totals</text>
+  <line x1="80" y1="400" x2="880" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="80" y1="120" x2="80" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M80,360 L200,340 L320,280 L440,300 L560,200 L680,240 L800,160 L880,180" fill="none" stroke="#3B72C4" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="880" cy="180" r="6" fill="#2B5CA8"/>
+  <text x="48" y="430" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">Illustrative benchmark rate over time</text>
+</svg>

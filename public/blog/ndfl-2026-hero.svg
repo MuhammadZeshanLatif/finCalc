@@ -11,27 +11,23 @@
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="120" cy="120" r="80" fill="#ffffff" opacity="0.1"/>
-
   <g transform="translate(100 80)" filter="url(#shadow)">
     <rect x="0" y="0" width="480" height="470" rx="24" fill="#ffffff" stroke="#2B5CA8" stroke-width="3"/>
     <text x="28" y="44" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#2B5CA8" font-weight="700">NDFL 2026 calculator</text>
     <text x="28" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Annual income (gross)</text>
     <rect x="28" y="88" width="424" height="44" rx="10" fill="#EBF3FF" stroke="#3B72C4" stroke-width="2"/>
-    <text x="48" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">4 500 000 ½</text>
-
+    <text x="48" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">4 500 000 rub</text>
     <rect x="28" y="160" width="424" height="140" rx="14" fill="#f8fafc"/>
     <text x="48" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Tax by bracket</text>
     <rect x="48" y="206" width="180" height="22" rx="6" fill="#3B72C4" opacity="0.25"/>
-    <text x="48" y="222" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">13% on 2.4M ’ 312 000 ½</text>
+    <text x="48" y="222" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">13% on 2.4M = 312 000 rub</text>
     <rect x="48" y="236" width="220" height="22" rx="6" fill="#3B72C4" opacity="0.45"/>
-    <text x="48" y="252" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">15% on 2.1M ’ 315 000 ½</text>
-
+    <text x="48" y="252" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">15% on 2.1M = 315 000 rub</text>
     <rect x="28" y="320" width="424" height="120" rx="14" fill="#3B72C4"/>
     <text x="48" y="356" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#EBF3FF">Total NDFL 2026</text>
-    <text x="48" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="700">627 000 ½</text>
+    <text x="48" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="700">627 000 rub</text>
     <text x="260" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#EBF3FF">Effective 13.93%</text>
   </g>
-
   <g transform="translate(640 120)">
     <text x="0" y="0" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#ffffff" font-weight="600">Progressive brackets</text>
     <rect x="0" y="24" width="120" height="48" fill="#10B981" rx="8"/>
@@ -46,7 +42,6 @@
     <text x="442" y="44" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#fff" font-weight="700">22%</text>
     <text x="0" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#EBF3FF">Only income inside each band taxed at that rate</text>
   </g>
-
-  <text x="640" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">$ 2026 Calculator</text>
-  <text x="640" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#EBF3FF">Russia salary tax · marginal &amp; effective rate</text>
+  <text x="640" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">NDFL 2026 Calculator</text>
+  <text x="640" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#EBF3FF">Russia salary tax - marginal and effective rate</text>
 </svg>

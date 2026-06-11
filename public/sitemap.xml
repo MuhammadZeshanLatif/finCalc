@@ -617,6 +617,25 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide"/>
   </url>
 
+  <url>
+    <loc>https://financcalculator.ru/blog/vat-20-percent-calculator-guide</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/vat-20-percent-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kalkulyator-nds-20-procentov"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/vat-20-percent-calculator-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/kalkulyator-nds-20-procentov</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/vat-20-percent-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kalkulyator-nds-20-procentov"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/vat-20-percent-calculator-guide"/>
+  </url>
+
   <!-- ===== STATIC PAGES ===== -->
   <url>
     <loc>https://financcalculator.ru/about</loc>

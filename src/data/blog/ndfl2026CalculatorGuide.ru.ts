@@ -19,6 +19,7 @@ export const ndfl2026CalculatorGuideRu: BlogArticle = {
   readingTimeMinutes: 12,
   hero: {
     src: "/blog/ndfl-2026-hero.svg",
+    srcWebp: "/blog/ndfl-2026-hero.webp",
     alt: "Калькулятор НДФЛ 2026: доход 4,5 млн ₽, разбивка по ступеням и налог 627 000 ₽.",
     caption: "НДФЛ 2026 начисляется по частям базы внутри каждого интервала, а не по всему доходу по верхней ставке.",
     credit: "FinanceCalculator",
@@ -64,6 +65,7 @@ export const ndfl2026CalculatorGuideRu: BlogArticle = {
     {
       t: "figure",
       src: "/blog/ndfl-2026-brackets.svg",
+      srcWebp: "/blog/ndfl-2026-brackets.webp",
       alt: "Таблица прогрессивных ставок НДФЛ 2026 от 13% до 22% с порогами в рублях.",
       caption: "Верхние ступени не облагают весь годовой доход — только соответствующий срез базы.",
       credit: "FinanceCalculator",

@@ -4,6 +4,7 @@ import { mortgagePaymentGuideEn } from "./mortgagePaymentGuide.en";
 import { loanCalculatorGuideEn } from "./loanCalculatorGuide.en";
 import { depositCalculatorGuideEn } from "./depositCalculatorGuide.en";
 import { ndfl2026CalculatorGuideEn } from "./ndfl2026CalculatorGuide.en";
+import { vat20CalculatorGuideEn } from "./vat20CalculatorGuide.en";
 
 /** English articles — editorial tone: specific, cited, no filler. */
 export const BLOG_POSTS_EN: BlogArticle[] = [
@@ -24,6 +25,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     readingTimeMinutes: 7,
     hero: {
       src: "/blog/compound-hero.svg",
+      srcWebp: "/blog/compound-hero.webp",
       alt: "Compound interest growth chart showing how returns accelerate with time",
       caption: "Image 1: compound growth accelerates over time, so timing decisions matter.",
       credit: "FinanceCalculator visual",
@@ -89,6 +91,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/compound-frequency.svg",
+        srcWebp: "/blog/compound-frequency.webp",
         alt: "Comparison of annual monthly and daily compounding outcomes",
         caption: "Image 2: monthly and daily compounding can beat annual compounding at the same nominal rate.",
         credit: "FinanceCalculator visual",
@@ -105,6 +108,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/compound-timing.svg",
+        srcWebp: "/blog/compound-timing.webp",
         alt: "Early versus late starting timeline showing larger final values for earlier start",
         caption: "Image 3: a longer runway often beats a small rate advantage.",
         credit: "FinanceCalculator visual",
@@ -126,6 +130,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/compound-application.svg",
+        srcWebp: "/blog/compound-application.webp",
         alt: "Savings investments and loans scenarios where compounding applies",
         caption: "Image 4: compounding appears in deposits, investments, and debt.",
         credit: "FinanceCalculator visual",
@@ -255,6 +260,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     readingTimeMinutes: 8,
     hero: {
       src: "/blog/mortgage-buying-hero.svg",
+      srcWebp: "/blog/mortgage-buying-hero.webp",
       alt: "Illustration of a house, key, and sunset sky for the mortgage mistakes guide",
       caption: "Fresh visuals for the same serious topic: plan the loan, then chase the address.",
       credit: "FinanceCalculator",
@@ -318,6 +324,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/mortgage-checklist.svg",
+        srcWebp: "/blog/mortgage-checklist.webp",
         alt: "Pre-approval checklist graphic with green checks and a stamped approval card",
         caption: "Pre-approval is paperwork plus discipline — not a vague online quiz.",
         credit: "FinanceCalculator",
@@ -351,6 +358,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/mortgage-closing-costs.svg",
+        srcWebp: "/blog/mortgage-closing-costs.webp",
         alt: "Illustrated breakdown of title, lender fees, prepaids, and cash to close",
         caption: "Closing costs are several buckets — not one mystery number.",
         credit: "FinanceCalculator",
@@ -384,6 +392,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/mortgage-credit-timing.svg",
+        srcWebp: "/blog/mortgage-credit-timing.webp",
         alt: "Credit score improvement timeline before mortgage application",
         caption: "Credit cleanup works best when started months before application.",
         credit: "FinanceCalculator",
@@ -404,6 +413,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/mortgage-rate-compare.svg",
+        srcWebp: "/blog/mortgage-rate-compare.webp",
         alt: "Side by side lender quote comparison cards for mortgage shopping",
         caption: "Compare rate, APR, points, fees, and cash to close on one sheet.",
         credit: "FinanceCalculator",
@@ -437,6 +447,7 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       {
         t: "figure",
         src: "/blog/mortgage-piti-vivid.svg",
+        srcWebp: "/blog/mortgage-piti-vivid.webp",
         alt: "Colorful PITI bar segments plus HOA and maintenance reminder",
         caption: "PITI is the core stack; HOA and upkeep sit just outside it.",
         credit: "FinanceCalculator",
@@ -1728,11 +1739,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/0/0b/ReceiptSwiss.jpg",
-      alt: "Paper receipt showing line items, tax rate note, and totals",
+      src: "/blog/vat-20-calculator-hero.svg",
+      srcWebp: "/blog/vat-20-calculator-hero.webp",
+      alt: "VAT calculator screen showing net, 20% tax, and gross amounts on an invoice-style layout",
       caption: "Good receipts and invoices show the tax base, the rate, and the total clearly. Your quotes and accounting should use the same convention.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:ReceiptSwiss.jpg",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "VAT inclusive formula",
@@ -1785,11 +1796,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Arithmetic_operations.svg",
+        src: "/blog/vat-20-net-gross.svg",
+        srcWebp: "/blog/vat-20-net-gross.webp",
         alt: "Symbols for addition, subtraction, multiplication, division, and equals — the building blocks of VAT split calculations",
         caption: "VAT splits are just careful arithmetic: divide to find the net base from a gross total, then subtract (or use the shortcut formula) to isolate the tax.",
-        credit: "Wikimedia Commons — Phlsph7",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Arithmetic_operations.svg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -1811,11 +1822,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Casio_fx-991EX.jpg",
+        src: "/blog/vat-20-net-gross.svg",
+        srcWebp: "/blog/vat-20-net-gross.webp",
         alt: "Scientific calculator on a desk — useful for double-checking net, VAT, and gross before you post to accounting",
         caption: "A quick handheld check (or FinanceCalculator’s VAT tool) catches the classic error: treating a VAT-inclusive total as if it were net.",
-        credit: "Wikimedia Commons — Sebastian Wallroth",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Casio_fx-991EX.jpg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -1895,11 +1906,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       },
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/3/31/TI-84_Plus_calculator_HS1.jpg",
+        src: "/blog/ti84-hero.svg",
+        srcWebp: "/blog/ti84-hero.webp",
         alt: "Student using a TI-84 Plus graphing calculator — same discipline applies when auditing invoice totals in a spreadsheet",
         caption: "Students learn to verify answers twice; finance teams should do the same for net, VAT, and gross before month-end close.",
-        credit: "Wikimedia Commons — Hayden Schiff",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:TI-84_Plus_calculator_HS1.jpg",
+        credit: "FinanceCalculator",
       },
       {
         t: "h2",
@@ -2007,11 +2018,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/5/56/TI-84_Plus_on_dark_background.JPG",
+      src: "/blog/ti84-hero.svg",
+      srcWebp: "/blog/ti84-hero.webp",
       alt: "TI-84 Plus graphing calculator on dark background — the most widely used calculator in US high schools and colleges",
       caption: "The TI-84 Plus has been the gold standard in US classrooms. Now you can use it free online — no download, no login.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:TI-84_Plus_on_dark_background.JPG",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "TI-84 Plus CE calculator online free",
@@ -2070,11 +2081,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 1 ─────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/TI-84_Plus_calculator_HS1.jpg/640px-TI-84_Plus_calculator_HS1.jpg",
+        src: "/blog/ti84-hero.svg",
+        srcWebp: "/blog/ti84-hero.webp",
         alt: "TI-84 Plus graphing calculator being used by a student — showing the full keyboard and screen",
         caption: "The TI-84 Plus is standard in US high school and college math classes. This free online version replicates it exactly.",
-        credit: "Wikimedia Commons — Hayden Schiff",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:TI-84_Plus_calculator_HS1.jpg",
+        credit: "FinanceCalculator",
       },
       // ── SECTION 3 ────────────────────────────────────────────────────────
       {
@@ -2168,11 +2179,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 2 ─────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Trigonometric_functions.svg/640px-Trigonometric_functions.svg.png",
+        src: "/blog/ti84-graph-functions.svg",
+        srcWebp: "/blog/ti84-graph-functions.webp",
         alt: "Graph of trigonometric functions sin and cos plotted on a coordinate plane — the type of graph the TI-84 produces",
         caption: "Enter sin(x) in Y1 and cos(x) in Y2, press GRAPH — the TI-84 online plots both in different colors instantly.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Trigonometric_functions.svg",
+        credit: "FinanceCalculator",
       },
       // ── SECTION 6 ────────────────────────────────────────────────────────
       {
@@ -2289,11 +2300,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 3 ─────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Parts_of_Parabola.svg/640px-Parts_of_Parabola.svg.png",
+        src: "/blog/ti84-graph-functions.svg",
+        srcWebp: "/blog/ti84-graph-functions.webp",
         alt: "Diagram labeling the parts of a parabola including vertex, axis of symmetry, focus and directrix — key concepts in algebra",
         caption: "Graph any quadratic in Y= and immediately see the parabola's vertex, axis of symmetry, and roots — exactly like this diagram.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Parts_of_Parabola.svg",
+        credit: "FinanceCalculator",
       },
       // ── SECTION 11: External link ─────────────────────────────────────────
       {
@@ -2415,11 +2426,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinanceCalculator Editorial",
     readingTimeMinutes: 12,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/c/cc/BMI_chart.png",
+      src: "/blog/bmi-hero.svg",
+      srcWebp: "/blog/bmi-hero.webp",
       alt: "BMI chart showing weight categories from underweight to obese based on height and weight — used by insurers in premium pricing",
       caption: "Standard BMI chart used in health screening. Insurance underwriters reference similar charts — but the science behind them is more complicated than a single number suggests.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:BMI_chart.png",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "BMI screening insurance pricing",
@@ -2468,11 +2479,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 1 ──────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Obesity_%26_BMI.png",
+        src: "/blog/bmi-zones-chart.svg",
+        srcWebp: "/blog/bmi-zones-chart.webp",
         alt: "Chart showing the relationship between obesity rates and BMI categories across different populations — CDC and WHO data",
         caption: "BMI category distribution across populations. Insurers use aggregate data like this to set pricing bands — but individual risk does not always match population averages.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Obesity_%26_BMI.png",
+        credit: "FinanceCalculator",
       },
 
       // ── SECTION 2 ─────────────────────────────────────────────────────────
@@ -2532,11 +2543,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 2 ──────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Correlation_between_BMI_and_Percent_Body_Fat_for_Men_in_NCHS%27_NHANES_1994_Data.PNG",
+        src: "/blog/bmi-zones-chart.svg",
+        srcWebp: "/blog/bmi-zones-chart.webp",
         alt: "Scatter plot showing the correlation between BMI and actual percent body fat for men — NHANES 1994 CDC data showing wide variability",
         caption: "CDC NHANES data shows wide scatter between BMI and actual body fat percentage. Two men with the same BMI can differ by 15–20% in actual body fat — which is why BMI alone is a weak individual predictor.",
-        credit: "Wikimedia Commons — CDC/NCHS NHANES data",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Correlation_between_BMI_and_Percent_Body_Fat_for_Men_in_NCHS%27_NHANES_1994_Data.PNG",
+        credit: "FinanceCalculator",
       },
 
       // ── SECTION 4 ─────────────────────────────────────────────────────────
@@ -2590,11 +2601,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 3 ──────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Public_and_private_health_expenditure_by_country.svg",
+        src: "/blog/bmi-zones-chart.svg",
+        srcWebp: "/blog/bmi-zones-chart.webp",
         alt: "Bar chart showing public versus private health expenditure by country — illustrating how insurance markets differ across nations",
         caption: "Health spending is split differently across countries. In the US, private insurance carries more weight — which is why underwriting practices like BMI screening have bigger financial consequences for individuals here than in most other countries.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Public_and_private_health_expenditure_by_country.svg",
+        credit: "FinanceCalculator",
       },
 
       // ── SECTION 6 ─────────────────────────────────────────────────────────
@@ -2762,11 +2773,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     author: "FinanceCalculator Editorial",
     readingTimeMinutes: 11,
     hero: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/3/35/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
-      alt: "Chart showing how principal, interest, and total loan payment change with different interest rates and loan terms — key to understanding EMI",
+      src: "/blog/loan-calculator-hero.svg",
+      srcWebp: "/blog/loan-calculator-hero.webp",
+      alt: "Loan calculator chart showing monthly payment, principal, and interest at different rates and terms",
       caption: "As interest rate rises and loan term stretches, the gap between what you borrowed and what you repay widens dramatically. EMI math makes this visible.",
-      credit: "Wikimedia Commons",
-      creditUrl: "https://commons.wikimedia.org/wiki/File:Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
+      credit: "FinanceCalculator",
     },
     keyPhrases: [
       "EMI formula calculation",
@@ -2850,11 +2861,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 1 ──────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png/640px-Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
+        src: "/blog/loan-emi-cost-chart.svg",
+        srcWebp: "/blog/loan-emi-cost-chart.webp",
         alt: "Chart showing total interest paid on a loan versus principal amount for different interest rates — illustrating why a lower rate saves significant money",
         caption: "At 6% interest over 3 years, you pay $951 in interest on a $10,000 loan. At 18%, that jumps to $3,014 — more than three times as much. The rate matters enormously.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Mortgage_Loan_Principal_Expenses_Interest_Rates_Loan_Term_Total_Payment_02.png",
+        credit: "FinanceCalculator",
       },
 
       // ── SECTION 3: Factors ────────────────────────────────────────────────
@@ -2909,11 +2920,11 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
       // ── FIGURE 2 ──────────────────────────────────────────────────────────
       {
         t: "figure",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Federal_Funds_Rate_1954_thru_2009_effective.svg/640px-Federal_Funds_Rate_1954_thru_2009_effective.svg.png",
+        src: "/blog/interest-rate-trend.svg",
+        srcWebp: "/blog/interest-rate-trend.webp",
         alt: "Historical US Federal Funds Rate from 1954 to 2009 — showing how benchmark interest rates that influence personal loan and EMI rates have changed over decades",
         caption: "Interest rates move over time. The Federal Funds Rate directly influences what banks charge on personal and auto loans. When rates rise, new borrowers face higher EMIs — and variable-rate loans become more expensive.",
-        credit: "Wikimedia Commons",
-        creditUrl: "https://commons.wikimedia.org/wiki/File:Federal_Funds_Rate_1954_thru_2009_effective.svg",
+        credit: "FinanceCalculator",
       },
 
       // ── SECTION 5: Fixed vs reducing ──────────────────────────────────────
@@ -3373,4 +3384,5 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
   loanCalculatorGuideEn,
   depositCalculatorGuideEn,
   ndfl2026CalculatorGuideEn,
+  vat20CalculatorGuideEn,
 ];

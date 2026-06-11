@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="VAT 20 percent net and gross breakdown">
+  <rect width="960" height="540" fill="#ffffff"/>
+  <rect x="24" y="24" width="912" height="492" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="48" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">20% VAT: exclusive vs inclusive</text>
+  <text x="48" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">Same transaction - two ways to quote the price</text>
+  <rect x="48" y="130" width="400" height="300" rx="14" fill="#fff" stroke="#3B72C4" stroke-width="2"/>
+  <text x="68" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#2B5CA8" font-weight="700">Exclusive (net + VAT)</text>
+  <text x="68" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">Net price</text>
+  <text x="68" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#10B981" font-weight="700">100.00</text>
+  <text x="68" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">+ VAT 20%</text>
+  <text x="68" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#F59E0B" font-weight="700">20.00</text>
+  <text x="68" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">= Gross</text>
+  <text x="68" y="390" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#2B5CA8" font-weight="700">120.00</text>
+  <rect x="488" y="130" width="400" height="300" rx="14" fill="#fff" stroke="#3B72C4" stroke-width="2"/>
+  <text x="508" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#2B5CA8" font-weight="700">Inclusive (gross)</text>
+  <text x="508" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">Gross price</text>
+  <text x="508" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#2B5CA8" font-weight="700">120.00</text>
+  <text x="508" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">/ 1.20 = Net</text>
+  <text x="508" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#10B981" font-weight="700">100.00</text>
+  <text x="508" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">VAT extracted</text>
+  <text x="508" y="390" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#F59E0B" font-weight="700">20.00</text>
+  <rect x="48" y="450" width="840" height="50" rx="10" fill="#EBF3FF" stroke="#3B72C4"/>
+  <text x="68" y="480" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#2B5CA8">VAT = Gross x 20 / 120  |  Net = Gross / 1.20</text>
+</svg>

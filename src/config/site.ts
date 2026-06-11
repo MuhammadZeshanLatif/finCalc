@@ -10,7 +10,7 @@ export const HREFLANG_X_DEFAULT_LANG: "en" | "ru" = "en";
 export const SITE_LOGO_URL = "/logo.webp";
 
 /** Default Open Graph / Twitter / link preview image (absolute path on origin). */
-export const SITE_PREVIEW_IMAGE_PATH = "/preview-image.webp";
+export const SITE_PREVIEW_IMAGE_PATH = "/og-image.webp";
 
 /**
  * Organization logo for JSON-LD (Google recommends ≥112×112; matches site favicon artwork).
@@ -33,7 +33,7 @@ export function getSiteUrl(): string {
   return "https://financcalculator.ru";
 }
 
-/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/preview-image.webp`. */
+/** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.webp`. */
 export function getOgImageUrl(): string {
   const u = import.meta.env.VITE_OG_IMAGE_URL as string | undefined;
   if (u && /^https?:\/\//i.test(u)) return u;

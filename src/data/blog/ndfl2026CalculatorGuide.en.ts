@@ -19,6 +19,7 @@ export const ndfl2026CalculatorGuideEn: BlogArticle = {
   readingTimeMinutes: 12,
   hero: {
     src: "/blog/ndfl-2026-hero.svg",
+    srcWebp: "/blog/ndfl-2026-hero.webp",
     alt: "NDFL 2026 calculator screen showing 4.5 million ruble income, bracket breakdown, and 627,000 ruble total tax.",
     caption: "NDFL 2026 applies higher rates only to the portion of annual income inside each bracket.",
     credit: "FinanceCalculator",
@@ -64,6 +65,7 @@ export const ndfl2026CalculatorGuideEn: BlogArticle = {
     {
       t: "figure",
       src: "/blog/ndfl-2026-brackets.svg",
+      srcWebp: "/blog/ndfl-2026-brackets.webp",
       alt: "Table chart of NDFL 2026 progressive tax brackets from 13% to 22% with ruble thresholds.",
       caption: "Higher brackets tax slices of income, not the whole annual base at the top rate.",
       credit: "FinanceCalculator",

@@ -19,6 +19,7 @@ export const mortgagePaymentGuideEn: BlogArticle = {
   readingTimeMinutes: 12,
   hero: {
     src: "/blog/mortgage-payment-hero.svg",
+    srcWebp: "/blog/mortgage-payment-hero.webp",
     alt: "Illustration of a mortgage payment calculator screen showing monthly PITI breakdown next to a house icon.",
     caption: "A mortgage payment calculator combines principal, interest, taxes, and insurance into one monthly figure.",
     credit: "FinanceCalculator",
@@ -85,6 +86,7 @@ export const mortgagePaymentGuideEn: BlogArticle = {
     {
       t: "figure",
       src: "/blog/mortgage-piti-vivid.svg",
+      srcWebp: "/blog/mortgage-piti-vivid.webp",
       alt: "Diagram breaking down a monthly mortgage payment into principal, interest, taxes, and insurance slices.",
       caption: "PITI is the all-in monthly housing payment most affordability rules reference.",
       credit: "FinanceCalculator",
@@ -149,6 +151,7 @@ export const mortgagePaymentGuideEn: BlogArticle = {
     {
       t: "figure",
       src: "/blog/mortgage-amortization-chart.svg",
+      srcWebp: "/blog/mortgage-amortization-chart.webp",
       alt: "Chart showing mortgage loan balance declining over a 30-year term, with slow early progress.",
       caption: "Balance drops slowly at first because early payments are interest-heavy.",
       credit: "FinanceCalculator",

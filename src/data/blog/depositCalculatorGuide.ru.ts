@@ -19,6 +19,7 @@ export const depositCalculatorGuideRu: BlogArticle = {
   readingTimeMinutes: 11,
   hero: {
     src: "/blog/deposit-calculator-hero.svg",
+    srcWebp: "/blog/deposit-calculator-hero.webp",
     alt: "Экран калькулятора вклада: 5 000 $ на старте, пополнение 200 $/мес, ставка 5%, итог 13 558 $.",
     caption: "Калькулятор вклада объединяет начальную сумму, пополнения и проценты в прогноз сбережений.",
     credit: "FinanceCalculator",
@@ -104,6 +105,7 @@ export const depositCalculatorGuideRu: BlogArticle = {
     {
       t: "figure",
       src: "/blog/deposit-monthly-growth.svg",
+      srcWebp: "/blog/deposit-monthly-growth.webp",
       alt: "Столбчатая диаграмма роста вклада по годам: взносы и начисленные проценты при 5% годовых.",
       caption: "Взносы растут линейно; проценты ускоряются на большей базе.",
       credit: "FinanceCalculator",

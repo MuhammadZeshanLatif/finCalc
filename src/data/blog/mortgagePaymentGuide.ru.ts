@@ -19,6 +19,7 @@ export const mortgagePaymentGuideRu: BlogArticle = {
   readingTimeMinutes: 12,
   hero: {
     src: "/blog/mortgage-payment-hero.svg",
+    srcWebp: "/blog/mortgage-payment-hero.webp",
     alt: "Иллюстрация экрана ипотека калькулятора с разбивкой ежемесячного PITI и иконкой дома.",
     caption: "Ипотека калькулятор объединяет тело кредита, проценты, налоги и страховку в один ежемесячный платёж.",
     credit: "FinanceCalculator",
@@ -85,6 +86,7 @@ export const mortgagePaymentGuideRu: BlogArticle = {
     {
       t: "figure",
       src: "/blog/mortgage-piti-vivid.svg",
+      srcWebp: "/blog/mortgage-piti-vivid.webp",
       alt: "Схема ежемесячного ипотечного платежа с долями тела, процентов, налогов и страховки.",
       caption: "PITI — полный ежемесячный платёж за жильё, на который ориентируются правила доступности.",
       credit: "FinanceCalculator",
@@ -149,6 +151,7 @@ export const mortgagePaymentGuideRu: BlogArticle = {
     {
       t: "figure",
       src: "/blog/mortgage-amortization-chart.svg",
+      srcWebp: "/blog/mortgage-amortization-chart.webp",
       alt: "График снижения остатка ипотечного кредита за 30 лет с медленным стартом.",
       caption: "Остаток долга в начале падает медленно из-за преобладания процентов.",
       credit: "FinanceCalculator",

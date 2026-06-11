@@ -1,5 +1,4 @@
 import type { SyntheticEvent } from "react";
-import { SITE_PREVIEW_IMAGE_PATH } from "../../config/site";
 
 type Props = {
   src: string;
@@ -25,10 +24,9 @@ export function BlogPostImage({
   const onError = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     img.onerror = null;
-    img.src = SITE_PREVIEW_IMAGE_PATH;
+    img.classList.add("fc-blog-img--failed");
+    img.removeAttribute("src");
   };
-  /** Wikimedia and many CDNs reject or throttle `no-referrer` hotlinks; then onError shows generic preview. */
-  const externalAsset = isAbsoluteHttpUrl(src) || (srcWebp != null && isAbsoluteHttpUrl(srcWebp));
   const imgProps = {
     alt,
     className,
@@ -36,7 +34,6 @@ export function BlogPostImage({
     decoding: "async" as const,
     width: 960,
     height: 540,
-    ...(externalAsset ? {} : { referrerPolicy: "no-referrer" as const }),
     onError,
   };
   if (srcWebp) {

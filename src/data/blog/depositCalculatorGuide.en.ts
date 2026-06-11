@@ -19,6 +19,7 @@ export const depositCalculatorGuideEn: BlogArticle = {
   readingTimeMinutes: 11,
   hero: {
     src: "/blog/deposit-calculator-hero.svg",
+    srcWebp: "/blog/deposit-calculator-hero.webp",
     alt: "Deposit calculator screen with $5,000 initial deposit, $200 monthly contribution, 5% rate, and projected $13,558 balance.",
     caption: "A deposit calculator combines opening balance, contributions, and interest into a projected savings total.",
     credit: "FinanceCalculator",
@@ -104,6 +105,7 @@ export const depositCalculatorGuideEn: BlogArticle = {
     {
       t: "figure",
       src: "/blog/deposit-monthly-growth.svg",
+      srcWebp: "/blog/deposit-monthly-growth.webp",
       alt: "Stacked bar chart showing deposit balance growth by year with contributions and interest portions at 5% APY.",
       caption: "Contributions add steadily; interest grows as the balance base enlarges.",
       credit: "FinanceCalculator",

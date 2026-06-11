@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Trigonometric and polynomial graphs">
+  <rect width="960" height="540" fill="#fff"/>
+  <rect x="24" y="24" width="912" height="492" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="48" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">Sample graphs on TI-84</text>
+  <line x1="80" y1="400" x2="880" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="480" y1="100" x2="480" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M80,400 C200,200 360,120 480,200 C600,280 720,160 880,120" fill="none" stroke="#3B72C4" stroke-width="3"/>
+  <path d="M80,300 C200,350 360,250 480,280 C600,310 720,220 880,200" fill="none" stroke="#e53e3e" stroke-width="3"/>
+  <path d="M80,400 Q480,80 880,400" fill="none" stroke="#10B981" stroke-width="3"/>
+  <text x="800" y="140" fill="#3B72C4" font-size="13">sin(x)</text>
+  <text x="800" y="210" fill="#e53e3e" font-size="13">cos(x)</text>
+  <text x="800" y="360" fill="#10B981" font-size="13">x^2</text>
+</svg>
