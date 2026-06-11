@@ -1309,6 +1309,57 @@ body {
 }
 
 /* ── PAGES (contact / privacy / terms) ──────────────────── */
+.fc-legal-page .fc-legal-section h2 {
+  scroll-margin-top: 5rem;
+}
+
+.fc-cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1080;
+  background: rgba(30, 58, 95, 0.97);
+  color: #f8fafc;
+  padding: 0.85rem 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+}
+
+.fc-cookie-banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.fc-cookie-banner__text {
+  flex: 1 1 280px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.fc-cookie-banner__text a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.fc-cookie-banner__btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 10px;
+  background: var(--fc-blue);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.25rem;
+  cursor: pointer;
+}
+
+.fc-cookie-banner__btn:hover {
+  background: var(--fc-blue-dark, #2b5ca8);
+}
+
 .fc-page-box {
   background: white;
   border-radius: 20px;

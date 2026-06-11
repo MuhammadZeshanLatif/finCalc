@@ -15,7 +15,12 @@ import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
+import { CookieConsent, hasCookieConsent } from "./components/legal/CookieConsent";
+import { LegalPage } from "./components/legal/LegalPage";
+import { privacyPolicy } from "./data/legal/privacy";
+import { termsOfUse } from "./data/legal/terms";
 import {
+  getContactEmail,
   getSiteUrl,
   OFFICIAL_SOCIAL_INSTAGRAM,
   OFFICIAL_SOCIAL_PINTEREST,
@@ -92,6 +97,7 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [blogPage, setBlogPage] = useState<number>(1);
   const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
+  const [adsAllowed, setAdsAllowed] = useState(hasCookieConsent);
   const postsPerPage = 6;
 
   useEffect(() => {
@@ -241,7 +247,8 @@ export default function App() {
 
   return (
     <div className="fc-app-shell">
-      <AdScriptAnchor url={ADSTERRA_JS_SYNC[0]} />
+      {adsAllowed ? <AdScriptAnchor url={ADSTERRA_JS_SYNC[0]} /> : null}
+      <CookieConsent lang={lang} onAccept={() => setAdsAllowed(true)} />
 
       {/* ── Navbar ─────────────────────────────────────────── */}
       <nav className="navbar navbar-expand-lg navbar-dark fc-navbar">
@@ -727,6 +734,10 @@ export default function App() {
                 <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
                   <i className="fa-solid fa-paper-plane"></i> {t.contact}
                 </h1>
+                <p className="text-body-secondary mb-4">
+                  {lang === "ru" ? "Email:" : "Email:"}{" "}
+                  <a href={`mailto:${getContactEmail()}`}>{getContactEmail()}</a>
+                </p>
                 <AdBanner slot="contact" />
                 <AdBanner slot="contact-mid" />
                 {contactSubmitted ? (
@@ -756,31 +767,22 @@ export default function App() {
               </div>
             )}
 
-            {/* ── Privacy Policy ──────────────────────── */}
             {currentPage === "privacy" && (
-              <div className="fc-page-box">
-                <h1 className="h2 text-primary border-bottom pb-3 mb-4">Privacy Policy</h1>
-                <p>At FinanceCalculator, accessible from financcalculator.ru, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinanceCalculator and how we use it.</p>
-                <h5 className="mt-4 fw-bold">Log Files</h5>
-                <p className="text-muted">FinanceCalculator follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this as part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>
-                <h5 className="mt-4 fw-bold">Google DoubleClick DART Cookie</h5>
-                <p className="text-muted">Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet.</p>
-                <h5 className="mt-4 fw-bold">Consent</h5>
-                <p className="text-muted">By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
-              </div>
+              <LegalPage
+                doc={privacyPolicy[lang]}
+                lang={lang}
+                otherPage="terms"
+                otherLabel={t.terms}
+              />
             )}
 
-            {/* ── Terms & Conditions ──────────────────── */}
             {currentPage === "terms" && (
-              <div className="fc-page-box">
-                <h1 className="h2 text-primary border-bottom pb-3 mb-4">Terms and Conditions</h1>
-                <p>Welcome to FinanceCalculator! These terms and conditions outline the rules and regulations for the use of FinanceCalculator's Website, located at financcalculator.ru.</p>
-                <p className="text-muted">By accessing this website we assume you accept these terms and conditions. Do not continue to use FinanceCalculator if you do not agree to take all of the terms and conditions stated on this page.</p>
-                <h5 className="mt-4 fw-bold">Cookies</h5>
-                <p className="text-muted">We employ the use of cookies. By accessing FinanceCalculator, you agreed to use cookies in agreement with the FinanceCalculator's Privacy Policy.</p>
-                <h5 className="mt-4 fw-bold">Disclaimer</h5>
-                <p className="text-muted">To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will limit or exclude our or your liability for death or personal injury resulting from negligence.</p>
-              </div>
+              <LegalPage
+                doc={termsOfUse[lang]}
+                lang={lang}
+                otherPage="privacy"
+                otherLabel={t.privacy}
+              />
             )}
 
             {/* ── 404 Not Found ───────────────────────────── */}
@@ -861,8 +863,6 @@ export default function App() {
           </a>
         ))}
       </div>
-
-      <AdScriptAnchor url={ADSTERRA_JS_SYNC[1]} />
 
       <AdBanner slot="global-footer" layout="tight" />
       <AdBanner slot="global-footer-468" size="banner" layout="tight" />

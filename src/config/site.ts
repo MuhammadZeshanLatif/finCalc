@@ -51,9 +51,11 @@ export function getOrgName(): string {
   return (n && n.trim()) || SITE_NAME;
 }
 
-export function getContactEmail(): string | undefined {
+/** Public contact email for legal pages, contact form, and JSON-LD. */
+export function getContactEmail(): string {
   const e = import.meta.env.VITE_CONTACT_EMAIL as string | undefined;
-  return e && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) ? e : undefined;
+  if (e && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return e;
+  return "contact@financcalculator.ru";
 }
 
 /** @handles without @ for twitter:site / twitter:creator */

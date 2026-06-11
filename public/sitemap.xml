@@ -675,5 +675,43 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/contact"/>
   </url>
 
+  <url>
+    <loc>https://financcalculator.ru/privacy</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/privacy"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/privacy</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/privacy"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/terms</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/terms"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/terms</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/terms"/>
+  </url>
+
 
 </urlset>
