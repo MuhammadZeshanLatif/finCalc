@@ -38,7 +38,7 @@ jobs:
           PORT="${PORT:-22}"
           ssh-keyscan -p "$PORT" -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy incrementally via SFTP
+      - name: Deploy incrementally via SFTP (no rsync on host)
         env:
           DEPLOY_HOST: ${{ secrets.SSH_HOST }}
           DEPLOY_PORT: ${{ secrets.SSH_PORT }}
