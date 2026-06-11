@@ -1,7 +1,6 @@
 /** Adsterra JS Sync tags (standard — not anti-adblock). */
 export const ADSTERRA_JS_SYNC = [
-  "https://pl29707542.effectivecpmnetwork.com/25/97/f4/2597f4b1bc437c653d8b6493f86d4773.js",
-  "https://pl29707541.effectivecpmnetwork.com/67/30/00/6730002bf2108288d2082b0a0bcc589d.js",
+  "https://pl29707542.effectivecpmnetwork.com/25/97/f4/2597f4b1bc437c653d8b6493f86d4773.js"
 ] as const;
 
 export type AdBannerUnit = {
