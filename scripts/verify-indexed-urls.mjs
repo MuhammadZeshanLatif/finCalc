@@ -23,7 +23,12 @@ const SITEMAP_PATH = path.resolve(
 );
 const CONCURRENCY = Math.max(1, Number(process.env.VERIFY_CONCURRENCY || "8"));
 
-const EXTRA_PATHS = ["/ads.txt", "/sitemap.xml", "/robots.txt"];
+const EXTRA_PATHS = [
+  "/ads.txt",
+  "/sitemap.xml",
+  "/robots.txt",
+  "/googlec5fff066ca020e7a.html",
+];
 
 if (!existsSync(SITEMAP_PATH)) {
   console.error(`Sitemap not found: ${SITEMAP_PATH}`);

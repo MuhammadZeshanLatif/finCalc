@@ -3,7 +3,7 @@ RewriteEngine On
 RewriteBase /
 
 # ── Verification & crawler files: always real files, never SPA index.html ──
-RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest)$ - [L]
+RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest|google[a-z0-9]+\.html)$ - [L]
 
 # Consolidate host to avoid duplicate www/non-www indexing
 RewriteCond %{HTTP_HOST} ^www\.financcalculator\.ru$ [NC]
