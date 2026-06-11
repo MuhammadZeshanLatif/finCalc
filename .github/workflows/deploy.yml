@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout code
@@ -25,27 +26,28 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p ${{ secrets.SSH_PORT || 22 }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > "${{ github.workspace }}/.ssh-deploy-key"
+          chmod 600 "${{ github.workspace }}/.ssh-deploy-key"
+          PORT="${{ secrets.SSH_PORT }}"
+          PORT="${PORT:-22}"
+          ssh-keyscan -p "$PORT" -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Clear remote folder
-        run: |
-          ssh -i ~/.ssh/deploy_key \
-            -p ${{ secrets.SSH_PORT || 22 }} \
-            -o StrictHostKeyChecking=no \
-            theins20@${{ secrets.SSH_HOST }} \
-            "rm -rf /home/theins20/financcalculator.ru/* /home/theins20/financcalculator.ru/.[!.]*"
+      - name: Deploy incrementally via SFTP
+        env:
+          DEPLOY_HOST: ${{ secrets.SSH_HOST }}
+          DEPLOY_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_USER: theins20
+          DEPLOY_REMOTE_DIR: /home/theins20/financcalculator.ru
+          DEPLOY_LOCAL_DIR: dist
+          DEPLOY_KEY_PATH: ${{ github.workspace }}/.ssh-deploy-key
+          DEPLOY_CONCURRENCY: "8"
+        run: node scripts/deploy-incremental.mjs
 
-      - name: Deploy via scp
-        run: |
-          scp -r \
-            -i ~/.ssh/deploy_key \
-            -P ${{ secrets.SSH_PORT || 22 }} \
-            -o StrictHostKeyChecking=no \
-            dist/. \
-            theins20@${{ secrets.SSH_HOST }}:/home/theins20/financcalculator.ru/
+      - name: Verify indexed URLs live (200)
+        run: node scripts/verify-indexed-urls.mjs
