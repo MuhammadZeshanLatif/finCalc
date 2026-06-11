@@ -2,6 +2,9 @@ Options -MultiViews -Indexes
 RewriteEngine On
 RewriteBase /
 
+# ── Verification & crawler files: always real files, never SPA index.html ──
+RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest)$ - [L]
+
 # Consolidate host to avoid duplicate www/non-www indexing
 RewriteCond %{HTTP_HOST} ^www\.financcalculator\.ru$ [NC]
 RewriteRule ^ https://financcalculator.ru%{REQUEST_URI} [R=301,L]
@@ -11,9 +14,30 @@ RewriteCond %{REQUEST_URI} .+/$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-# Serve existing FILES directly (images, css, js, etc.)
+# Serve existing FILES directly (images, css, js, ads.txt, blog assets, etc.)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Everything else (including directories like /blog/) → index.html
 RewriteRule ^ index.html [L]
+
+# ── Crawlers, AI bots, Google AdSense: allow full access (no bot blocking) ──
+<IfModule mod_headers.c>
+  # Index everything — AdSense / Google / AI crawlers must read pages and ads.txt
+  Header always set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+
+  <FilesMatch "^(ads|app-ads)\.txt$">
+    Header set Content-Type "text/plain; charset=utf-8"
+    Header set X-Robots-Tag "all"
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  <FilesMatch "^(robots|llms?)\.txt$">
+    Header set Content-Type "text/plain; charset=utf-8"
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  <FilesMatch "^sitemap\.(xml|xsl)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
