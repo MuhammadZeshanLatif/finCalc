@@ -1,0 +1,96 @@
+---
+description: finCalc blog article pipeline — triggered by user saying "blog#" or "Start#N". SEO+AEO+GEO+AIO+SXO, meta limits, 0.8% KW density, EN+RU pair, TalentRank layout in fc-blue.
+globs: src/data/blog/**,public/blog/**,public/sitemap.xml
+alwaysApply: false
+---
+
+# finCalc Blog Article Pipeline
+
+When the user says **`blog#N`**, **`Start#N`**, or **`shuru kro`** for article N, implement the full article end-to-end without re-asking for these rules.
+
+## Topic queue (high-volume, paired EN+RU)
+
+| # | RU focus | EN focus | calcLink | Status |
+|---|----------|----------|----------|--------|
+| 1 | Ипотека калькулятор | Mortgage payment calculator | mortgage | done |
+| 2 | Кредитный калькулятор | Loan calculator | loan | done |
+| 3 | Калькулятор вклада | Deposit / savings calculator | deposit | done |
+| 4 | НДФЛ 2026 | Income tax / NDFL 2026 | tax | done |
+| 5 | Калькулятор НДС 20% | VAT 20% calculator | vat | pending |
+| 6 | Досрочное погашение ипотеки | Mortgage prepayment | mortgage | pending |
+| 7 | Рефинансирование кредита | Loan refinancing | loan | pending |
+| 8 | Первоначальный взнос ипотека | Down payment mortgage | mortgage | pending |
+| 9 | Автокредит | Auto loan calculator | loan | pending |
+| 10 | Калькулятор дней между датами | Days between dates | days | pending |
+
+## Trigger workflow (do all steps)
+
+1. Read TalentRank magazine template: `E:\Projects\talentrank-app\web\app\blog\[slug]\magazine\` for layout patterns (FAQ accordion, tag pills, section badge).
+2. Create `src/data/blog/{topic}Guide.en.ts` + `.ru.ts` (never inline in huge `postsEn.ts`).
+3. Import into `postsEn.ts` / `postsRu.ts` array.
+4. Generate hero + 1 inline SVG in `/public/blog/` — finCalc blue (`#3B72C4`, `#2B5CA8`, `#EBF3FF`).
+5. Add EN+RU URL pair to `public/sitemap.xml` with hreflang.
+6. Validate meta lengths + ~0.8% main-KW density in body `text:` blocks before shipping.
+7. Build must pass (`npm run build`).
+
+## Meta & slug rules (strict)
+
+- **metaTitle**: 51–59 characters. Main KW **required**. Must end with ` | FinanceCalculator` (pipe + brand).
+- **metaDescription**: 151–159 characters. Main KW **required**.
+- **slug**: descriptive, hyphenated, locale-specific; paired via `topicKey`.
+- **KW density**: ~0.8% for main KW in body paragraphs (count `text:` blocks only; vary with synonyms elsewhere).
+
+## Content structure (every article)
+
+- `topicKey`, `articleSection`, `datePublished`, `dateModified`, `readingTimeMinutes`, `author: "FinanceCalculator Editorial"`
+- `keyPhrases` → sidebar tag pills (already wired)
+- Blocks: intro `p`, multiple `h2`, `h3` FAQ ids `faq-*` + answer `p` (accordion + FAQPage schema)
+- **1–2 internal links** via `{ t: "link", internal: true }` — calculator page + related blog
+- **1–2 external links** via `{ t: "link", nofollow: true }` — authoritative refs (CFPB/FTS/CBR etc.)
+- `sources[]` at bottom (nofollow on render)
+- `calcLink` button to matching calculator
+- `callout` disclaimer at end
+
+## SEO + AEO + GEO + AIO + SXO checklist
+
+| Pillar | Apply in article |
+|--------|------------------|
+| **SEO** | Keyword cluster in H2s, internal links, sitemap, canonical via existing `seo.ts` |
+| **AEO** | 40–60 word direct answers in FAQ; How-To steps; "People also ask" style h3 |
+| **GEO** | Factual tables, entity-rich numbers, E-E-A-T author, cited sources, clear headings |
+| **AIO** | Consistent brand "FinanceCalculator", factual tone, structured blocks (no raw HTML) |
+| **SXO** | Strong calc CTA, scannable TOC, excerpt matches intent, no fluff above answer |
+
+## Schema (automatic via App)
+
+- `BlogPosting` + `FAQPage` from `faq-*` h3 blocks — do not duplicate manually.
+- Hero `alt` descriptive; figures with `caption`.
+
+## Template & colors
+
+- Reuse existing: `BlogArticlePage`, `BlogBlockRenderer`, `.fc-blog-*` CSS, `--fc-blue`.
+- Do NOT copy TalentRank purple; map to finCalc tokens only.
+
+## LLM / llms.txt
+
+- Site already has `public/llms.txt` + `llm.txt`; new URLs auto-listed after sitemap update.
+
+## Ads
+
+- Article pages: ads via `BlogBlockRenderer` + `BlogArticlePage` (keep).
+- Blog index: no mid/page/bottom ads (user removed); top `blog-index` ad optional.
+
+## Sort order
+
+- `getBlogPosts()` sorts `datePublished` descending — newest first on `/blog` page 1.
+
+## Naming convention
+
+```
+topicKey: "deposit-calculator"
+EN slug: deposit-calculator-savings-interest-guide
+RU slug: kalkulyator-vklada-procenty
+Files: depositCalculatorGuide.en.ts / .ru.ts
+```
+
+When user says only `blog#3`, start article #3 from the table with no further confirmation.

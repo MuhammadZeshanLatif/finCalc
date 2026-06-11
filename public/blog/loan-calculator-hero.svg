@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Loan calculator illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EBF3FF"/>
+      <stop offset="50%" stop-color="#3B72C4"/>
+      <stop offset="100%" stop-color="#2B5CA8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1e3a5f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="150" cy="500" r="110" fill="#ffffff" opacity="0.1"/>
+  <circle cx="1050" cy="100" r="80" fill="#ffffff" opacity="0.12"/>
+
+  <g transform="translate(120 95)" filter="url(#shadow)">
+    <rect x="0" y="0" width="440" height="440" rx="24" fill="url(#card)" stroke="#2B5CA8" stroke-width="3"/>
+    <rect x="28" y="28" width="200" height="16" rx="8" fill="#3B72C4" opacity="0.3"/>
+    <text x="28" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#2B5CA8" font-weight="700">Loan calculator</text>
+
+    <text x="28" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Loan amount</text>
+    <rect x="28" y="128" width="384" height="44" rx="10" fill="#EBF3FF" stroke="#3B72C4" stroke-width="2"/>
+    <text x="48" y="158" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#1e293b" font-weight="600">$20,000</text>
+
+    <text x="28" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Annual rate</text>
+    <rect x="28" y="218" width="180" height="44" rx="10" fill="#f1f5f9"/>
+    <text x="48" y="248" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#2B5CA8" font-weight="700">8.0%</text>
+
+    <text x="232" y="208" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Term</text>
+    <rect x="232" y="218" width="180" height="44" rx="10" fill="#f1f5f9"/>
+    <text x="252" y="248" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#2B5CA8" font-weight="700">4 years</text>
+
+    <rect x="28" y="290" width="384" height="120" rx="14" fill="#3B72C4"/>
+    <text x="48" y="330" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#EBF3FF">Monthly payment</text>
+    <text x="48" y="372" font-family="Segoe UI, Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="700">$488</text>
+    <text x="240" y="372" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#EBF3FF">Total interest $3,426</text>
+  </g>
+
+  <g transform="translate(640 160)">
+    <rect x="0" y="0" width="420" height="280" rx="20" fill="#ffffff" opacity="0.95" stroke="#2B5CA8" stroke-width="3"/>
+    <text x="24" y="40" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#475569" font-weight="600">Principal vs interest</text>
+    <circle cx="160" cy="170" r="90" fill="none" stroke="#e2e8f0" stroke-width="28"/>
+    <circle cx="160" cy="170" r="90" fill="none" stroke="#10B981" stroke-width="28" stroke-dasharray="320 565" transform="rotate(-90 160 170)"/>
+    <circle cx="160" cy="170" r="90" fill="none" stroke="#F472B6" stroke-width="28" stroke-dasharray="245 565" stroke-dashoffset="-320" transform="rotate(-90 160 170)"/>
+    <text x="130" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#1e293b" font-weight="700">$23.4k</text>
+    <rect x="270" y="120" width="16" height="16" rx="3" fill="#10B981"/>
+    <text x="294" y="133" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">Principal</text>
+    <rect x="270" y="155" width="16" height="16" rx="3" fill="#F472B6"/>
+    <text x="294" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">Interest</text>
+  </g>
+
+  <text x="640" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">Personal &amp; Auto Loan Calculator</text>
+  <text x="640" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#EBF3FF">Monthly payment, total interest, amortization</text>
+</svg>

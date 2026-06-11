@@ -137,6 +137,7 @@ export default function App() {
     const slug = p === "blog" && opts?.blogSlug ? opts.blogSlug : null;
     setCurrentPage(p);
     setBlogSlug(slug);
+    if (p === "blog" && !slug) setBlogPage(1);
     window.history.pushState({}, "", buildPathname(lang, p, slug));
     window.scrollTo(0, 0);
   };
@@ -629,12 +630,11 @@ export default function App() {
                 <AdBanner slot="blog-index" />
                 <AdBanner slot="blog-index-468" size="banner" />
                 <div className="row g-4">
-                  {paginatedPosts.map((post, idx) => {
+                  {paginatedPosts.map(post => {
                     const thumbSrc = post.hero.srcWebp ?? post.hero.src;
                     const thumbExternal = isAbsoluteHttpUrl(thumbSrc);
                     return (
-                    <Fragment key={post.slug}>
-                    <div className="col-md-6">
+                    <div key={post.slug} className="col-md-6">
                       <article className="fc-blog-card card border-0 h-100 overflow-hidden">
                         <a
                           href="#"
@@ -689,18 +689,9 @@ export default function App() {
                         </div>
                       </article>
                     </div>
-                    {(idx + 1) % 2 === 0 ? (
-                      <div className="col-12">
-                        <AdBanner slot={`blog-index-mid-${blogPage}-${idx}`} />
-                        <AdBanner slot={`blog-index-mid-${blogPage}-${idx}-468`} size="banner" />
-                      </div>
-                    ) : null}
-                    </Fragment>
                     );
                   })}
                 </div>
-
-                <AdBanner slot={`blog-index-page-${blogPage}`} />
 
                 <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
                   <button
@@ -719,7 +710,6 @@ export default function App() {
                     {t.next} <i className="fa-solid fa-chevron-right ms-1"></i>
                   </button>
                 </div>
-                <AdBanner slot="blog-index-bottom" />
               </div>
             )}
 

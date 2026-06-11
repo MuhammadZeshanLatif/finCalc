@@ -541,6 +541,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/what-is-graphing-calculator"/>
   </url>
 
+  <url>
+    <loc>https://financcalculator.ru/blog/mortgage-payment-calculator-guide</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/mortgage-payment-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ipoteka-kalkulyator-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/mortgage-payment-calculator-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/ipoteka-kalkulyator-ezhemesyachnyy-platezh</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/mortgage-payment-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ipoteka-kalkulyator-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/mortgage-payment-calculator-guide"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/loan-calculator-monthly-payment-guide</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/loan-calculator-monthly-payment-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kreditnyy-kalkulyator-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/loan-calculator-monthly-payment-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/kreditnyy-kalkulyator-ezhemesyachnyy-platezh</loc>
+    <lastmod>2026-06-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/loan-calculator-monthly-payment-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kreditnyy-kalkulyator-ezhemesyachnyy-platezh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/loan-calculator-monthly-payment-guide"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/deposit-calculator-savings-interest-guide</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/deposit-calculator-savings-interest-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kalkulyator-vklada-procenty-dohod"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/deposit-calculator-savings-interest-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/kalkulyator-vklada-procenty-dohod</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/deposit-calculator-savings-interest-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/kalkulyator-vklada-procenty-dohod"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/deposit-calculator-savings-interest-guide"/>
+  </url>
+
+  <url>
+    <loc>https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ndfl-2026-kalkulyator-raschet-naloga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide"/>
+  </url>
+  <url>
+    <loc>https://financcalculator.ru/ru/blog/ndfl-2026-kalkulyator-raschet-naloga</loc>
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide"/>
+    <xhtml:link rel="alternate" hreflang="ru"        href="https://financcalculator.ru/ru/blog/ndfl-2026-kalkulyator-raschet-naloga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://financcalculator.ru/blog/ndfl-2026-income-tax-calculator-guide"/>
+  </url>
+
   <!-- ===== STATIC PAGES ===== -->
   <url>
     <loc>https://financcalculator.ru/about</loc>

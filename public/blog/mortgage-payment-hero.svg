@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Mortgage payment calculator illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EBF3FF"/>
+      <stop offset="55%" stop-color="#3B72C4"/>
+      <stop offset="100%" stop-color="#2B5CA8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1e3a5f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="180" cy="120" r="90" fill="#ffffff" opacity="0.12"/>
+  <circle cx="1040" cy="520" r="120" fill="#ffffff" opacity="0.1"/>
+
+  <g transform="translate(140 110)" filter="url(#shadow)">
+    <rect x="0" y="0" width="420" height="410" rx="24" fill="url(#card)" stroke="#2B5CA8" stroke-width="3"/>
+    <rect x="28" y="28" width="180" height="16" rx="8" fill="#3B72C4" opacity="0.25"/>
+    <rect x="28" y="60" width="260" height="12" rx="6" fill="#94a3b8"/>
+    <rect x="28" y="96" width="364" height="56" rx="12" fill="#EBF3FF" stroke="#3B72C4" stroke-width="2"/>
+    <text x="48" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#2B5CA8" font-weight="700">$2,847 / month</text>
+    <text x="48" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">Principal &amp; interest</text>
+
+    <rect x="28" y="188" width="170" height="72" rx="12" fill="#f1f5f9"/>
+    <rect x="222" y="188" width="170" height="72" rx="12" fill="#f1f5f9"/>
+    <text x="48" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Taxes</text>
+    <text x="48" y="246" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#2B5CA8" font-weight="700">$410</text>
+    <text x="242" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">Insurance</text>
+    <text x="242" y="246" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#2B5CA8" font-weight="700">$145</text>
+
+    <rect x="28" y="286" width="364" height="96" rx="12" fill="#3B72C4" opacity="0.08"/>
+    <polyline points="48,360 110,320 170,330 230,280 290,300 350,250" fill="none" stroke="#3B72C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="350" cy="250" r="6" fill="#2B5CA8"/>
+    <text x="48" y="312" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">30-year amortization curve</text>
+  </g>
+
+  <g transform="translate(620 150)">
+    <path d="M220 360 L220 160 L300 90 L380 160 L380 360 Z" fill="#ffffff" stroke="#2B5CA8" stroke-width="4"/>
+    <path d="M300 90 L220 160 L380 160 Z" fill="#3B72C4"/>
+    <rect x="248" y="220" width="44" height="140" rx="4" fill="#EBF3FF" stroke="#3B72C4" stroke-width="2"/>
+    <rect x="308" y="250" width="44" height="110" rx="4" fill="#EBF3FF" stroke="#3B72C4" stroke-width="2"/>
+    <rect x="286" y="300" width="28" height="60" rx="2" fill="#2B5CA8"/>
+    <rect x="620" y="0" width="0" height="0" fill="none"/>
+  </g>
+
+  <text x="620" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">Mortgage Payment Calculator</text>
+  <text x="620" y="598" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#EBF3FF">Estimate monthly PITI before you apply</text>
+</svg>

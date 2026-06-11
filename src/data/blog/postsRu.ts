@@ -1,5 +1,9 @@
 import type { BlogArticle } from "./types";
 import { graphingCalculatorGuideRu } from "./graphingCalculatorGuide.ru";
+import { mortgagePaymentGuideRu } from "./mortgagePaymentGuide.ru";
+import { loanCalculatorGuideRu } from "./loanCalculatorGuide.ru";
+import { depositCalculatorGuideRu } from "./depositCalculatorGuide.ru";
+import { ndfl2026CalculatorGuideRu } from "./ndfl2026CalculatorGuide.ru";
 
 /** Russian articles — same topicKey as EN for hreflang pairing. */
 export const BLOG_POSTS_RU: BlogArticle[] = [
@@ -2356,4 +2360,8 @@ export const BLOG_POSTS_RU: BlogArticle[] = [
     calcLink: "salestax",
   },
   graphingCalculatorGuideRu,
+  mortgagePaymentGuideRu,
+  loanCalculatorGuideRu,
+  depositCalculatorGuideRu,
+  ndfl2026CalculatorGuideRu,
 ];

@@ -58,7 +58,10 @@ export function BlogArticlePage({
       </nav>
 
       <header className="fc-blog-article-header border-bottom pb-4 mb-4">
-        <h1 className="h2 text-primary mb-3">{post.title}</h1>
+        {post.articleSection ? (
+          <span className="fc-blog-section-badge">{post.articleSection}</span>
+        ) : null}
+        <h1 className="h2 text-primary mb-3 fc-blog-article-title">{post.title}</h1>
         <p className="lead text-body-secondary mb-3">{post.excerpt}</p>
         <div className="d-flex flex-wrap gap-3 small text-muted align-items-center">
           <span>
@@ -108,13 +111,13 @@ export function BlogArticlePage({
               <div className="card border fc-blog-sidebar-card mb-3">
                 <div className="card-header py-2 small fw-bold">{labels.keyPhrases}</div>
                 <div className="card-body py-2">
-                  <ul className="small text-body-secondary mb-0 ps-3">
+                  <div className="fc-blog-tag-pills">
                     {post.keyPhrases.map((k, i) => (
-                      <li key={i} className="mb-1">
+                      <span key={i} className="fc-blog-tag-pill">
                         {k}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             ) : null}
@@ -236,7 +239,7 @@ export function BlogArticlePage({
               <ol className="small text-body-secondary">
                 {post.sources.map((s, i) => (
                   <li key={i} className="mb-2">
-                    <a href={s.url} rel="noopener noreferrer" target="_blank">
+                    <a href={s.url} rel="nofollow noopener noreferrer" target="_blank">
                       {s.title}
                     </a>
                   </li>

@@ -15,7 +15,16 @@ export type BlogBlock =
       credit?: string;
       creditUrl?: string;
     }
-  | { t: "callout"; variant: "note" | "disclaimer"; title?: string; text: string };
+  | { t: "callout"; variant: "note" | "disclaimer"; title?: string; text: string }
+  | {
+      t: "link";
+      href: string;
+      label: string;
+      /** Same-site path — rendered without nofollow. */
+      internal?: boolean;
+      /** External citations — defaults to nofollow when not internal. */
+      nofollow?: boolean;
+    };
 
 export type BlogArticle = {
   /** Stable id across locales (hreflang / related posts). */

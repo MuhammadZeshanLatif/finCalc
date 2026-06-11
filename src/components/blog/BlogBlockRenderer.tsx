@@ -3,7 +3,7 @@ import type { BlogBlock } from "../../data/blog/types";
 import { AdBanner } from "../ads/AdBanner";
 import { BlogPostImage } from "./BlogPostImage";
 
-function renderBlock(b: BlogBlock, i: number): ReactNode {
+function renderBlock(b: BlogBlock, i: number, next?: BlogBlock): ReactNode {
   switch (b.t) {
     case "h2":
       return (
@@ -11,12 +11,21 @@ function renderBlock(b: BlogBlock, i: number): ReactNode {
           {b.text}
         </h2>
       );
-    case "h3":
+    case "h3": {
+      if (b.id.startsWith("faq-") && next?.t === "p") {
+        return (
+          <details key={i} id={b.id} className="fc-blog-faq-item mb-2">
+            <summary className="fc-blog-faq-q">{b.text}</summary>
+            <p className="fc-blog-faq-a text-body-secondary lh-lg mb-0">{next.text}</p>
+          </details>
+        );
+      }
       return (
         <h3 key={i} id={b.id} className="fc-blog-h3 h5 text-body mt-4 mb-2 scroll-mt-5">
           {b.text}
         </h3>
       );
+    }
     case "p":
       return (
         <p key={i} className="fc-blog-p text-body-secondary lh-lg">
@@ -92,6 +101,24 @@ function renderBlock(b: BlogBlock, i: number): ReactNode {
           <div className="small mb-0 lh-lg">{b.text}</div>
         </div>
       );
+    case "link": {
+      const rel = b.internal
+        ? undefined
+        : [b.nofollow !== false ? "nofollow" : null, "noopener", "noreferrer"].filter(Boolean).join(" ");
+      return (
+        <p key={i} className="fc-blog-inline-link-wrap mb-3">
+          <a
+            href={b.href}
+            className="fc-blog-inline-link"
+            {...(rel ? { rel } : {})}
+            {...(b.internal ? {} : { target: "_blank" })}
+          >
+            {b.label}
+            {!b.internal ? <i className="fa-solid fa-arrow-up-right-from-square ms-1 small" aria-hidden /> : null}
+          </a>
+        </p>
+      );
+    }
     default:
       return null;
   }
@@ -110,7 +137,16 @@ export function BlogBlockRenderer({ blocks, adSlotPrefix }: Props) {
   const nodes: ReactNode[] = [];
 
   blocks.forEach((b, i) => {
-    nodes.push(renderBlock(b, i));
+    const next = blocks[i + 1];
+    if (b.t === "h3" && b.id.startsWith("faq-") && next?.t === "p") {
+      nodes.push(renderBlock(b, i, next));
+      return;
+    }
+    if (i > 0 && blocks[i - 1].t === "h3" && blocks[i - 1].id.startsWith("faq-") && b.t === "p") {
+      return;
+    }
+
+    nodes.push(renderBlock(b, i, next));
 
     if (!adSlotPrefix) return;
 

@@ -1,5 +1,9 @@
 import type { BlogArticle } from "./types";
 import { graphingCalculatorGuideEn } from "./graphingCalculatorGuide.en";
+import { mortgagePaymentGuideEn } from "./mortgagePaymentGuide.en";
+import { loanCalculatorGuideEn } from "./loanCalculatorGuide.en";
+import { depositCalculatorGuideEn } from "./depositCalculatorGuide.en";
+import { ndfl2026CalculatorGuideEn } from "./ndfl2026CalculatorGuide.en";
 
 /** English articles — editorial tone: specific, cited, no filler. */
 export const BLOG_POSTS_EN: BlogArticle[] = [
@@ -3365,4 +3369,8 @@ export const BLOG_POSTS_EN: BlogArticle[] = [
     calcLink: "salestax",
   },
   graphingCalculatorGuideEn,
+  mortgagePaymentGuideEn,
+  loanCalculatorGuideEn,
+  depositCalculatorGuideEn,
+  ndfl2026CalculatorGuideEn,
 ];

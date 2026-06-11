@@ -6,8 +6,14 @@ import type { BlogArticle } from "./types";
 export * from "./types";
 export { BLOG_POSTS_EN, BLOG_POSTS_RU };
 
+function sortPostsNewestFirst(posts: BlogArticle[]): BlogArticle[] {
+  return [...posts].sort(
+    (a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime(),
+  );
+}
+
 export function getBlogPosts(lang: AppLang): BlogArticle[] {
-  return lang === "ru" ? BLOG_POSTS_RU : BLOG_POSTS_EN;
+  return sortPostsNewestFirst(lang === "ru" ? BLOG_POSTS_RU : BLOG_POSTS_EN);
 }
 
 export function getPostBySlug(lang: AppLang, slug: string): BlogArticle | undefined {
@@ -25,9 +31,7 @@ export function getRelatedPosts(lang: AppLang, topicKey: string, limit = 4): Blo
 }
 
 export function getLatestPosts(lang: AppLang, limit = 5, excludeTopic?: string): BlogArticle[] {
-  const all = [...getBlogPosts(lang)].sort(
-    (a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime(),
-  );
+  const all = getBlogPosts(lang);
   return (excludeTopic ? all.filter(p => p.topicKey !== excludeTopic) : all).slice(0, limit);
 }
 

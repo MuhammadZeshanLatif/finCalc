@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Deposit balance growth by year">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B72C4" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#3B72C4" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="#ffffff"/>
+  <rect x="24" y="24" width="912" height="492" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text x="48" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1e293b" font-weight="700">Balance builds faster over time</text>
+  <text x="48" y="96" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#64748b">$5,000 + $200/mo at 5%  interest on a growing base</text>
+
+  <line x1="80" y1="400" x2="860" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="80" y1="120" x2="80" y2="400" stroke="#cbd5e1" stroke-width="2"/>
+
+  <rect x="120" y="320" width="120" height="80" fill="#10B981" opacity="0.85" rx="8"/>
+  <rect x="120" y="360" width="120" height="40" fill="#3B72C4" opacity="0.7" rx="8"/>
+  <text x="135" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">Year 1</text>
+  <text x="135" y="310" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="700">$7,712</text>
+
+  <rect x="320" y="260" width="120" height="140" fill="#10B981" opacity="0.85" rx="8"/>
+  <rect x="320" y="310" width="120" height="90" fill="#3B72C4" opacity="0.7" rx="8"/>
+  <text x="335" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">Year 2</text>
+  <text x="335" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="700">$10,562</text>
+
+  <rect x="520" y="190" width="120" height="210" fill="#10B981" opacity="0.85" rx="8"/>
+  <rect x="520" y="250" width="120" height="150" fill="#3B72C4" opacity="0.7" rx="8"/>
+  <text x="535" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">Year 3</text>
+  <text x="535" y="180" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="700">$13,558</text>
+
+  <rect x="700" y="140" width="16" height="16" rx="3" fill="#10B981"/>
+  <text x="724" y="153" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">Contributions</text>
+  <rect x="700" y="170" width="16" height="16" rx="3" fill="#3B72C4"/>
+  <text x="724" y="183" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">Interest earned</text>
+</svg>
