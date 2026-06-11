@@ -2,6 +2,7 @@ import { translations } from "../../data/translations";
 import { getRichParagraphs } from "../../data/calcRichContent";
 import { getSeoFaqs, getSeoHowTo } from "../../data/seoContent";
 import type { AppLang } from "../../utils/routes";
+import { AdBanner } from "../ads/AdBanner";
 
 type Gl = typeof translations.en;
 
@@ -22,13 +23,15 @@ export function CalculatorRichArticle({ id, lang }: { id: string; lang: AppLang 
 
       <div className="fc-rich-article__body">
         {paras.map((p, i) => (
-          <p key={i} className="fc-rich-article__p text-body-secondary lh-lg">
-            {p}
-          </p>
+          <div key={i}>
+            <p className="fc-rich-article__p text-body-secondary lh-lg">{p}</p>
+            {i > 0 && i % 2 === 1 ? <AdBanner slot={`rich-${id}-p-${i}`} /> : null}
+          </div>
         ))}
 
         {howTo ? (
           <section className="fc-rich-article__section mt-4" aria-labelledby={`fc-rich-how-${id}`}>
+            <AdBanner slot={`rich-${id}-howto`} />
             <h3 id={`fc-rich-how-${id}`} className="h5 text-dark mb-3">
               {gl.richSectionSteps}
             </h3>
@@ -46,6 +49,7 @@ export function CalculatorRichArticle({ id, lang }: { id: string; lang: AppLang 
 
         {faqs.length > 0 ? (
           <section className="fc-rich-article__section mt-4" aria-labelledby={`fc-rich-faq-${id}`}>
+            <AdBanner slot={`rich-${id}-faq`} />
             <h3 id={`fc-rich-faq-${id}`} className="h5 text-dark mb-3">
               {gl.richSectionFaq}
             </h3>

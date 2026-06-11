@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import clsx from "clsx";
 import { translations } from "./data/translations";
 import {
@@ -29,6 +29,9 @@ import {
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
+import { AdScriptAnchor } from "./components/ads/AdScriptAnchor";
+import { AdBanner } from "./components/ads/AdBanner";
+import { ADSTERRA_JS_SYNC } from "./config/ads";
 
 const META_DEFAULT: Record<string, string> = {
   en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up, English & Russian.",
@@ -239,6 +242,7 @@ export default function App() {
 
   return (
     <div className="fc-app-shell">
+      <AdScriptAnchor url={ADSTERRA_JS_SYNC[0]} />
 
       {/* ── Navbar ─────────────────────────────────────────── */}
       <nav className="navbar navbar-expand-lg navbar-dark fc-navbar">
@@ -321,6 +325,10 @@ export default function App() {
           </div>
         </div>
       </nav>
+
+      <div className="container">
+        <AdBanner slot="global-top" layout="tight" />
+      </div>
 
       {/* ── Main Layout ────────────────────────────────────── */}
       <div className="container my-4 fc-app-main">
@@ -448,6 +456,10 @@ export default function App() {
                   </div>
                 </div>
 
+                <AdBanner slot="home-hero" />
+
+                <AdBanner slot="home-promo" />
+
                 <div className="row g-4 mb-4 align-items-center">
                   <div className="col-12">
                     <div className="fc-home-promo-card">
@@ -483,34 +495,44 @@ export default function App() {
                   <div className="fc-section-rule__line"></div>
                 </div>
 
+                <AdBanner slot="home-calc" />
+
                 {/* Calculator Cards Grid */}
                 <div className="row g-3">
-                  {filteredCalculators.map(c => {
+                  {filteredCalculators.map((c, idx) => {
                     const meta = calcMeta[c.id];
                     return (
-                      <div className="col-md-6" key={c.id}>
-                        <div className="fc-calc-card card border-0">
-                          <div className="card-body d-flex flex-column p-4">
-                            {meta && (
-                              <span className={`fc-card-icon fc-calc-accent--${c.id}`}>
-                                <i className={`fa-solid ${meta.icon}`}></i>
-                              </span>
-                            )}
-                            <div className="fc-card-title">{c.title}</div>
-                            <div className="fc-card-desc">{c.desc}</div>
-                            <button
-                              onClick={() => navigateTo(c.id)}
-                              className="btn fc-card-btn"
-                            >
-                              {t.readMore}
-                              <i className="fa-solid fa-arrow-right"></i>
-                            </button>
+                      <Fragment key={c.id}>
+                        <div className="col-md-6">
+                          <div className="fc-calc-card card border-0">
+                            <div className="card-body d-flex flex-column p-4">
+                              {meta && (
+                                <span className={`fc-card-icon fc-calc-accent--${c.id}`}>
+                                  <i className={`fa-solid ${meta.icon}`}></i>
+                                </span>
+                              )}
+                              <div className="fc-card-title">{c.title}</div>
+                              <div className="fc-card-desc">{c.desc}</div>
+                              <button
+                                onClick={() => navigateTo(c.id)}
+                                className="btn fc-card-btn"
+                              >
+                                {t.readMore}
+                                <i className="fa-solid fa-arrow-right"></i>
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                        {(idx + 1) % 2 === 0 ? (
+                          <div className="col-12">
+                            <AdBanner slot={`home-card-${idx}`} />
+                          </div>
+                        ) : null}
+                      </Fragment>
                     );
                   })}
                 </div>
+                <AdBanner slot="home-bottom" />
               </div>
             )}
 
@@ -529,8 +551,10 @@ export default function App() {
                   </h1>
                   <p>{t.ti84PageLead}</p>
                 </div>
+                <AdBanner slot="ti84" />
                 <TI84CalculatorPage />
                 <CalculatorRichArticle id="ti84" lang={lang} />
+                <AdBanner slot="ti84-bottom" />
               </div>
             )}
 
@@ -544,7 +568,9 @@ export default function App() {
                   </h1>
                   <p>{t.desmosPageLead}</p>
                 </div>
+                <AdBanner slot="desmos" />
                 <DesmosCalculatorPage lang={lang} onNavigate={navigateTo} />
+                <AdBanner slot="desmos-bottom" />
               </div>
             )}
 
@@ -598,12 +624,14 @@ export default function App() {
                     ? "Статьи с оглавлением, источниками и разметкой для поиска. Открывайте полный текст — калькулятор связаны внутри материала."
                     : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
                 </p>
+                <AdBanner slot="blog-index" />
                 <div className="row g-4">
-                  {paginatedPosts.map(post => {
+                  {paginatedPosts.map((post, idx) => {
                     const thumbSrc = post.hero.srcWebp ?? post.hero.src;
                     const thumbExternal = isAbsoluteHttpUrl(thumbSrc);
                     return (
-                    <div className="col-md-6" key={post.slug}>
+                    <Fragment key={post.slug}>
+                    <div className="col-md-6">
                       <article className="fc-blog-card card border-0 h-100 overflow-hidden">
                         <a
                           href="#"
@@ -658,9 +686,17 @@ export default function App() {
                         </div>
                       </article>
                     </div>
+                    {(idx + 1) % 2 === 0 ? (
+                      <div className="col-12">
+                        <AdBanner slot={`blog-index-mid-${blogPage}-${idx}`} />
+                      </div>
+                    ) : null}
+                    </Fragment>
                     );
                   })}
                 </div>
+
+                <AdBanner slot={`blog-index-page-${blogPage}`} />
 
                 <div className="d-flex justify-content-center align-items-center gap-3 mt-5">
                   <button
@@ -679,6 +715,7 @@ export default function App() {
                     {t.next} <i className="fa-solid fa-chevron-right ms-1"></i>
                   </button>
                 </div>
+                <AdBanner slot="blog-index-bottom" />
               </div>
             )}
 
@@ -688,6 +725,7 @@ export default function App() {
                 <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
                   <i className="fa-solid fa-circle-info"></i> {t.about}
                 </h1>
+                <AdBanner slot="about" />
                 <CalculatorRichArticle id="about" lang={lang} />
               </div>
             )}
@@ -698,6 +736,8 @@ export default function App() {
                 <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
                   <i className="fa-solid fa-paper-plane"></i> {t.contact}
                 </h1>
+                <AdBanner slot="contact" />
+                <AdBanner slot="contact-mid" />
                 {contactSubmitted ? (
                   <div className="alert alert-success d-flex align-items-center gap-3 rounded-3">
                     <i className="fa-solid fa-circle-check fs-4"></i>
@@ -830,6 +870,10 @@ export default function App() {
           </a>
         ))}
       </div>
+
+      <AdScriptAnchor url={ADSTERRA_JS_SYNC[1]} />
+
+      <AdBanner slot="global-footer" layout="tight" />
 
       {/* ── Footer ─────────────────────────────────────────── */}
       <footer className="fc-footer text-white text-center py-4 mt-auto">

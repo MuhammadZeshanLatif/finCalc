@@ -6,6 +6,7 @@ import BasicCalculatorPage from "./BasicCalculatorPage";
 import NumericInput from "./calc/NumericInput";
 import { CalcField, MoneyInput, MoInput, PctInput, YrsInput } from "./calc/CalcFormFields";
 import { CalculatorRichArticle } from "./calc/CalculatorRichArticle";
+import { AdBanner } from "./ads/AdBanner";
 import { DonutChart, LineAreaChart, ScheduleTable, TruncatedText } from "./calc/CalcVisuals";
 import {
   compoundByPeriod,
@@ -908,6 +909,8 @@ function FinancialCalculator({ id, lang }: Props) {
         <p>{t.desc}</p>
       </div>
 
+      <AdBanner slot={`calc-${id}`} />
+
       <div className="row g-0">
         <div className="col-lg-6 fc-form-section">
           <p className="fc-section-label">
@@ -1405,6 +1408,8 @@ function FinancialCalculator({ id, lang }: Props) {
         </div>
       </div>
 
+      <AdBanner slot={`calc-${id}-mid`} />
+
       {result && (charts.length > 0 || schedules.length > 0) && (
         <div className="fc-calc-detail">
           <div className="fc-calc-detail__title">{sl.heading}</div>
@@ -1424,6 +1429,8 @@ function FinancialCalculator({ id, lang }: Props) {
             </div>
           )}
 
+          <AdBanner slot={`calc-${id}-charts`} />
+
           {id === "emi" && (
             <p className="small text-muted mb-3">{sl.emiNote}</p>
           )}
@@ -1440,6 +1447,7 @@ function FinancialCalculator({ id, lang }: Props) {
       )}
 
       <CalculatorRichArticle id={id} lang={lang} />
+      <AdBanner slot={`calc-${id}-bottom`} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { tocFromBlocks } from "../../data/blog/types";
 import { BlogBlockRenderer } from "./BlogBlockRenderer";
 import { BlogLiveRatesSnippet } from "./BlogLiveRatesSnippet";
 import { BlogPostImage } from "./BlogPostImage";
+import { AdBanner } from "../ads/AdBanner";
 
 type Glabels = {
   toc: string;
@@ -219,7 +220,11 @@ export function BlogArticlePage({
             </div>
           ) : null}
 
-          <BlogBlockRenderer blocks={post.blocks} />
+          <AdBanner slot="blog-article" />
+
+          <BlogBlockRenderer blocks={post.blocks} adSlotPrefix={`blog-${post.slug}`} />
+
+          <AdBanner slot="blog-article-bottom" />
 
           {post.sources.length > 0 ? (
             <section className="fc-blog-sources mt-5 pt-4 border-top" aria-labelledby="fc-blog-sources-h">
