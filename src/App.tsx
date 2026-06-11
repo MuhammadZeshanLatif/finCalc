@@ -328,6 +328,7 @@ export default function App() {
 
       <div className="container">
         <AdBanner slot="global-top" layout="tight" />
+        <AdBanner slot="global-top-468" size="banner" layout="tight" />
       </div>
 
       {/* ── Main Layout ────────────────────────────────────── */}
@@ -457,6 +458,7 @@ export default function App() {
                 </div>
 
                 <AdBanner slot="home-hero" />
+                <AdBanner slot="home-hero-468" size="banner" />
 
                 <AdBanner slot="home-promo" />
 
@@ -625,6 +627,7 @@ export default function App() {
                     : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
                 </p>
                 <AdBanner slot="blog-index" />
+                <AdBanner slot="blog-index-468" size="banner" />
                 <div className="row g-4">
                   {paginatedPosts.map((post, idx) => {
                     const thumbSrc = post.hero.srcWebp ?? post.hero.src;
@@ -689,6 +692,7 @@ export default function App() {
                     {(idx + 1) % 2 === 0 ? (
                       <div className="col-12">
                         <AdBanner slot={`blog-index-mid-${blogPage}-${idx}`} />
+                        <AdBanner slot={`blog-index-mid-${blogPage}-${idx}-468`} size="banner" />
                       </div>
                     ) : null}
                     </Fragment>
@@ -874,6 +878,7 @@ export default function App() {
       <AdScriptAnchor url={ADSTERRA_JS_SYNC[1]} />
 
       <AdBanner slot="global-footer" layout="tight" />
+      <AdBanner slot="global-footer-468" size="banner" layout="tight" />
 
       {/* ── Footer ─────────────────────────────────────────── */}
       <footer className="fc-footer text-white text-center py-4 mt-auto">

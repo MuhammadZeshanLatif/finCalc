@@ -2097,11 +2097,8 @@ body {
   font-size: 0;
 }
 
-/* Adsterra 728×90 — exact banner size, no label or extra chrome */
+/* Adsterra banners — exact size, no label or extra chrome */
 .fc-ad-banner {
-  width: 728px;
-  max-width: 100%;
-  height: 90px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
@@ -2109,6 +2106,18 @@ body {
   background: transparent;
   line-height: 0;
   overflow: hidden;
+}
+
+.fc-ad-banner--728 {
+  width: 728px;
+  max-width: 100%;
+  height: 90px;
+}
+
+.fc-ad-banner--468 {
+  width: 468px;
+  max-width: 100%;
+  height: 60px;
 }
 
 .fc-ad-banner--spaced {
@@ -2121,7 +2130,7 @@ body {
   margin-bottom: 0;
 }
 
-.fc-ad-banner iframe {
+.fc-ad-banner--728 iframe {
   display: block;
   width: 728px;
   max-width: 100%;
@@ -2132,9 +2141,39 @@ body {
   vertical-align: top;
 }
 
+.fc-ad-banner--468 iframe {
+  display: block;
+  width: 468px;
+  max-width: 100%;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: top;
+}
+
+/* 728×90 — desktop / wide content */
 @media (max-width: 727px) {
-  .fc-ad-banner {
+  .fc-ad-banner--728 {
     display: none;
+  }
+}
+
+/* 468×60 — hide when viewport too narrow */
+@media (max-width: 467px) {
+  .fc-ad-banner--468 {
+    display: none;
+  }
+}
+
+/* 468 companion: only when 728 is hidden (tablet) */
+.fc-ad-banner--narrow-only {
+  display: none;
+}
+
+@media (min-width: 468px) and (max-width: 727px) {
+  .fc-ad-banner--narrow-only {
+    display: block;
   }
 }
 

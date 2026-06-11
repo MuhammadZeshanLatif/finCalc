@@ -119,6 +119,13 @@ export function BlogBlockRenderer({ blocks, adSlotPrefix }: Props) {
       blocksSinceAd = 0;
       if (h2Count > 1) {
         nodes.push(<AdBanner key={`ad-h2-${i}`} slot={`${adSlotPrefix}-h2-${h2Count}`} />);
+        nodes.push(
+          <AdBanner
+            key={`ad-h2-468-${i}`}
+            slot={`${adSlotPrefix}-h2-${h2Count}-468`}
+            size="banner"
+          />,
+        );
       }
       return;
     }
@@ -127,6 +134,13 @@ export function BlogBlockRenderer({ blocks, adSlotPrefix }: Props) {
       blocksSinceAd += 1;
       if (blocksSinceAd >= 3) {
         nodes.push(<AdBanner key={`ad-mid-${i}`} slot={`${adSlotPrefix}-mid-${i}`} />);
+        nodes.push(
+          <AdBanner
+            key={`ad-mid-468-${i}`}
+            slot={`${adSlotPrefix}-mid-${i}-468`}
+            size="banner"
+          />,
+        );
         blocksSinceAd = 0;
       }
     }

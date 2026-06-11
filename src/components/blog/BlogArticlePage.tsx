@@ -221,10 +221,12 @@ export function BlogArticlePage({
           ) : null}
 
           <AdBanner slot="blog-article" />
+          <AdBanner slot="blog-article-468" size="banner" />
 
           <BlogBlockRenderer blocks={post.blocks} adSlotPrefix={`blog-${post.slug}`} />
 
           <AdBanner slot="blog-article-bottom" />
+          <AdBanner slot="blog-article-bottom-468" size="banner" />
 
           {post.sources.length > 0 ? (
             <section className="fc-blog-sources mt-5 pt-4 border-top" aria-labelledby="fc-blog-sources-h">

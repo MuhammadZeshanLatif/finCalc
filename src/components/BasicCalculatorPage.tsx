@@ -82,6 +82,7 @@ export default function BasicCalculatorPage({ lang }: Props) {
       </div>
 
       <AdBanner slot="calc-basic" />
+      <AdBanner slot="calc-basic-468" size="banner" />
 
       <div className="row g-0">
         <div className="col-lg-6 fc-form-section">

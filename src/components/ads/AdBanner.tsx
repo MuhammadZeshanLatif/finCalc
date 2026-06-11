@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef } from "react";
-import { ADSTERRA_LEADERBOARD } from "../../config/ads";
+import { getAdUnit, type AdBannerUnit } from "../../config/ads";
 
 let adLoadQueue: Promise<void> = Promise.resolve();
 
@@ -7,22 +7,19 @@ function queueAdLoad(run: () => Promise<void>): void {
   adLoadQueue = adLoadQueue.then(run).catch(() => undefined);
 }
 
-type Props = {
-  /** Unique id per placement on the page (for script sequencing). */
+type InnerProps = {
   slot: string;
-  /** `spaced` = small vertical gap; `tight` = flush (e.g. footer). */
-  layout?: "spaced" | "tight";
+  unit: AdBannerUnit;
+  layout: "spaced" | "tight";
+  /** 468×60 companion — visible only when 728×90 is hidden (468px–727px). */
+  narrowOnly?: boolean;
 };
 
-/**
- * Reusable Adsterra 728×90 iframe banner.
- * Config lives in `src/config/ads.ts` — use this component everywhere on the site.
- */
-export function AdBanner({ slot, layout = "spaced" }: Props) {
+function AdBannerInner({ slot, unit, layout, narrowOnly }: InnerProps) {
   const reactId = useId();
   const containerId = `ad-${slot}-${reactId.replace(/:/g, "")}`;
   const rootRef = useRef<HTMLDivElement>(null);
-  const { key, width, height, invokeBase } = ADSTERRA_LEADERBOARD;
+  const { key, width, height, invokeBase } = unit;
 
   useEffect(() => {
     const root = rootRef.current;
@@ -75,14 +72,50 @@ export function AdBanner({ slot, layout = "spaced" }: Props) {
     };
   }, [containerId, slot, key, width, height, invokeBase]);
 
+  const sizeClass = width >= 700 ? "fc-ad-banner--728" : "fc-ad-banner--468";
   const layoutClass = layout === "tight" ? "fc-ad-banner--tight" : "fc-ad-banner--spaced";
+  const narrowClass = narrowOnly ? " fc-ad-banner--narrow-only" : "";
 
   return (
     <div
       ref={rootRef}
-      className={`fc-ad-banner ${layoutClass}`}
+      className={`fc-ad-banner ${sizeClass} ${layoutClass}${narrowClass}`}
       data-ad-slot={slot}
       aria-hidden="true"
     />
+  );
+}
+
+type Props = {
+  /** Unique id per placement on the page (for script sequencing). */
+  slot: string;
+  /** `spaced` = small vertical gap; `tight` = flush (e.g. footer). */
+  layout?: "spaced" | "tight";
+  /**
+   * auto (default) = 728×90 on wide screens + 468×60 on tablet (468–727px).
+   * leaderboard = 728×90 only. banner = 468×60 only.
+   */
+  size?: "auto" | "leaderboard" | "banner";
+};
+
+/** Reusable Adsterra iframe banner — config in `src/config/ads.ts`. */
+export function AdBanner({ slot, layout = "spaced", size = "auto" }: Props) {
+  if (size === "leaderboard") {
+    return <AdBannerInner slot={slot} unit={getAdUnit("leaderboard")} layout={layout} />;
+  }
+  if (size === "banner") {
+    return <AdBannerInner slot={slot} unit={getAdUnit("banner")} layout={layout} />;
+  }
+
+  return (
+    <>
+      <AdBannerInner slot={slot} unit={getAdUnit("leaderboard")} layout={layout} />
+      <AdBannerInner
+        slot={`${slot}-468`}
+        unit={getAdUnit("banner")}
+        layout={layout}
+        narrowOnly
+      />
+    </>
   );
 }

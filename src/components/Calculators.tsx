@@ -910,6 +910,7 @@ function FinancialCalculator({ id, lang }: Props) {
       </div>
 
       <AdBanner slot={`calc-${id}`} />
+      <AdBanner slot={`calc-${id}-468`} size="banner" />
 
       <div className="row g-0">
         <div className="col-lg-6 fc-form-section">
@@ -1409,6 +1410,7 @@ function FinancialCalculator({ id, lang }: Props) {
       </div>
 
       <AdBanner slot={`calc-${id}-mid`} />
+      <AdBanner slot={`calc-${id}-mid-468`} size="banner" />
 
       {result && (charts.length > 0 || schedules.length > 0) && (
         <div className="fc-calc-detail">
