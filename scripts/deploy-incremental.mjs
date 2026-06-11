@@ -1,8 +1,9 @@
 /**
  * Incremental deploy via SFTP (shared hosting / jailshell — no rsync on server).
+ * Uses ONE connection by default — parallel SFTP often triggers ECONNRESET on jailshell.
  *
  * Env: DEPLOY_HOST, DEPLOY_USER, DEPLOY_REMOTE_DIR, DEPLOY_LOCAL_DIR, DEPLOY_KEY_PATH
- * Optional: DEPLOY_PORT (default 22), DEPLOY_CONCURRENCY (default 8)
+ * Optional: DEPLOY_PORT (default 22), DEPLOY_CONCURRENCY (default 1), DEPLOY_RETRIES (default 5)
  */
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
@@ -33,7 +34,8 @@ const user = process.env.DEPLOY_USER.trim();
 const remoteBase = process.env.DEPLOY_REMOTE_DIR.trim().replace(/\/$/, "");
 const localDir = path.resolve(root, process.env.DEPLOY_LOCAL_DIR.trim());
 const keyPath = path.resolve(process.env.DEPLOY_KEY_PATH.trim());
-const concurrency = Math.max(1, Number(process.env.DEPLOY_CONCURRENCY || "8"));
+const concurrency = Math.max(1, Math.min(2, Number(process.env.DEPLOY_CONCURRENCY || "1")));
+const maxRetries = Math.max(1, Number(process.env.DEPLOY_RETRIES || "5"));
 
 if (!existsSync(localDir)) {
   console.error(`Local deploy dir not found: ${localDir}`);
@@ -42,6 +44,41 @@ if (!existsSync(localDir)) {
 if (!existsSync(keyPath)) {
   console.error(`SSH key not found: ${keyPath}`);
   process.exit(1);
+}
+
+const privateKey = readFileSync(keyPath, "utf8");
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isTransientError(err) {
+  const msg = String(err?.message || err?.code || err).toLowerCase();
+  return (
+    msg.includes("econnreset") ||
+    msg.includes("econnrefused") ||
+    msg.includes("etimedout") ||
+    msg.includes("connection lost") ||
+    msg.includes("not connected") ||
+    msg.includes("socket") ||
+    msg.includes("closed")
+  );
+}
+
+async function withRetry(label, fn) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      if (!isTransientError(err) || attempt === maxRetries) throw err;
+      const wait = Math.min(15000, 2000 * attempt);
+      console.warn(`${label} failed (attempt ${attempt}/${maxRetries}): ${err.message}. Retry in ${wait}ms...`);
+      await sleep(wait);
+    }
+  }
+  throw lastErr;
 }
 
 function walkLocalFiles(dir, base = dir, out = []) {
@@ -115,31 +152,58 @@ function connectConfig() {
     host,
     port,
     username: user,
-    privateKey: readFileSync(keyPath, "utf8"),
-    readyTimeout: 30000,
-    retries: 2,
-    retry_factor: 2,
+    privateKey,
+    readyTimeout: 60000,
+    keepaliveInterval: 10000,
+    keepaliveCountMax: 5,
+    algorithms: {
+      serverHostKey: ["ssh-rsa", "ssh-ed25519", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521"],
+    },
   };
 }
 
-async function openSftpPool(size) {
-  const clients = [];
-  for (let i = 0; i < size; i++) {
-    const client = new SftpClient();
-    await client.connect(connectConfig());
-    clients.push(client);
+class SftpSession {
+  constructor() {
+    this.client = new SftpClient();
+    this.connected = false;
   }
-  return clients;
-}
 
-async function uploadWithPool(pool, items) {
-  await Promise.all(
-    pool.map(async (client, workerId) => {
-      for (let i = workerId; i < items.length; i += pool.length) {
-        await uploadOne(client, items[i]);
+  async connect() {
+    if (this.connected) return;
+    await withRetry("SFTP connect", async () => {
+      await this.client.connect(connectConfig());
+      this.connected = true;
+    });
+  }
+
+  async end() {
+    if (!this.connected) return;
+    try {
+      await this.client.end();
+    } catch {
+      /* ignore */
+    }
+    this.connected = false;
+  }
+
+  async reconnect() {
+    await this.end();
+    this.client = new SftpClient();
+    await this.connect();
+  }
+
+  async run(action) {
+    try {
+      await this.connect();
+      return await action(this.client);
+    } catch (err) {
+      if (isTransientError(err)) {
+        await this.reconnect();
+        return await action(this.client);
       }
-    }),
-  );
+      throw err;
+    }
+  }
 }
 
 const files = walkLocalFiles(localDir);
@@ -151,23 +215,11 @@ console.log(
 
 let uploaded = 0;
 let skipped = 0;
-
-async function uploadOne(client, file) {
-  const remotePath = `${remoteBase}/${file.rel}`.replace(/\/+/g, "/");
-  if (await remoteFileNeedsUpload(client, file.local, remotePath)) {
-    await client.fastPut(file.local, remotePath);
-    uploaded++;
-    console.log(`UP ${file.rel}`);
-  } else {
-    skipped++;
-  }
-}
-
-const pool = await openSftpPool(concurrency);
-const main = pool[0];
+const session = new SftpSession();
 
 try {
-  await ensureRemoteDir(main, remoteBase);
+  await session.connect();
+  await ensureRemoteDir(session.client, remoteBase);
 
   const remoteDirs = new Set(
     files.map((f) => {
@@ -176,16 +228,34 @@ try {
     }),
   );
   for (const dir of [...remoteDirs].sort()) {
-    await ensureRemoteDir(main, dir);
+    await ensureRemoteDir(session.client, dir);
   }
 
-  await uploadWithPool(pool, files);
+  for (const file of files) {
+    const remotePath = `${remoteBase}/${file.rel}`.replace(/\/+/g, "/");
+    await withRetry(`upload ${file.rel}`, async () => {
+      await session.run(async (sftp) => {
+        if (await remoteFileNeedsUpload(sftp, file.local, remotePath)) {
+          await sftp.fastPut(file.local, remotePath);
+          uploaded++;
+          console.log(`UP ${file.rel}`);
+        } else {
+          skipped++;
+        }
+      });
+    });
+    await sleep(50);
+  }
 
-  const remoteFiles = await listRemoteFiles(main, remoteBase);
+  const remoteFiles = await session.run((sftp) => listRemoteFiles(sftp, remoteBase));
   let deleted = 0;
   for (const rel of remoteFiles) {
     if (!localSet.has(rel)) {
-      await main.delete(`${remoteBase}/${rel}`.replace(/\/+/g, "/"));
+      await withRetry(`delete ${rel}`, async () => {
+        await session.run((sftp) =>
+          sftp.delete(`${remoteBase}/${rel}`.replace(/\/+/g, "/")),
+        );
+      });
       deleted++;
       console.log(`DEL ${rel}`);
     }
@@ -196,5 +266,5 @@ try {
   console.error("Deploy failed:", err?.message || err);
   process.exit(1);
 } finally {
-  await Promise.all(pool.map((c) => c.end()));
+  await session.end();
 }

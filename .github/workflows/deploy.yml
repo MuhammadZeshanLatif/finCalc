@@ -47,5 +47,6 @@ jobs:
           DEPLOY_REMOTE_DIR: /home/theins20/financcalculator.ru
           DEPLOY_LOCAL_DIR: dist
           DEPLOY_KEY_PATH: ${{ github.workspace }}/.ssh-deploy-key
-          DEPLOY_CONCURRENCY: "8"
+          DEPLOY_CONCURRENCY: "1"
+          DEPLOY_RETRIES: "5"
         run: node scripts/deploy-incremental.mjs
