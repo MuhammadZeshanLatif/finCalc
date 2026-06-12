@@ -183,15 +183,65 @@ const BLOG_POSTS_EN = [
   },
   {
     slug: 'what-is-graphing-calculator',
-    title: 'What Is a Graphing Calculator? Features, Uses & Guide | FinanceCalculator',
+    title: 'What Is a Graphing Calculator? Full Guide + Free Online Tool | FinanceCalculator',
     desc: 'What a graphing calculator does, how it differs from scientific calculators, and when you need one for math and science.',
-    datePublished: '2026-04-01',
-    dateModified: '2026-04-08',
-    section: 'Tools',
+    datePublished: '2026-04-12',
+    dateModified: '2026-04-13',
+    section: 'Mathematics',
     excerpt: 'A graphing calculator plots mathematical functions, solves equations, and performs statistical analysis. It is standard equipment in high school and college STEM courses.',
     faqs: [
       { q: 'What is the difference between a scientific and graphing calculator?', a: 'A scientific calculator performs numerical computations. A graphing calculator adds the ability to plot functions, visualize equations, and perform more advanced math like calculus and statistics.' },
     ],
+  },
+  {
+    slug: 'mortgage-payment-calculator-guide',
+    title: 'Mortgage Payment Calculator: PITI Guide | FinanceCalculator',
+    desc: 'Use a mortgage payment calculator to estimate monthly PITI, total interest, and payoff before you buy. Step-by-step formula, worked examples, and free tool.',
+    datePublished: '2026-06-11',
+    dateModified: '2026-06-11',
+    section: 'Personal finance',
+    excerpt: 'Learn how a mortgage payment calculator estimates principal, interest, taxes, and insurance — with the standard formula, a worked example, and our free online tool.',
+    faqs: [],
+  },
+  {
+    slug: 'loan-calculator-monthly-payment-guide',
+    title: 'Loan Calculator: Payment & Interest Guide | FinanceCalculator',
+    desc: 'Use a loan calculator to estimate monthly payments, total interest, and payoff for personal or auto loans. Step-by-step formula, worked examples, and free tool.',
+    datePublished: '2026-06-12',
+    dateModified: '2026-06-12',
+    section: 'Personal finance',
+    excerpt: 'A loan calculator turns amount, rate, and term into a monthly payment and total interest — with the standard formula, a worked example, and our free online tool.',
+    faqs: [],
+  },
+  {
+    slug: 'deposit-calculator-savings-interest-guide',
+    title: 'Deposit Calculator: Savings & APY Guide | FinanceCalculator',
+    desc: 'Use a deposit calculator to project savings growth with monthly contributions, APY, and term. Step-by-step formula, worked example, and free online tool.',
+    datePublished: '2026-06-13',
+    dateModified: '2026-06-13',
+    section: 'Personal finance',
+    excerpt: 'A deposit calculator projects your balance from an opening amount, monthly contributions, rate, and term — with the math, a worked example, and our free tool.',
+    faqs: [],
+  },
+  {
+    slug: 'ndfl-2026-income-tax-calculator-guide',
+    title: 'NDFL 2026: Income Tax Calculator Guide | FinanceCalculator',
+    desc: 'NDFL 2026 calculator guide for Russia salary tax: 13–22% progressive brackets, ruble examples, marginal vs effective rate, and our free online tool.',
+    datePublished: '2026-06-14',
+    dateModified: '2026-06-14',
+    section: 'Taxes',
+    excerpt: 'NDFL 2026 uses five progressive brackets on salary income. Learn the 13–22% scale, worked ruble examples, and how to estimate tax with our calculator.',
+    faqs: [],
+  },
+  {
+    slug: 'vat-20-percent-calculator-guide',
+    title: 'VAT 20 Calculator: Net & Gross Amounts | FinanceCalculator',
+    desc: 'A VAT calculator for 20% tax: net, VAT, and gross for inclusive or exclusive prices. Invoice formulas, worked examples, and free online tool.',
+    datePublished: '2026-06-15',
+    dateModified: '2026-06-15',
+    section: 'Business & tax',
+    excerpt: 'A VAT calculator splits 20% tax from net or gross prices — with inclusive vs exclusive formulas, invoice examples, and our free browser tool.',
+    faqs: [],
   },
 ];
 
@@ -330,15 +380,65 @@ const BLOG_POSTS_RU = [
   },
   {
     slug: 'chto-takoe-graficheskiy-kalkulyator',
-    title: 'Что такое графический калькулятор: функции и применение | FinanceCalculator',
+    title: 'Что такое графический калькулятор? Гид + бесплатный онлайн | FinanceCalculator',
     desc: 'Чем графический калькулятор отличается от научного, для чего он используется в математике и физике.',
-    datePublished: '2026-04-01',
-    dateModified: '2026-04-08',
-    section: 'Инструменты',
+    datePublished: '2026-04-12',
+    dateModified: '2026-04-13',
+    section: 'Математика',
     excerpt: 'Графический калькулятор строит графики функций, решает уравнения и выполняет статистический анализ. Стандартный инструмент в STEM-дисциплинах.',
     faqs: [
       { q: 'В чём разница между научным и графическим калькулятором?', a: 'Научный калькулятор выполняет числовые вычисления. Графический дополнительно строит графики функций, решает уравнения визуально и поддерживает более сложные вычисления.' },
     ],
+  },
+  {
+    slug: 'ipoteka-kalkulyator-ezhemesyachnyy-platezh',
+    title: 'Ипотека калькулятор: ежемесячный платёж | FinanceCalculator',
+    desc: 'Ипотека калькулятор поможет оценить ежемесячный PITI, переплату по процентам и срок погашения до подачи заявки. Формула, пример и бесплатный инструмент.',
+    datePublished: '2026-06-11',
+    dateModified: '2026-06-11',
+    section: 'Личные финансы',
+    excerpt: 'Разбираем, как ипотека калькулятор считает тело кредита, проценты, налоги и страховку — с формулой, числовым примером и бесплатным онлайн-инструментом.',
+    faqs: [],
+  },
+  {
+    slug: 'kreditnyy-kalkulyator-ezhemesyachnyy-platezh',
+    title: 'Кредитный калькулятор: платёж и проценты | FinanceCalculator',
+    desc: 'Кредитный калькулятор рассчитает ежемесячный платёж, переплату по процентам и срок погашения потребительского или автокредита. Формула, пример и инструмент.',
+    datePublished: '2026-06-12',
+    dateModified: '2026-06-12',
+    section: 'Личные финансы',
+    excerpt: 'Кредитный калькулятор по сумме, ставке и сроку показывает платёж и переплату — с формулой, числовым примером и бесплатным онлайн-инструментом.',
+    faqs: [],
+  },
+  {
+    slug: 'kalkulyator-vklada-procenty-dohod',
+    title: 'Калькулятор вклада: проценты и рост | FinanceCalculator',
+    desc: 'Калькулятор вклада спрогнозирует итог, проценты и рост при ежемесячных пополнениях и ставке. Формула, пример на цифрах и бесплатный инструмент.',
+    datePublished: '2026-06-13',
+    dateModified: '2026-06-13',
+    section: 'Личные финансы',
+    excerpt: 'Калькулятор вклада считает итог по начальной сумме, пополнениям, ставке и сроку — с формулой, примером и бесплатным онлайн-инструментом.',
+    faqs: [],
+  },
+  {
+    slug: 'ndfl-2026-kalkulyator-raschet-naloga',
+    title: 'НДФЛ 2026: калькулятор и расчёт налога | FinanceCalculator',
+    desc: 'НДФЛ 2026: калькулятор по шкале 13–22%, примеры зарплаты в рублях, маржинальная и средняя ставка. Пошаговый расчёт, FAQ и бесплатный инструмент.',
+    datePublished: '2026-06-14',
+    dateModified: '2026-06-14',
+    section: 'Налоги',
+    excerpt: 'НДФЛ 2026 — пять ступеней на основной налоговой базе. Таблица 13–22%, примеры в рублях и калькулятор для оценки маржинальной и средней ставки.',
+    faqs: [],
+  },
+  {
+    slug: 'kalkulyator-nds-20-procentov',
+    title: 'Калькулятор НДС 20%: с налогом и без | FinanceCalculator',
+    desc: 'Калькулятор НДС 20%: нетто, налог и брутто для цены с НДС и без. Формулы, пример счёта, типичные ошибки и бесплатный онлайн-инструмент.',
+    datePublished: '2026-06-15',
+    dateModified: '2026-06-15',
+    section: 'Бизнес и налоги',
+    excerpt: 'Калькулятор НДС 20% делит сумму на нетто, налог и брутто — с формулами для цен с НДС и без, примерами и бесплатным инструментом.',
+    faqs: [],
   },
 ];
 
@@ -453,30 +553,37 @@ function injectIntoHtml(html, { title, desc, canonical, schemaBlocks, noscriptBo
   // Update meta description
   html = html.replace(
     /(<meta\s+name=["']description["']\s+content=["'])[^"']*["']/i,
-    `$1${escapeHtml(desc)}'`
+    `$1${escapeHtml(desc)}"`
   );
 
   // Update og:title
   html = html.replace(
     /(<meta\s+property=["']og:title["']\s+content=["'])[^"']*["']/i,
-    `$1${escapeHtml(title)}'`
+    `$1${escapeHtml(title)}"`
   );
 
   // Update og:description
   html = html.replace(
     /(<meta\s+property=["']og:description["']\s+content=["'])[^"']*["']/i,
-    `$1${escapeHtml(desc)}'`
+    `$1${escapeHtml(desc)}"`
   );
 
   // Update og:url and canonical
   html = html.replace(
     /(<meta\s+property=["']og:url["']\s+content=["'])[^"']*["']/i,
-    `$1${canonical}'`
+    `$1${canonical}"`
   );
-  html = html.replace(
-    /(<link\s+rel=["']canonical["']\s+href=["'])[^"']*["']/i,
-    `$1${canonical}'`
-  );
+  if (/<link\s+rel=["']canonical["']/i.test(html)) {
+    html = html.replace(
+      /(<link\s+rel=["']canonical["']\s+href=["'])[^"']*["']/i,
+      `$1${canonical}"`
+    );
+  } else {
+    html = html.replace(
+      '</head>',
+      `    <link rel="canonical" href="${canonical}" />\n  </head>`
+    );
+  }
 
   // Inject schema blocks before </head>
   if (schemaBlocks && schemaBlocks.length > 0) {
