@@ -3,6 +3,8 @@ import { getRichParagraphs } from "../../data/calcRichContent";
 import { getSeoFaqs, getSeoHowTo } from "../../data/seoContent";
 import type { AppLang } from "../../utils/routes";
 import { AdBanner } from "../ads/AdBanner";
+import { ContextualCalcLinks } from "./ContextualCalcLinks";
+import { RelatedCalculators } from "./RelatedCalculators";
 
 type Gl = typeof translations.en;
 
@@ -25,6 +27,7 @@ export function CalculatorRichArticle({ id, lang }: { id: string; lang: AppLang 
         {paras.map((p, i) => (
           <div key={i}>
             <p className="fc-rich-article__p text-body-secondary lh-lg">{p}</p>
+            {i === 0 ? <ContextualCalcLinks calcId={id} lang={lang} /> : null}
             {i > 0 && i % 2 === 1 ? (
               <>
                 <AdBanner slot={`rich-${id}-p-${i}`} />
@@ -81,6 +84,8 @@ export function CalculatorRichArticle({ id, lang }: { id: string; lang: AppLang 
           <p className="text-body-secondary mb-0 lh-lg">{gl.richLimitsBody}</p>
         </section>
       </div>
+
+      <RelatedCalculators calcId={id} lang={lang} />
     </article>
   );
 }

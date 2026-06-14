@@ -1107,6 +1107,21 @@ body {
   padding-top: 1rem !important;
 }
 
+.fc-internal-link {
+  color: var(--bs-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fc-internal-link:hover {
+  color: #0a3d6b;
+}
+
+.fc-related-calculators__link {
+  font-weight: 600;
+}
+
 /* Basic calc: long-form guide sits under keypad in the left column */
 .fc-form-section > .fc-rich-article {
   margin-top: 1.5rem;

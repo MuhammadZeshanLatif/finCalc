@@ -268,6 +268,7 @@ export default function BasicCalculatorPage({ lang }: Props) {
           </div>
 
           <AdBanner slot="calc-basic-mid" />
+          <CalculatorRichArticle id="basic" lang={lang} />
         </div>
       </div>
     </div>
