@@ -2,6 +2,9 @@ Options -MultiViews -Indexes
 RewriteEngine On
 RewriteBase /
 
+# Prerender folders (e.g. /deposit/index.html): serve at /deposit without /deposit/ redirect loop
+DirectorySlash Off
+
 # ── Verification & crawler files: always real files, never SPA index.html ──
 RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest|google[a-z0-9]+\.html)$ - [L]
 
@@ -15,15 +18,19 @@ RewriteRule ^ru/autoloan/?$ /ru/loan [R=301,L]
 RewriteRule ^loanearly/?$ /loan [R=301,L]
 RewriteRule ^autoloan/?$ /loan [R=301,L]
 
-# Normalize trailing slash for all URLs except site root (fixes prerender /blog/slug/ vs canonical)
+# Internally serve prerender HTML (no external redirect to trailing-slash URL)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+# Canonical: strip trailing slash (except site root)
 RewriteCond %{REQUEST_URI} .+/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-# Serve existing FILES directly (images, css, js, ads.txt, blog assets, etc.)
+# SPA fallback for routes without prerender folder
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Everything else (including directories like /blog/) → index.html
 RewriteRule ^ index.html [L]
 
 # ── Crawlers, AI bots, Google AdSense: allow full access (no bot blocking) ──
