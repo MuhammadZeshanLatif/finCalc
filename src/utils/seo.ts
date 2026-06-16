@@ -13,6 +13,11 @@ import {
   SITE_PREVIEW_IMAGE_PATH,
 } from "../config/site";
 import { getSeoFaqs, getSeoHowTo } from "../data/seoContent";
+import {
+  normalizeCanonicalUrl,
+  normalizeMetaDescription,
+  normalizeMetaTitle,
+} from "./metaLimits";
 import { buildPathname, type AppLang } from "./routes";
 
 /** Pages that are interactive calculators — get per-page SoftwareApplication schema. */
@@ -34,13 +39,13 @@ function ogImageMimeType(url: string): string {
 const META = {
   en: {
     defaultDesc:
-      "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Accurate, fast, English & Russian.",
+      "Free financial calculators for compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Fast, accurate tools in English and Russian — no sign-up required online.",
     keywords:
       "financial calculator, interest calculator, loan calculator, mortgage calculator, EMI calculator, VAT calculator, currency converter, BMI calculator, free calculator",
   },
   ru: {
     defaultDesc:
-      "Бесплатные финансовые калькулятор: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Точно и быстро, EN и RU.",
+      "Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ и другие инструменты. Точные расчёты онлайн на EN и RU — без регистрации.",
     keywords:
       "финансовый калькулятор, кредитный калькулятор, ипотека, EMI, НДС, конвертер валют, ИМТ, бесплатный калькулятор",
   },
@@ -112,13 +117,13 @@ export function updatePageSeo(opts: {
   const defaultPath = buildPathname(opts.lang, opts.page, null);
   // Home page URL is bare origin (no trailing slash). Other pages use full path.
   const pathStr = defaultPath === "/" ? "" : defaultPath;
-  const url = opts.blogArticle
-    ? `${base}${opts.blogArticle.articlePath}`
-    : pathStr
-      ? `${base}${pathStr}`
-      : base;
-  const fullTitle = opts.blogArticle ? opts.title : `${opts.title} | ${SITE_NAME}`;
-  const desc = opts.description || META[opts.lang].defaultDesc;
+  const url = normalizeCanonicalUrl(
+    base,
+    opts.blogArticle ? opts.blogArticle.articlePath : pathStr || "/",
+  );
+  const rawTitle = opts.blogArticle ? opts.title : `${opts.title} | ${SITE_NAME}`;
+  const fullTitle = normalizeMetaTitle(rawTitle);
+  const desc = normalizeMetaDescription(opts.description || META[opts.lang].defaultDesc);
   const kw = opts.blogArticle
     ? [META[opts.lang].keywords, opts.blogArticle.keywords].filter(Boolean).join(", ")
     : [META[opts.lang].keywords, opts.calculatorKeywords].filter(Boolean).join(", ") ||
@@ -136,11 +141,10 @@ export function updatePageSeo(opts: {
   setMeta("name", "description", desc);
   setMeta("name", "keywords", kw);
   const isNotFoundPage = opts.page === "notfound";
-  const isNoindexPage = isNotFoundPage || opts.page === "privacy" || opts.page === "terms";
   setMeta(
     "name",
     "robots",
-    isNoindexPage
+    isNotFoundPage
       ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   );
@@ -212,11 +216,11 @@ export function updatePageSeo(opts: {
     const enPath = buildPathname("en", opts.page, null);
     const ruPath = buildPathname("ru", opts.page, null);
     const enUrl = opts.blogArticle
-      ? `${base}${opts.blogArticle.alternateEnPath}`
-      : enPath === "/" ? base : `${base}${enPath}`;
+      ? normalizeCanonicalUrl(base, opts.blogArticle.alternateEnPath)
+      : normalizeCanonicalUrl(base, enPath === "/" ? "/" : enPath);
     const ruUrl = opts.blogArticle
-      ? `${base}${opts.blogArticle.alternateRuPath}`
-      : ruPath === "/" ? base : `${base}${ruPath}`;
+      ? normalizeCanonicalUrl(base, opts.blogArticle.alternateRuPath)
+      : normalizeCanonicalUrl(base, ruPath === "/" ? "/ru" : ruPath);
     const xDefaultUrl = HREFLANG_X_DEFAULT_LANG === "ru" ? ruUrl : enUrl;
     for (const [hreflang, href] of [
       ["en", enUrl],

@@ -521,13 +521,14 @@ export default function App() {
                               )}
                               <div className="fc-card-title">{c.title}</div>
                               <div className="fc-card-desc">{c.desc}</div>
-                              <button
-                                onClick={() => navigateTo(c.id)}
+                              <a
+                                href={buildPathname(lang, c.id)}
+                                onClick={e => { e.preventDefault(); navigateTo(c.id); }}
                                 className="btn fc-card-btn"
                               >
                                 {t.readMore}
                                 <i className="fa-solid fa-arrow-right"></i>
-                              </button>
+                              </a>
                             </div>
                           </div>
                         </div>

@@ -57,7 +57,7 @@ export const translations = sameLocaleShape({
     /** Home page only: used for <title> + meta (seo.ts appends ` | ${SITE_NAME}`). */
     homeSeoHeadline: "Free Mortgage, Loan, EMI & Tax Calculators Online",
     homeSeoDescription:
-      "Free finance calculators for mortgage, loan, EMI, interest, deposit, VAT, tax, BMI, and currency. Live results in your browser—no sign-up. English & Russian.",
+      "Free finance calculators for mortgage, loan, EMI, interest, deposit, VAT, tax, BMI, and currency. Live results in your browser — no sign-up. English and Russian.",
     homeSeoCalculatorKeywords:
       "mortgage calculator, loan calculator, EMI calculator, interest calculator, tax calculator, VAT calculator, currency converter, BMI calculator, deposit calculator, free online calculator",
     /** Per-page SEO: title (50-60 chars) + description (145-160 chars) used in updatePageSeo. */

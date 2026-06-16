@@ -12,6 +12,11 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
+import {
+  normalizeCanonicalUrl,
+  normalizeMetaDescription,
+  normalizeMetaTitle,
+} from './metaLimits.mjs';
 
 const SITE = 'https://financcalculator.ru';
 const DIST = 'dist';
@@ -184,7 +189,7 @@ const BLOG_POSTS_EN = [
   {
     slug: 'what-is-graphing-calculator',
     title: 'What Is a Graphing Calculator? Full Guide + Free Online Tool | FinanceCalculator',
-    desc: 'What a graphing calculator does, how it differs from scientific calculators, and when you need one for math and science.',
+    desc: 'Learn what a graphing calculator does, how TI, Casio, and HP models compare, exam rules, apps vs hardware, and step-by-step graphing in your browser — free online tool.',
     datePublished: '2026-04-12',
     dateModified: '2026-04-13',
     section: 'Mathematics',
@@ -547,6 +552,11 @@ function calcNoscript(route, lang) {
 }
 
 function injectIntoHtml(html, { title, desc, canonical, schemaBlocks, noscriptBody }) {
+  title = normalizeMetaTitle(title);
+  desc = normalizeMetaDescription(desc);
+  const pathOnly = canonical.startsWith(SITE) ? canonical.slice(SITE.length) : canonical;
+  canonical = normalizeCanonicalUrl(SITE, pathOnly || '/');
+
   // Update <title>
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`);
 
