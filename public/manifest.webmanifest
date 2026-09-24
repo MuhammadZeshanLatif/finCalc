@@ -1,14 +1,14 @@
 {
   "name": "FinanceCalculator — Financial Calculators",
   "short_name": "FinanceCalculator",
-  "description": "Free interest, loan, mortgage, EMI, VAT, tax, currency, BMI, and scientific calculators. English & Russian.",
+  "description": "Free interest, loan, mortgage, EMI, VAT, tax, currency, BMI, and scientific calculators.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#1e3a5f",
   "theme_color": "#1e3a5f",
-  "lang": "ru",
+  "lang": "en",
   "dir": "ltr",
   "categories": ["finance", "utilities", "productivity"],
   "icons": [

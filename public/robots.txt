@@ -139,5 +139,5 @@ Allow: /
 User-agent: RubiconProject
 Allow: /
 
-Sitemap: https://financcalculator.ru/sitemap.xml
-Host: financcalculator.ru
+Sitemap: https://financcalculators.com/sitemap.xml
+Host: financcalculators.com

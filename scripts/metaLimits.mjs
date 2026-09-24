@@ -36,7 +36,7 @@ export function normalizeMetaDescription(raw) {
   }
   const pads = [
     " Free FinanceCalculator guides and tools online.",
-    " Accurate, fast, English and Russian.",
+    " Accurate, fast, and free.",
     " No sign-up required.",
   ];
   for (const pad of pads) {

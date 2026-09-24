@@ -16,26 +16,12 @@ function formatLinkList(items: string[], lang: AppLang): ReactNode {
 
   if (items.length === 1) return link(items[0]!);
   if (items.length === 2) {
-    return lang === "ru" ? (
-      <>{link(items[0]!)} и {link(items[1]!)}</>
-    ) : (
-      <>{link(items[0]!)} and {link(items[1]!)}</>
-    );
+    return <>{link(items[0]!)} and {link(items[1]!)}</>;
   }
 
   const last = items[items.length - 1]!;
   const rest = items.slice(0, -1);
-  return lang === "ru" ? (
-    <>
-      {rest.map((id, i) => (
-        <span key={id}>
-          {link(id)}
-          {i < rest.length - 1 ? ", " : " и "}
-        </span>
-      ))}
-      {link(last)}
-    </>
-  ) : (
+  return (
     <>
       {rest.map((id, i) => (
         <span key={id}>

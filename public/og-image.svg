@@ -71,7 +71,7 @@
 
   <!-- Domain badge bottom right -->
   <rect x="910" y="468" width="270" height="36" rx="18" fill="rgba(251,191,36,0.2)" stroke="rgba(251,191,36,0.5)" stroke-width="1.5"/>
-  <text x="1045" y="491" text-anchor="middle" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="18" font-weight="700">financcalculator.ru</text>
+  <text x="1045" y="491" text-anchor="middle" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="18" font-weight="700">financcalculators.com</text>
 
   <!-- Bottom bar -->
   <rect x="0" y="600" width="1200" height="30" fill="rgba(0,0,0,0.2)"/>

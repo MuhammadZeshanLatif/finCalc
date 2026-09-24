@@ -14,7 +14,7 @@ export function LegalPage({ doc, lang, otherPage, otherLabel }: Props) {
       <header className="border-bottom pb-3 mb-4">
         <h1 className="h2 text-primary mb-2">{doc.title}</h1>
         <p className="small text-muted mb-0">
-          {lang === "ru" ? "Последнее обновление:" : "Last updated:"}{" "}
+          Last updated:{" "}
           <time dateTime="2026-06-11">{doc.lastUpdated}</time>
         </p>
       </header>
@@ -33,7 +33,7 @@ export function LegalPage({ doc, lang, otherPage, otherLabel }: Props) {
       ))}
 
       <p className="mt-5 pt-3 border-top small text-muted">
-        {lang === "ru" ? "См. также:" : "See also:"}{" "}
+        See also:{" "}
         <a href={buildPathname(lang, otherPage)}>{otherLabel}</a>
       </p>
     </div>

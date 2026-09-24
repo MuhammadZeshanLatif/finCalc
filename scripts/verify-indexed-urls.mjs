@@ -2,7 +2,7 @@
  * Verify sitemap URLs return HTTP 200 after deploy.
  *
  * Env:
- *   VERIFY_BASE_URL — optional, defaults to https://financcalculator.ru
+ *   VERIFY_BASE_URL — optional, defaults to https://financcalculators.com
  *   VERIFY_SITEMAP  — optional, defaults to public/sitemap.xml
  *   VERIFY_CONCURRENCY — optional, default 8
  */
@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-const BASE_URL = (process.env.VERIFY_BASE_URL || "https://financcalculator.ru").replace(
+const BASE_URL = (process.env.VERIFY_BASE_URL || "https://financcalculators.com").replace(
   /\/$/,
   "",
 );

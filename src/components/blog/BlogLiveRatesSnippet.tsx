@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import type { AppLang } from "../../utils/routes";
 
 type LatestJson = { date: string; rates: Record<string, number> };
 
-export function BlogLiveRatesSnippet({ lang }: { lang: "en" | "ru" }) {
+export function BlogLiveRatesSnippet(_props: { lang: AppLang }) {
   const [data, setData] = useState<LatestJson | null>(null);
   const [err, setErr] = useState(false);
 
@@ -22,15 +23,9 @@ export function BlogLiveRatesSnippet({ lang }: { lang: "en" | "ru" }) {
   }, []);
 
   const pairs = ["EUR", "GBP", "RUB"] as const;
-  const title =
-    lang === "ru"
-      ? "Справочные курсы (1 USD, ECB через Frankfurter)"
-      : "Reference rates (1 USD, ECB via Frankfurter)";
-  const asOf = lang === "ru" ? "Дата данных:" : "Rate date:";
-  const fail =
-    lang === "ru"
-      ? "Не удалось загрузить курсы. Откройте конвертер на сайте."
-      : "Could not load rates. Use the site currency converter.";
+  const title = "Reference rates (1 USD, ECB via Frankfurter)";
+  const asOf = "Rate date:";
+  const fail = "Could not load rates. Use the site currency converter.";
 
   if (err) {
     return (
@@ -44,7 +39,7 @@ export function BlogLiveRatesSnippet({ lang }: { lang: "en" | "ru" }) {
     return (
       <aside className="fc-blog-live-rates" aria-busy="true">
         <div className="spinner-border spinner-border-sm text-primary" role="status" />
-        <span className="small ms-2 text-muted">{lang === "ru" ? "Загрузка…" : "Loading…"}</span>
+        <span className="small ms-2 text-muted">Loading…</span>
       </aside>
     );
   }
@@ -61,7 +56,7 @@ export function BlogLiveRatesSnippet({ lang }: { lang: "en" | "ru" }) {
             <dt className="small text-muted mb-0">USD → {code}</dt>
             <dd className="small fw-semibold mb-0 font-monospace">
               {data.rates[code] != null
-                ? data.rates[code].toLocaleString(lang === "ru" ? "ru-RU" : "en-US", {
+                ? data.rates[code].toLocaleString("en-US", {
                     maximumFractionDigits: 4,
                   })
                 : "—"}

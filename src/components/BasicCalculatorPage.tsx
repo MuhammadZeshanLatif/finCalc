@@ -4,8 +4,9 @@ import { evaluateExpression, roundDisplay } from "../utils/basicCalcEngine";
 import { CalculatorRichArticle } from "./calc/CalculatorRichArticle";
 import { AdBanner } from "./ads/AdBanner";
 import { TruncatedText } from "./calc/CalcVisuals";
+import type { AppLang } from "../utils/routes";
 
-interface Props { lang: "en" | "ru"; }
+interface Props { lang: AppLang; }
 
 type KeyVariant = "num" | "op" | "eq" | "fn" | "sci";
 
@@ -187,7 +188,7 @@ export default function BasicCalculatorPage({ lang }: Props) {
           {result !== null && !err ? (
             <div className="fc-result-box fc-animate mb-3">
               <div className="fc-result-metric">
-                <span className="metric-label">{lang === "ru" ? "Значение" : "Value"}</span>
+                <span className="metric-label">Value</span>
                 <TruncatedText text={result} className="metric-value fc-basic-metric-value" />
               </div>
               {memory !== 0 && (
@@ -201,7 +202,7 @@ export default function BasicCalculatorPage({ lang }: Props) {
             <div className="fc-result-box mb-3">
               <div className="fc-result-empty">
                 <span className="empty-icon"><i className="fa-solid fa-calculator"></i></span>
-                <p>{lang === "ru" ? "Введите выражение и нажмите Вычислить." : "Enter an expression and press Calculate."}</p>
+                <p>Enter an expression and press Calculate.</p>
               </div>
             </div>
           )}
@@ -239,7 +240,7 @@ export default function BasicCalculatorPage({ lang }: Props) {
           </div>
           {history.length === 0 ? (
             <div className="fc-basic-history-empty">
-              <p>{lang === "ru" ? "История пуста" : "No history yet"}</p>
+              <p>No history yet</p>
             </div>
           ) : (
             <div className="fc-basic-history-list">

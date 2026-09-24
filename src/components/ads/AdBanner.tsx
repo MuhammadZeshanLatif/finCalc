@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef } from "react";
-import { getAdUnit, type AdBannerUnit } from "../../config/ads";
+import { ADSTERRA_MOBILE, ADSTERRA_RECTANGLE, ADSTERRA_SKYSCRAPER, ADSTERRA_TALL_SKYSCRAPER, getAdUnit, type AdBannerUnit } from "../../config/ads";
 
 let adLoadQueue: Promise<void> = Promise.resolve();
 
@@ -72,7 +72,7 @@ function AdBannerInner({ slot, unit, layout, narrowOnly }: InnerProps) {
     };
   }, [containerId, slot, key, width, height, invokeBase]);
 
-  const sizeClass = width >= 700 ? "fc-ad-banner--728" : "fc-ad-banner--468";
+  const sizeClass = `fc-ad-banner--${width}${width === 160 ? ` fc-ad-banner--160x${height}` : ""}`;
   const layoutClass = layout === "tight" ? "fc-ad-banner--tight" : "fc-ad-banner--spaced";
   const narrowClass = narrowOnly ? " fc-ad-banner--narrow-only" : "";
 
@@ -95,7 +95,7 @@ type Props = {
    * auto (default) = 728×90 on wide screens + 468×60 on tablet (468–727px).
    * leaderboard = 728×90 only. banner = 468×60 only.
    */
-  size?: "auto" | "leaderboard" | "banner";
+  size?: "auto" | "leaderboard" | "banner" | "mobile" | "rectangle" | "skyscraper" | "tall-skyscraper";
 };
 
 /** Reusable Adsterra iframe banner — config in `src/config/ads.ts`. */
@@ -106,6 +106,10 @@ export function AdBanner({ slot, layout = "spaced", size = "auto" }: Props) {
   if (size === "banner") {
     return <AdBannerInner slot={slot} unit={getAdUnit("banner")} layout={layout} />;
   }
+  if (size === "mobile") return <AdBannerInner slot={slot} unit={ADSTERRA_MOBILE} layout={layout} />;
+  if (size === "rectangle") return <AdBannerInner slot={slot} unit={ADSTERRA_RECTANGLE} layout={layout} />;
+  if (size === "skyscraper") return <AdBannerInner slot={slot} unit={ADSTERRA_SKYSCRAPER} layout={layout} />;
+  if (size === "tall-skyscraper") return <AdBannerInner slot={slot} unit={ADSTERRA_TALL_SKYSCRAPER} layout={layout} />;
 
   return (
     <>
@@ -116,6 +120,7 @@ export function AdBanner({ slot, layout = "spaced", size = "auto" }: Props) {
         layout={layout}
         narrowOnly
       />
+      <div className="fc-ad-mobile-only"><AdBannerInner slot={`${slot}-320`} unit={ADSTERRA_MOBILE} layout={layout} /></div>
     </>
   );
 }

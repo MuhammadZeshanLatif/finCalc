@@ -16,11 +16,11 @@ import {
 } from "../utils/calculatorOutputs";
 import { getCalculatorFieldErrors } from "../utils/calcFieldValidation";
 import { staticDemoFactor } from "../utils/exchangeRates";
+import type { AppLang } from "../utils/routes";
 
-function currencyOptionLabel(code: string, lang: "en" | "ru"): string {
+function currencyOptionLabel(code: string): string {
   try {
-    const loc = lang === "ru" ? "ru-RU" : "en-US";
-    const dn = new Intl.DisplayNames([loc, "en"], { type: "currency", fallback: "code" });
+    const dn = new Intl.DisplayNames(["en-US", "en"], { type: "currency", fallback: "code" });
     const name = dn.of(code);
     return name && name !== code ? `${code} — ${name}` : code;
   } catch {
@@ -30,7 +30,7 @@ function currencyOptionLabel(code: string, lang: "en" | "ru"): string {
 
 interface Props {
   id: string;
-  lang: "en" | "ru";
+  lang: AppLang;
 }
 
 const resultLabels: Record<string, string> = {
@@ -74,13 +74,9 @@ type ResultInsight = { icon: string; value: string; label: string };
 
 const bmiBadgeSlug: Record<string, string> = {
   Underweight: "underweight",
-  "Дефицит веса": "underweight",
   Normal: "normal",
-  Норма: "normal",
   Overweight: "overweight",
-  "Избыточный вес": "overweight",
   Obese: "obese",
-  Ожирение: "obese",
 };
 
 const calcIcons: Record<string, string> = {
@@ -124,7 +120,7 @@ function FinancialCalculator({ id, lang }: Props) {
   const t = translations[lang].calculators[id as keyof typeof translations.en.calculators] as Record<string, string>;
   const gl = translations[lang];
   const sl = (gl as { schedule: Record<string, string> }).schedule;
-  const locale = lang === "ru" ? "ru-RU" : "en-US";
+  const locale = "en-US";
   const today = new Date().toISOString().slice(0, 10);
 
   const [principal, setPrincipal] = useState(10000);
@@ -294,9 +290,9 @@ function FinancialCalculator({ id, lang }: Props) {
         if (!Number.isFinite(num)) return "—";
         return `${num.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currTo}`;
       }
-      if (key === "totalDays") return `${value} ${lang === "ru" ? "дн." : "days"}`;
-      if (key === "weeks") return `${value} ${lang === "ru" ? "нед." : "weeks"}`;
-      if (key === "months") return `${value} ${lang === "ru" ? "мес." : "months"}`;
+      if (key === "totalDays") return `${value} days`;
+      if (key === "weeks") return `${value} weeks`;
+      if (key === "months") return `${value} months`;
       return value;
     };
 
@@ -719,9 +715,7 @@ function FinancialCalculator({ id, lang }: Props) {
     if (id === "bmi") {
       const htM = bmiHeight / 100;
       const bmi = bmiWeight / (htM * htM);
-      const cat = lang === "en"
-        ? (bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal" : bmi < 30 ? "Overweight" : "Obese")
-        : (bmi < 18.5 ? "Дефицит веса" : bmi < 25 ? "Норма" : bmi < 30 ? "Избыточный вес" : "Ожирение");
+      const cat = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal" : bmi < 30 ? "Overweight" : "Obese";
       const wLo = 18.5 * htM * htM;
       const wHi = 24.99 * htM * htM;
       const result = { score: bmi.toFixed(1), category: cat };
@@ -768,7 +762,7 @@ function FinancialCalculator({ id, lang }: Props) {
           { label: resultLabels.calculatedTax, value: Math.max(0, totalTax), color: "#EF4444" },
         ],
         center: fmtMoney(grossIncome),
-        sub: lang === "ru" ? "Доход" : "Gross income",
+        sub: "Gross income",
       });
       const insights: ResultInsight[] = [];
       if (grossIncome > 0) {
@@ -857,8 +851,8 @@ function FinancialCalculator({ id, lang }: Props) {
           { key: "v", label: sl.colEndBal },
         ],
         rows: [
-          { k: lang === "ru" ? "Цена без налога" : "Pre-tax price", v: fmtMoney(base) },
-          { k: lang === "ru" ? "Налог с продаж" : "Sales tax", v: fmtMoney(stax) },
+          { k: "Pre-tax price", v: fmtMoney(base) },
+          { k: "Sales tax", v: fmtMoney(stax) },
         ],
         totalRow: { k: sl.total, v: fmtMoney(total) },
       });
@@ -866,18 +860,18 @@ function FinancialCalculator({ id, lang }: Props) {
         kind: "donut",
         title: sl.ratioDonut,
         parts: [
-          { label: lang === "ru" ? "Цена без налога" : "Pre-tax", value: base, color: "#3B72C4" },
-          { label: lang === "ru" ? "Налог" : "Tax", value: stax, color: "#F59E0B" },
+          { label: "Pre-tax", value: base, color: "#3B72C4" },
+          { label: "Tax", value: stax, color: "#F59E0B" },
         ],
         center: fmtMoney(total),
-        sub: lang === "ru" ? "Итого с налогом" : "Total after tax",
+        sub: "Total after tax",
       });
       const insights: ResultInsight[] = [];
       if (total > 0) {
         insights.push({
           icon: "fa-tags",
           value: `${((stax / total) * 100).toFixed(1)}%`,
-          label: lang === "ru" ? "Налог % от итога" : "Tax % of total",
+          label: "Tax % of total",
         });
       }
       return { result, insights, schedules, charts, formatValue };
@@ -948,9 +942,9 @@ function FinancialCalculator({ id, lang }: Props) {
               </CalcField>
               <CalcField label={t.compounding}>
                 <select className="form-select" value={compounding} onChange={e => setCompounding(Number(e.target.value))}>
-                  <option value={12}>{lang === "ru" ? "Ежемесячно" : "Monthly"}</option>
-                  <option value={4}>{lang === "ru" ? "Ежеквартально" : "Quarterly"}</option>
-                  <option value={1}>{lang === "ru" ? "Ежегодно" : "Annually"}</option>
+                  <option value={12}>Monthly</option>
+                  <option value={4}>Quarterly</option>
+                  <option value={1}>Annually</option>
                 </select>
               </CalcField>
             </div>
@@ -1287,7 +1281,7 @@ function FinancialCalculator({ id, lang }: Props) {
                 <select className="form-select" value={currFrom} onChange={e => setCurrFrom(e.target.value)}>
                   {fxCodes.map(code => (
                     <option key={code} value={code}>
-                      {currencyOptionLabel(code, lang)}
+                      {currencyOptionLabel(code)}
                     </option>
                   ))}
                 </select>
@@ -1296,7 +1290,7 @@ function FinancialCalculator({ id, lang }: Props) {
                 <select className="form-select" value={currTo} onChange={e => setCurrTo(e.target.value)}>
                   {fxCodes.map(code => (
                     <option key={code} value={code}>
-                      {currencyOptionLabel(code, lang)}
+                      {currencyOptionLabel(code)}
                     </option>
                   ))}
                 </select>
@@ -1312,7 +1306,7 @@ function FinancialCalculator({ id, lang }: Props) {
               {t.results}
             </p>
             {result ? (
-              <div className="btn-group btn-group-sm fc-result-view-toggle" role="group" aria-label={lang === "ru" ? "Вид результатов" : "Results layout"}>
+              <div className="btn-group btn-group-sm fc-result-view-toggle" role="group" aria-label="Results layout">
                 <button
                   type="button"
                   className={clsx("btn", !resultViewCompact ? "btn-primary" : "btn-outline-secondary")}
@@ -1359,7 +1353,7 @@ function FinancialCalculator({ id, lang }: Props) {
                 </div>
               )}
               {insights.length > 0 ? (
-                <div className="fc-result-insights" aria-label={lang === "ru" ? "Дополнительные показатели" : "Extra insights"}>
+                <div className="fc-result-insights" aria-label="Extra insights">
                   {insights.map((ins, i) => (
                     <div key={i} className="fc-result-insight">
                       <span className="fc-result-insight__icon" aria-hidden>
@@ -1384,8 +1378,8 @@ function FinancialCalculator({ id, lang }: Props) {
                   {hasInputErrors
                     ? gl.validationSummary
                     : id === "days"
-                      ? (lang === "ru" ? "Укажите обе даты, чтобы увидеть результат." : "Enter both dates to see results.")
-                      : (lang === "ru" ? "Введите данные слева." : "Enter values on the left.")}
+                      ? "Enter both dates to see results."
+                      : "Enter values on the left."}
                 </p>
               </div>
             </div>

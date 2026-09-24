@@ -1,7 +1,7 @@
 # GEO Audit Report: FinanceCalculator
 
 **Audit Date:** 2026-05-24  
-**URL:** https://financcalculator.ru/  
+**URL:** https://financcalculators.com/  
 **Business Type:** Free SaaS Tool / Publisher (Bilingual EN + RU)  
 **Pages Analyzed:** ~100+ (from sitemap — 11 calculator routes × 2 languages + blog posts × 2 languages)  
 **Tech Stack:** Vite + React 19, TypeScript, Tailwind CSS  

@@ -29,20 +29,11 @@ export function CookieConsent({ lang, onAccept }: Props) {
   const privacyPath = buildPathname(lang, "privacy");
 
   return (
-    <div className="fc-cookie-banner" role="dialog" aria-live="polite" aria-label={lang === "ru" ? "Cookie" : "Cookies"}>
+    <div className="fc-cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies">
       <div className="fc-cookie-banner__inner container">
         <p className="fc-cookie-banner__text mb-0">
-          {lang === "ru" ? (
-            <>
-              Мы используем cookie и рекламные технологии (включая Google AdSense) для бесплатной работы сайта.{" "}
-              <a href={privacyPath}>Политика конфиденциальности</a>.
-            </>
-          ) : (
-            <>
-              We use cookies and advertising technologies (including Google AdSense) to keep FinanceCalculator free.{" "}
-              <a href={privacyPath}>Privacy Policy</a>.
-            </>
-          )}
+          We use cookies and advertising technologies (including Google AdSense) to keep FinanceCalculator free.{" "}
+          <a href={privacyPath}>Privacy Policy</a>.
         </p>
         <button
           type="button"
@@ -57,7 +48,7 @@ export function CookieConsent({ lang, onAccept }: Props) {
             onAccept();
           }}
         >
-          {lang === "ru" ? "Принять" : "Accept"}
+          Accept
         </button>
       </div>
     </div>

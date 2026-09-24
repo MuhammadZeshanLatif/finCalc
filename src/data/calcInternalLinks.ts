@@ -16,20 +16,6 @@ export const CALC_LINK_LABELS: Record<AppLang, Record<string, string>> = {
     days: "Date Difference Calculator",
     bmi: "BMI Calculator",
   },
-  ru: {
-    loan: "Кредитный калькулятор",
-    mortgage: "Ипотечный калькулятор",
-    emi: "EMI калькулятор",
-    interest: "Калькулятор сложных процентов",
-    deposit: "Калькулятор вклада",
-    tax: "Налоговый калькулятор",
-    vat: "Калькулятор НДС",
-    salestax: "Калькулятор налога с продаж",
-    currency: "Конвертер валют",
-    basic: "Научный калькулятор",
-    days: "Калькулятор дней между датами",
-    bmi: "Калькулятор ИМТ",
-  },
 };
 
 /** 2–4 contextual links inside main content (topical clusters). */
@@ -80,25 +66,11 @@ export const CONTEXTUAL_INTRO: Record<AppLang, Record<string, string>> = {
     days: "Contract and loan timelines often start with our",
     bmi: "",
   },
-  ru: {
-    loan: "Сравнивая предложения, удобно использовать вместе с нашими",
-    mortgage: "Ипотека использует ту же амортизацию — см. также",
-    emi: "EMI — это фиксированный платёж по той же логике, что и в",
-    interest: "Накопления и кредиты зависят от капитализации — см.",
-    deposit: "Вклад растёт по тем же принципам, что и в",
-    tax: "Для счетов и чеков см. также",
-    vat: "НДС и налог с продаж часто идут в паре — сравните с",
-    salestax: "Для розницы и счетов также пригодятся",
-    currency: "Для сумм в разных валютах полезны",
-    basic: "Для дат и конвертации также есть",
-    days: "Сроки договоров и кредитов часто считают через",
-    bmi: "",
-  },
 };
 
-export function getRelatedSectionTitle(lang: AppLang, calcId: string): string {
+export function getRelatedSectionTitle(_lang: AppLang, calcId: string): string {
   if (calcId === "bmi") {
-    return lang === "ru" ? "Другие калькуляторы" : "Other Calculators";
+    return "Other Calculators";
   }
-  return lang === "ru" ? "Похожие калькуляторы" : "Related Calculators";
+  return "Related Calculators";
 }

@@ -18,7 +18,7 @@ import {
   normalizeMetaTitle,
 } from './metaLimits.mjs';
 
-const SITE = 'https://financcalculator.ru';
+const SITE = 'https://financcalculators.com';
 const DIST = 'dist';
 
 if (!existsSync(join(DIST, 'index.html'))) {
@@ -250,217 +250,12 @@ const BLOG_POSTS_EN = [
   },
 ];
 
-const BLOG_POSTS_RU = [
-  {
-    slug: 'slozhnye-protsenty-apr',
-    title: 'Сложные проценты: как срок и частота меняют реальный доход | FinanceCalculator',
-    desc: 'Формула сложных процентов, влияние частоты начисления и срока вклада. Примеры расчётов и типичные ошибки.',
-    datePublished: '2026-01-15',
-    dateModified: '2026-04-06',
-    section: 'Личные финансы',
-    excerpt: 'Дата начала и частота начисления процентов влияют на итоговую сумму больше, чем небольшая разница в ставке.',
-    faqs: [
-      { q: 'Что такое сложные проценты?', a: 'Сложные проценты — это проценты, начисляемые на основную сумму и на ранее накопленные проценты. Чем дольше срок, тем сильнее эффект.' },
-    ],
-  },
-  {
-    slug: 'ipoteka-oshibki-piti-pmi',
-    title: '10 ошибок при ипотеке и как их избежать | FinanceCalculator',
-    desc: 'Топ-10 ошибок при оформлении ипотеки: предодобрение, кредитная история, закрывающие расходы и расчёт PITI.',
-    datePublished: '2026-04-07',
-    dateModified: '2026-04-08',
-    section: 'Ипотека',
-    excerpt: 'Покупка жилья требует понимания не только ставки, но и предодобрения, кредитного профиля и полного платежа PITI.',
-    faqs: [
-      { q: 'Чем отличается предодобрение от предквалификации?', a: 'Предквалификация — быстрая оценка. Предодобрение — проверка доходов, активов и кредитной истории, более надёжный сигнал для продавца.' },
-    ],
-  },
-  {
-    slug: 'emi-dosrochnoe-pogashenie',
-    title: 'Досрочное погашение кредита EMI: где реально экономятся проценты | FinanceCalculator',
-    desc: 'Когда досрочное погашение выгодно, ловушка «правила 78», и как правильно указать назначение платежа.',
-    datePublished: '2026-02-12',
-    dateModified: '2026-04-07',
-    section: 'Личные финансы',
-    excerpt: 'Дополнительный платёж не всегда снижает основной долг. Многие банки засчитывают его как аванс следующего месяца.',
-    faqs: [
-      { q: 'Что выгоднее: сократить срок или снизить платёж?', a: 'Сокращение срока экономит значительно больше процентов. Снижение платежа имеет смысл только при реальных трудностях с денежным потоком.' },
-    ],
-  },
-  {
-    slug: 'rezervnyy-fond-likvidnost',
-    title: 'Резервный фонд: сначала ликвидность, потом доходность | FinanceCalculator',
-    desc: 'Сколько откладывать в резервный фонд, где хранить, и почему безопасность важнее высокой ставки.',
-    datePublished: '2026-02-20',
-    dateModified: '2026-04-08',
-    section: 'Личные финансы',
-    excerpt: 'Резервный фонд должен быть доступен мгновенно. Ликвидность и сохранность важнее доходности.',
-    faqs: [
-      { q: 'На сколько месяцев расходов должен быть резервный фонд?', a: 'Три месяца — для стабильной семьи с двумя доходами; шесть месяцев — для одного кормильца; 9–12 месяцев — для самозанятых.' },
-    ],
-  },
-  {
-    slug: 'progressivnye-nalogovye-stavki',
-    title: 'Прогрессивные налоговые ставки: почему повышение зарплаты не облагается по максимальной ставке | FinanceCalculator',
-    desc: 'Как работает прогрессивная шкала НДФЛ 2025 в России (13–22%). Предельная и эффективная ставка на примерах.',
-    datePublished: '2026-02-25',
-    dateModified: '2026-04-08',
-    section: 'Налоги',
-    excerpt: 'По прогрессивной шкале каждая следующая ставка применяется только к части дохода выше порога, а не ко всей зарплате.',
-    faqs: [
-      { q: 'Облагается ли весь доход по максимальной ставке при переходе в новую ступень?', a: 'Нет. Только часть дохода, превышающая порог, облагается по более высокой ставке. Всё, что ниже порога, остаётся по прежней ставке.' },
-    ],
-  },
-  {
-    slug: 'valyuta-puteshestvie-kursy',
-    title: 'Обмен валюты в путешествии: как сэкономить | FinanceCalculator',
-    desc: 'Где выгоднее менять валюту, как избежать скрытых комиссий и правильно спланировать бюджет поездки.',
-    datePublished: '2026-03-01',
-    dateModified: '2026-04-08',
-    section: 'Валюта',
-    excerpt: 'Скрытые наценки при обмене валюты могут съесть 5–10% бюджета. Рассказываем, как этого избежать.',
-    faqs: [
-      { q: 'Что такое курс по середине рынка?', a: 'Это среднее между курсом покупки и продажи — «реальный» курс без наценки банка. Именно от него отталкиваются при сравнении предложений.' },
-    ],
-  },
-  {
-    slug: 'nds-scheta-s-nalogom-i-bez',
-    title: 'НДС в счетах-фактурах: с налогом и без — разница и расчёт | FinanceCalculator',
-    desc: 'Как работает НДС включённый и НДС сверху при выставлении счетов. Формулы расчёта и примеры.',
-    datePublished: '2026-03-05',
-    dateModified: '2026-04-08',
-    section: 'НДС',
-    excerpt: 'Цена «с НДС» включает налог внутри. Цена «без НДС» — налог добавляется сверху. Путаница стоит денег.',
-    faqs: [
-      { q: 'Как выделить НДС из суммы с НДС?', a: 'НДС = Сумма с НДС × ставка / (100 + ставка). Например, при ставке 20%: НДС = цена × 20 / 120 = цена / 6.' },
-    ],
-  },
-  {
-    slug: 'ti84-plus-ce-kalkulyator-onlayn',
-    title: 'TI-84 Plus CE онлайн-калькулятор: руководство | FinanceCalculator',
-    desc: 'Функции графического калькулятора TI-84 Plus CE и бесплатные онлайн-аналоги для построения графиков.',
-    datePublished: '2026-03-25',
-    dateModified: '2026-04-08',
-    section: 'Инструменты',
-    excerpt: 'TI-84 Plus CE — популярный графический калькулятор для школы и вуза. Онлайн-аналоги работают бесплатно в браузере.',
-    faqs: [
-      { q: 'Можно ли использовать графический калькулятор онлайн бесплатно?', a: 'Да. Онлайн-калькуляторы на FinanceCalculator позволяют строить графики функций, решать уравнения и проводить статистический анализ бесплатно.' },
-    ],
-  },
-  {
-    slug: 'imt-skrining-i-stoimost-strahovki',
-    title: 'ИМТ, медицинские скрининги и стоимость страховки | FinanceCalculator',
-    desc: 'Как индекс массы тела влияет на андеррайтинг страхования здоровья и жизни.',
-    datePublished: '2026-03-10',
-    dateModified: '2026-04-08',
-    section: 'ИМТ',
-    excerpt: 'Индекс массы тела — один из показателей, который страховщики используют при расчёте тарифов. Понимание этого помогает планировать расходы на страхование.',
-    faqs: [
-      { q: 'Влияет ли ИМТ на стоимость страховки?', a: 'В системах, допускающих медицинский андеррайтинг, высокий ИМТ может повлиять на тариф или условия страхования.' },
-    ],
-  },
-  {
-    slug: 'kak-rasschitat-emi-ezhemesyachnyy-platezh',
-    title: 'Как рассчитать EMI: формула ежемесячного платежа по кредиту | FinanceCalculator',
-    desc: 'Формула EMI с пошаговыми примерами для ипотеки, автокредита и потребительского кредита.',
-    datePublished: '2026-03-15',
-    dateModified: '2026-04-08',
-    section: 'EMI',
-    excerpt: 'EMI — фиксированный ежемесячный платёж по кредиту. Формула: EMI = P × r × (1+r)^n / ((1+r)^n − 1).',
-    faqs: [
-      { q: 'Какова формула расчёта EMI?', a: 'EMI = P × r × (1+r)^n / ((1+r)^n − 1), где P — сумма кредита, r — месячная ставка (годовая ÷ 12), n — количество месяцев.' },
-    ],
-  },
-  {
-    slug: 'kalkulyator-naloga-s-prodazh-nedvizhimost',
-    title: 'Калькулятор налога: продажа недвижимости и НДФЛ в России | FinanceCalculator',
-    desc: 'Как рассчитать НДФЛ при продаже недвижимости в России: освобождения, минимальный срок владения и примеры.',
-    datePublished: '2026-03-20',
-    dateModified: '2026-04-08',
-    section: 'Налоги',
-    excerpt: 'При продаже квартиры до истечения минимального срока владения нужно заплатить НДФЛ с дохода.',
-    faqs: [
-      { q: 'Нужно ли платить налог при продаже квартиры в России?', a: 'Если квартира в собственности менее минимального срока (3 или 5 лет в зависимости от способа приобретения), уплачивается НДФЛ с дохода за вычетом расходов или имущественного вычета.' },
-    ],
-  },
-  {
-    slug: 'chto-takoe-graficheskiy-kalkulyator',
-    title: 'Что такое графический калькулятор? Гид + бесплатный онлайн | FinanceCalculator',
-    desc: 'Чем графический калькулятор отличается от научного, для чего он используется в математике и физике.',
-    datePublished: '2026-04-12',
-    dateModified: '2026-04-13',
-    section: 'Математика',
-    excerpt: 'Графический калькулятор строит графики функций, решает уравнения и выполняет статистический анализ. Стандартный инструмент в STEM-дисциплинах.',
-    faqs: [
-      { q: 'В чём разница между научным и графическим калькулятором?', a: 'Научный калькулятор выполняет числовые вычисления. Графический дополнительно строит графики функций, решает уравнения визуально и поддерживает более сложные вычисления.' },
-    ],
-  },
-  {
-    slug: 'ipoteka-kalkulyator-ezhemesyachnyy-platezh',
-    title: 'Ипотека калькулятор: ежемесячный платёж | FinanceCalculator',
-    desc: 'Ипотека калькулятор поможет оценить ежемесячный PITI, переплату по процентам и срок погашения до подачи заявки. Формула, пример и бесплатный инструмент.',
-    datePublished: '2026-06-11',
-    dateModified: '2026-06-11',
-    section: 'Личные финансы',
-    excerpt: 'Разбираем, как ипотека калькулятор считает тело кредита, проценты, налоги и страховку — с формулой, числовым примером и бесплатным онлайн-инструментом.',
-    faqs: [],
-  },
-  {
-    slug: 'kreditnyy-kalkulyator-ezhemesyachnyy-platezh',
-    title: 'Кредитный калькулятор: платёж и проценты | FinanceCalculator',
-    desc: 'Кредитный калькулятор рассчитает ежемесячный платёж, переплату по процентам и срок погашения потребительского или автокредита. Формула, пример и инструмент.',
-    datePublished: '2026-06-12',
-    dateModified: '2026-06-12',
-    section: 'Личные финансы',
-    excerpt: 'Кредитный калькулятор по сумме, ставке и сроку показывает платёж и переплату — с формулой, числовым примером и бесплатным онлайн-инструментом.',
-    faqs: [],
-  },
-  {
-    slug: 'kalkulyator-vklada-procenty-dohod',
-    title: 'Калькулятор вклада: проценты и рост | FinanceCalculator',
-    desc: 'Калькулятор вклада спрогнозирует итог, проценты и рост при ежемесячных пополнениях и ставке. Формула, пример на цифрах и бесплатный инструмент.',
-    datePublished: '2026-06-13',
-    dateModified: '2026-06-13',
-    section: 'Личные финансы',
-    excerpt: 'Калькулятор вклада считает итог по начальной сумме, пополнениям, ставке и сроку — с формулой, примером и бесплатным онлайн-инструментом.',
-    faqs: [],
-  },
-  {
-    slug: 'ndfl-2026-kalkulyator-raschet-naloga',
-    title: 'НДФЛ 2026: калькулятор и расчёт налога | FinanceCalculator',
-    desc: 'НДФЛ 2026: калькулятор по шкале 13–22%, примеры зарплаты в рублях, маржинальная и средняя ставка. Пошаговый расчёт, FAQ и бесплатный инструмент.',
-    datePublished: '2026-06-14',
-    dateModified: '2026-06-14',
-    section: 'Налоги',
-    excerpt: 'НДФЛ 2026 — пять ступеней на основной налоговой базе. Таблица 13–22%, примеры в рублях и калькулятор для оценки маржинальной и средней ставки.',
-    faqs: [],
-  },
-  {
-    slug: 'kalkulyator-nds-20-procentov',
-    title: 'Калькулятор НДС 20%: с налогом и без | FinanceCalculator',
-    desc: 'Калькулятор НДС 20%: нетто, налог и брутто для цены с НДС и без. Формулы, пример счёта, типичные ошибки и бесплатный онлайн-инструмент.',
-    datePublished: '2026-06-15',
-    dateModified: '2026-06-15',
-    section: 'Бизнес и налоги',
-    excerpt: 'Калькулятор НДС 20% делит сумму на нетто, налог и брутто — с формулами для цен с НДС и без, примерами и бесплатным инструментом.',
-    faqs: [],
-  },
-];
-
 const SPECIAL_PAGES_EN = [
   { path: 'about', title: 'About FinanceCalculator — Free Financial Calculator Tools', desc: 'About FinanceCalculator: our mission, editorial standards, and the team behind free financial calculator tools for English and Russian speakers.', noscript: '<h1>About FinanceCalculator</h1><p>FinanceCalculator is a free bilingual (English and Russian) financial calculator web application. We provide tools for compound interest, loan payments, mortgage amortization, EMI, VAT, currency conversion, BMI, tax brackets, and more.</p><h2>Our Mission</h2><p>To make financial math accessible and understandable for everyone. All calculators are free, no sign-up required.</p><h2>Editorial Standards</h2><p>All content is reviewed for accuracy and updated when calculation standards change. Results are educational estimates only.</p>' },
   { path: 'contact', title: 'Contact FinanceCalculator', desc: 'Get in touch with the FinanceCalculator team for questions, corrections, or feedback.', noscript: '<h1>Contact FinanceCalculator</h1><p>Use our contact form to reach the FinanceCalculator team for questions about our tools or content.</p>' },
   { path: 'privacy', title: 'Privacy Policy — FinanceCalculator', desc: 'How FinanceCalculator handles cookies, Google AdSense, server logs, and contact messages.', noscript: '<h1>Privacy Policy</h1><p>FinanceCalculator privacy policy: cookies, Google AdSense, advertising partners, your rights, and contact information.</p>' },
   { path: 'terms', title: 'Terms of Use — FinanceCalculator', desc: 'Terms of use and disclaimer for FinanceCalculator free calculators and educational content.', noscript: '<h1>Terms and Conditions</h1><p>Calculator results are for education only — not professional advice. Read our full terms of use.</p>' },
   { path: 'blog', title: 'Financial Education Blog | FinanceCalculator', desc: 'Financial education articles covering compound interest, mortgage, EMI loans, tax brackets, VAT, currency, BMI, and personal finance.', noscript: '<h1>FinanceCalculator Financial Education Blog</h1><p>Articles covering personal finance, loans, mortgage, tax, EMI, VAT, currency, and more.</p>' },
-];
-
-const SPECIAL_PAGES_RU = [
-  { path: 'ru/about', title: 'О FinanceCalculator — бесплатные финансовые калькуляторы', desc: 'О проекте FinanceCalculator: наша миссия, редакционные стандарты и инструменты для русскоязычной аудитории.', noscript: '<h1>О FinanceCalculator</h1><p>FinanceCalculator — бесплатное двуязычное веб-приложение с финансовыми калькуляторами. Мы предоставляем инструменты для расчёта сложных процентов, кредитов, ипотеки, EMI, НДС, валюты, ИМТ и налогов.</p>' },
-  { path: 'ru/contact', title: 'Контакты FinanceCalculator', desc: 'Свяжитесь с командой FinanceCalculator по вопросам о наших инструментах или контенте.', noscript: '<h1>Контакты FinanceCalculator</h1><p>Используйте форму обратной связи для вопросов о калькуляторах или контенте.</p>' },
-  { path: 'ru/privacy', title: 'Политика конфиденциальности — FinanceCalculator', desc: 'Cookie, Google AdSense, логи и ваши права на FinanceCalculator.', noscript: '<h1>Политика конфиденциальности</h1><p>Политика конфиденциальности FinanceCalculator.</p>' },
-  { path: 'ru/terms', title: 'Условия использования — FinanceCalculator', desc: 'Условия использования и отказ от ответственности ФинКальк.', noscript: '<h1>Условия использования</h1><p>Калькуляторы носят информационный характер.</p>' },
-  { path: 'ru/blog', title: 'Финансовый блог | FinanceCalculator', desc: 'Статьи по личным финансам: сложные проценты, ипотека, EMI, налоги, НДС, валюта и многое другое.', noscript: '<h1>Финансовый блог FinanceCalculator</h1><p>Статьи по личным финансам: кредиты, ипотека, налоги, НДС, валюта и другие темы.</p>' },
 ];
 
 // ── HTML generation helpers ───────────────────────────────────────────────────
@@ -646,26 +441,6 @@ for (const route of CALCULATOR_ROUTES) {
   count++;
 }
 
-console.log('\nPrerendering RU calculator pages...');
-for (const route of CALCULATOR_ROUTES) {
-  const pageUrl = `${SITE}/ru/${route.path}`;
-  const html = injectIntoHtml(baseHtml, {
-    title: route.title,
-    desc: route.desc,
-    canonical: pageUrl,
-    schemaBlocks: [
-      softwareAppSchema(route, pageUrl, 'ru'),
-      breadcrumbSchema([
-        { name: 'Главная', url: `${SITE}/ru` },
-        { name: route.section, url: pageUrl },
-      ]),
-    ],
-    noscriptBody: calcNoscript(route, 'ru'),
-  });
-  writeFile(`ru/${route.path}/index.html`, html);
-  count++;
-}
-
 console.log('\nPrerendering EN blog posts...');
 for (const post of BLOG_POSTS_EN) {
   const pageUrl = `${SITE}/blog/${post.slug}`;
@@ -688,44 +463,8 @@ for (const post of BLOG_POSTS_EN) {
   count++;
 }
 
-console.log('\nPrerendering RU blog posts...');
-for (const post of BLOG_POSTS_RU) {
-  const pageUrl = `${SITE}/ru/blog/${post.slug}`;
-  const html = injectIntoHtml(baseHtml, {
-    title: post.title,
-    desc: post.desc,
-    canonical: pageUrl,
-    schemaBlocks: [
-      blogPostingSchema(post, pageUrl, 'ru'),
-      breadcrumbSchema([
-        { name: 'Главная', url: `${SITE}/ru` },
-        { name: 'Блог', url: `${SITE}/ru/blog` },
-        { name: post.title.replace(/ \| FinanceCalculator$/, ''), url: pageUrl },
-      ]),
-      post.faqs && post.faqs.length ? faqSchema(post.faqs, pageUrl) : null,
-    ].filter(Boolean),
-    noscriptBody: blogNoscript(post),
-  });
-  writeFile(`ru/blog/${post.slug}/index.html`, html);
-  count++;
-}
-
 console.log('\nPrerendering special pages (EN)...');
 for (const page of SPECIAL_PAGES_EN) {
-  const pageUrl = `${SITE}/${page.path}`;
-  const html = injectIntoHtml(baseHtml, {
-    title: page.title,
-    desc: page.desc,
-    canonical: pageUrl,
-    schemaBlocks: [],
-    noscriptBody: page.noscript,
-  });
-  writeFile(`${page.path}/index.html`, html);
-  count++;
-}
-
-console.log('\nPrerendering special pages (RU)...');
-for (const page of SPECIAL_PAGES_RU) {
   const pageUrl = `${SITE}/${page.path}`;
   const html = injectIntoHtml(baseHtml, {
     title: page.title,

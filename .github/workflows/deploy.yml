@@ -44,7 +44,7 @@ jobs:
           DEPLOY_HOST: ${{ secrets.SSH_HOST }}
           DEPLOY_PORT: ${{ secrets.SSH_PORT }}
           DEPLOY_USER: theins20
-          DEPLOY_REMOTE_DIR: /home/theins20/financcalculator.ru
+          DEPLOY_REMOTE_DIR: /home/theins20/financcalculators.com
           DEPLOY_LOCAL_DIR: dist
           DEPLOY_KEY_PATH: ${{ github.workspace }}/.ssh-deploy-key
           DEPLOY_CONCURRENCY: "1"

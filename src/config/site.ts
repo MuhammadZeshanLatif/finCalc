@@ -1,11 +1,5 @@
 export const SITE_NAME = "FinanceCalculator";
 
-/**
- * Hreflang `x-default` points at this locale’s URL — “fallback” when Google can’t match a user’s language.
- * `ru` = Russia-first positioning (does not replace good RU content, links, or Search Console).
- */
-export const HREFLANG_X_DEFAULT_LANG: "en" | "ru" = "en";
-
 /** Site logo (navbar, hero, structured data). */
 export const SITE_LOGO_URL = "/logo.webp";
 
@@ -30,7 +24,7 @@ export const OFFICIAL_SOCIAL_REDDIT = "https://www.reddit.com/user/fincalculat";
 export function getSiteUrl(): string {
   const u = import.meta.env.VITE_SITE_URL as string | undefined;
   if (u && /^https?:\/\//i.test(u)) return u.replace(/\/+$/, "");
-  return "https://financcalculator.ru";
+  return "https://financcalculators.com";
 }
 
 /** Absolute OG / Twitter image URL (optional). Falls back to `{site}/og-image.webp`. */
@@ -40,10 +34,8 @@ export function getOgImageUrl(): string {
   return `${getSiteUrl()}${SITE_PREVIEW_IMAGE_PATH}`;
 }
 
-export function getOgImageAlt(lang: "en" | "ru"): string {
-  return lang === "ru"
-    ? "FinanceCalculator — бесплатные финансовые калькулятор онлайн"
-    : "FinanceCalculator — free online financial calculators";
+export function getOgImageAlt(): string {
+  return "FinanceCalculator — free online financial calculators";
 }
 
 export function getOrgName(): string {
@@ -55,7 +47,7 @@ export function getOrgName(): string {
 export function getContactEmail(): string {
   const e = import.meta.env.VITE_CONTACT_EMAIL as string | undefined;
   if (e && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return e;
-  return "contact@financcalculator.ru";
+  return "contact@financcalculators.com";
 }
 
 /** @handles without @ for twitter:site / twitter:creator */

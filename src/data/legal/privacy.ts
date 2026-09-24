@@ -1,14 +1,14 @@
 import type { LegalDocument } from "./types";
 
-const SITE = "https://financcalculator.ru";
-const EMAIL = "contact@financcalculator.ru";
+const SITE = "https://financcalculators.com";
+const EMAIL = "contact@financcalculators.com";
 
-export const privacyPolicy: Record<"en" | "ru", LegalDocument> = {
+export const privacyPolicy: Record<"en", LegalDocument> = {
   en: {
     title: "Privacy Policy",
     lastUpdated: "June 11, 2026",
     intro:
-      "FinanceCalculator (“we”, “us”) operates financcalculator.ru. This policy explains what information we collect, how we use cookies and third-party advertising, and what choices you have. Calculator inputs are processed in your browser; we do not require an account to use our tools.",
+      "FinanceCalculator (“we”, “us”) operates financcalculators.com. This policy explains what information we collect, how we use cookies and third-party advertising, and what choices you have. Calculator inputs are processed in your browser; we do not require an account to use our tools.",
     sections: [
       {
         id: "information-we-collect",
@@ -97,103 +97,6 @@ export const privacyPolicy: Record<"en" | "ru", LegalDocument> = {
         paragraphs: [
           `Questions about this Privacy Policy or your data: ${EMAIL}`,
           `Website: ${SITE}/contact`,
-        ],
-      },
-    ],
-  },
-  ru: {
-    title: "Политика конфиденциальности",
-    lastUpdated: "11 июня 2026 г.",
-    intro:
-      "FinanceCalculator («мы») управляет сайтом financcalculator.ru. Здесь описано, какие данные мы собираем, как используются cookie и сторонняя реклама, и какие у вас есть права. Ввод в калькуляторах обрабатывается в браузере; регистрация не требуется.",
-    sections: [
-      {
-        id: "information-we-collect",
-        title: "Какие данные мы собираем",
-        paragraphs: [
-          "Данные калькуляторов: введённые суммы, ставки и даты обрабатываются локально в браузере, если иное не указано для конкретного инструмента. Мы не сохраняем ваши расчёты на сервере.",
-          "Форма обратной связи: при отправке сообщения мы получаем имя, email и текст, чтобы ответить вам.",
-          "Серверные логи: хостинг может автоматически записывать IP, тип браузера, источник перехода, время запроса и просмотренные страницы — для безопасности и диагностики.",
-          "Рекламные данные: Google AdSense и другие партнёры могут получать идентификаторы устройства, cookie, приблизительное местоположение (по IP) и данные о показах для доставки и измерения рекламы.",
-        ],
-      },
-      {
-        id: "cookies",
-        title: "Cookie и похожие технологии",
-        paragraphs: [
-          "Мы используем cookie для: (1) запоминания согласия на cookie, (2) показа и учёта рекламы, (3) базовой работы сайта.",
-          "Google AdSense: Google использует cookie (включая DoubleClick) для показа рекламы с учётом посещений этого и других сайтов. Отключить персонализированную рекламу: https://www.google.com/settings/ads",
-          "Другие рекламные сети могут устанавливать собственные cookie для показа объявлений.",
-          "При нажатии «Принять» в баннере мы сохраняем выбор в localStorage / cookie.",
-          "Вы можете заблокировать cookie в настройках браузера. Калькуляторы продолжат работать.",
-        ],
-      },
-      {
-        id: "how-we-use",
-        title: "Как мы используем данные",
-        paragraphs: [
-          "Для работы, безопасности и улучшения FinanceCalculator.",
-          "Для ответов на обращения через форму контактов.",
-          "Для показа рекламы, благодаря которой сайт остаётся бесплатным.",
-          "Для соблюдения закона и наших Условий использования.",
-          "Мы не продаём персональные данные брокерам.",
-        ],
-      },
-      {
-        id: "third-parties",
-        title: "Сторонние сервисы",
-        paragraphs: [
-          "Google AdSense — политика: https://policies.google.com/privacy",
-          "Рекламные партнёры перечислены в файле /ads.txt на этом домене.",
-          "Конвертер валют может обращаться к публичным API курсов (Frankfurter и др.) — передаются только данные запроса курса.",
-          "Встроенный контент третьих лиц (например, YouTube) регулируется их политиками.",
-        ],
-      },
-      {
-        id: "your-rights",
-        title: "Ваши права",
-        paragraphs: [
-          "В зависимости от страны вы можете запросить доступ, исправление, удаление или ограничение обработки данных, а также отозвать согласие, где обработка основана на согласии.",
-          `Запросы направляйте на ${EMAIL}.`,
-          "Вы можете обратиться в надзорный орган по защите данных в вашей стране.",
-        ],
-      },
-      {
-        id: "children",
-        title: "Дети",
-        paragraphs: [
-          "Сайт общей аудитории. Мы сознательно не собираем данные детей младше 13 лет (в ЕС — 16, где применимо). Если вы считаете, что ребёнок передал нам данные, напишите нам — мы удалим их.",
-        ],
-      },
-      {
-        id: "retention",
-        title: "Срок хранения",
-        paragraphs: [
-          "Сообщения из формы хранятся столько, сколько нужно для ответа и учёта.",
-          "Логи сервера ротируются по правилам хостинга.",
-          "Срок cookie задаётся каждым провайдером.",
-        ],
-      },
-      {
-        id: "security",
-        title: "Безопасность",
-        paragraphs: [
-          "Сайт работает по HTTPS. Полная безопасность передачи в Интернете не гарантируется; мы применяем разумные меры для бесплатного информационного сервиса.",
-        ],
-      },
-      {
-        id: "changes",
-        title: "Изменения политики",
-        paragraphs: [
-          "Мы можем обновлять политику. Дата «Последнее обновление» вверху страницы будет меняться. Продолжая пользоваться сайтом, вы принимаете актуальную версию.",
-        ],
-      },
-      {
-        id: "contact",
-        title: "Контакты",
-        paragraphs: [
-          `Вопросы по конфиденциальности: ${EMAIL}`,
-          `Страница связи: ${SITE}/ru/contact`,
         ],
       },
     ],

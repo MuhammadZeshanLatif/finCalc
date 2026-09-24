@@ -1,10 +1,9 @@
 import type { AppLang } from "../../utils/routes";
 import { BLOG_POSTS_EN } from "./postsEn";
-import { BLOG_POSTS_RU } from "./postsRu";
 import type { BlogArticle } from "./types";
 
 export * from "./types";
-export { BLOG_POSTS_EN, BLOG_POSTS_RU };
+export { BLOG_POSTS_EN };
 
 function sortPostsNewestFirst(posts: BlogArticle[]): BlogArticle[] {
   return [...posts].sort(
@@ -12,8 +11,8 @@ function sortPostsNewestFirst(posts: BlogArticle[]): BlogArticle[] {
   );
 }
 
-export function getBlogPosts(lang: AppLang): BlogArticle[] {
-  return sortPostsNewestFirst(lang === "ru" ? BLOG_POSTS_RU : BLOG_POSTS_EN);
+export function getBlogPosts(_lang: AppLang): BlogArticle[] {
+  return sortPostsNewestFirst(BLOG_POSTS_EN);
 }
 
 export function getPostBySlug(lang: AppLang, slug: string): BlogArticle | undefined {

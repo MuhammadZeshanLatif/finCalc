@@ -1,11 +1,8 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { evaluate } from "mathjs";
-import { buildPathname } from "../utils/routes";
+import { buildPathname, type AppLang } from "../utils/routes";
 
-const GRAPHING_GUIDE_BLOG_SLUG = {
-  en: "what-is-graphing-calculator",
-  ru: "chto-takoe-graficheskiy-kalkulyator",
-} as const;
+const GRAPHING_GUIDE_BLOG_SLUG = "what-is-graphing-calculator";
 
 // ── Constants ─────────────────────────────────────────────────
 const COLORS = ["#e11d48", "#2563eb", "#16a34a", "#d97706", "#7c3aed", "#0891b2"];
@@ -103,7 +100,7 @@ function fmt(n: number): string {
   return parseFloat(n.toPrecision(6)).toString();
 }
 
-function traceLabel(rows: LayerRow[], ci: number, isRu: boolean): string {
+function traceLabel(rows: LayerRow[], ci: number): string {
   const r = rows[ci];
   if (!r) return "";
   if (r.kind === "expr") {
@@ -111,7 +108,7 @@ function traceLabel(rows: LayerRow[], ci: number, isRu: boolean): string {
     return `y${n}`;
   }
   const n = rows.slice(0, ci + 1).filter(x => x.kind === "table").length;
-  return isRu ? `Табл.${n}` : `Tbl${n}`;
+  return `Tbl${n}`;
 }
 
 // ── Main Component ────────────────────────────────────────────
@@ -119,11 +116,9 @@ export default function DesmosCalculatorPage({
   lang,
   onNavigate,
 }: {
-  lang: "en" | "ru";
+  lang: AppLang;
   onNavigate?: (page: string, opts?: { blogSlug?: string | null }) => void;
 }) {
-  const isRu = lang === "ru";
-
   const [rows, setRows] = useState<LayerRow[]>(() => [
     { id: newRowId(), kind: "expr", expr: "sin(x)", enabled: true },
     { id: newRowId(), kind: "expr", expr: "x^2 / 4 - 2", enabled: true },
@@ -613,22 +608,22 @@ export default function DesmosCalculatorPage({
                 className="dg-add-btn"
                 aria-expanded={addMenuOpen}
                 aria-haspopup="menu"
-                title={isRu ? "Добавить" : "Add"}
+                title="Add"
                 onClick={() => setAddMenuOpen(o => !o)}
               >
                 <i className="fa-solid fa-plus" />
               </button>
               {addMenuOpen && (
-                <ul className="dg-add-menu" role="menu" aria-label={isRu ? "Вставка в список слоёв" : "Add to layer list"}>
+                <ul className="dg-add-menu" role="menu" aria-label="Add to layer list">
                   <li className="dg-add-menu__header" aria-hidden="true">
-                    {isRu ? "Вставка" : "Insert"}
+                    Insert
                   </li>
                   <li role="none">
                     <button type="button" role="menuitem" className="dg-add-menu__item" onClick={addExpression}>
                       <span className="dg-add-menu__ico" aria-hidden="true">
                         <i className="fa-solid fa-square-root-variable" />
                       </span>
-                      <span className="dg-add-menu__label">{isRu ? "Выражение f(x)" : "Expression f(x)"}</span>
+                      <span className="dg-add-menu__label">Expression f(x)</span>
                     </button>
                   </li>
                   <li role="none">
@@ -636,7 +631,7 @@ export default function DesmosCalculatorPage({
                       <span className="dg-add-menu__ico" aria-hidden="true">
                         <i className="fa-solid fa-table" />
                       </span>
-                      <span className="dg-add-menu__label">{isRu ? "Таблица (x, y)" : "Table (x, y)"}</span>
+                      <span className="dg-add-menu__label">Table (x, y)</span>
                     </button>
                   </li>
                   <li role="none">
@@ -649,13 +644,13 @@ export default function DesmosCalculatorPage({
                       <span className="dg-add-menu__ico" aria-hidden="true">
                         <i className="fa-solid fa-chart-simple" />
                       </span>
-                      <span className="dg-add-menu__label">{isRu ? "Интерфейс" : "Interface"}</span>
+                      <span className="dg-add-menu__label">Interface</span>
                     </button>
                   </li>
                 </ul>
               )}
             </div>
-            <span className="dg-panel-head__title">{isRu ? "Слои" : "Layers"}</span>
+            <span className="dg-panel-head__title">Layers</span>
           </div>
 
           <div className="dg-expr-list">
@@ -672,7 +667,7 @@ export default function DesmosCalculatorPage({
                       className="dg-color-dot"
                       style={{ background: row.enabled ? COLORS[ci % COLORS.length] : "#334155" }}
                       onClick={() => setRows(prev => prev.map(r => (r.id === row.id ? { ...r, enabled: !r.enabled } : r)))}
-                      title={isRu ? "Показать/скрыть" : "Toggle"}
+                      title="Toggle"
                       aria-label={`Toggle y${yn}`}
                     />
                     <div className="dg-expr-label">y{yn}=</div>
@@ -687,7 +682,7 @@ export default function DesmosCalculatorPage({
                       autoComplete="off"
                       aria-label={`Function ${yn}`}
                     />
-                    <button type="button" className="dg-expr-del" onClick={() => removeRow(row.id)} aria-label={isRu ? "Удалить строку" : "Remove row"}>×</button>
+                    <button type="button" className="dg-expr-del" onClick={() => removeRow(row.id)} aria-label="Remove row">×</button>
                   </div>
                 );
               }
@@ -700,13 +695,13 @@ export default function DesmosCalculatorPage({
                       className="dg-color-dot"
                       style={{ background: row.enabled ? COLORS[ci % COLORS.length] : "#334155" }}
                       onClick={() => setRows(prev => prev.map(r => (r.id === row.id ? { ...r, enabled: !r.enabled } : r)))}
-                      title={isRu ? "Показать/скрыть" : "Toggle"}
-                      aria-label={isRu ? `Таблица ${tN}` : `Table ${tN}`}
+                      title="Toggle"
+                      aria-label={`Table ${tN}`}
                     />
                     <span className="dg-table-layer__title">
-                      {isRu ? `Таблица ${tN}` : `Table ${tN}`}
+                      {`Table ${tN}`}
                     </span>
-                    <button type="button" className="dg-expr-del" onClick={() => removeRow(row.id)} aria-label={isRu ? "Удалить таблицу" : "Remove table"}>×</button>
+                    <button type="button" className="dg-expr-del" onClick={() => removeRow(row.id)} aria-label="Remove table">×</button>
                   </div>
                   <div className="dg-data-table">
                     <div className="dg-data-table__hdr">
@@ -765,7 +760,7 @@ export default function DesmosCalculatorPage({
                                   : r,
                               ),
                             )}
-                          aria-label={isRu ? "Удалить строку" : "Remove point row"}
+                          aria-label="Remove point row"
                         >
                           ×
                         </button>
@@ -784,7 +779,7 @@ export default function DesmosCalculatorPage({
                         )}
                     >
                       <i className="fa-solid fa-plus" />
-                      {isRu ? " Значение" : " Add value"}
+                      {" Add value"}
                     </button>
                   </div>
                 </div>
@@ -793,14 +788,14 @@ export default function DesmosCalculatorPage({
           </div>
 
           {inferenceSidebarOpen && (
-            <div className="dg-inference-side" ref={inferenceRef} role="region" aria-label={isRu ? "Интерфейс вывода" : "Inference interface"}>
+            <div className="dg-inference-side" ref={inferenceRef} role="region" aria-label="Inference interface">
               <div className="dg-inference-side__head">
-                <span className="dg-inference-side__title">{isRu ? "Интерфейс" : "Interface"}</span>
+                <span className="dg-inference-side__title">Interface</span>
                 <button
                   type="button"
                   className="dg-inference-side__close"
                   onClick={() => setInferenceSidebarOpen(false)}
-                  aria-label={isRu ? "Свернуть" : "Collapse"}
+                  aria-label="Collapse"
                 >
                   ×
                 </button>
@@ -811,17 +806,17 @@ export default function DesmosCalculatorPage({
                 className={`dg-inf-btn dg-inf-btn--block${selectedInference === "prob-dist" ? " dg-inf-btn--on" : ""}`}
                 onClick={() => setSelectedInference("prob-dist")}
               >
-                {isRu ? "Распределение вероятностей" : "Probability Distribution"}
+                Probability Distribution
               </button>
 
               <div className="dg-inference-or" aria-hidden="true">
                 <span className="dg-inference-or__line" />
-                <span>{isRu ? "или" : "or"}</span>
+                <span>or</span>
                 <span className="dg-inference-or__line" />
               </div>
 
               <div className="dg-inference-section">
-                {isRu ? "Вывод для количественных данных" : "Inference for Quantitative Data"}
+                Inference for Quantitative Data
               </div>
               <div className="dg-inference-grid2">
                 <button
@@ -841,36 +836,36 @@ export default function DesmosCalculatorPage({
               </div>
 
               <div className="dg-inference-section">
-                {isRu ? "Вывод для категориальных данных" : "Inference for Categorical Data"}
+                Inference for Categorical Data
               </div>
               <button
                 type="button"
                 className={`dg-inf-btn dg-inf-btn--block${selectedInference === "z-prop" ? " dg-inf-btn--on" : ""}`}
                 onClick={() => setSelectedInference("z-prop")}
               >
-                {isRu ? "z-критерий для долей" : "z-test for proportions"}
+                z-test for proportions
               </button>
               <button
                 type="button"
                 className={`dg-inf-btn dg-inf-btn--block${selectedInference === "chi2-indep" ? " dg-inf-btn--on" : ""}`}
                 onClick={() => setSelectedInference("chi2-indep")}
               >
-                χ² {isRu ? "тест независимости" : "test for independence"}
+                χ² test for independence
               </button>
               <button
                 type="button"
                 className={`dg-inf-btn dg-inf-btn--block${selectedInference === "chi2-gof" ? " dg-inf-btn--on" : ""}`}
                 onClick={() => setSelectedInference("chi2-gof")}
               >
-                χ² {isRu ? "критерий согласия" : "goodness of fit test"}
+                χ² goodness of fit test
               </button>
 
               <div className="dg-inference-view">
                 <button type="button" className="dg-inference-view__btn" onClick={() => setTab("graph")}>
-                  <i className="fa-solid fa-chart-line" /> {isRu ? "График" : "Graph"}
+                  <i className="fa-solid fa-chart-line" /> Graph
                 </button>
                 <button type="button" className="dg-inference-view__btn" onClick={() => setTab("table")}>
-                  <i className="fa-solid fa-table" /> {isRu ? "Таблица" : "Table"}
+                  <i className="fa-solid fa-table" /> Table
                 </button>
                 <button
                   type="button"
@@ -881,13 +876,13 @@ export default function DesmosCalculatorPage({
                   }}
                 >
                   <i className={`fa-solid ${isFullscreen ? "fa-compress" : "fa-expand"}`} />
-                  {isFullscreen ? (isRu ? "Окно" : "Window") : (isRu ? "Экран" : "Full")}
+                  {isFullscreen ? "Window" : "Full"}
                 </button>
               </div>
             </div>
           )}
 
-          <div className="dg-section-label">{isRu ? "Вставить:" : "Insert:"}</div>
+          <div className="dg-section-label">Insert:</div>
           <div className="dg-insert-grid">
             {[
               { l: "sin",  v: "sin("  },
@@ -909,20 +904,20 @@ export default function DesmosCalculatorPage({
                 className="dg-ins-btn"
                 disabled={!activeExprRow}
                 onClick={() => insertText(b.v)}
-                title={!activeExprRow ? (isRu ? "Выберите строку f(x)" : "Select an f(x) row") : undefined}
+                title={!activeExprRow ? "Select an f(x) row" : undefined}
               >
                 {b.l}
               </button>
             ))}
           </div>
 
-          <div className="dg-section-label">{isRu ? "Предустановки:" : "Presets:"}</div>
+          <div className="dg-section-label">Presets:</div>
           <div className="dg-presets">
             {[
-              { k: "standard", l: isRu ? "Стандарт" : "Standard" },
-              { k: "trig",     l: isRu ? "Тригоном." : "Trig"    },
-              { k: "decimal",  l: isRu ? "Десятич."  : "Decimal" },
-              { k: "integer",  l: isRu ? "Целые"     : "Integer" },
+              { k: "standard", l: "Standard" },
+              { k: "trig",     l: "Trig"    },
+              { k: "decimal",  l: "Decimal" },
+              { k: "integer",  l: "Integer" },
             ].map(p => (
               <button key={p.k} type="button" className="dg-preset-btn" onClick={() => applyPreset(p.k)}>
                 {p.l}
@@ -933,7 +928,7 @@ export default function DesmosCalculatorPage({
           <details className="dg-win-details">
             <summary className="dg-win-summary">
               <i className="fa-solid fa-sliders" />
-              {isRu ? " Настройки окна" : " Window"}
+              {" Window"}
             </summary>
             <div className="dg-win-grid">
               {(["xMin", "xMax", "yMin", "yMax"] as const).map(k => (
@@ -966,19 +961,19 @@ export default function DesmosCalculatorPage({
         <div className="dg-right">
           <div className="dg-bar">
             <button type="button" className={`dg-tab${tab === "graph" ? " dg-tab--on" : ""}`} onClick={() => setTab("graph")}>
-              <i className="fa-solid fa-chart-line" /> {isRu ? "График" : "Graph"}
+              <i className="fa-solid fa-chart-line" /> Graph
             </button>
             <button type="button" className={`dg-tab${tab === "table" ? " dg-tab--on" : ""}`} onClick={() => setTab("table")}>
-              <i className="fa-solid fa-table" /> {isRu ? "Таблица" : "Table"}
+              <i className="fa-solid fa-table" /> Table
             </button>
             <span className="dg-bar-spacer" />
-            <button type="button" className="dg-ico-btn" onClick={zoomIn} title={isRu ? "Приблизить" : "Zoom in"}>
+            <button type="button" className="dg-ico-btn" onClick={zoomIn} title="Zoom in">
               <i className="fa-solid fa-plus" />
             </button>
-            <button type="button" className="dg-ico-btn" onClick={zoomOut} title={isRu ? "Отдалить" : "Zoom out"}>
+            <button type="button" className="dg-ico-btn" onClick={zoomOut} title="Zoom out">
               <i className="fa-solid fa-minus" />
             </button>
-            <button type="button" className="dg-ico-btn" onClick={() => setWin(DEFAULT_WIN)} title={isRu ? "Сброс" : "Reset view"}>
+            <button type="button" className="dg-ico-btn" onClick={() => setWin(DEFAULT_WIN)} title="Reset view">
               <i className="fa-solid fa-arrows-to-dot" />
             </button>
             <span
@@ -992,16 +987,14 @@ export default function DesmosCalculatorPage({
                   dismissFsHint();
                   setIsFs(f => !f);
                 }}
-                title={isRu ? (isFullscreen ? "Выйти" : "Полный экран") : (isFullscreen ? "Exit fullscreen" : "Fullscreen")}
+                title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
                 aria-describedby={fsHintActive && !isFullscreen ? "dg-fs-hint-tip" : undefined}
               >
                 <i className={`fa-solid ${isFullscreen ? "fa-compress" : "fa-expand"}`} />
               </button>
               {fsHintActive && !isFullscreen && (
                 <span id="dg-fs-hint-tip" className="dg-fs-hint-pop" role="tooltip">
-                  {isRu
-                    ? "Нажмите — полный экран, удобнее график и таблица"
-                    : "Tap for fullscreen — best for graph & table"}
+                  Tap for fullscreen — best for graph & table
                 </span>
               )}
             </span>
@@ -1024,7 +1017,7 @@ export default function DesmosCalculatorPage({
               {trace && (
                 <div className="dg-trace" style={{ borderLeftColor: COLORS[trace.ci % COLORS.length] }}>
                   <span className="dg-trace-fn" style={{ color: COLORS[trace.ci % COLORS.length] }}>
-                    {traceLabel(rows, trace.ci, isRu)}
+                    {traceLabel(rows, trace.ci)}
                   </span>
                   <span>x = {fmt(trace.x)}</span>
                   <span>y = {fmt(trace.y)}</span>
@@ -1034,7 +1027,7 @@ export default function DesmosCalculatorPage({
               {!hasGraphContent && (
                 <div className="dg-empty">
                   <i className="fa-solid fa-chart-line fa-2x" />
-                  <p>{isRu ? "Добавьте f(x) или таблицу слева" : "Add f(x) or a data table on the left"}</p>
+                  <p>Add f(x) or a data table on the left</p>
                   <code>sin(x)</code>
                 </div>
               )}
@@ -1057,7 +1050,7 @@ export default function DesmosCalculatorPage({
                   return (
                     <div key={row.id} className="dg-legend-item">
                       <span className="dg-legend-dot" style={{ background: COLORS[i % COLORS.length] }} />
-                      <code className="dg-legend-expr">{isRu ? `Табл.${tn} (${nPt})` : `Tbl${tn} (${nPt} pts)`}</code>
+                      <code className="dg-legend-expr">{`Tbl${tn} (${nPt} pts)`}</code>
                     </div>
                   );
                 })}
@@ -1069,15 +1062,15 @@ export default function DesmosCalculatorPage({
             <div className="dg-table-wrap">
               <div className="dg-table-ctrl">
                 <label>
-                  <span>{isRu ? "Начало" : "Start"}</span>
+                  <span>Start</span>
                   <input type="number" step="any" value={tableStart} onChange={e => setTblStart(e.target.value)} />
                 </label>
                 <label>
-                  <span>{isRu ? "Шаг" : "Step"}</span>
+                  <span>Step</span>
                   <input type="number" step="any" value={tableStep} onChange={e => setTblStep(e.target.value)} />
                 </label>
                 <label>
-                  <span>{isRu ? "Строк" : "Rows"}</span>
+                  <span>Rows</span>
                   <input
                     type="number"
                     min={1}
@@ -1085,7 +1078,7 @@ export default function DesmosCalculatorPage({
                     step={1}
                     value={tableRows}
                     onChange={e => setTblRows(e.target.value)}
-                    aria-label={isRu ? "Число строк таблицы" : "Table row count"}
+                    aria-label="Table row count"
                   />
                 </label>
               </div>
@@ -1093,23 +1086,19 @@ export default function DesmosCalculatorPage({
                 <div className="dg-table-empty">
                   <i className="fa-solid fa-table" />
                   <p>
-                    {isRu
-                      ? "Нет активных выражений f(x). Добавьте строку «Выражение» слева — здесь появятся столбцы y."
-                      : "No active f(x) expressions. Add an Expression row on the left — y columns appear here."}
+                    No active f(x) expressions. Add an Expression row on the left — y columns appear here.
                   </p>
                 </div>
               ) : tableInvalid ? (
                 <div className="dg-table-empty">
                   <i className="fa-solid fa-triangle-exclamation" />
                   <p>
-                    {isRu
-                      ? "Проверьте начало x и шаг: оба должны быть числами, шаг не может быть 0."
-                      : "Check Start and Step: both must be valid numbers, and step cannot be 0."}
+                    Check Start and Step: both must be valid numbers, and step cannot be 0.
                   </p>
                 </div>
               ) : (
                 <div className="dg-table-scroll">
-                  <table className="dg-table" role="grid" aria-label={isRu ? "Таблица значений функций" : "Function value table"}>
+                  <table className="dg-table" role="grid" aria-label="Function value table">
                     <thead>
                       <tr>
                         <th scope="col">x</th>
@@ -1131,7 +1120,7 @@ export default function DesmosCalculatorPage({
                             const y = tblRow.ys[i];
                             return (
                               <td key={row.id}>
-                                {y === null ? <span className="dg-undef">{isRu ? "не опр." : "undef"}</span> : fmt(y)}
+                                {y === null ? <span className="dg-undef">undef</span> : fmt(y)}
                               </td>
                             );
                           })}
@@ -1149,79 +1138,56 @@ export default function DesmosCalculatorPage({
       {!isFullscreen && (
         <article className="dg-article">
           <h2 className="dg-article__h2">
-            {isRu ? "Что такое графический калькулятор?" : "What is a graphing calculator?"}
+            What is a graphing calculator?
           </h2>
           <p className="dg-article__p">
-            {isRu
-              ? "Графический калькулятор строит графики уравнений и данных, решает многие задачи алгебры и анализа в численном виде и часто включает статистику и программирование. В отличие от простого калькулятора, вы видите зависимость y от x на экране — параболы, синусоиды, точки пересечения."
-              : "A graphing calculator plots equations and data, handles algebra and calculus numerically, and often adds statistics and programming. Unlike a basic calculator, you see how y depends on x—parabolas, sine waves, intersections—right on the screen."}
+            A graphing calculator plots equations and data, handles algebra and calculus numerically, and often adds statistics and programming. Unlike a basic calculator, you see how y depends on x—parabolas, sine waves, intersections—right on the screen.
           </p>
           <p className="dg-article__p">
-            {isRu
-              ? "Портативные модели (TI-84, Casio, HP и др.) до сих пор нужны на многих экзаменах. Онлайн-инструменты вроде Desmos и GeoGebra — бесплатный способ тренироваться дома; эта страница даёт многослойный график прямо в браузере без установки."
-              : "Handheld models (TI-84, Casio, HP, and others) are still required on many standardized tests. Online tools like Desmos and GeoGebra are free for practice at home; this page gives you a multi-layer graph in the browser with no install."}
+            Handheld models (TI-84, Casio, HP, and others) are still required on many standardized tests. Online tools like Desmos and GeoGebra are free for practice at home; this page gives you a multi-layer graph in the browser with no install.
           </p>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Как это работает" : "How it works"}
+            How it works
           </h2>
           <p className="dg-article__p">
-            {isRu
-              ? "Вы вводите выражение от x или точки (x, y). Программа вычисляет значения на диапазоне и рисует кривую; масштаб и положение окна задаются вручную или жестами. Так можно быстро проверить решение системы уравнений по пересечениям графиков."
-              : "You enter an expression in x or a list of (x, y) points. The software samples values and draws the curve; you set the view with controls or gestures. That makes it easy to check systems of equations from intersection points."}
+            You enter an expression in x or a list of (x, y) points. The software samples values and draws the curve; you set the view with controls or gestures. That makes it easy to check systems of equations from intersection points.
           </p>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Основные возможности" : "Key features"}
+            Key features
           </h2>
           <ul className="dg-article__ul">
-            {(isRu
-              ? [
-                  "Построение нескольких графиков в одной системе координат.",
-                  "Численное решение уравнений и поиск пересечений.",
-                  "Статистика, регрессия и диаграммы рассеяния (на многих устройствах).",
-                  "Программирование на калькуляторе (TI-Basic и др.) — с учётом правил экзамена.",
-                ]
-              : [
-                  "Plot several graphs in one coordinate plane.",
-                  "Solve equations numerically and find intersections.",
-                  "Statistics, regression, and scatter plots on many devices.",
-                  "On-calculator programming (e.g. TI-Basic)—subject to exam rules.",
-                ]
-            ).map((line, i) => (
+            {[
+              "Plot several graphs in one coordinate plane.",
+              "Solve equations numerically and find intersections.",
+              "Statistics, regression, and scatter plots on many devices.",
+              "On-calculator programming (e.g. TI-Basic)—subject to exam rules.",
+            ].map((line, i) => (
               <li key={i}>{line}</li>
             ))}
           </ul>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Популярные модели (ориентир)" : "Popular models (at a glance)"}
+            Popular models (at a glance)
           </h2>
           <table className="dg-article__compare">
             <thead>
               <tr>
-                <th>{isRu ? "Модель" : "Model"}</th>
-                <th>{isRu ? "Цена" : "Price"}</th>
-                <th>{isRu ? "Экран" : "Screen"}</th>
-                <th>{isRu ? "Особенности" : "Highlights"}</th>
-                <th>{isRu ? "Экзамены" : "Tests"}</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Screen</th>
+                <th>Highlights</th>
+                <th>Tests</th>
               </tr>
             </thead>
             <tbody>
-              {(
-                isRu
-                  ? [
-                      ["TI-84 Plus", "$$", '~3.5"', "Школа, алгебра, статистика", "SAT, ACT, AP"],
-                      ["Casio fx-9750GII", "$", '~2.8"', "Доступная графика", "SAT, ACT"],
-                      ["HP Prime", "$$$", '~3.5"', "Сенсор, CAS-опции", "SAT, ACT"],
-                      ["TI-Nspire CX", "$$$$", '~3.5"', "3D, документы, CAS", "SAT, ACT, AP"],
-                    ]
-                  : [
-                      ["TI-84 Plus", "$$", '~3.5"', "School standard, algebra, stats", "SAT, ACT, AP"],
-                      ["Casio fx-9750GII", "$", '~2.8"', "Budget graphing", "SAT, ACT"],
-                      ["HP Prime", "$$$", '~3.5"', "Touchscreen, CAS options", "SAT, ACT"],
-                      ["TI-Nspire CX", "$$$$", '~3.5"', "3D, documents, CAS", "SAT, ACT, AP"],
-                    ]
-              ).map((row, ri) => (
+              {[
+                ["TI-84 Plus", "$$", '~3.5"', "School standard, algebra, stats", "SAT, ACT, AP"],
+                ["Casio fx-9750GII", "$", '~2.8"', "Budget graphing", "SAT, ACT"],
+                ["HP Prime", "$$$", '~3.5"', "Touchscreen, CAS options", "SAT, ACT"],
+                ["TI-Nspire CX", "$$$$", '~3.5"', "3D, documents, CAS", "SAT, ACT, AP"],
+              ].map((row, ri) => (
                 <tr key={ri}>
                   {row.map((cell, ci) => (
                     <td key={ci}>{cell}</td>
@@ -1231,85 +1197,60 @@ export default function DesmosCalculatorPage({
             </tbody>
           </table>
           <p className="dg-article__p dg-article__muted">
-            {isRu
-              ? "Проверяйте актуальные списки допуска у организатора экзамена."
-              : "Always confirm the latest allowed-model list from your testing agency."}
+            Always confirm the latest allowed-model list from your testing agency.
           </p>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Железо, приложения и эта страница" : "Hardware, apps, and this page"}
+            Hardware, apps, and this page
           </h2>
           <p className="dg-article__p">
-            {isRu
-              ? "На экзамене часто требуется физический калькулятор из списка. Дома удобно сочетать бесплатные приложения и веб-инструменты. Ниже — как пользоваться именно графическим калькулятором на FinanceCalculator."
-              : "Exams usually require an approved physical device. At home, free apps and web tools are ideal for exploration. Below: how to use FinanceCalculator’s own graphing workspace."}
+            Exams usually require an approved physical device. At home, free apps and web tools are ideal for exploration. Below: how to use FinanceCalculator’s own graphing workspace.
           </p>
           <p className="dg-article__p">
-            {isRu ? (
-              <>
-                Полное руководство с историей, сравнением и советами — в блоге:{" "}
-                <a
-                  href={buildPathname(lang, "blog", GRAPHING_GUIDE_BLOG_SLUG[lang])}
-                  className="dg-article__link"
-                  onClick={e => {
-                    e.preventDefault();
-                    onNavigate?.("blog", { blogSlug: GRAPHING_GUIDE_BLOG_SLUG[lang] });
-                  }}
-                >
-                  «Что такое графический калькулятор? Полное руководство»
-                </a>
-                .
-              </>
-            ) : (
-              <>
-                Read the full guide on our blog:{" "}
-                <a
-                  href={buildPathname(lang, "blog", GRAPHING_GUIDE_BLOG_SLUG[lang])}
-                  className="dg-article__link"
-                  onClick={e => {
-                    e.preventDefault();
-                    onNavigate?.("blog", { blogSlug: GRAPHING_GUIDE_BLOG_SLUG[lang] });
-                  }}
-                >
-                  What Is a Graphing Calculator? A Complete Guide
-                </a>
-                .
-              </>
-            )}
+            Read the full guide on our blog:{" "}
+            <a
+              href={buildPathname(lang, "blog", GRAPHING_GUIDE_BLOG_SLUG)}
+              className="dg-article__link"
+              onClick={e => {
+                e.preventDefault();
+                onNavigate?.("blog", { blogSlug: GRAPHING_GUIDE_BLOG_SLUG });
+              }}
+            >
+              What Is a Graphing Calculator? A Complete Guide
+            </a>
+            .
           </p>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Графический калькулятор онлайн — всё о возможностях" : "Online Graphing Calculator — Full Feature Guide"}
+            Online Graphing Calculator — Full Feature Guide
           </h2>
           <p className="dg-article__p">
-            {isRu
-              ? "Калькулятор работает в браузере: любое число слоёв — выражения f(x) и таблицы точек (x, y). Масштаб колёсиком, сдвиг перетаскиванием, трассировка у кривых и точек."
-              : "Runs in your browser with any number of layers — f(x) expressions and (x, y) data tables. Zoom with the scroll wheel, pan by dragging, and trace curves or plotted points."}
+            Runs in your browser with any number of layers — f(x) expressions and (x, y) data tables. Zoom with the scroll wheel, pan by dragging, and trace curves or plotted points.
           </p>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Как пользоваться калькулятором" : "How to use the graphing calculator"}
+            How to use the graphing calculator
           </h2>
           <ol className="dg-article__ol">
-            <li>{isRu ? "Нажмите «+» слева: добавьте выражение f(x) или таблицу значений." : "Use the + button on the left to add an f(x) expression or a value table."}</li>
-            <li>{isRu ? "В таблице данных нажимайте «+ Значение», чтобы добавлять строки без ограничения (для отрисовки учитываются тысячи точек)." : "In a data table, use + Add value to append rows without a fixed limit (drawing caps at a large safety limit)."}</li>
-            <li>{isRu ? "Кнопки «Вставить» работают, когда активна строка с f(x)." : "Insert shortcuts apply when an f(x) row is focused."}</li>
-            <li>{isRu ? "«Интерфейс» в меню «+» открывает панель слева: распределения и критерии (как в Desmos), выбор опции и быстрые кнопки график / таблица." : "Interface in the + menu opens a left-side panel: probability & inference options (Desmos-style), selectable tools, plus Graph / Table / fullscreen shortcuts."}</li>
-            <li>{isRu ? "Прокручивайте колёсико мыши для масштаба; на телефоне — щипок двумя пальцами." : "Scroll the mouse wheel to zoom. On mobile, use a two-finger pinch."}</li>
-            <li>{isRu ? "Перетащите граф для сдвига области просмотра." : "Drag the graph to pan the viewing area."}</li>
-            <li>{isRu ? "Наведите мышь на кривую или точку таблицы — координаты x и y." : "Hover near a curve or table point to read x and y."}</li>
-            <li>{isRu ? "Вкладка «Таблица» справа — численные y(x) для всех включённых выражений." : "The Table tab shows numeric y(x) samples for every enabled expression."}</li>
+            <li>Use the + button on the left to add an f(x) expression or a value table.</li>
+            <li>In a data table, use + Add value to append rows without a fixed limit (drawing caps at a large safety limit).</li>
+            <li>Insert shortcuts apply when an f(x) row is focused.</li>
+            <li>Interface in the + menu opens a left-side panel: probability & inference options (Desmos-style), selectable tools, plus Graph / Table / fullscreen shortcuts.</li>
+            <li>Scroll the mouse wheel to zoom. On mobile, use a two-finger pinch.</li>
+            <li>Drag the graph to pan the viewing area.</li>
+            <li>Hover near a curve or table point to read x and y.</li>
+            <li>The Table tab shows numeric y(x) samples for every enabled expression.</li>
           </ol>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Поддерживаемые функции и синтаксис" : "Supported functions and syntax"}
+            Supported functions and syntax
           </h2>
           <div className="dg-syntax-grid">
             {[
-              { cat: isRu ? "Тригонометрия" : "Trig", items: ["sin(x)", "cos(x)", "tan(x)", "asin(x)", "acos(x)", "atan(x)"] },
-              { cat: isRu ? "Степень / корень" : "Powers", items: ["x^2", "x^3", "x^0.5", "sqrt(x)", "cbrt(x)", "exp(x)"] },
-              { cat: isRu ? "Логарифмы" : "Logs", items: ["log(x)", "log2(x)", "log10(x)"] },
-              { cat: isRu ? "Прочее" : "Other", items: ["abs(x)", "ceil(x)", "floor(x)", "pi", "e"] },
+              { cat: "Trig", items: ["sin(x)", "cos(x)", "tan(x)", "asin(x)", "acos(x)", "atan(x)"] },
+              { cat: "Powers", items: ["x^2", "x^3", "x^0.5", "sqrt(x)", "cbrt(x)", "exp(x)"] },
+              { cat: "Logs", items: ["log(x)", "log2(x)", "log10(x)"] },
+              { cat: "Other", items: ["abs(x)", "ceil(x)", "floor(x)", "pi", "e"] },
             ].map((g, i) => (
               <div key={i} className="dg-syntax-group">
                 <div className="dg-syntax-group__title">{g.cat}</div>
@@ -1319,16 +1260,16 @@ export default function DesmosCalculatorPage({
           </div>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Примеры интересных функций" : "Interesting function examples"}
+            Interesting function examples
           </h2>
           <div className="dg-examples">
             {[
-              { expr: "sin(x) / x",       desc: isRu ? "Синк-функция" : "Sinc function" },
-              { expr: "x * sin(1/x)",      desc: isRu ? "Осциллирующая" : "Oscillating" },
-              { expr: "sqrt(25 - x^2)",    desc: isRu ? "Полуокружность" : "Semicircle" },
-              { expr: "abs(sin(x))",        desc: isRu ? "Выпрямленный синус" : "Rectified sine" },
-              { expr: "tan(x)",             desc: isRu ? "Тангенс" : "Tangent (discontinuous)" },
-              { expr: "floor(x)",           desc: isRu ? "Ступенчатая" : "Step function" },
+              { expr: "sin(x) / x",       desc: "Sinc function" },
+              { expr: "x * sin(1/x)",      desc: "Oscillating" },
+              { expr: "sqrt(25 - x^2)",    desc: "Semicircle" },
+              { expr: "abs(sin(x))",        desc: "Rectified sine" },
+              { expr: "tan(x)",             desc: "Tangent (discontinuous)" },
+              { expr: "floor(x)",           desc: "Step function" },
             ].map((ex, i) => (
               <button
                 key={i}
@@ -1346,7 +1287,7 @@ export default function DesmosCalculatorPage({
                   }
                   setTab("graph");
                 }}
-                title={isRu ? "Нажмите чтобы добавить" : "Click to add"}
+                title="Click to add"
               >
                 <code className="dg-example-chip__code">{ex.expr}</code>
                 <span className="dg-example-chip__desc">{ex.desc}</span>
@@ -1355,48 +1296,40 @@ export default function DesmosCalculatorPage({
           </div>
 
           <h2 className="dg-article__h2">
-            {isRu ? "Часто задаваемые вопросы" : "Frequently asked questions"}
+            Frequently asked questions
           </h2>
           {[
             {
-              q: isRu ? "Как записать x в квадрате?" : "How do I write x squared?",
-              a: isRu ? "Введите x^2. Кнопка «x²» в панели вставки делает это автоматически." : "Type x^2. The x² button in the Insert panel does this automatically.",
+              q: "How do I write x squared?",
+              a: "Type x^2. The x² button in the Insert panel does this automatically.",
             },
             {
-              q: isRu ? "Почему тангенс выглядит странно?" : "Why does tan(x) look strange?",
-              a: isRu ? "tan(x) имеет разрывы при x = π/2 + nπ. Калькулятор обнаруживает эти скачки и не соединяет ветви — это корректное поведение." : "tan(x) has discontinuities at x = π/2 + nπ. The calculator detects these jumps and doesn't connect the branches — this is correct behavior.",
+              q: "Why does tan(x) look strange?",
+              a: "tan(x) has discontinuities at x = π/2 + nπ. The calculator detects these jumps and doesn't connect the branches — this is correct behavior.",
             },
             {
-              q: isRu ? "Сколько функций и таблиц можно добавить?" : "How many expressions or tables can I add?",
-              a: isRu ? "Сколько угодно строк через меню «+». Таблицы: кнопка «+» внизу добавляет пары x, y." : "Add as many layers as you need via +. In each data table, the + button adds more x, y rows.",
+              q: "How many expressions or tables can I add?",
+              a: "Add as many layers as you need via +. In each data table, the + button adds more x, y rows.",
             },
             {
-              q: isRu ? "Работает ли на мобильном?" : "Does it work on mobile?",
-              a: isRu ? "Да. Один палец — сдвиг, два (щипок) — масштаб. Полноэкранный режим доступен." : "Yes. One finger to pan, two-finger pinch to zoom. Fullscreen works too.",
+              q: "Does it work on mobile?",
+              a: "Yes. One finger to pan, two-finger pinch to zoom. Fullscreen works too.",
             },
             {
-              q: isRu ? "Где таблица значений y(x)?" : "Where is the y(x) value table?",
-              a: isRu
-                ? "Вкладка «Таблица» над графиком — только для выражений f(x). Точки (x,y) вводятся в боковой «Таблице» через меню «+»."
-                : "The Table tab above the graph samples y from each f(x). For manual (x,y) points, add a Table layer from the + menu on the left.",
+              q: "Where is the y(x) value table?",
+              a: "The Table tab above the graph samples y from each f(x). For manual (x,y) points, add a Table layer from the + menu on the left.",
             },
             {
-              q: isRu ? "Помогает ли графический калькулятор в геометрии?" : "Can a graphing calculator help with geometry?",
-              a: isRu
-                ? "Да: по уравнениям можно строить фигуры, смотреть пересечения и проверять длины и углы численно."
-                : "Yes—you can plot relations, read intersections, and check lengths and angles numerically.",
+              q: "Can a graphing calculator help with geometry?",
+              a: "Yes—you can plot relations, read intersections, and check lengths and angles numerically.",
             },
             {
-              q: isRu ? "Разрешён ли такой инструмент на экзаменах?" : "Are graphing calculators allowed on exams?",
-              a: isRu
-                ? "Часто да, но только физические модели из официального списка. Эта веб-страница для практики дома, не для зала экзамена."
-                : "Often yes for approved handhelds on official lists. This web tool is for practice at home, not the exam hall.",
+              q: "Are graphing calculators allowed on exams?",
+              a: "Often yes for approved handhelds on official lists. This web tool is for practice at home, not the exam hall.",
             },
             {
-              q: isRu ? "Есть ли поддержка «как в Desmos»?" : "Is this the same as Desmos?",
-              a: isRu
-                ? "Похожий рабочий процесс (слои, масштаб, таблица), но это отдельный инструмент на FinanceCalculator, не продукт Desmos."
-                : "Similar workflow (layers, zoom, table), but this is FinanceCalculator’s own tool—not affiliated with Desmos.",
+              q: "Is this the same as Desmos?",
+              a: "Similar workflow (layers, zoom, table), but this is FinanceCalculator’s own tool—not affiliated with Desmos.",
             },
           ].map((item, i) => (
             <details key={i} className="dg-faq">

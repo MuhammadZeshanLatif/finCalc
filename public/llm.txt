@@ -1,16 +1,14 @@
 # FinanceCalculator — Financial & multipurpose calculators
 
-FinanceCalculator is a free bilingual (English / Russian) web app with path-based URLs for SEO.
+FinanceCalculator is a free English web app with path-based URLs for SEO.
 
 ## Site structure
 
-- English home: /
-- Russian home: /ru
-- Calculators (EN): /interest, /loan, /mortgage, /deposit, /days, /vat, /emi, /bmi, /tax, /currency, /basic
-- Same in Russian under /ru/ (e.g. /ru/interest)
-- Blog index: /blog and /ru/blog
-- Blog articles (examples): /blog/compound-interest-guide, /blog/mortgage-mistakes-down-payment-piti, … (see sitemap); Russian slugs under /ru/blog/…
-- About: /about and /ru/about — Contact: /contact and /ru/contact
+- Home: /
+- Calculators: /interest, /loan, /mortgage, /deposit, /days, /vat, /emi, /bmi, /tax, /currency, /basic
+- Blog index: /blog
+- Blog articles (examples): /blog/compound-interest-guide, /blog/mortgage-mistakes-down-payment-piti, … (see sitemap)
+- About: /about — Contact: /contact
 
 ## What we offer
 

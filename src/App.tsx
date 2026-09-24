@@ -6,7 +6,6 @@ import {
   getBlogPosts,
   getLatestPosts,
   getPostBySlug,
-  getPostByTopic,
   getRelatedPosts,
 } from "./data/blog";
 import type { BlogBlock } from "./data/blog/types";
@@ -34,11 +33,11 @@ import { buildPathname, normalizePage, parsePathname, type AppLang } from "./uti
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
 import { AdScriptAnchor } from "./components/ads/AdScriptAnchor";
 import { AdBanner } from "./components/ads/AdBanner";
-import { ADSTERRA_JS_SYNC } from "./config/ads";
+import { AdNative } from "./components/ads/AdNative";
+import { ADSTERRA_DIRECT_LINK, ADSTERRA_JS_SYNC } from "./config/ads";
 
 const META_DEFAULT: Record<string, string> = {
-  en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up, English & Russian.",
-  ru: "Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ. Считает в браузере, без регистрации.",
+  en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up required.",
 };
 
 let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null = null;
@@ -117,25 +116,6 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  const changeLang = (newLang: AppLang) => {
-    if (currentPage === "blog" && blogSlug) {
-      const cur = getPostBySlug(lang, blogSlug);
-      const nxt = cur ? getPostByTopic(newLang, cur.topicKey) : undefined;
-      if (nxt) {
-        setLang(newLang);
-        setBlogSlug(nxt.slug);
-        window.history.pushState({}, "", buildPathname(newLang, "blog", nxt.slug));
-        return;
-      }
-      setLang(newLang);
-      setBlogSlug(null);
-      window.history.pushState({}, "", buildPathname(newLang, "blog", null));
-      return;
-    }
-    setLang(newLang);
-    window.history.pushState({}, "", buildPathname(newLang, currentPage, null));
-  };
-
   const navigateTo = (page: string, opts?: { blogSlug?: string | null }) => {
     const p = normalizePage(page);
     const slug = p === "blog" && opts?.blogSlug ? opts.blogSlug : null;
@@ -182,16 +162,11 @@ export default function App() {
       // ── Blog article ──────────────────────────────────────────────────────
       const post = getPostBySlug(lang, blogSlug);
       if (!post) {
-        title       = lang === "ru" ? "Страница не найдена" : "Page not found";
-        description = lang === "ru"
-          ? "Такой статьи нет. Вернитесь к списку статей."
-          : "This blog post does not exist. Return to the article list.";
+        title       = "Page not found";
+        description = "This blog post does not exist. Return to the article list.";
       } else {
         title       = post.metaTitle;
         description = post.metaDescription;
-        const enP   = getPostByTopic("en", post.topicKey);
-        const ruP   = getPostByTopic("ru", post.topicKey);
-        const enSlug = enP?.slug ?? post.slug;
         const heroForSocial = post.hero.srcWebp ?? post.hero.src;
         const faqPairs = extractFaqPairs(post.blocks);
         const siteBase = getSiteUrl();
@@ -203,8 +178,6 @@ export default function App() {
           .map(b => ({ url: toAbsAsset(b.src), caption: b.alt }));
         blogArticle = {
           articlePath:      buildPathname(lang, "blog", post.slug),
-          alternateEnPath:  buildPathname("en", "blog", enSlug),
-          alternateRuPath:  ruP ? buildPathname("ru", "blog", ruP.slug) : buildPathname("ru", "blog", null),
           headline:         post.title,
           description:      post.metaDescription,
           keywords:         post.keywords,
@@ -247,7 +220,7 @@ export default function App() {
 
   return (
     <div className="fc-app-shell">
-      {adsAllowed ? <AdScriptAnchor url={ADSTERRA_JS_SYNC[0]} /> : null}
+      {adsAllowed ? ADSTERRA_JS_SYNC.map(url => <AdScriptAnchor key={url} url={url} />) : null}
       <CookieConsent lang={lang} onAccept={() => setAdsAllowed(true)} />
 
       {/* ── Navbar ─────────────────────────────────────────── */}
@@ -257,7 +230,7 @@ export default function App() {
             href="#main-content"
             className="visually-hidden-focusable position-absolute top-0 start-0 bg-white text-primary px-3 py-2 m-2 rounded shadow-sm z-3 small"
           >
-            {lang === "ru" ? "Перейти к содержимому" : "Skip to main content"}
+            Skip to main content
           </a>
           <a
             className="navbar-brand d-flex align-items-center gap-2 text-decoration-none"
@@ -284,7 +257,7 @@ export default function App() {
             data-bs-target="#fcNavbarCollapse"
             aria-controls="fcNavbarCollapse"
             aria-expanded="false"
-            aria-label={lang === "ru" ? "Меню" : "Menu"}
+            aria-label="Menu"
           >
             <span className="navbar-toggler-icon" />
           </button>
@@ -314,20 +287,6 @@ export default function App() {
                 </li>
               ))}
             </ul>
-            <div className="d-flex align-items-center gap-2 ms-lg-0">
-              <button
-                className={`btn fc-lang-btn ${lang === "en" ? "btn-warning text-dark" : "btn-outline-secondary text-white"}`}
-                onClick={() => changeLang("en")}
-              >
-                EN
-              </button>
-              <button
-                className={`btn fc-lang-btn ${lang === "ru" ? "btn-warning text-dark" : "btn-outline-secondary text-white"}`}
-                onClick={() => changeLang("ru")}
-              >
-                РУ
-              </button>
-            </div>
           </div>
         </div>
       </nav>
@@ -407,6 +366,8 @@ export default function App() {
                 </a>
               </div>
             </div>
+            <AdBanner slot="sidebar-skyscraper" size="skyscraper" />
+            <AdBanner slot="sidebar-tall" size="tall-skyscraper" />
           </div>
 
           {/* Content */}
@@ -451,7 +412,7 @@ export default function App() {
                     {[
                       { icon: "fa-bolt", label: t.homeTrustLive },
                       { icon: "fa-gift", label: t.homeTrustFree },
-                      { icon: "fa-language", label: t.homeTrustLang },
+                      { icon: "fa-lock", label: t.homeTrustLang },
                       { icon: "fa-chart-column", label: t.homeTrustCharts },
                       { icon: "fa-shield-halved", label: t.homeTrustPrivacy },
                     ].map((item, i) => (
@@ -464,6 +425,8 @@ export default function App() {
                 </div>
 
                 <AdBanner slot="home-hero" />
+                <AdNative />
+                <AdBanner slot="home-rectangle" size="rectangle" />
                 <AdBanner slot="home-hero-468" size="banner" />
 
                 <AdBanner slot="home-promo" />
@@ -472,15 +435,13 @@ export default function App() {
                   <div className="col-12">
                     <div className="fc-home-promo-card">
                       <div className="fc-home-promo-badge">
-                        <i className="fa-solid fa-calculator"></i> {lang === "ru" ? "Калькулятор" : "Basic Calculator"}
+                        <i className="fa-solid fa-calculator"></i> Basic Calculator
                       </div>
                       <h3 className="fc-home-promo-title">
-                        {lang === "ru" ? "Полноэкранный научный калькулятор" : "Full scientific calculator"}
+                        Full scientific calculator
                       </h3>
                       <p className="fc-home-promo-text">
-                        {lang === "ru"
-                          ? "Степени, корни, факториал, тригонометрия, память и история — откройте вкладку «Базовый калькулятор» в боковом меню."
-                          : "Powers, roots, factorial, trig, memory, and history — open the Basic Calculator tab in the sidebar."}
+                        Powers, roots, factorial, trig, memory, and history — open the Basic Calculator tab in the sidebar.
                       </p>
                       <button
                         type="button"
@@ -488,7 +449,7 @@ export default function App() {
                         onClick={() => navigateTo("basic")}
                       >
                         <i className="fa-solid fa-calculator"></i>{" "}
-                        {lang === "ru" ? "Открыть калькулятор" : "Open Basic Calculator"}
+                        Open Basic Calculator
                       </button>
                     </div>
                   </div>
@@ -613,9 +574,9 @@ export default function App() {
             {currentPage === "blog" && blogSlug && !activeBlogPost && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">
-                  {lang === "ru" ? "Страница не найдена" : "Page not found"}
+                  Page not found
                 </h1>
-                <p className="text-muted">{lang === "ru" ? "Такой статьи нет." : "This blog post does not exist."}</p>
+                <p className="text-muted">This blog post does not exist.</p>
                 <button type="button" className="btn btn-primary" onClick={() => navigateTo("blog")}>
                   {t.blogBackToIndex}
                 </button>
@@ -629,9 +590,7 @@ export default function App() {
                   <i className="fa-solid fa-newspaper"></i> {t.latestPosts}
                 </h1>
                 <p className="text-body-secondary mb-4 fc-blog-index-lead">
-                  {lang === "ru"
-                    ? "Статьи с оглавлением, источниками и разметкой для поиска. Открывайте полный текст — калькулятор связаны внутри материала."
-                    : "Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout."}
+                  Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout.
                 </p>
                 <AdBanner slot="blog-index" />
                 <AdBanner slot="blog-index-468" size="banner" />
@@ -736,7 +695,7 @@ export default function App() {
                   <i className="fa-solid fa-paper-plane"></i> {t.contact}
                 </h1>
                 <p className="text-body-secondary mb-4">
-                  {lang === "ru" ? "Email:" : "Email:"}{" "}
+                  Email:{" "}
                   <a href={`mailto:${getContactEmail()}`}>{getContactEmail()}</a>
                 </p>
                 <AdBanner slot="contact" />
@@ -797,12 +756,10 @@ export default function App() {
                   <span className="fc-404-num">4</span>
                 </div>
                 <h1 className="fc-404-title">
-                  {lang === "ru" ? "Страница не найдена" : "Page Not Found"}
+                  Page Not Found
                 </h1>
                 <p className="fc-404-desc">
-                  {lang === "ru"
-                    ? "Похоже, эта страница не существует или была перемещена."
-                    : "Looks like this page doesn't exist or has been moved."}
+                  Looks like this page doesn't exist or has been moved.
                 </p>
                 <div className="fc-404-actions">
                   <button
@@ -810,22 +767,22 @@ export default function App() {
                     onClick={() => navigateTo("home")}
                   >
                     <i className="fa-solid fa-house me-2"></i>
-                    {lang === "ru" ? "На главную" : "Go Home"}
+                    Go Home
                   </button>
                   <button
                     className="btn fc-404-btn-calc"
                     onClick={() => navigateTo("basic")}
                   >
                     <i className="fa-solid fa-calculator me-2"></i>
-                    {lang === "ru" ? "Открыть калькулятор" : "Open Calculator"}
+                    Open Calculator
                   </button>
                 </div>
                 <div className="fc-404-links">
                   {[
-                    { id: "interest", label: lang === "ru" ? "Проценты" : "Interest" },
-                    { id: "loan",     label: lang === "ru" ? "Кредит"   : "Loan" },
-                    { id: "mortgage", label: lang === "ru" ? "Ипотека"  : "Mortgage" },
-                    { id: "currency", label: lang === "ru" ? "Валюта"   : "Currency" },
+                    { id: "interest", label: "Interest" },
+                    { id: "loan",     label: "Loan" },
+                    { id: "mortgage", label: "Mortgage" },
+                    { id: "currency", label: "Currency" },
                     { id: "bmi",      label: "BMI" },
                   ].map(l => (
                     <button key={l.id} className="fc-404-pill" onClick={() => navigateTo(l.id)}>
@@ -866,6 +823,7 @@ export default function App() {
       </div>
 
       <AdBanner slot="global-footer" layout="tight" />
+      <a className="fc-ad-direct-link" href={ADSTERRA_DIRECT_LINK} target="_blank" rel="noopener noreferrer sponsored">Sponsored link</a>
       <AdBanner slot="global-footer-468" size="banner" layout="tight" />
 
       {/* ── Footer ─────────────────────────────────────────── */}
@@ -899,7 +857,7 @@ export default function App() {
   );
 }
 
-function LiveClock({ lang }: { lang: "en" | "ru" }) {
+function LiveClock({ lang: _lang }: { lang: AppLang }) {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -907,7 +865,7 @@ function LiveClock({ lang }: { lang: "en" | "ru" }) {
     return () => clearInterval(id);
   }, []);
 
-  const locale = lang === "ru" ? "ru-RU" : "en-US";
+  const locale = "en-US";
   const timeStr = now.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", second: "2-digit" });
   const dateStr = now.toLocaleDateString(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 

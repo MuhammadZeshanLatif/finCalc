@@ -10,11 +10,9 @@ RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.
 
 # Consolidate host to avoid duplicate www/non-www indexing
 RewriteCond %{HTTP_HOST} ^www\.financcalculator\.ru$ [NC]
-RewriteRule ^ https://financcalculator.ru%{REQUEST_URI} [R=301,L]
+RewriteRule ^ https://financcalculators.com%{REQUEST_URI} [R=301,L]
 
 # Legacy URL cleanup (avoid soft-404/noindex crawl waste)
-RewriteRule ^ru/loanearly/?$ /ru/loan [R=301,L]
-RewriteRule ^ru/autoloan/?$ /ru/loan [R=301,L]
 RewriteRule ^loanearly/?$ /loan [R=301,L]
 RewriteRule ^autoloan/?$ /loan [R=301,L]
 

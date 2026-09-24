@@ -4,6 +4,7 @@ import { BlogBlockRenderer } from "./BlogBlockRenderer";
 import { BlogLiveRatesSnippet } from "./BlogLiveRatesSnippet";
 import { BlogPostImage } from "./BlogPostImage";
 import { AdBanner } from "../ads/AdBanner";
+import type { AppLang } from "../../utils/routes";
 
 type Glabels = {
   toc: string;
@@ -31,7 +32,7 @@ export function BlogArticlePage({
   onBackToBlog,
 }: {
   post: BlogArticle;
-  lang: "en" | "ru";
+  lang: AppLang;
   latest: BlogArticle[];
   related: BlogArticle[];
   labels: Glabels;
@@ -214,11 +215,9 @@ export function BlogArticlePage({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {lang === "ru" ? "Открыть на YouTube" : "Open on YouTube"}
+                  Open on YouTube
                 </a>
-                {lang === "ru"
-                  ? " — если плеер не загрузился (блокировка сети или расширения)."
-                  : " — if the player does not load (network block or browser extension)."}
+                {" — if the player does not load (network block or browser extension)."}
               </p>
             </div>
           ) : null}

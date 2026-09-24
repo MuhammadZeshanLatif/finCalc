@@ -7,7 +7,6 @@ import {
   getSiteUrl,
   getTwitterCreator,
   getTwitterSite,
-  HREFLANG_X_DEFAULT_LANG,
   SITE_NAME,
   SITE_ORG_LOGO_PATH,
   SITE_PREVIEW_IMAGE_PATH,
@@ -39,15 +38,9 @@ function ogImageMimeType(url: string): string {
 const META = {
   en: {
     defaultDesc:
-      "Free financial calculators for compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Fast, accurate tools in English and Russian — no sign-up required online.",
+      "Free financial calculators for compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Fast, accurate tools — no sign-up required online.",
     keywords:
       "financial calculator, interest calculator, loan calculator, mortgage calculator, EMI calculator, VAT calculator, currency converter, BMI calculator, free calculator",
-  },
-  ru: {
-    defaultDesc:
-      "Бесплатные финансовые калькуляторы: проценты, кредит, ипотека, EMI, НДС, налог, валюта, ИМТ и другие инструменты. Точные расчёты онлайн на EN и RU — без регистрации.",
-    keywords:
-      "финансовый калькулятор, кредитный калькулятор, ипотека, EMI, НДС, конвертер валют, ИМТ, бесплатный калькулятор",
   },
 } as const;
 
@@ -80,8 +73,6 @@ let jsonLdId = "fc-jsonld-root";
 export type BlogSeoPayload = {
   /** Path only, e.g. `/blog/compound-interest-guide` — page URL for OG / JSON-LD. */
   articlePath: string;
-  alternateEnPath: string;
-  alternateRuPath: string;
   headline: string;
   description: string;
   keywords: string;
@@ -131,11 +122,11 @@ export function updatePageSeo(opts: {
 
   const ogImageRaw = opts.blogArticle?.imageUrl ?? getOgImageUrl();
   const ogImage = normalizeSocialImage(ogImageRaw);
-  const ogAlt = opts.blogArticle?.imageAlt ?? getOgImageAlt(opts.lang);
+  const ogAlt = opts.blogArticle?.imageAlt ?? getOgImageAlt();
   const orgName = getOrgName();
   const homeLabel = opts.breadcrumbHomeLabel ?? "Home";
 
-  document.documentElement.lang = opts.lang === "ru" ? "ru" : "en";
+  document.documentElement.lang = "en";
   document.title = fullTitle;
 
   setMeta("name", "description", desc);
@@ -154,7 +145,7 @@ export function updatePageSeo(opts: {
   setMeta("property", "og:title", fullTitle);
   setMeta("property", "og:description", desc);
   setMeta("property", "og:url", url);
-  setMeta("property", "og:locale", opts.lang === "ru" ? "ru_RU" : "en_US");
+  setMeta("property", "og:locale", "en_US");
   setMeta("property", "og:image", ogImage);
   setMeta("property", "og:image:type", ogImageMimeType(ogImage));
   setMeta("property", "og:image:width", "1200");
@@ -178,18 +169,8 @@ export function updatePageSeo(opts: {
     removeMeta("property", "article:section");
   }
 
+  // Single-language site: no alternate locale. Clear any stale tag from prior SPA navigation.
   document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(el => el.remove());
-  if (opts.lang === "en") {
-    const m = document.createElement("meta");
-    m.setAttribute("property", "og:locale:alternate");
-    m.content = "ru_RU";
-    document.head.appendChild(m);
-  } else {
-    const m = document.createElement("meta");
-    m.setAttribute("property", "og:locale:alternate");
-    m.content = "en_US";
-    document.head.appendChild(m);
-  }
 
   setMeta("name", "twitter:card", "summary_large_image");
   setMeta("name", "twitter:title", fullTitle);
@@ -211,30 +192,8 @@ export function updatePageSeo(opts: {
     document.head.appendChild(canonical);
   }
 
+  // English-only site: no hreflang alternates. Clear any stale links from prior SPA navigation.
   document.querySelectorAll('link[data-fc-hreflang="1"]').forEach(el => el.remove());
-  if (!isNotFoundPage) {
-    const enPath = buildPathname("en", opts.page, null);
-    const ruPath = buildPathname("ru", opts.page, null);
-    const enUrl = opts.blogArticle
-      ? normalizeCanonicalUrl(base, opts.blogArticle.alternateEnPath)
-      : normalizeCanonicalUrl(base, enPath === "/" ? "/" : enPath);
-    const ruUrl = opts.blogArticle
-      ? normalizeCanonicalUrl(base, opts.blogArticle.alternateRuPath)
-      : normalizeCanonicalUrl(base, ruPath === "/" ? "/ru" : ruPath);
-    const xDefaultUrl = HREFLANG_X_DEFAULT_LANG === "ru" ? ruUrl : enUrl;
-    for (const [hreflang, href] of [
-      ["en", enUrl],
-      ["ru", ruUrl],
-      ["x-default", xDefaultUrl],
-    ] as const) {
-      const l = document.createElement("link");
-      l.rel = "alternate";
-      l.hreflang = hreflang;
-      l.href = href;
-      l.setAttribute("data-fc-hreflang", "1");
-      document.head.appendChild(l);
-    }
-  }
 
   const faqs = opts.blogArticle ? [] : getSeoFaqs(opts.lang, opts.page);
   const howTo = opts.blogArticle ? null : getSeoHowTo(opts.lang, opts.page);
@@ -302,8 +261,7 @@ function injectJsonLd(opts: {
       "@id": `${opts.base}/#website`,
       url: opts.base,
       name: opts.orgName,
-      /* Russian listed first = primary market signal; both locales remain indexed via hreflang. */
-      inLanguage: ["ru-RU", "en-US"],
+      inLanguage: ["en-US"],
       description: META[opts.lang].defaultDesc,
       publisher: { "@id": `${opts.base}/#org` },
       image: {
@@ -323,7 +281,7 @@ function injectJsonLd(opts: {
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      inLanguage: ["en-US", "ru-RU"],
+      inLanguage: ["en-US"],
     },
   ];
 
@@ -345,7 +303,7 @@ function injectJsonLd(opts: {
 
   if (opts.blogArticle) {
     const homeUrl = `${opts.base}${buildPathname(opts.lang, "home") === "/" ? "" : buildPathname(opts.lang, "home")}`;
-    const blogIndexPath = opts.lang === "ru" ? "/ru/blog" : "/blog";
+    const blogIndexPath = "/blog";
     const blogIndexUrl = `${opts.base}${blogIndexPath}`;
     graph.push({
       "@type": "BreadcrumbList",
@@ -387,7 +345,7 @@ function injectJsonLd(opts: {
       ],
       publisher: { "@id": `${opts.base}/#org` },
       image: imageList,
-      inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
+      inLanguage: "en-US",
       articleSection: opts.blogArticle.articleSection ?? "Personal finance",
       isAccessibleForFree: true,
     };
@@ -453,7 +411,7 @@ function injectJsonLd(opts: {
       name: webPageName,
       isPartOf: { "@id": `${opts.base}/#website` },
       breadcrumb: { "@id": `${opts.pageUrl}#breadcrumb` },
-      inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
+      inLanguage: "en-US",
     };
     if (opts.blogArticle) {
       webPage.primaryImageOfPage = {
@@ -476,7 +434,7 @@ function injectJsonLd(opts: {
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      inLanguage: opts.lang === "ru" ? "ru-RU" : "en-US",
+      inLanguage: "en-US",
     });
   }
 

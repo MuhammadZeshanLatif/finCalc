@@ -5,10 +5,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.financcalculator.ru"
+          "value": "www.financcalculators.com"
         }
       ],
-      "destination": "https://financcalculator.ru/:path*",
+      "destination": "https://financcalculators.com/:path*",
       "permanent": true
     }
   ],
