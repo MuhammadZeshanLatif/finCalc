@@ -2,7 +2,6 @@ import { useCallback, useRef, useState } from "react";
 import { translations } from "../data/translations";
 import { evaluateExpression, roundDisplay } from "../utils/basicCalcEngine";
 import { CalculatorRichArticle } from "./calc/CalculatorRichArticle";
-import { AdBanner } from "./ads/AdBanner";
 import { TruncatedText } from "./calc/CalcVisuals";
 import type { AppLang } from "../utils/routes";
 
@@ -82,8 +81,6 @@ export default function BasicCalculatorPage({ lang }: Props) {
         <p>{t.desc}</p>
       </div>
 
-      <AdBanner slot="calc-basic" />
-      <AdBanner slot="calc-basic-468" size="banner" />
 
       <div className="row g-0">
         <div className="col-lg-6 fc-form-section">
@@ -268,7 +265,6 @@ export default function BasicCalculatorPage({ lang }: Props) {
             <p>{t.how}</p>
           </div>
 
-          <AdBanner slot="calc-basic-mid" />
           <CalculatorRichArticle id="basic" lang={lang} />
         </div>
       </div>

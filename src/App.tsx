@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { translations } from "./data/translations";
 import {
@@ -14,7 +14,6 @@ import TI84CalculatorPage from "./components/TI84CalculatorPage";
 import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
-import { CookieConsent, hasCookieConsent } from "./components/legal/CookieConsent";
 import { LegalPage } from "./components/legal/LegalPage";
 import { privacyPolicy } from "./data/legal/privacy";
 import { termsOfUse } from "./data/legal/terms";
@@ -31,10 +30,6 @@ import {
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
 import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
-import { AdScriptAnchor } from "./components/ads/AdScriptAnchor";
-import { AdBanner } from "./components/ads/AdBanner";
-import { AdNative } from "./components/ads/AdNative";
-import { ADSTERRA_DIRECT_LINK, ADSTERRA_JS_SYNC } from "./config/ads";
 
 const META_DEFAULT: Record<string, string> = {
   en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up required.",
@@ -96,7 +91,6 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [blogPage, setBlogPage] = useState<number>(1);
   const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
-  const [adsAllowed, setAdsAllowed] = useState(hasCookieConsent);
   const postsPerPage = 6;
 
   useEffect(() => {
@@ -220,8 +214,6 @@ export default function App() {
 
   return (
     <div className="fc-app-shell">
-      {adsAllowed ? ADSTERRA_JS_SYNC.map(url => <AdScriptAnchor key={url} url={url} />) : null}
-      <CookieConsent lang={lang} onAccept={() => setAdsAllowed(true)} />
 
       {/* ── Navbar ─────────────────────────────────────────── */}
       <nav className="navbar navbar-expand-lg navbar-dark fc-navbar">
@@ -290,11 +282,6 @@ export default function App() {
           </div>
         </div>
       </nav>
-
-      <div className="container">
-        <AdBanner slot="global-top" layout="tight" />
-        <AdBanner slot="global-top-468" size="banner" layout="tight" />
-      </div>
 
       {/* ── Main Layout ────────────────────────────────────── */}
       <div className="container my-4 fc-app-main">
@@ -366,8 +353,6 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <AdBanner slot="sidebar-skyscraper" size="skyscraper" />
-            <AdBanner slot="sidebar-tall" size="tall-skyscraper" />
           </div>
 
           {/* Content */}
@@ -424,13 +409,6 @@ export default function App() {
                   </div>
                 </div>
 
-                <AdBanner slot="home-hero" />
-                <AdNative />
-                <AdBanner slot="home-rectangle" size="rectangle" />
-                <AdBanner slot="home-hero-468" size="banner" />
-
-                <AdBanner slot="home-promo" />
-
                 <div className="row g-4 mb-4 align-items-center">
                   <div className="col-12">
                     <div className="fc-home-promo-card">
@@ -464,15 +442,13 @@ export default function App() {
                   <div className="fc-section-rule__line"></div>
                 </div>
 
-                <AdBanner slot="home-calc" />
 
                 {/* Calculator Cards Grid */}
                 <div className="row g-3">
-                  {filteredCalculators.map((c, idx) => {
+                  {filteredCalculators.map(c => {
                     const meta = calcMeta[c.id];
                     return (
-                      <Fragment key={c.id}>
-                        <div className="col-md-6">
+                      <div className="col-md-6" key={c.id}>
                           <div className="fc-calc-card card border-0">
                             <div className="card-body d-flex flex-column p-4">
                               {meta && (
@@ -492,17 +468,10 @@ export default function App() {
                               </a>
                             </div>
                           </div>
-                        </div>
-                        {(idx + 1) % 2 === 0 ? (
-                          <div className="col-12">
-                            <AdBanner slot={`home-card-${idx}`} />
-                          </div>
-                        ) : null}
-                      </Fragment>
+                      </div>
                     );
                   })}
                 </div>
-                <AdBanner slot="home-bottom" />
               </div>
             )}
 
@@ -521,10 +490,8 @@ export default function App() {
                   </h1>
                   <p>{t.ti84PageLead}</p>
                 </div>
-                <AdBanner slot="ti84" />
                 <TI84CalculatorPage />
                 <CalculatorRichArticle id="ti84" lang={lang} />
-                <AdBanner slot="ti84-bottom" />
               </div>
             )}
 
@@ -538,9 +505,7 @@ export default function App() {
                   </h1>
                   <p>{t.desmosPageLead}</p>
                 </div>
-                <AdBanner slot="desmos" />
                 <DesmosCalculatorPage lang={lang} onNavigate={navigateTo} />
-                <AdBanner slot="desmos-bottom" />
               </div>
             )}
 
@@ -592,8 +557,6 @@ export default function App() {
                 <p className="text-body-secondary mb-4 fc-blog-index-lead">
                   Long-form guides with a table of contents, citations, and calculator deep-links. Open an article for the full layout.
                 </p>
-                <AdBanner slot="blog-index" />
-                <AdBanner slot="blog-index-468" size="banner" />
                 <div className="row g-4">
                   {paginatedPosts.map(post => {
                     const thumbSrc = post.hero.srcWebp ?? post.hero.src;
@@ -683,7 +646,6 @@ export default function App() {
                 <h1 className="h2 text-primary d-flex align-items-center gap-2 border-bottom pb-3 mb-4">
                   <i className="fa-solid fa-circle-info"></i> {t.about}
                 </h1>
-                <AdBanner slot="about" />
                 <CalculatorRichArticle id="about" lang={lang} />
               </div>
             )}
@@ -698,8 +660,6 @@ export default function App() {
                   Email:{" "}
                   <a href={`mailto:${getContactEmail()}`}>{getContactEmail()}</a>
                 </p>
-                <AdBanner slot="contact" />
-                <AdBanner slot="contact-mid" />
                 {contactSubmitted ? (
                   <div className="alert alert-success d-flex align-items-center gap-3 rounded-3">
                     <i className="fa-solid fa-circle-check fs-4"></i>
@@ -822,9 +782,6 @@ export default function App() {
         ))}
       </div>
 
-      <AdBanner slot="global-footer" layout="tight" />
-      <a className="fc-ad-direct-link" href={ADSTERRA_DIRECT_LINK} target="_blank" rel="noopener noreferrer sponsored">Sponsored link</a>
-      <AdBanner slot="global-footer-468" size="banner" layout="tight" />
 
       {/* ── Footer ─────────────────────────────────────────── */}
       <footer className="fc-footer text-white text-center py-4 mt-auto">
