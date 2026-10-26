@@ -47,7 +47,8 @@ $category = !empty($p['category']) ? $p['category'] : 'Personal Finance';
 $rendered = render_body($p['content']);
 $rendered['html'] = unlink_dead_blog_links($rendered['html']);
 $published = $p['published_at'];
-$modified = !empty($p['updated_at']) ? $p['updated_at'] : $published;
+// A scheduled post was saved before it went live; never report a modified date earlier than publication.
+$modified = (!empty($p['updated_at']) && strtotime($p['updated_at']) > strtotime($published)) ? $p['updated_at'] : $published;
 $day = substr($published, 0, 10);
 
 // ---- JSON-LD (mirrors buildJsonLd() in src/utils/seo.ts) ----

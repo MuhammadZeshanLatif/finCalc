@@ -96,7 +96,7 @@ export function resolveDbPostSeo(lang: AppLang, post: DbPost): PageSeoOptions {
       description,
       keywords: [post.primaryKeyword, ...post.secondaryKeywords, ...post.tags].filter(Boolean).join(", "),
       datePublished: day(post.publishedAt),
-      dateModified: day(post.updatedAt || post.publishedAt),
+      dateModified: day(Date.parse(post.updatedAt) > Date.parse(post.publishedAt) ? post.updatedAt : post.publishedAt),
       authorName: post.author,
       imageUrl: toAbsAsset(post.ogImage || post.image || "/og-image.webp"),
       imageAlt: post.imageAlt || post.title,

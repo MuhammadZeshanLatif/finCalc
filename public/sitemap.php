@@ -16,7 +16,8 @@ $extra = '';
 foreach ($rows as $row) {
   $loc = $c['origin'] . '/blog/' . $row['slug'];
   if (strpos($static, '<loc>' . $loc . '</loc>') !== false) continue;
-  $lastmod = substr($row['updated_at'] ?: $row['published_at'], 0, 10);
+  $mod = (!empty($row['updated_at']) && strtotime($row['updated_at']) > strtotime($row['published_at'])) ? $row['updated_at'] : $row['published_at'];
+  $lastmod = substr($mod, 0, 10);
   $extra .= "  <url>\n    <loc>" . esc($loc) . "</loc>\n    <lastmod>" . esc($lastmod) . "</lastmod>\n    <priority>0.7</priority>\n  </url>\n";
 }
 echo str_replace('</urlset>', $extra . '</urlset>', $static);
