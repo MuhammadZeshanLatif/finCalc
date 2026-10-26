@@ -39,7 +39,7 @@ export default function BlogManager({ onPostsChange }: { onPostsChange?: (posts:
   const [filter, setFilter] = useState<"all" | PostState>("all");
   const [search, setSearch] = useState("");
   const [screen, setScreen] = useState<"list" | "editor">("list");
-  const [scheduleOpen, setScheduleOpen] = useState(false);
+  const [scheduleOpen, setScheduleOpen] = useState<false | "form" | "side">(false);
   const [scheduleAt, setScheduleAt] = useState("");
   const [previewPost, setPreviewPost] = useState<DbPost | null>(null);
   const importInput = useRef<HTMLInputElement>(null);
@@ -149,10 +149,10 @@ export default function BlogManager({ onPostsChange }: { onPostsChange?: (posts:
     }
   }
 
-  function openSchedule() {
+  function openSchedule(where: "form" | "side" = "form") {
     const current = postState(post) === "scheduled" ? new Date(post.publishedAt) : new Date(Date.now() + 24 * 3600000);
     setScheduleAt(toLocalInput(current));
-    setScheduleOpen(true);
+    setScheduleOpen(where);
   }
 
   function validate(action: Action) {
@@ -246,6 +246,15 @@ export default function BlogManager({ onPostsChange }: { onPostsChange?: (posts:
   }
 
   const state = postState(post);
+  const schedulePicker = (
+    <div className="bm-admin-schedule">
+      <label>Publish on · {TIME_ZONE}
+        <input type="datetime-local" min={toLocalInput(new Date())} value={scheduleAt} onChange={e => setScheduleAt(e.target.value)} />
+      </label>
+      <button type="button" className="bm-btn bm-btn--primary" disabled={busy || !scheduleAt} onClick={() => persist("schedule", scheduleAt)}>{state === "scheduled" ? "Confirm new time" : "Confirm schedule"}</button>
+      <button type="button" className="bm-btn" onClick={() => setScheduleOpen(false)}>Cancel</button>
+    </div>
+  );
   const counts = posts.reduce(
     (acc, p) => { acc[postState(p)] += 1; return acc; },
     { draft: 0, scheduled: 0, published: 0 } as Record<PostState, number>,
@@ -425,25 +434,18 @@ export default function BlogManager({ onPostsChange }: { onPostsChange?: (posts:
                 {state === "scheduled" ? `Goes live ${formatWhen(post.publishedAt)} (${TIME_ZONE})` : state === "published" ? `Live since ${formatWhen(post.publishedAt)}` : "Not visible on the website"}
               </p>
 
-              {scheduleOpen && (
-                <div className="bm-admin-schedule">
-                  <label>Publish on · {TIME_ZONE}
-                    <input type="datetime-local" min={toLocalInput(new Date())} value={scheduleAt} onChange={e => setScheduleAt(e.target.value)} />
-                  </label>
-                  <button type="button" className="bm-btn bm-btn--primary" disabled={busy || !scheduleAt} onClick={() => persist("schedule", scheduleAt)}>{state === "scheduled" ? "Confirm new time" : "Confirm schedule"}</button>
-                  <button type="button" className="bm-btn" onClick={() => setScheduleOpen(false)}>Cancel</button>
-                </div>
-              )}
+              {scheduleOpen === "form" && schedulePicker}
+
 
               <div className="bm-admin-form-actions">
                 {state === "draft" && <>
                   <button type="submit" className="bm-btn bm-btn--primary" disabled={busy || !ready}>{busy ? "Working..." : "Save draft"}</button>
                   <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => { if (window.confirm("Publish now? It goes live on the blog and sitemap immediately.")) persist("publish"); }}>Publish now</button>
-                  <button type="button" className="bm-btn" disabled={busy || !ready} onClick={openSchedule}>Schedule</button>
+                  <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => openSchedule("form")}>Schedule</button>
                 </>}
                 {state === "scheduled" && <>
                   <button type="submit" className="bm-btn bm-btn--primary" disabled={busy || !ready}>{busy ? "Working..." : "Save changes"}</button>
-                  <button type="button" className="bm-btn" disabled={busy || !ready} onClick={openSchedule}>Reschedule</button>
+                  <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => openSchedule("form")}>Reschedule</button>
                   <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => persist("publish")}>Publish now</button>
                   <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => persist("draft")}>Cancel schedule</button>
                 </>}
@@ -463,6 +465,14 @@ export default function BlogManager({ onPostsChange }: { onPostsChange?: (posts:
                 <p><span className={`bm-status bm-status--${state}`}>{post.id ? STATE_LABEL[state] : "New draft"}</span></p>
                 <p>{state === "scheduled" ? `Goes live ${formatWhen(post.publishedAt)}` : state === "published" ? `Published ${formatWhen(post.publishedAt)}` : "Visible only in this dashboard"}</p>
                 {post.updatedAt && <p className="bm-muted">Last saved {formatWhen(post.updatedAt)}</p>}
+                {post.id && (
+                  <div className="bm-admin-side-actions">
+                    {state !== "published" && <button type="button" className="bm-btn bm-btn--primary" disabled={busy || !ready} onClick={() => openSchedule("side")}>{state === "draft" ? "Schedule" : "Change date & time"}</button>}
+                    {state !== "published" && <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => { if (window.confirm("Publish now? It goes live on the blog and sitemap immediately.")) persist("publish"); }}>Publish now</button>}
+                    {state === "scheduled" && <button type="button" className="bm-btn" disabled={busy || !ready} onClick={() => persist("draft")}>Cancel schedule</button>}
+                  </div>
+                )}
+                {scheduleOpen === "side" && schedulePicker}
               </section>
               <section>
                 <h5>Organization</h5>

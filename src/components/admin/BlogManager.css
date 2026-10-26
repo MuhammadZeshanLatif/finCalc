@@ -80,6 +80,9 @@
 .bm-admin-state { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--text-2, #8b949e); font-size: 13px; }
 .bm-admin-schedule { display: flex; align-items: flex-end; gap: 10px; flex-wrap: wrap; padding: 14px; border: 1px solid rgba(88, 166, 255, .35); border-radius: 10px; background: rgba(88, 166, 255, .06); }
 .bm-admin-schedule label { flex: 1 1 240px; }
+.bm-admin-side-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.bm-admin-settings .bm-admin-schedule { margin-top: 10px; flex-direction: column; align-items: stretch; }
+.bm-admin-settings .bm-admin-schedule label { flex: none; }
 .bm-admin-form-actions { position: sticky; bottom: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 -22px -22px; padding: 16px 22px; border-top: 1px solid var(--border, #263754); border-radius: 0 0 12px 12px; background: var(--bg-2, #111d30); }
 
 .bm-admin-settings { position: sticky; top: 90px; padding: 18px; }
