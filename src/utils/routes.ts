@@ -6,6 +6,8 @@ export const ROUTE_PAGES = new Set([
   "contact",
   "privacy",
   "terms",
+  "disclaimer",
+  "editorial-policy",
   "basic",
   "interest",
   "deposit",

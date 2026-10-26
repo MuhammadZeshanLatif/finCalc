@@ -140,4 +140,3 @@ User-agent: RubiconProject
 Allow: /
 
 Sitemap: https://financcalculators.com/sitemap.xml
-Host: financcalculators.com

@@ -17,3 +17,6 @@ yarn-error.log*
 # Editor / OS
 .DS_Store
 Thumbs.db
+
+# Blog drafts live in Supabase (unpublished; keep them out of the public repo)
+content/blog-drafts/

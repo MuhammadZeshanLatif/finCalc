@@ -1,6 +1,6 @@
 /** SEO meta length targets (Search Console / SERP snippet tuning). */
-export const META_TITLE_MIN = 51;
-export const META_TITLE_MAX = 160;
+/** Google shows roughly 50–60 characters of a title; longer titles get cut or rewritten. */
+export const META_TITLE_MAX = 65;
 export const META_DESC_MIN = 151;
 export const META_DESC_MAX = 159;
 
@@ -13,20 +13,25 @@ function truncateAtWord(s: string, max: number): string {
   let cut = s.slice(0, max);
   const lastSpace = cut.lastIndexOf(" ");
   if (lastSpace > max - 20) cut = cut.slice(0, lastSpace);
-  return cut.replace(/[\s|,;:\-–—.]+$/, "").trim();
+  return cut.replace(/[\s|,;:\-–—.&]+$/, "").trim();
+}
+
+/** Trailing brand variants that slipped into hand-written titles ("| Finance Calculator Blog", "| FinCalc"…). */
+const BRAND_SUFFIX_RE = /\s*[|–—-]\s*(FinanceCalculator|Finance Calculator|FinCalc)(\s+Blog)?\s*$/i;
+
+/**
+ * One consistent brand suffix: strips any hand-written variant, then appends ` | {brand}`
+ * only when the result still fits the SERP width — otherwise the keyword-bearing part wins.
+ */
+export function withBrandSuffix(rawTitle: string, brand: string): string {
+  const core = collapseWs(rawTitle).replace(BRAND_SUFFIX_RE, "");
+  if (core.toLowerCase() === brand.toLowerCase()) return core;
+  const branded = `${core} | ${brand}`;
+  return branded.length <= META_TITLE_MAX ? branded : core;
 }
 
 export function normalizeMetaTitle(raw: string): string {
-  let t = collapseWs(raw);
-  if (t.length > META_TITLE_MAX) {
-    t = truncateAtWord(t, META_TITLE_MAX);
-  }
-  const suffixes = [" | FinCalc", " Online", " — Free", " Tool"];
-  for (const suffix of suffixes) {
-    if (t.length >= META_TITLE_MIN) break;
-    if (t.length + suffix.length <= META_TITLE_MAX) t += suffix;
-  }
-  return t.slice(0, META_TITLE_MAX);
+  return truncateAtWord(collapseWs(raw), META_TITLE_MAX);
 }
 
 export function normalizeMetaDescription(raw: string): string {
@@ -48,10 +53,10 @@ export function normalizeMetaDescription(raw: string): string {
   return d.slice(0, META_DESC_MAX);
 }
 
-/** Strip trailing slash; keep bare origin for home paths. */
+/** Strip trailing slash; the home page is always `{origin}/`. */
 export function normalizeCanonicalUrl(base: string, pathname: string): string {
   const b = base.replace(/\/+$/, "");
   const p = pathname.replace(/\/+$/, "");
-  if (!p || p === "/") return b;
+  if (!p || p === "/") return `${b}/`;
   return `${b}${p.startsWith("/") ? p : `/${p}`}`;
 }

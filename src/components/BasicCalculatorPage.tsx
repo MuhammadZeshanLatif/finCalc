@@ -74,10 +74,10 @@ export default function BasicCalculatorPage({ lang }: Props) {
   return (
     <div className="fc-calc-page">
       <div className="fc-calc-header">
-        <h2>
+        <h1>
           <i className="fa-solid fa-calculator me-2 fc-calc-header-icon"></i>
           {t.title}
-        </h2>
+        </h1>
         <p>{t.desc}</p>
       </div>
 

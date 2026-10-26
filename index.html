@@ -8,11 +8,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' data: https:; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; connect-src 'self' https: ws: wss:; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https:; upgrade-insecure-requests"
-    />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; font-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; worker-src 'self' blob:; connect-src 'self' https: wss:; frame-src 'self' https:; upgrade-insecure-requests"
     />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="FinanceCalculator" />
@@ -26,7 +22,7 @@
     <title>Free Mortgage, Loan, EMI &amp; Tax Calculators Online</title>
     <meta name="description" content="Free finance calculators for mortgage, loan, EMI, interest, deposit, VAT, tax, BMI, and currency. Live results in your browser — no sign-up required." />
     <meta name="keywords" content="financial calculator, interest calculator, loan calculator, mortgage calculator, EMI calculator, VAT calculator, sales tax calculator, currency converter, BMI calculator" />
-    <!-- Per-route canonical + hreflang are updated by src/utils/seo.ts after load -->
+    <!-- Per-route title, meta, Open Graph, canonical and JSON-LD: written by scripts/prerender.js at build, kept in sync by src/utils/seo.ts on navigation -->
     <!-- Yandex Webmaster verification — replace value with your code from webmaster.yandex.ru -->
     <meta name="yandex-verification" content="7a3a7a310bc6c28c" />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -55,78 +51,7 @@
   <body>
     <div id="root"></div>
     <noscript>
-      <header>
-        <nav>
-          <a href="/">FinanceCalculator Home</a> |
-          <a href="/blog">Blog</a> |
-          <a href="/about">About</a> |
-          <a href="/contact">Contact</a> |
-          <a href="/privacy">Privacy Policy</a> |
-          <a href="/terms">Terms</a>
-        </nav>
-      </header>
-      <main>
-        <h1>FinanceCalculator — Free Financial Calculators</h1>
-        <p>Free online financial calculators. All tools are free, no sign-up required, and work in your browser.</p>
-
-        <h2>Available Calculators</h2>
-        <ul>
-          <li><a href="/interest">Compound Interest Calculator</a> — Calculate savings growth with compound interest. Enter principal, rate, compounding frequency, and time to see future value.</li>
-          <li><a href="/loan">Loan Calculator</a> — Compute monthly payments and total interest for personal or auto loans with full amortization schedule.</li>
-          <li><a href="/mortgage">Mortgage Calculator</a> — Calculate PITI (principal, interest, taxes, insurance) and PMI for home loans. Full 30-year amortization breakdown.</li>
-          <li><a href="/deposit">Savings &amp; Deposit Calculator</a> — Project savings account growth with regular contributions and compound interest.</li>
-          <li><a href="/emi">EMI Calculator</a> — Equated Monthly Installment calculator for loans. See prepayment savings and tenure reduction options.</li>
-          <li><a href="/vat">VAT Calculator</a> — Add or remove VAT/GST from prices. Supports inclusive and exclusive calculations for any rate.</li>
-          <li><a href="/tax">Tax Calculator</a> — Simplified progressive tax bracket illustration showing marginal vs effective tax rate.</li>
-          <li><a href="/currency">Currency Converter</a> — Convert between major world currencies using exchange rates.</li>
-          <li><a href="/bmi">BMI Calculator</a> — Body Mass Index calculator with metric units and health category interpretation.</li>
-          <li><a href="/days">Date Difference Calculator</a> — Calculate the number of days between two dates.</li>
-          <li><a href="/basic">Scientific Calculator</a> — Full-featured scientific calculator with trigonometry, logarithms, and more.</li>
-          <li><a href="/salestax">Sales Tax Calculator</a> — Calculate sales tax and after-tax price for any jurisdiction.</li>
-        </ul>
-
-        <h2>Financial Education Blog</h2>
-        <ul>
-          <li><a href="/blog/compound-interest-guide">Compound Interest: How Timing and Frequency Change Real Returns</a> — Learn how compounding frequency and start date affect your final balance more than small rate differences.</li>
-          <li><a href="/blog/common-mortgage-mistakes-how-to-avoid">10 Common Mortgage Mistakes and How to Avoid Them</a> — Pre-approval, credit timing, closing costs, and PITI planning for homebuyers.</li>
-          <li><a href="/blog/emi-prepayment-strategy">EMI Loan Prepayment: Where It Really Cuts Interest</a> — When extra payments save money, Rule of 78s trap, and principal-only payment instructions.</li>
-          <li><a href="/blog/emergency-fund-high-yield-savings">Emergency Funds: Liquidity First, Yield Second</a> — How much to save, where to keep it, and why safety beats chasing high APY.</li>
-          <li><a href="/blog/progressive-tax-brackets-net-income">Progressive Tax Brackets: Why a Raise Does Not Tax Your Whole Paycheck</a> — Marginal vs effective tax rate explained with U.S. and Russia NDFL 2025 examples.</li>
-          <li><a href="/blog/currency-exchange-travel-budget">Currency Exchange for Travel: Budget Smarter</a> — How to get the best exchange rates and avoid hidden fees when traveling abroad.</li>
-          <li><a href="/blog/vat-gst-invoicing-inclusive-exclusive">VAT and GST Invoicing: Inclusive vs Exclusive Explained</a> — How VAT-inclusive and VAT-exclusive pricing works for invoicing and compliance.</li>
-          <li><a href="/blog/bmi-screening-insurance-pricing">BMI, Health Screening, and Insurance Pricing</a> — How BMI affects health insurance underwriting and what it means for your coverage.</li>
-          <li><a href="/blog/how-to-calculate-emi-loan-monthly-payment">How to Calculate EMI: Loan Monthly Payment Formula</a> — Step-by-step EMI formula with examples for home, car, and personal loans.</li>
-          <li><a href="/blog/sales-tax-calculator-russia-property-ndfl">Sales Tax Calculator: Russia Property and NDFL</a> — Russian property sales tax and NDFL implications explained.</li>
-          <li><a href="/blog/ti84-plus-ce-calculator-online">TI-84 Plus CE Calculator Online</a> — Guide to graphing calculator functions and online alternatives.</li>
-          <li><a href="/blog/what-is-graphing-calculator">What Is a Graphing Calculator?</a> — Explanation of graphing calculator features, uses in math and science.</li>
-        </ul>
-
-        <h2>Frequently Asked Questions</h2>
-        <dl>
-          <dt>Are these calculators free?</dt>
-          <dd>Yes. All calculators on FinanceCalculator are completely free, no account or sign-up required.</dd>
-
-          <dt>Are the results financial advice?</dt>
-          <dd>No. Results are educational estimates only — not financial, tax, medical, or legal advice. Consult a qualified professional for personal decisions.</dd>
-
-          <dt>What language is the site in?</dt>
-          <dd>English. All calculators and blog articles are available in English.</dd>
-
-          <dt>Are currency rates live?</dt>
-          <dd>Currency rates in the app are illustrative and may not reflect live market quotes. For live rates, consult your bank or an official currency source.</dd>
-
-          <dt>How accurate are the mortgage and loan calculators?</dt>
-          <dd>The calculators use standard amortization formulas and are accurate for fixed-rate loans. Results are estimates; actual loan terms vary by lender.</dd>
-
-          <dt>Is FinanceCalculator affiliated with any bank or financial institution?</dt>
-          <dd>No. FinanceCalculator is an independent educational tool and is not affiliated with any bank, lender, or financial institution.</dd>
-        </dl>
-
-        <h2>About FinanceCalculator</h2>
-        <p>FinanceCalculator is a free financial calculator web application. We provide tools for calculating compound interest, loan payments, mortgage amortization, EMI, VAT, currency conversion, BMI, tax brackets, and more. Our goal is to make financial math accessible and understandable for everyone.</p>
-        <p>All results are educational estimates only and should not be considered financial, tax, medical, or legal advice.</p>
-        <p>Follow us: <a href="https://x.com/fincalculat">Twitter/X</a> | <a href="https://www.instagram.com/fincalculat/">Instagram</a> | <a href="https://www.youtube.com/@FinCalc-i1y">YouTube</a> | <a href="https://www.reddit.com/user/fincalculat">Reddit</a></p>
-      </main>
+      <p>Calculators need JavaScript to compute results. Articles and guides on this page are readable without it.</p>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
     <script

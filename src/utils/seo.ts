@@ -16,15 +16,19 @@ import {
   normalizeCanonicalUrl,
   normalizeMetaDescription,
   normalizeMetaTitle,
+  withBrandSuffix,
 } from "./metaLimits";
 import { buildPathname, type AppLang } from "./routes";
 
 /** Pages that are interactive calculators — get per-page SoftwareApplication schema. */
-const CALCULATOR_PAGES = new Set([
+export const CALCULATOR_PAGES = new Set([
   "basic", "interest", "deposit", "loan", "mortgage",
   "days", "vat", "emi", "bmi", "tax", "currency",
   "ti84", "salestax", "desmos",
 ]);
+
+const ROBOTS_INDEX = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const ROBOTS_NOINDEX = "noindex, follow";
 
 function ogImageMimeType(url: string): string {
   const path = (url.split("?")[0] ?? "").toLowerCase();
@@ -54,21 +58,7 @@ function normalizeSocialImage(url: string): string {
   return url;
 }
 
-function setMeta(attr: "name" | "property", key: string, content: string) {
-  let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
-  }
-  el.content = content;
-}
-
-function removeMeta(attr: "name" | "property", key: string) {
-  document.querySelector(`meta[${attr}="${key}"]`)?.remove();
-}
-
-let jsonLdId = "fc-jsonld-root";
+const JSON_LD_ID = "fc-jsonld-root";
 
 export type BlogSeoPayload = {
   /** Path only, e.g. `/blog/compound-interest-guide` — page URL for OG / JSON-LD. */
@@ -93,7 +83,7 @@ export type BlogSeoPayload = {
   faqs?: { q: string; a: string }[];
 };
 
-export function updatePageSeo(opts: {
+export type PageSeoOptions = {
   lang: AppLang;
   page: string;
   title: string;
@@ -101,117 +91,184 @@ export function updatePageSeo(opts: {
   calculatorKeywords?: string;
   /** Breadcrumb first item label (e.g. localized "Home"). */
   breadcrumbHomeLabel?: string;
-  /** Blog post: full Article / BlogPosting SEO + hreflang. */
+  /** Blog post: full Article / BlogPosting SEO. */
   blogArticle?: BlogSeoPayload;
-}) {
+};
+
+export type SeoMetaTag = { attr: "name" | "property"; key: string; content: string };
+
+/** Everything that goes into `<head>` for one route — shared by the browser and the prerender script. */
+export type SeoHead = {
+  lang: string;
+  title: string;
+  metas: SeoMetaTag[];
+  canonical: string | null;
+  jsonLd: Record<string, unknown>;
+};
+
+/** Meta keys this module owns; stale ones are removed on SPA navigation. */
+const MANAGED_META: { attr: "name" | "property"; key: string }[] = [
+  { attr: "property", key: "article:published_time" },
+  { attr: "property", key: "article:modified_time" },
+  { attr: "property", key: "article:author" },
+  { attr: "property", key: "article:section" },
+  { attr: "property", key: "og:image:width" },
+  { attr: "property", key: "og:image:height" },
+  { attr: "name", key: "twitter:site" },
+  { attr: "name", key: "twitter:creator" },
+];
+
+export function buildSeoHead(opts: PageSeoOptions): SeoHead {
   const base = getSiteUrl();
+  const isNotFoundPage = opts.page === "notfound";
   const defaultPath = buildPathname(opts.lang, opts.page, null);
-  // Home page URL is bare origin (no trailing slash). Other pages use full path.
-  const pathStr = defaultPath === "/" ? "" : defaultPath;
   const url = normalizeCanonicalUrl(
     base,
-    opts.blogArticle ? opts.blogArticle.articlePath : pathStr || "/",
+    opts.blogArticle ? opts.blogArticle.articlePath : defaultPath,
   );
-  const rawTitle = opts.blogArticle ? opts.title : `${opts.title} | ${SITE_NAME}`;
-  const fullTitle = normalizeMetaTitle(rawTitle);
+  const fullTitle = normalizeMetaTitle(withBrandSuffix(opts.title, SITE_NAME));
   const desc = normalizeMetaDescription(opts.description || META[opts.lang].defaultDesc);
-  const kw = opts.blogArticle
-    ? [META[opts.lang].keywords, opts.blogArticle.keywords].filter(Boolean).join(", ")
-    : [META[opts.lang].keywords, opts.calculatorKeywords].filter(Boolean).join(", ") ||
-      META[opts.lang].keywords;
+  const kw = [
+    META[opts.lang].keywords,
+    opts.blogArticle ? opts.blogArticle.keywords : opts.calculatorKeywords,
+  ]
+    .filter(Boolean)
+    .join(", ");
 
-  const ogImageRaw = opts.blogArticle?.imageUrl ?? getOgImageUrl();
-  const ogImage = normalizeSocialImage(ogImageRaw);
+  const isDefaultImage = !opts.blogArticle?.imageUrl;
+  const ogImage = normalizeSocialImage(opts.blogArticle?.imageUrl ?? getOgImageUrl());
   const ogAlt = opts.blogArticle?.imageAlt ?? getOgImageAlt();
   const orgName = getOrgName();
-  const homeLabel = opts.breadcrumbHomeLabel ?? "Home";
 
-  document.documentElement.lang = "en";
-  document.title = fullTitle;
+  const metas: SeoMetaTag[] = [];
+  const add = (attr: "name" | "property", key: string, content: string) =>
+    metas.push({ attr, key, content });
 
-  setMeta("name", "description", desc);
-  setMeta("name", "keywords", kw);
-  const isNotFoundPage = opts.page === "notfound";
-  setMeta(
-    "name",
-    "robots",
-    isNotFoundPage
-      ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-  );
+  add("name", "description", desc);
+  add("name", "keywords", kw);
+  add("name", "robots", isNotFoundPage ? ROBOTS_NOINDEX : ROBOTS_INDEX);
 
-  setMeta("property", "og:type", opts.blogArticle ? "article" : "website");
-  setMeta("property", "og:site_name", orgName);
-  setMeta("property", "og:title", fullTitle);
-  setMeta("property", "og:description", desc);
-  setMeta("property", "og:url", url);
-  setMeta("property", "og:locale", "en_US");
-  setMeta("property", "og:image", ogImage);
-  setMeta("property", "og:image:type", ogImageMimeType(ogImage));
-  setMeta("property", "og:image:width", "1200");
-  setMeta("property", "og:image:height", "630");
-  setMeta("property", "og:image:alt", ogAlt);
-  setMeta("property", "og:image:secure_url", ogImage);
+  add("property", "og:type", opts.blogArticle ? "article" : "website");
+  add("property", "og:site_name", orgName);
+  add("property", "og:title", fullTitle);
+  add("property", "og:description", desc);
+  add("property", "og:url", url);
+  add("property", "og:locale", "en_US");
+  add("property", "og:image", ogImage);
+  add("property", "og:image:secure_url", ogImage);
+  add("property", "og:image:type", ogImageMimeType(ogImage));
+  // Only the default preview has known dimensions; blog heroes vary in size.
+  if (isDefaultImage) {
+    add("property", "og:image:width", "1200");
+    add("property", "og:image:height", "630");
+  }
+  add("property", "og:image:alt", ogAlt);
 
   if (opts.blogArticle) {
-    setMeta("property", "article:published_time", `${opts.blogArticle.datePublished}T08:00:00.000Z`);
-    setMeta("property", "article:modified_time", `${opts.blogArticle.dateModified}T08:00:00.000Z`);
-    setMeta("property", "article:author", opts.blogArticle.authorName);
-    setMeta(
-      "property",
-      "article:section",
-      opts.blogArticle.articleSection ?? "Personal finance",
-    );
-  } else {
-    removeMeta("property", "article:published_time");
-    removeMeta("property", "article:modified_time");
-    removeMeta("property", "article:author");
-    removeMeta("property", "article:section");
+    add("property", "article:published_time", `${opts.blogArticle.datePublished}T08:00:00.000Z`);
+    add("property", "article:modified_time", `${opts.blogArticle.dateModified}T08:00:00.000Z`);
+    add("property", "article:author", opts.blogArticle.authorName);
+    add("property", "article:section", opts.blogArticle.articleSection ?? "Personal finance");
   }
 
-  // Single-language site: no alternate locale. Clear any stale tag from prior SPA navigation.
-  document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(el => el.remove());
-
-  setMeta("name", "twitter:card", "summary_large_image");
-  setMeta("name", "twitter:title", fullTitle);
-  setMeta("name", "twitter:description", desc);
-  setMeta("name", "twitter:image", ogImage);
-  setMeta("name", "twitter:image:alt", ogAlt);
+  add("name", "twitter:card", "summary_large_image");
+  add("name", "twitter:title", fullTitle);
+  add("name", "twitter:description", desc);
+  add("name", "twitter:image", ogImage);
+  add("name", "twitter:image:alt", ogAlt);
   const twSite = getTwitterSite();
   const twCreator = getTwitterCreator();
-  if (twSite) setMeta("name", "twitter:site", `@${twSite}`);
-  else removeMeta("name", "twitter:site");
-  if (twCreator) setMeta("name", "twitter:creator", `@${twCreator}`);
-  else removeMeta("name", "twitter:creator");
+  if (twSite) add("name", "twitter:site", `@${twSite}`);
+  if (twCreator) add("name", "twitter:creator", `@${twCreator}`);
+
+  const faqs = opts.blogArticle || isNotFoundPage ? [] : getSeoFaqs(opts.lang, opts.page);
+  const howTo = opts.blogArticle || isNotFoundPage ? null : getSeoHowTo(opts.lang, opts.page);
+
+  return {
+    lang: "en",
+    title: fullTitle,
+    metas,
+    canonical: isNotFoundPage ? null : url,
+    jsonLd: buildJsonLd({
+      base,
+      lang: opts.lang,
+      page: opts.page,
+      pageTitle: opts.title,
+      pageUrl: url,
+      homeLabel: opts.breadcrumbHomeLabel ?? "Home",
+      faqs,
+      howTo,
+      orgName,
+      blogArticle: opts.blogArticle,
+    }),
+  };
+}
+
+/** Apply SEO for the current route to the live document (SPA navigation). */
+export function updatePageSeo(opts: PageSeoOptions) {
+  const head = buildSeoHead(opts);
+
+  document.documentElement.lang = head.lang;
+  document.title = head.title;
+
+  const present = new Set(head.metas.map(m => `${m.attr}|${m.key}`));
+  for (const m of MANAGED_META) {
+    if (!present.has(`${m.attr}|${m.key}`)) {
+      document.querySelector(`meta[${m.attr}="${m.key}"]`)?.remove();
+    }
+  }
+  for (const m of head.metas) {
+    let el = document.querySelector(`meta[${m.attr}="${m.key}"]`) as HTMLMetaElement | null;
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute(m.attr, m.key);
+      document.head.appendChild(el);
+    }
+    el.content = m.content;
+  }
 
   document.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
-  if (!isNotFoundPage) {
+  if (head.canonical) {
     const canonical = document.createElement("link");
     canonical.rel = "canonical";
-    canonical.href = url;
+    canonical.href = head.canonical;
     document.head.appendChild(canonical);
   }
 
-  // English-only site: no hreflang alternates. Clear any stale links from prior SPA navigation.
+  // English-only site: no hreflang / alternate locales. Clear any legacy tags.
   document.querySelectorAll('link[data-fc-hreflang="1"]').forEach(el => el.remove());
+  document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(el => el.remove());
 
-  const faqs = opts.blogArticle ? [] : getSeoFaqs(opts.lang, opts.page);
-  const howTo = opts.blogArticle ? null : getSeoHowTo(opts.lang, opts.page);
-  injectJsonLd({
-    base,
-    lang: opts.lang,
-    page: opts.page,
-    pageTitle: opts.title,
-    pageUrl: url,
-    homeLabel,
-    faqs,
-    howTo,
-    orgName,
-    blogArticle: opts.blogArticle,
-  });
+  document.getElementById(JSON_LD_ID)?.remove();
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.id = JSON_LD_ID;
+  script.textContent = JSON.stringify(head.jsonLd);
+  document.head.appendChild(script);
 }
 
-function injectJsonLd(opts: {
+function escapeAttr(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/** Serialize a SeoHead as static `<head>` markup (used by scripts/prerender.js). */
+export function renderSeoHeadHtml(head: SeoHead): string {
+  const lines = [`<title>${escapeAttr(head.title)}</title>`];
+  for (const m of head.metas) {
+    lines.push(`<meta ${m.attr}="${m.key}" content="${escapeAttr(m.content)}" />`);
+  }
+  if (head.canonical) lines.push(`<link rel="canonical" href="${escapeAttr(head.canonical)}" />`);
+  // `<` escaped so article text can never close the script element early.
+  const json = JSON.stringify(head.jsonLd).replace(/</g, "\\u003c");
+  lines.push(`<script type="application/ld+json" id="${JSON_LD_ID}">${json}</script>`);
+  return lines.join("\n    ");
+}
+
+function buildJsonLd(opts: {
   base: string;
   lang: AppLang;
   page: string;
@@ -222,20 +279,18 @@ function injectJsonLd(opts: {
   howTo: { name: string; description: string; steps: string[] } | null;
   orgName: string;
   blogArticle?: BlogSeoPayload;
-}) {
-  const existing = document.getElementById(jsonLdId);
-  if (existing) existing.remove();
-
+}): Record<string, unknown> {
   const sameAs = getOrgSameAs();
   const email = getContactEmail();
   const orgLogoUrl = `${opts.base}${SITE_ORG_LOGO_PATH}`;
   const previewImageUrl = `${opts.base}${SITE_PREVIEW_IMAGE_PATH}`;
+  const homeUrl = normalizeCanonicalUrl(opts.base, "/");
 
   const org: Record<string, unknown> = {
     "@type": "Organization",
     "@id": `${opts.base}/#org`,
     name: opts.orgName,
-    url: opts.base,
+    url: homeUrl,
     description: META[opts.lang].defaultDesc,
     logo: {
       "@type": "ImageObject",
@@ -246,12 +301,11 @@ function injectJsonLd(opts: {
   };
   if (sameAs.length) org.sameAs = sameAs;
   if (email) {
-    const contactPath = buildPathname(opts.lang, "contact", null);
     org.contactPoint = {
       "@type": "ContactPoint",
       contactType: "customer support",
       email,
-      url: `${opts.base}${contactPath}`,
+      url: `${opts.base}${buildPathname(opts.lang, "contact", null)}`,
     };
   }
 
@@ -259,9 +313,9 @@ function injectJsonLd(opts: {
     {
       "@type": "WebSite",
       "@id": `${opts.base}/#website`,
-      url: opts.base,
+      url: homeUrl,
       name: opts.orgName,
-      inLanguage: ["en-US"],
+      inLanguage: "en-US",
       description: META[opts.lang].defaultDesc,
       publisher: { "@id": `${opts.base}/#org` },
       image: {
@@ -272,39 +326,47 @@ function injectJsonLd(opts: {
       },
     },
     org,
-    {
-      "@type": "WebApplication",
-      name: opts.orgName,
-      url: opts.base,
-      image: previewImageUrl,
-      applicationCategory: "FinanceApplication",
-      operatingSystem: "Any",
-      browserRequirements: "Requires JavaScript",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      inLanguage: ["en-US"],
-    },
   ];
 
+  if (opts.page === "notfound") {
+    return { "@context": "https://schema.org", "@graph": graph };
+  }
+
   if (opts.page === "home" && !opts.blogArticle) {
-    graph.splice(1, 0, {
-      "@type": "WebPage",
-      "@id": `${opts.pageUrl}#webpage`,
-      url: opts.pageUrl,
-      name: opts.pageTitle,
-      isPartOf: { "@id": `${opts.base}/#website` },
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: previewImageUrl,
-        width: 1200,
-        height: 630,
+    graph.push(
+      {
+        "@type": "WebPage",
+        "@id": `${opts.pageUrl}#webpage`,
+        url: opts.pageUrl,
+        name: opts.pageTitle,
+        isPartOf: { "@id": `${opts.base}/#website` },
+        about: { "@id": `${opts.base}/#app` },
+        inLanguage: "en-US",
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: previewImageUrl,
+          width: 1200,
+          height: 630,
+        },
       },
-    });
+      {
+        "@type": "WebApplication",
+        "@id": `${opts.base}/#app`,
+        name: opts.orgName,
+        url: homeUrl,
+        image: previewImageUrl,
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        publisher: { "@id": `${opts.base}/#org` },
+        inLanguage: "en-US",
+      },
+    );
   }
 
   if (opts.blogArticle) {
-    const homeUrl = `${opts.base}${buildPathname(opts.lang, "home") === "/" ? "" : buildPathname(opts.lang, "home")}`;
-    const blogIndexPath = "/blog";
-    const blogIndexUrl = `${opts.base}${blogIndexPath}`;
+    const blogIndexUrl = `${opts.base}${buildPathname(opts.lang, "blog", null)}`;
     graph.push({
       "@type": "BreadcrumbList",
       "@id": `${opts.pageUrl}#breadcrumb`,
@@ -328,23 +390,27 @@ function injectJsonLd(opts: {
         url: g.url,
         ...(g.caption ? { caption: g.caption } : {}),
       }));
-    const imageList: Record<string, unknown>[] = [heroImageObject, ...extraImages];
 
     const blogPosting: Record<string, unknown> = {
       "@type": "BlogPosting",
       "@id": `${opts.pageUrl}#article`,
       url: opts.pageUrl,
-      mainEntityOfPage: { "@type": "WebPage", "@id": `${opts.pageUrl}#webpage` },
+      mainEntityOfPage: { "@id": `${opts.pageUrl}#webpage` },
       headline: opts.blogArticle.headline,
       description: opts.blogArticle.description,
+      keywords: opts.blogArticle.keywords,
       datePublished: `${opts.blogArticle.datePublished}T08:00:00.000Z`,
       dateModified: `${opts.blogArticle.dateModified}T08:00:00.000Z`,
-      author: [
-        { "@type": "Person", name: opts.blogArticle.authorName, url: `${opts.base}/about` },
-        { "@type": "Organization", "@id": `${opts.base}/#org` },
-      ],
+      // Bylines are an editorial team, not a named individual — mark them as the Organization
+      // (a Person named "… Editorial" is invalid author markup).
+      author: {
+        "@type": "Organization",
+        "@id": `${opts.base}/#org`,
+        name: opts.blogArticle.authorName,
+        url: `${opts.base}${buildPathname(opts.lang, "about", null)}`,
+      },
       publisher: { "@id": `${opts.base}/#org` },
-      image: imageList,
+      image: [heroImageObject, ...extraImages],
       inLanguage: "en-US",
       articleSection: opts.blogArticle.articleSection ?? "Personal finance",
       isAccessibleForFree: true,
@@ -380,35 +446,23 @@ function injectJsonLd(opts: {
       });
     }
   } else if (opts.page !== "home") {
-    const homeUrl = `${opts.base}${buildPathname(opts.lang, "home") === "/" ? "" : buildPathname(opts.lang, "home")}`;
     graph.push({
       "@type": "BreadcrumbList",
       "@id": `${opts.pageUrl}#breadcrumb`,
       itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: opts.homeLabel,
-          item: homeUrl,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: opts.pageTitle,
-          item: opts.pageUrl,
-        },
+        { "@type": "ListItem", position: 1, name: opts.homeLabel, item: homeUrl },
+        { "@type": "ListItem", position: 2, name: opts.pageTitle, item: opts.pageUrl },
       ],
     });
   }
 
-  // WebPage node for every non-home page (Google/Yandex require explicit WebPage for rich results).
+  // WebPage node for every non-home page.
   if (opts.page !== "home") {
-    const webPageName = opts.blogArticle ? opts.blogArticle.headline : opts.pageTitle;
     const webPage: Record<string, unknown> = {
-      "@type": "WebPage",
+      "@type": opts.page === "about" ? "AboutPage" : opts.page === "contact" ? "ContactPage" : "WebPage",
       "@id": `${opts.pageUrl}#webpage`,
       url: opts.pageUrl,
-      name: webPageName,
+      name: opts.blogArticle ? opts.blogArticle.headline : opts.pageTitle,
       isPartOf: { "@id": `${opts.base}/#website` },
       breadcrumb: { "@id": `${opts.pageUrl}#breadcrumb` },
       inLanguage: "en-US",
@@ -423,17 +477,18 @@ function injectJsonLd(opts: {
     graph.push(webPage);
   }
 
-  // Per-calculator SoftwareApplication node — richer signal for each tool page.
+  // Per-calculator WebApplication node — richer signal for each tool page.
   if (!opts.blogArticle && CALCULATOR_PAGES.has(opts.page)) {
     graph.push({
-      "@type": ["WebApplication", "SoftwareApplication"],
+      "@type": "WebApplication",
       "@id": `${opts.pageUrl}#app`,
       name: opts.pageTitle,
       url: opts.pageUrl,
-      applicationCategory: "FinanceApplication",
+      applicationCategory: opts.page === "bmi" ? "HealthApplication" : "FinanceApplication",
       operatingSystem: "Any",
       browserRequirements: "Requires JavaScript",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      publisher: { "@id": `${opts.base}/#org` },
       inLanguage: "en-US",
     });
   }
@@ -466,12 +521,5 @@ function injectJsonLd(opts: {
     });
   }
 
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.id = jsonLdId;
-  script.textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": graph,
-  });
-  document.head.appendChild(script);
+  return { "@context": "https://schema.org", "@graph": graph };
 }

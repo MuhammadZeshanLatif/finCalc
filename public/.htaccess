@@ -5,16 +5,40 @@ RewriteBase /
 # Prerender folders (e.g. /deposit/index.html): serve at /deposit without /deposit/ redirect loop
 DirectorySlash Off
 
-# ── Verification & crawler files: always real files, never SPA index.html ──
-RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest|google[a-z0-9]+\.html)$ - [L]
+# Unknown URLs get a real 404 status (no soft-404s); 404.html is the app's noindex "not found" page
+ErrorDocument 404 /404.html
 
-# Consolidate host to avoid duplicate www/non-www indexing
-RewriteCond %{HTTP_HOST} ^www\.financcalculator\.ru$ [NC]
-RewriteRule ^ https://financcalculators.com%{REQUEST_URI} [R=301,L]
+# ── ads.txt after Mediavine / Journey approval ──
+# Mediavine manages ads.txt for you. Once approved, uncomment this line, put in the exact
+# ads.txt URL shown in your Mediavine/Journey dashboard, and delete public/ads.txt:
+# RewriteRule ^ads\.txt$ https://adstxt.mediavine.com/sites/YOUR-SITE-SLUG/ads.txt [R=301,L]
+
+# ── Sitemap = static pages + live posts from the admin blog (sitemap.php) ──
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# Internal templates / settings for the PHP blog renderer are not public pages
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(blog-shell\.html|blog-config\.php|blog-lib\.php|sitemap-static\.xml)$ - [R=404,L]
+
+# ── Verification & crawler files: always real files ──
+RewriteRule ^(ads\.txt|app-ads\.txt|robots\.txt|sitemap\.xsl|llms\.txt|llm\.txt|manifest\.webmanifest|google[a-z0-9]+\.html)$ - [L]
+
+# One canonical origin: https://financcalculators.com (no www)
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://financcalculators.com%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
 
 # Legacy URL cleanup (avoid soft-404/noindex crawl waste)
 RewriteRule ^loanearly/?$ /loan [R=301,L]
 RewriteRule ^autoloan/?$ /loan [R=301,L]
+RewriteRule ^home/?$ / [R=301,L]
+
+# Direct requests for /foo/index.html or /index.html → clean URL
+RewriteCond %{THE_REQUEST} \s/+(.*?)/?index\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
 
 # Internally serve prerender HTML (no external redirect to trailing-slash URL)
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -26,19 +50,19 @@ RewriteRule ^(.+?)/?$ $1/index.html [L]
 RewriteCond %{REQUEST_URI} .+/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-# SPA fallback for routes without prerender folder
+# Admin dashboard (client-side app, noindex): every /admin/* path uses the same shell
+RewriteRule ^admin/.+$ /admin/index.html [L]
+
+# Blog posts published from the admin dashboard (no prerendered page) → PHP renderer
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html !-f
+RewriteRule ^blog/([a-z0-9]+(?:-[a-z0-9]+)*)$ blog-router.php?slug=$1 [L,QSA]
 
-# ── Crawlers, AI bots, Google AdSense: allow full access (no bot blocking) ──
+# Every other valid route is prerendered, so anything else falls through to ErrorDocument 404.
+
 <IfModule mod_headers.c>
-  # Index everything — AdSense / Google / AI crawlers must read pages and ads.txt
-  Header always set X-Robots-Tag "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-
   <FilesMatch "^(ads|app-ads)\.txt$">
     Header set Content-Type "text/plain; charset=utf-8"
-    Header set X-Robots-Tag "all"
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 
@@ -50,4 +74,37 @@ RewriteRule ^ index.html [L]
   <FilesMatch "^sitemap\.(xml|xsl)$">
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
+
+  # Admin dashboard must never be indexed
+  <If "%{REQUEST_URI} =~ m#^/admin#">
+    Header set X-Robots-Tag "noindex, nofollow"
+  </If>
+
+  # Verification file must not show up in search results
+  <FilesMatch "^google[a-z0-9]+\.html$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+
+  # HTML revalidates on every visit; hashed build assets are immutable
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/javascript application/json image/svg+xml application/manifest+json
 </IfModule>

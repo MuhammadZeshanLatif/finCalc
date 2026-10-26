@@ -5,13 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.js",
+    "build:spa": "vite build",
     "preview": "vite preview",
     "blog:webp": "node scripts/svg-to-webp.mjs",
     "prerender": "node scripts/prerender.js",
-    "build:full": "vite build && node scripts/prerender.js"
+    "blog:draft": "node scripts/push-blog-draft.mjs",
+    "blog:images": "node scripts/build-blog-images.mjs",
+    "admin:create": "node scripts/create-admin-user.mjs",
+    "build:full": "npm run build"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "clsx": "2.1.1",
     "mathjs": "^15.1.1",
     "react": "19.2.3",

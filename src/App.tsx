@@ -1,25 +1,38 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect, useMemo } from "react";
 import clsx from "clsx";
 import { translations } from "./data/translations";
 import {
-  approxWordCount,
   getBlogPosts,
   getLatestPosts,
   getPostBySlug,
   getRelatedPosts,
 } from "./data/blog";
-import type { BlogBlock } from "./data/blog/types";
 import Calculators from "./components/Calculators";
-import TI84CalculatorPage from "./components/TI84CalculatorPage";
-import DesmosCalculatorPage from "./components/DesmosCalculatorPage";
+// Graphing tools pull in mathjs (~half the bundle) — load them only on their own pages.
+const TI84CalculatorPage = lazy(() => import("./components/TI84CalculatorPage"));
+const DesmosCalculatorPage = lazy(() => import("./components/DesmosCalculatorPage"));
+const graphingFallback = <div className="fc-page-box text-muted small" style={{ minHeight: "60vh" }}>Loading calculator…</div>;
 import { CalculatorRichArticle } from "./components/calc/CalculatorRichArticle";
 import { BlogArticlePage } from "./components/blog/BlogArticlePage";
+import { DatabaseArticlePage, DB_ARTICLE_PLACEHOLDERS, dbArticleView } from "./components/blog/DatabaseArticlePage";
+import type { DbPost } from "./lib/blogPosts";
+// The Supabase client (~50 kB gzip) loads only when a page actually talks to the database.
+const blogApi = () => import("./lib/blogPosts");
 import { LegalPage } from "./components/legal/LegalPage";
 import { privacyPolicy } from "./data/legal/privacy";
 import { termsOfUse } from "./data/legal/terms";
+import { disclaimer } from "./data/legal/disclaimer";
+import { editorialPolicy } from "./data/legal/editorial";
+import type { LegalDocument } from "./data/legal/types";
+
+const legalDocs: Record<string, Record<"en", LegalDocument>> = {
+  privacy: privacyPolicy,
+  terms: termsOfUse,
+  disclaimer,
+  "editorial-policy": editorialPolicy,
+};
 import {
   getContactEmail,
-  getSiteUrl,
   OFFICIAL_SOCIAL_INSTAGRAM,
   OFFICIAL_SOCIAL_PINTEREST,
   OFFICIAL_SOCIAL_REDDIT,
@@ -29,14 +42,21 @@ import {
   SITE_LOGO_URL,
 } from "./config/site";
 import { buildPathname, normalizePage, parsePathname, type AppLang } from "./utils/routes";
-import { updatePageSeo, type BlogSeoPayload } from "./utils/seo";
+import { resolveDbPostSeo, resolvePageSeo } from "./utils/pageSeo";
+import { updatePageSeo } from "./utils/seo";
 
-const META_DEFAULT: Record<string, string> = {
-  en: "Free financial calculators: compound interest, loans, mortgage, EMI, VAT, tax, currency, BMI, and more. Live results in your browser — no sign-up required.",
-};
+export type AppRoute = { lang: AppLang; page: string; blogSlug: string | null };
 
-let fcRouteSeed: { lang: AppLang; page: string; blogSlug: string | null } | null = null;
-function seedRoute(): { lang: AppLang; page: string; blogSlug: string | null } {
+/** Route for a pathname, without touching browser history (used by the prerender script). */
+export function routeFromPathname(pathname: string): AppRoute {
+  const { lang, page, blogSlug } = parsePathname(pathname);
+  if (page === "blog" && blogSlug) return { lang, page, blogSlug };
+  return { lang, page: normalizePage(page), blogSlug: null };
+}
+
+let fcRouteSeed: AppRoute | null = null;
+function seedRoute(initial?: AppRoute): AppRoute {
+  if (initial) return initial;
   if (fcRouteSeed) return fcRouteSeed;
   let { lang, page, blogSlug } = parsePathname(window.location.pathname);
   const hash = window.location.hash.replace(/^#/, "");
@@ -72,25 +92,21 @@ const calcMeta: Record<string, { icon: string }> = {
   desmos:    { icon: "fa-chart-line" },
 };
 
-function extractFaqPairs(blocks: BlogBlock[]): { q: string; a: string }[] {
-  const pairs: { q: string; a: string }[] = [];
-  for (let i = 0; i < blocks.length - 1; i++) {
-    const cur = blocks[i];
-    const next = blocks[i + 1];
-    if (cur.t !== "h3" || next.t !== "p") continue;
-    if (!cur.id.startsWith("faq-")) continue;
-    pairs.push({ q: cur.text, a: next.text });
-  }
-  return pairs;
-}
+/** Card shape shared by built-in guides and posts published from the admin dashboard. */
+type BlogCard = { slug: string; title: string; excerpt: string; datePublished: string; image: string; calcLink: string };
 
-export default function App() {
-  const [lang, setLang] = useState<AppLang>(() => seedRoute().lang);
-  const [currentPage, setCurrentPage] = useState(() => seedRoute().page);
-  const [blogSlug, setBlogSlug] = useState<string | null>(() => seedRoute().blogSlug);
+export default function App({ initialRoute, dbShell = false }: { initialRoute?: AppRoute; dbShell?: boolean } = {}) {
+  const [lang, setLang] = useState<AppLang>(() => seedRoute(initialRoute).lang);
+  const [currentPage, setCurrentPage] = useState(() => seedRoute(initialRoute).page);
+  const [blogSlug, setBlogSlug] = useState<string | null>(() => seedRoute(initialRoute).blogSlug);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [blogPage, setBlogPage] = useState<number>(1);
   const [contactSubmitted, setContactSubmitted] = useState<boolean>(false);
+  const [contactSending, setContactSending] = useState<boolean>(false);
+  const [contactError, setContactError] = useState<string>("");
+  // Posts published from /admin (Supabase). Built-in guides come from src/data/blog.
+  const [liveDbPosts, setLiveDbPosts] = useState<DbPost[]>([]);
+  const [dbPost, setDbPost] = useState<{ slug: string; post: DbPost | null } | null>(null);
   const postsPerPage = 6;
 
   useEffect(() => {
@@ -120,7 +136,66 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
+  /** Same-site href from article HTML, e.g. `/mortgage` or `/blog/some-post#faq`. */
+  const navigateToPath = (href: string) => {
+    const [path, hash] = href.split("#");
+    const route = routeFromPathname(path || "/");
+    navigateTo(route.page, { blogSlug: route.blogSlug });
+    if (hash) window.setTimeout(() => document.getElementById(hash)?.scrollIntoView(), 50);
+  };
+
+  useEffect(() => {
+    if (dbShell) return;
+    // Only the blog index and article pages list database posts; fetch once, after first paint.
+    if (currentPage !== "blog" || liveDbPosts.length) return;
+    blogApi().then(m => m.fetchLivePosts()).then(setLiveDbPosts, () => {});
+  }, [dbShell, currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const staticPost = blogSlug ? getPostBySlug(lang, blogSlug) : undefined;
+  const wantsDbPost = currentPage === "blog" && Boolean(blogSlug) && !staticPost && !dbShell;
+
+  useEffect(() => {
+    if (!wantsDbPost || !blogSlug) return;
+    if (dbPost?.slug === blogSlug) return;
+    let cancelled = false;
+    blogApi()
+      .then(m => m.fetchLivePostBySlug(blogSlug))
+      .catch(() => null)
+      .then(post => {
+        if (!cancelled) setDbPost({ slug: blogSlug, post });
+      });
+    return () => { cancelled = true; };
+  }, [wantsDbPost, blogSlug, dbPost?.slug]);
+
+  const activeDbPost = wantsDbPost && dbPost?.slug === blogSlug ? dbPost.post : null;
+  const dbPostLoading = wantsDbPost && dbPost?.slug !== blogSlug;
+
+  const submitContactForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    // Honeypot: real visitors never fill the hidden "website" field.
+    if (String(data.get("website") || "")) { setContactSubmitted(true); return; }
+    setContactSending(true);
+    setContactError("");
+    const { submitContact } = await import("./lib/supabase");
+    const result = await submitContact({
+      name: String(data.get("name") || ""),
+      email: String(data.get("email") || ""),
+      subject: String(data.get("subject") || ""),
+      message: String(data.get("message") || ""),
+    });
+    setContactSending(false);
+    if (result.ok) setContactSubmitted(true);
+    else setContactError(result.error || "Could not send your message.");
+  };
+
   const t = translations[lang];
+  const legalLinks = [
+    { page: "privacy", label: t.privacy },
+    { page: "terms", label: t.terms },
+    { page: "disclaimer", label: t.disclaimer },
+    { page: "editorial-policy", label: t.editorialPolicy },
+  ];
 
   const calculatorList = Object.keys(t.calculators).map(key => ({
     id: key,
@@ -133,84 +208,51 @@ export default function App() {
     c.desc.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const currentBlogPosts = getBlogPosts(lang);
-  const activeBlogPost = blogSlug ? getPostBySlug(lang, blogSlug) : undefined;
+  const staticBlogPosts = getBlogPosts(lang);
+  const currentBlogPosts = useMemo<BlogCard[]>(() => {
+    const staticSlugs = new Set(staticBlogPosts.map(p => p.slug));
+    const cards: BlogCard[] = staticBlogPosts.map(p => ({
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      datePublished: p.datePublished,
+      image: p.hero.srcWebp ?? p.hero.src,
+      calcLink: p.calcLink,
+    }));
+    for (const p of liveDbPosts) {
+      if (staticSlugs.has(p.slug)) continue;
+      cards.push({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        datePublished: (p.publishedAt || "").slice(0, 10),
+        image: p.image || "/og-image.webp",
+        calcLink: p.calcLink,
+      });
+    }
+    return cards.sort((a, b) => (b.datePublished > a.datePublished ? 1 : b.datePublished < a.datePublished ? -1 : 0));
+  }, [staticBlogPosts, liveDbPosts]);
+  const activeBlogPost = staticPost;
   const indexOfLastPost = blogPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const paginatedPosts = currentBlogPosts.slice(indexOfFirstPost, indexOfLastPost);
 
+  const liveSlugs = useMemo(
+    () => new Set([...staticBlogPosts.map(p => p.slug), ...liveDbPosts.map(p => p.slug), ...(activeDbPost ? [activeDbPost.slug] : [])]),
+    [staticBlogPosts, liveDbPosts, activeDbPost],
+  );
+  const dbView = useMemo(
+    () => (dbShell ? DB_ARTICLE_PLACEHOLDERS : activeDbPost ? dbArticleView(activeDbPost, slug => liveSlugs.has(slug)) : null),
+    [dbShell, activeDbPost, liveSlugs],
+  );
+
   useEffect(() => {
-    const tr = translations[lang];
-    // Per-page SEO lookup — covers all calculator pages, static pages, and TI-84
-    const ps = (tr.pageSeo as Record<string, { title: string; desc: string } | undefined>);
-    let title: string = tr.siteTitle;
-    let description: string = META_DEFAULT[lang];
-    let calculatorKeywords: string | undefined;
-    let blogArticle: BlogSeoPayload | undefined;
-
-    if (currentPage === "home") {
-      title       = tr.homeSeoHeadline;
-      description = tr.homeSeoDescription;
-      calculatorKeywords = tr.homeSeoCalculatorKeywords;
-    } else if (currentPage === "blog" && blogSlug) {
-      // ── Blog article ──────────────────────────────────────────────────────
-      const post = getPostBySlug(lang, blogSlug);
-      if (!post) {
-        title       = "Page not found";
-        description = "This blog post does not exist. Return to the article list.";
-      } else {
-        title       = post.metaTitle;
-        description = post.metaDescription;
-        const heroForSocial = post.hero.srcWebp ?? post.hero.src;
-        const faqPairs = extractFaqPairs(post.blocks);
-        const siteBase = getSiteUrl();
-        const toAbsAsset = (u: string) =>
-          /^https?:\/\//i.test(u) ? u : `${siteBase}${u.startsWith("/") ? "" : "/"}${u}`;
-        const heroImageAbs = toAbsAsset(heroForSocial);
-        const articleImageGallery = post.blocks
-          .filter((b): b is Extract<BlogBlock, { t: "figure" }> => b.t === "figure")
-          .map(b => ({ url: toAbsAsset(b.src), caption: b.alt }));
-        blogArticle = {
-          articlePath:      buildPathname(lang, "blog", post.slug),
-          headline:         post.title,
-          description:      post.metaDescription,
-          keywords:         post.keywords,
-          datePublished:    post.datePublished,
-          dateModified:     post.dateModified,
-          authorName:       post.author,
-          imageUrl:         heroImageAbs,
-          imageAlt:         post.hero.alt,
-          articleImageGallery,
-          blogListLabel:    t.blog,
-          wordCountApprox:  approxWordCount(post),
-          videoYoutubeId:   post.video?.youtubeId,
-          videoTitle:       post.video?.title,
-          articleSection:   post.articleSection,
-          faqs:             faqPairs,
-        };
-      }
-    } else if (ps[currentPage]) {
-      // ── All other pages: use per-page SEO from translations ───────────────
-      title       = ps[currentPage]!.title;
-      description = ps[currentPage]!.desc;
-      // Add keyword hints for calculator + static pages
-      calculatorKeywords = undefined;
-    } else {
-      // Fallback for unknown pages
-      title       = tr.siteTitle;
-      description = META_DEFAULT[lang];
-    }
-
-    updatePageSeo({
-      lang,
-      page: currentPage,
-      title,
-      description,
-      calculatorKeywords,
-      breadcrumbHomeLabel: t.home,
-      ...(blogArticle ? { blogArticle } : {}),
-    });
-  }, [lang, currentPage, blogSlug]);
+    if (dbShell) return;
+    // While a database post loads, keep the head the server rendered (blog-router.php).
+    if (dbPostLoading) return;
+    if (activeDbPost) updatePageSeo(resolveDbPostSeo(lang, activeDbPost));
+    else updatePageSeo(resolvePageSeo(lang, currentPage, blogSlug));
+  }, [lang, currentPage, blogSlug, dbShell, dbPostLoading, activeDbPost]);
 
   return (
     <div className="fc-app-shell">
@@ -490,7 +532,9 @@ export default function App() {
                   </h1>
                   <p>{t.ti84PageLead}</p>
                 </div>
-                <TI84CalculatorPage />
+                <Suspense fallback={graphingFallback}>
+                  <TI84CalculatorPage />
+                </Suspense>
                 <CalculatorRichArticle id="ti84" lang={lang} />
               </div>
             )}
@@ -505,7 +549,9 @@ export default function App() {
                   </h1>
                   <p>{t.desmosPageLead}</p>
                 </div>
-                <DesmosCalculatorPage lang={lang} onNavigate={navigateTo} />
+                <Suspense fallback={graphingFallback}>
+                  <DesmosCalculatorPage lang={lang} onNavigate={navigateTo} />
+                </Suspense>
               </div>
             )}
 
@@ -536,7 +582,32 @@ export default function App() {
               />
             )}
 
-            {currentPage === "blog" && blogSlug && !activeBlogPost && (
+            {currentPage === "blog" && blogSlug && !activeBlogPost && dbView && (
+              <DatabaseArticlePage
+                view={dbView}
+                lang={lang}
+                latest={getLatestPosts(lang, 5)}
+                blogIndexPath={buildPathname(lang, "blog", null)}
+                labels={{
+                  toc: t.blogTableOfContents,
+                  author: t.blogAuthor,
+                  readTime: t.blogReadTime,
+                  readTimeSuffix: t.blogMinutes,
+                  tryCalculator: t.blogTryCalculator,
+                  latest: t.blogLatestPosts,
+                  backToBlog: t.blogBackToIndex,
+                }}
+                onNavigate={navigateToPath}
+                onSelectPost={slug => navigateTo("blog", { blogSlug: slug })}
+                onBackToBlog={() => navigateTo("blog")}
+              />
+            )}
+
+            {currentPage === "blog" && blogSlug && !activeBlogPost && dbPostLoading && (
+              <div className="fc-page-box text-muted small" style={{ minHeight: "60vh" }}>Loading article…</div>
+            )}
+
+            {currentPage === "blog" && blogSlug && !activeBlogPost && !dbView && !dbPostLoading && (
               <div className="fc-page-box">
                 <h1 className="h2 text-primary border-bottom pb-3 mb-4">
                   Page not found
@@ -559,18 +630,20 @@ export default function App() {
                 </p>
                 <div className="row g-4">
                   {paginatedPosts.map(post => {
-                    const thumbSrc = post.hero.srcWebp ?? post.hero.src;
+                    const thumbSrc = post.image;
+                    const postHref = buildPathname(lang, "blog", post.slug);
+                    const openPost = (e: React.MouseEvent) => {
+                      e.preventDefault();
+                      navigateTo("blog", { blogSlug: post.slug });
+                    };
                     return (
                     <div key={post.slug} className="col-md-6">
                       <article className="fc-blog-card card border-0 h-100 overflow-hidden">
                         <a
-                          href="#"
+                          href={postHref}
                           className="fc-blog-card-thumb-link"
                           aria-label={`${t.blogReadArticle}: ${post.title}`}
-                          onClick={e => {
-                            e.preventDefault();
-                            navigateTo("blog", { blogSlug: post.slug });
-                          }}
+                          onClick={openPost}
                         >
                           <img
                             src={thumbSrc}
@@ -593,25 +666,31 @@ export default function App() {
                             <i className="fa-regular fa-calendar-days" aria-hidden></i>{" "}
                             <time dateTime={post.datePublished}>{post.datePublished}</time>
                           </div>
-                          <h2 className="fc-blog-title h5 mb-2">{post.title}</h2>
+                          <h2 className="fc-blog-title h5 mb-2">
+                            <a href={postHref} onClick={openPost} className="text-reset text-decoration-none">
+                              {post.title}
+                            </a>
+                          </h2>
                           <p className="fc-blog-desc flex-grow-1 mb-3">{post.excerpt}</p>
                           <div className="d-flex flex-wrap gap-2 mt-auto">
-                            <button
-                              type="button"
-                              onClick={() => navigateTo("blog", { blogSlug: post.slug })}
+                            <a
+                              href={postHref}
+                              onClick={openPost}
                               className="btn btn-primary btn-sm"
                             >
                               <i className="fa-solid fa-book-open me-1" aria-hidden></i>
                               {t.blogReadArticle}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => navigateTo(post.calcLink)}
-                              className="btn fc-blog-btn btn-sm"
-                            >
-                              <i className="fa-solid fa-calculator me-1" aria-hidden></i>
-                              {t.blogTryCalculator}
-                            </button>
+                            </a>
+                            {post.calcLink ? (
+                              <a
+                                href={buildPathname(lang, post.calcLink)}
+                                onClick={e => { e.preventDefault(); navigateTo(post.calcLink); }}
+                                className="btn fc-blog-btn btn-sm"
+                              >
+                                <i className="fa-solid fa-calculator me-1" aria-hidden></i>
+                                {t.blogTryCalculator}
+                              </a>
+                            ) : null}
                           </div>
                         </div>
                       </article>
@@ -637,6 +716,24 @@ export default function App() {
                     {t.next} <i className="fa-solid fa-chevron-right ms-1"></i>
                   </button>
                 </div>
+
+                {/* Archive: every article linked from the index (pagination alone hides older posts from crawlers). */}
+                <nav className="mt-5 pt-4 border-top" aria-labelledby="fc-blog-archive-h">
+                  <h2 id="fc-blog-archive-h" className="h6 text-body-secondary mb-3">{t.blogBackToIndex}</h2>
+                  <ul className="small mb-0 ps-3">
+                    {currentBlogPosts.map(post => (
+                      <li key={post.slug} className="mb-1">
+                        <a
+                          href={buildPathname(lang, "blog", post.slug)}
+                          onClick={e => { e.preventDefault(); navigateTo("blog", { blogSlug: post.slug }); }}
+                          className="text-decoration-none"
+                        >
+                          {post.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               </div>
             )}
 
@@ -666,42 +763,46 @@ export default function App() {
                     <div className="fw-medium">{t.successMsg}</div>
                   </div>
                 ) : (
-                  <form onSubmit={e => { e.preventDefault(); setContactSubmitted(true); }}>
+                  <form onSubmit={submitContactForm}>
                     <div className="mb-3">
-                      <label className="form-label fw-semibold fc-form-label-sm">{t.name}</label>
-                      <input type="text" className="form-control" required />
+                      <label htmlFor="fc-contact-name" className="form-label fw-semibold fc-form-label-sm">{t.name}</label>
+                      <input id="fc-contact-name" name="name" type="text" className="form-control" maxLength={200} autoComplete="name" required />
                     </div>
                     <div className="mb-3">
-                      <label className="form-label fw-semibold fc-form-label-sm">{t.email}</label>
-                      <input type="email" className="form-control" required />
+                      <label htmlFor="fc-contact-email" className="form-label fw-semibold fc-form-label-sm">{t.email}</label>
+                      <input id="fc-contact-email" name="email" type="email" className="form-control" maxLength={320} autoComplete="email" required />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="fc-contact-subject" className="form-label fw-semibold fc-form-label-sm">Subject</label>
+                      <input id="fc-contact-subject" name="subject" type="text" className="form-control" maxLength={300} placeholder="Calculator question, correction, partnership…" />
                     </div>
                     <div className="mb-4">
-                      <label className="form-label fw-semibold fc-form-label-sm">{t.message}</label>
-                      <textarea className="form-control" rows={4} required></textarea>
+                      <label htmlFor="fc-contact-message" className="form-label fw-semibold fc-form-label-sm">{t.message}</label>
+                      <textarea id="fc-contact-message" name="message" className="form-control" rows={4} maxLength={5000} required></textarea>
                     </div>
-                    <button type="submit" className="fc-submit-btn">
-                      <i className="fa-solid fa-paper-plane me-2"></i> {t.sendMessage}
+                    <div className="visually-hidden" aria-hidden="true">
+                      <label htmlFor="fc-contact-website">Website</label>
+                      <input id="fc-contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                    </div>
+                    {contactError && <div className="alert alert-danger small" role="alert">{contactError}</div>}
+                    <p className="small text-muted">
+                      We use your name and email only to reply. See our{" "}
+                      <a href={buildPathname(lang, "privacy")} onClick={e => { e.preventDefault(); navigateTo("privacy"); }}>Privacy Policy</a>.
+                    </p>
+                    <button type="submit" className="fc-submit-btn" disabled={contactSending}>
+                      <i className="fa-solid fa-paper-plane me-2"></i> {contactSending ? "Sending…" : t.sendMessage}
                     </button>
                   </form>
                 )}
               </div>
             )}
 
-            {currentPage === "privacy" && (
+            {legalDocs[currentPage] && (
               <LegalPage
-                doc={privacyPolicy[lang]}
+                doc={legalDocs[currentPage][lang]}
                 lang={lang}
-                otherPage="terms"
-                otherLabel={t.terms}
-              />
-            )}
-
-            {currentPage === "terms" && (
-              <LegalPage
-                doc={termsOfUse[lang]}
-                lang={lang}
-                otherPage="privacy"
-                otherLabel={t.privacy}
+                related={legalLinks.filter(l => l.page !== currentPage)}
+                onNavigate={page => navigateTo(page)}
               />
             )}
 
@@ -760,7 +861,6 @@ export default function App() {
       {/* ── Floating Social Icons ──────────────────────────── */}
       <div className="fc-social-dock">
         {[
-          { href: "https://facebook.com",  icon: "fa-facebook-f",  label: "Facebook",  cl: "#1877F2" },
           { href: OFFICIAL_SOCIAL_X,        icon: "fa-x-twitter",   label: "Twitter/X", cl: "#000000" },
           { href: OFFICIAL_SOCIAL_INSTAGRAM, icon: "fa-instagram",   label: "Instagram", cl: "#E1306C" },
           { href: OFFICIAL_SOCIAL_YOUTUBE, icon: "fa-youtube",     label: "YouTube",   cl: "#FF0000" },
@@ -794,6 +894,8 @@ export default function App() {
               { key: "contact", label: t.contact },
               { key: "privacy", label: t.privacy },
               { key: "terms", label: t.terms },
+              { key: "disclaimer", label: t.disclaimer },
+              { key: "editorial-policy", label: t.editorialPolicy },
             ].map(link => (
               <a
                 key={link.key}
@@ -807,6 +909,9 @@ export default function App() {
           </div>
           <p className="text-secondary mb-0 fc-footer-copy">
             © 2026 FinanceCalculator. All rights reserved. Calculations are estimates and should not replace professional financial advice.
+          </p>
+          <p className="text-secondary small mb-0 mt-2 fc-footer-copy">
+            This site is supported by advertising. Ads are served by third parties and do not influence our content.
           </p>
         </div>
       </footer>

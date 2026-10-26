@@ -3,7 +3,7 @@ import { tocFromBlocks } from "../../data/blog/types";
 import { BlogBlockRenderer } from "./BlogBlockRenderer";
 import { BlogLiveRatesSnippet } from "./BlogLiveRatesSnippet";
 import { BlogPostImage } from "./BlogPostImage";
-import type { AppLang } from "../../utils/routes";
+import { buildPathname, type AppLang } from "../../utils/routes";
 
 type Glabels = {
   toc: string;
@@ -46,6 +46,9 @@ export function BlogArticlePage({
     <div className="fc-blog-article-page fc-page-box">
       <nav aria-label="Breadcrumb" className="fc-blog-breadcrumb mb-3">
         <ol className="breadcrumb small mb-0">
+          <li className="breadcrumb-item">
+            <a href={buildPathname(lang, "home")} className="text-decoration-none">Home</a>
+          </li>
           <li className="breadcrumb-item">
             <a href={blogIndexPath} className="text-decoration-none" onClick={e => { e.preventDefault(); onBackToBlog(); }}>
               {labels.backToBlog}
@@ -128,7 +131,7 @@ export function BlogArticlePage({
                 {latest.map(p => (
                   <li key={p.slug} className="list-group-item px-3 py-2">
                     <a
-                      href="#"
+                      href={buildPathname(lang, "blog", p.slug)}
                       className="text-decoration-none fc-blog-sidebar-link"
                       onClick={e => {
                         e.preventDefault();
@@ -151,7 +154,7 @@ export function BlogArticlePage({
                 {related.map(p => (
                   <li key={p.slug} className="list-group-item px-3 py-2">
                     <a
-                      href="#"
+                      href={buildPathname(lang, "blog", p.slug)}
                       className="text-decoration-none fc-blog-sidebar-link"
                       onClick={e => {
                         e.preventDefault();
@@ -241,13 +244,21 @@ export function BlogArticlePage({
           ) : null}
 
           <div className="d-flex flex-wrap gap-2 mt-5 pt-3 border-top">
-            <button type="button" className="btn btn-primary" onClick={() => onOpenCalculator(post.calcLink)}>
+            <a
+              href={buildPathname(lang, post.calcLink)}
+              className="btn btn-primary"
+              onClick={e => { e.preventDefault(); onOpenCalculator(post.calcLink); }}
+            >
               <i className="fa-solid fa-calculator me-2" aria-hidden />
               {labels.tryCalculator}
-            </button>
-            <button type="button" className="btn btn-outline-secondary" onClick={onBackToBlog}>
+            </a>
+            <a
+              href={blogIndexPath}
+              className="btn btn-outline-secondary"
+              onClick={e => { e.preventDefault(); onBackToBlog(); }}
+            >
               {labels.backToBlog}
-            </button>
+            </a>
           </div>
         </div>
       </div>
