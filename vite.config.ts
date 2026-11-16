@@ -35,7 +35,7 @@ function spaFallback(): Plugin {
 /**
  * Ad-network and analytics tags in <head> of every page (prerendered HTML included), each one
  * only when its env var is set:
- *   VITE_GROW_SITE_ID          Grow by Mediavine (required ~30 days before Journey/Mediavine review)
+ *   VITE_GROW_SITE_ID          Grow by Mediavine (copy the exact ID from its publisher portal)
  *   VITE_MEDIAVINE_SITE_SLUG   Mediavine/Journey ad script, given to you after approval
  *   VITE_GA4_ID                Google Analytics 4 measurement ID (G-XXXXXXX)
  * The /admin shell never gets these tags.

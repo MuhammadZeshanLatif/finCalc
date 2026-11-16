@@ -132,11 +132,12 @@ export function BlogBlockRenderer({ blocks }: Props) {
 
   blocks.forEach((b, i) => {
     const next = blocks[i + 1];
+    const previous = blocks[i - 1];
     if (b.t === "h3" && b.id.startsWith("faq-") && next?.t === "p") {
       nodes.push(renderBlock(b, i, next));
       return;
     }
-    if (i > 0 && blocks[i - 1].t === "h3" && blocks[i - 1].id.startsWith("faq-") && b.t === "p") {
+    if (previous?.t === "h3" && previous.id.startsWith("faq-") && b.t === "p") {
       return;
     }
 
@@ -144,5 +145,5 @@ export function BlogBlockRenderer({ blocks }: Props) {
 
   });
 
-  return <div className="fc-blog-body">{nodes}</div>;
+  return <div className="fc-blog-body journey-content">{nodes}</div>;
 }

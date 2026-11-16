@@ -89,9 +89,9 @@ export function BlogArticlePage({
         </div>
       </header>
 
-      <div className="row g-4">
-        <aside className="col-lg-4 order-lg-2">
-          <div className="fc-blog-sidebar sticky-lg-top" style={{ top: "1rem" }}>
+      <div className="fc-journey-article-layout">
+        <aside className="fc-journey-article-sidebar journey-sidebar">
+          <div className="fc-blog-sidebar">
             <div className="card border fc-blog-sidebar-card mb-3">
               <div className="card-header py-2 small fw-bold">{labels.toc}</div>
               <div className="card-body py-2">
@@ -170,7 +170,7 @@ export function BlogArticlePage({
           </div>
         </aside>
 
-        <div className="col-lg-8 order-lg-1">
+        <div className="fc-journey-article-main">
           <figure className="fc-blog-hero mb-4">
             <BlogPostImage
               src={post.hero.src}

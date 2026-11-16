@@ -330,7 +330,7 @@ export default function App({ initialRoute, dbShell = false }: { initialRoute?: 
         <div className="row g-4">
 
           {/* Sidebar */}
-          <div className="col-lg-3">
+          <div className={currentPage === "blog" && blogSlug ? "d-none" : "col-lg-3"}>
             <div className="fc-sidebar sticky-top fc-sidebar-sticky">
               <div className="fc-sidebar-header d-flex align-items-center gap-2">
                 <i className="fa-solid fa-bars-staggered"></i>
@@ -398,7 +398,7 @@ export default function App({ initialRoute, dbShell = false }: { initialRoute?: 
           </div>
 
           {/* Content */}
-          <main id="main-content" className="col-lg-9" role="main">
+          <main id="main-content" className={currentPage === "blog" && blogSlug ? "col-12" : "col-lg-9"} role="main">
 
             {/* ── Home Page ──────────────────────────────── */}
             {currentPage === "home" && (
@@ -744,6 +744,15 @@ export default function App({ initialRoute, dbShell = false }: { initialRoute?: 
                   <i className="fa-solid fa-circle-info"></i> {t.about}
                 </h1>
                 <CalculatorRichArticle id="about" lang={lang} />
+                <section className="mt-4" aria-labelledby="fc-about-editorial-heading">
+                  <h2 id="fc-about-editorial-heading" className="h4 text-primary">Who creates this content</h2>
+                  <p className="text-body-secondary">
+                    Articles credited to FinanceCalculator Editorial are produced for this site. Our
+                    <a href={buildPathname(lang, "editorial-policy")}> Editorial Policy</a> explains how we check sources,
+                    review calculations, and handle corrections. To ask about an article or report an error, use our
+                    <a href={buildPathname(lang, "contact")}> Contact page</a>.
+                  </p>
+                </section>
               </div>
             )}
 
@@ -884,7 +893,7 @@ export default function App({ initialRoute, dbShell = false }: { initialRoute?: 
 
 
       {/* ── Footer ─────────────────────────────────────────── */}
-      <footer className="fc-footer text-white text-center py-4 mt-auto">
+      <footer className="fc-footer journey-footer text-white text-center py-4 mt-auto">
         <div className="container">
           <div className="d-flex justify-content-center flex-wrap gap-4 mb-3">
             {[
