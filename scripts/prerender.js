@@ -89,11 +89,11 @@ try {
   // Template for admin-dashboard posts (filled by public/blog-router.php) and the /admin app shell.
   const shell = await mod.renderDbBlogShell();
   writeOut('blog-shell.html', buildPage({ head: '<!--FC_HEAD-->', body: shell.body }));
-  // No ad, Grow or analytics tags (vite.config.ts adTags) on the private admin app.
+  // Keep the shared GTM tag on every page, including admin; omit optional ad and GA4 tags.
   const adminPage = buildPage({
     head: '<title>Admin — FinanceCalculator</title>\n    <meta name="robots" content="noindex, nofollow" />',
     body: '',
-  }).replace(/\s*<script[^>]*(?:scripts\.mediavine\.com|data-grow-initializer|googletagmanager\.com)[^>]*>[\s\S]*?<\/script>/g, '')
+  }).replace(/\s*<script[^>]*(?:scripts\.mediavine\.com|data-grow-initializer|googletagmanager\.com\/(?!gtm\.js\?id=GTM-TNFDVQS8))[^>]*>[\s\S]*?<\/script>/g, '')
     .replace(/\s*<script>window\.dataLayer[\s\S]*?<\/script>/g, '');
   writeOut('admin/index.html', adminPage);
 
